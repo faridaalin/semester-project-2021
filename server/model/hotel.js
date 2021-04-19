@@ -12,4 +12,7 @@ const HotelSchema = new Schema({
   description: { type: String, required: [true, 'Description is required'] },
   image: { type: [String], required: [true, 'Image is required'] },
   address: { type: String, required: [true, 'Hotel address is required'] },
+  category: { type: String, required: [true, 'Category is required'] },
 });
+
+module.exports = mongoose.model('Hotel', HotelSchema);
