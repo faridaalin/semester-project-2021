@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const Schema = mongoose.Schema;
 
-const ReservationSchema = new Schema({
+const EnquirySchema = new Schema({
   hotel_name: {
     type: String,
     required: [true, 'Hotel name is required'],
@@ -36,4 +36,4 @@ const ReservationSchema = new Schema({
   special_requests: { type: String },
 });
 
-module.exports = mongoose.model('Reservation', ReservationSchema);
+module.exports = mongoose.model('Enquiry', EnquirySchema);
