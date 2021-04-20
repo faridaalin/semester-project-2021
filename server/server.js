@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const hotels = require('./routes/api/v1/hotel');
-const bookings = require('./routes/api/v1/booking');
+const enquiries = require('./routes/api/v1/enquiry');
 const messages = require('./routes/api/v1/message');
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
 app.use('/api/v1/hotels', hotels);
-app.use('/api/v1/bookings', bookings);
+app.use('/api/v1/enquiries', enquiries);
 app.use('/api/v1/messages', messages);
 
 app.listen(port, () => {

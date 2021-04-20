@@ -3,8 +3,6 @@ const router = express.Router();
 
 const hotelController = require('../../../controllers/hotel_controller');
 
-console.log(hotelController.all_hotels);
-
 // /hotels
 router.get('/', hotelController.all_hotels);
 
