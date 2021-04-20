@@ -6,7 +6,7 @@ const RoomSchema = new Schema({
   room_type: {
     type: String,
     required: [true, 'Room type is required'],
-    max: [100, 'Room can not be longer than 100 char.'],
+    maxlength: [100, 'Room can not be longer than 100 char.'],
   },
   sleeps: {
     type: Number,
@@ -20,7 +20,7 @@ const HotelSchema = new Schema({
   title: {
     type: String,
     required: [true, 'Hotel title is required'],
-    max: [100, 'Title can not be longer than 100 char.'],
+    maxLength: [100, 'Title can not be longer than 100 char.'],
   },
   rating: { type: Number, min: 1, max: 5 },
   description: { type: String, required: [true, 'Description is required'] },

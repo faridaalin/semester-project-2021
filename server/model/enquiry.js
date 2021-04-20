@@ -21,9 +21,13 @@ const EnquirySchema = new Schema({
   firstname: {
     type: String,
     required: [true, 'First name is required'],
-    min: 2,
+    minLength: 2,
   },
-  lastname: { type: String, required: [true, 'Last name is required'], min: 2 },
+  lastname: {
+    type: String,
+    required: [true, 'Last name is required'],
+    minLength: 2,
+  },
   email: {
     type: String,
     match: [
