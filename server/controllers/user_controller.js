@@ -66,8 +66,31 @@ exports.user_login = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
-    return res.send({ status: 'ok', data: token });
+    return res.send({ status: 'ok', token: token, data: user });
   }
 
   return res.send({ status: 'error', error: 'Invalid username/password' });
+};
+
+// Change password
+exports.user_changePassword = async (req, res, next) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('USER:', user);
+    const id = user.id;
+    const hashedpassword = await bcrypt.hash(newPassword, 10);
+    console.log(id);
+    // await User.updateOne({ id }, { $set: { password } });
+    const gotuser = await User.findByIdAndUpdate(
+      id,
+      { password: hashedpassword },
+      { new: true }
+    );
+    console.log('User IN DATABASE', gotuser);
+    res.send({ status: gotuser });
+  } catch (error) {
+    res.send({ status: 'error', error: error });
+  }
 };
