@@ -2,6 +2,12 @@ const Message = require('../model/message');
 
 // All Message
 exports.all_messages = (req, res) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res
+      .status(403)
+      .send({ status: 'error', error: 'You must be logged in as admin user' });
+
   Message.find({}, (err, result) => {
     if (err) {
       res.send(err);
@@ -13,6 +19,12 @@ exports.all_messages = (req, res) => {
 
 // Single Message
 exports.messages_details = (req, res) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res
+      .status(403)
+      .send({ status: 'error', error: 'You must be logged in as admin user' });
+
   Message.findById(req.params.id, (err, result) => {
     if (err) {
       res.send(err);
@@ -54,6 +66,12 @@ exports.messages_update = (req, res, next) => {
 
 // Delete an Message
 exports.messages_delete = (req, res) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res
+      .status(403)
+      .send({ status: 'error', error: 'You must be logged in as admin user' });
+
   Message.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       res.send(err);

@@ -20,6 +20,7 @@ const RoomSchema = new Schema({
 const HotelSchema = new Schema({
   title: {
     type: String,
+    unique: true,
     required: [true, 'Hotel title is required'],
     maxLength: [100, 'Title can not be longer than 100 char.'],
   },

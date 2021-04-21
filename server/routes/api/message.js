@@ -1,13 +1,15 @@
 const express = require('express');
+const auth = require('../../middleware/auth');
+
 const router = express.Router();
 
 const messageController = require('../../controllers/messages_controller');
 
 // /messages
-router.get('/', messageController.all_messages);
+router.get('/', auth, messageController.all_messages);
 
 // /messages/4
-router.get('/:id', messageController.messages_details);
+router.get('/:id', auth, messageController.messages_details);
 
 // /messages/create
 router.post('/create', messageController.messages_create);
@@ -16,6 +18,6 @@ router.post('/create', messageController.messages_create);
 router.patch('/:id/update', messageController.messages_update);
 
 //  /messages/4/delete
-router.delete('/:id/delete', messageController.messages_delete);
+router.delete('/:id/delete', auth, messageController.messages_delete);
 
 module.exports = router;

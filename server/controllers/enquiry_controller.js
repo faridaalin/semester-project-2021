@@ -24,6 +24,10 @@ exports.enquiry_details = (req, res) => {
 
 // Create an enquiry
 exports.enquiry_create = (req, res, next) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res.status(403).send({ status: 'error', error: 'Access denied' });
+
   console.log('Booking😺', req.body);
   const enquiry = new Enquiry(req.body);
 
@@ -38,6 +42,10 @@ exports.enquiry_create = (req, res, next) => {
 
 // Update an enquiry
 exports.enquiry_update = (req, res, next) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res.status(403).send({ status: 'error', error: 'Access denied' });
+
   Enquiry.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -55,6 +63,10 @@ exports.enquiry_update = (req, res, next) => {
 
 // Delete an enquiry
 exports.enquiry_delete = (req, res) => {
+  const { role } = req.user;
+  if (role !== 'admin')
+    return res.status(403).send({ status: 'error', error: 'Access denied' });
+
   Enquiry.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       res.send(err);
