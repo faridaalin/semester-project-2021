@@ -8,11 +8,13 @@ const UserSchema = new Schema(
       type: String,
       required: [true, 'First name is required'],
       minLength: 2,
+      trim: true,
     },
     lastname: {
       type: String,
       required: [true, 'Last name is required'],
       minLength: 2,
+      trim: true,
     },
     email: {
       type: String,
@@ -23,8 +25,23 @@ const UserSchema = new Schema(
       required: [true, 'Please enter Email Address'],
       lowercase: true,
       unique: true,
+      trim: true,
     },
-    password: { type: String, required: [true, 'Password is required'] },
+    role: {
+      type: String,
+      enum: ['public', 'admin'],
+      default: 'public',
+      required: [true, 'Role is required'],
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: [true, 'Password is required'],
+      minLength: 8,
+      trim: true,
+    },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   },
   { collection: 'users' }
 );

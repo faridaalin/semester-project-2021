@@ -24,8 +24,6 @@ exports.messages_details = (req, res) => {
 
 // Create an Message
 exports.messages_create = (req, res, next) => {
-  console.log('Message', req.body);
-
   const message = new Message(req.body);
 
   message.save((err) => {
