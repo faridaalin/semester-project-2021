@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 
 // all users
@@ -38,8 +40,7 @@ exports.user_register = async (req, res, next) => {
       lastname,
       role,
     });
-    console.log('User Created successfully🍄:', response);
-    res.send({ status: response });
+    res.send({ status: 'Success', data: response });
   } catch (error) {
     if (error.code === 11000) {
       // Duplicate key
@@ -48,4 +49,25 @@ exports.user_register = async (req, res, next) => {
       return res.send({ status: 'error', error: error });
     }
   }
+};
+
+// Login user
+exports.user_login = async (req, res, next) => {
+  const { password, email } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user)
+    return res.send({ status: 'error', error: 'Invalid username/password' });
+
+  if (await bcrypt.compare(password, user.password)) {
+    // password is a match
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET
+    );
+
+    return res.send({ status: 'ok', data: token });
+  }
+
+  return res.send({ status: 'error', error: 'Invalid username/password' });
 };
