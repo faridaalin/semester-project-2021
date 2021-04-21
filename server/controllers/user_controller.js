@@ -33,14 +33,22 @@ exports.user_register = async (req, res, next) => {
   const password = await bcrypt.hash(unshashedPassword, 10);
 
   try {
-    const response = await User.create({
+    // Check if user already exist
+    const userExist = await User.findOne({ email });
+    if (userExist)
+      return res
+        .status(403)
+        .send({ status: 'error', error: 'User already exist' });
+
+    // Create new user
+    const newUser = await User.create({
       email,
       password,
       firstname,
       lastname,
       role,
     });
-    res.send({ status: 'Success', data: response });
+    res.send({ status: 'Success', data: newUser });
   } catch (error) {
     if (error.code === 11000) {
       // Duplicate key
@@ -61,10 +69,8 @@ exports.user_login = async (req, res, next) => {
 
   if (await bcrypt.compare(password, user.password)) {
     // password is a match
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET
-    );
+    const payload = { id: user.id, email: user.email, role: user.role };
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     return res.send({ status: 'ok', token: token, data: user });
   }
@@ -78,18 +84,15 @@ exports.user_changePassword = async (req, res, next) => {
 
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('USER:', user);
     const id = user.id;
     const hashedpassword = await bcrypt.hash(newPassword, 10);
-    console.log(id);
-    // await User.updateOne({ id }, { $set: { password } });
-    const gotuser = await User.findByIdAndUpdate(
+
+    await User.findByIdAndUpdate(
       id,
       { password: hashedpassword },
       { new: true }
     );
-    console.log('User IN DATABASE', gotuser);
-    res.send({ status: gotuser });
+    res.send({ status: 'ok' });
   } catch (error) {
     res.send({ status: 'error', error: error });
   }

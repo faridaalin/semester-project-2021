@@ -4,10 +4,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 
+const auth = require('./middleware/auth');
+
 const hotels = require('./routes/api/hotel');
 const enquiries = require('./routes/api/enquiry');
 const messages = require('./routes/api/message');
 const users = require('./routes/api/user');
+const dashboard = require('./routes/api/dashbaord');
 
 const app = express();
 dotenv.config();
@@ -29,6 +32,7 @@ app.use('/api/hotels', hotels);
 app.use('/api/enquiries', enquiries);
 app.use('/api/messages', messages);
 app.use('/api/users', users);
+app.use('/api/dashboard', auth, dashboard);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
