@@ -1,49 +1,60 @@
 const Message = require('../model/message');
+const catchAsyncHandler = require('../middleware/catchAsyncHandler');
 
 // All Message
-exports.all_messages = (req, res) => {
+exports.all_messages = catchAsyncHandler(async (req, res, next) => {
   const { role } = req.user;
-  if (role !== 'admin')
-    return res
-      .status(403)
-      .send({ status: 'error', error: 'You must be logged in as admin user' });
+  if (role !== 'admin') {
+    const error = new Error('You must be logged in as admin user');
+    error.status = 403;
+    return next(error);
+  }
 
-  Message.find({}, (err, result) => {
-    if (err) {
-      res.send(err);
-      return next(err);
-    }
-    res.send({ result: result });
-  });
-};
+  const response = await Message.find({});
+
+  if (!response || response.length === 0) {
+    const error = new Error('There is no messages at the moment');
+    error.status = 404;
+    return next(error);
+  }
+  res.status(200).send({ status: 'ok', data: response });
+});
 
 // Single Message
-exports.messages_details = (req, res) => {
+exports.messages_details = catchAsyncHandler(async (req, res, next) => {
   const { role } = req.user;
-  if (role !== 'admin')
-    return res
-      .status(403)
-      .send({ status: 'error', error: 'You must be logged in as admin user' });
+  if (role !== 'admin') {
+    const error = new Error('You must be logged in as admin user');
+    error.status = 403;
+    return next(error);
+  }
 
-  Message.findById(req.params.id, (err, result) => {
+  Message.findById(req.params.id, (err, message) => {
     if (err) {
-      res.send(err);
-      return next(err);
+      if (err.name === 'CastError') {
+        const error = new Error(`Invalid path with value: ${err.value}`);
+        error.status = 400;
+        next(error);
+      }
+      next(err);
     }
-    res.send({ result: result });
+    if (!message || message.length === 0) {
+      const error = new Error('Messages not found');
+      error.status = 404;
+      return next(error);
+    }
+    res.status(200).send({ status: 'ok', data: message });
   });
-};
+});
 
 // Create an Message
 exports.messages_create = (req, res, next) => {
-  const message = new Message(req.body);
-
-  message.save((err) => {
+  Message.create(req.body, (err, message) => {
     if (err) {
-      res.send(err);
+      err.status = 400;
       return next(err);
     }
-    res.send(message);
+    res.status(200).send({ status: 'ok', data: message });
   });
 };
 
@@ -53,30 +64,43 @@ exports.messages_update = (req, res, next) => {
     req.params.id,
     req.body,
     { new: true, runValidators: true },
-    (err, result) => {
+    (err, message) => {
       if (err) {
-        res.send(err);
+        console.log('ERROR😃', err);
+        //403 Forbidden
+        err.status = 400;
         return next(err);
       } else {
-        res.send({ result });
+        res.status(200).send({ status: 'ok', data: message });
       }
     }
   );
 };
 
 // Delete an Message
-exports.messages_delete = (req, res) => {
+exports.messages_delete = (req, res, next) => {
   const { role } = req.user;
-  if (role !== 'admin')
-    return res
-      .status(403)
-      .send({ status: 'error', error: 'You must be logged in as admin user' });
+  if (role !== 'admin') {
+    const error = new Error('You must be logged in as admin user');
+    error.status = 403;
+    return next(error);
+  }
 
-  Message.findByIdAndRemove(req.params.id, (err) => {
+  Message.findByIdAndRemove(req.params.id, (err, message) => {
     if (err) {
-      res.send(err);
+      err.status = 400;
       return next(err);
     }
-    res.send('Message Deleted');
+
+    if (!message) {
+      const error = new Error('Not found');
+      error.status = 404;
+      return next(error);
+    }
+
+    res.status(204).send({
+      status: 'Resource deleted successfully',
+      data: message,
+    });
   });
 };

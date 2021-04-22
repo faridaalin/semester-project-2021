@@ -18,7 +18,12 @@ const port = process.env.PORT || 8080;
 
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1mlha.mongodb.net/holidaze?retryWrites=true&w=majority`,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
 );
 
 // MIDDLEWARE
@@ -36,13 +41,14 @@ app.use('/api/dashboard', auth, dashboard);
 
 app.use((req, res, next) => {
   // res.status(404).send({ status: 'error', error: 'Not Found' });
-  const err = new Error('Not found');
+  const err = new Error('Enpoint Not Found');
   err.status = 404;
   next(err);
 });
 
 // Error handler - catched all next(err)
 app.use((err, req, res, next) => {
+  console.log('ERROR ⛔', err);
   res.status(err.status || 500).send({
     error: {
       status: err.status || 500,

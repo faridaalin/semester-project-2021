@@ -48,7 +48,7 @@ exports.user_register = catchAsyncHandler(async (req, res, next) => {
     lastname,
     role,
   });
-  res.send({ status: 'Success', data: newUser });
+  res.status(200).send({ status: 'Success', data: newUser });
 
   // Duplicate key
   const error = new Error('Email is already registered');
