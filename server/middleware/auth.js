@@ -14,21 +14,18 @@ module.exports = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
         console.log('err', err);
-        return res
-          .status(401)
-          .send({ status: 'error', error: 'Access denied' });
+        res.status(401).send({ status: 'error', error: 'Access denied' });
+        return res.redirect('/');
       }
 
       req.user = user;
 
       if (user.role === 'admin') {
-        console.log('req.user.role', req.user.role);
         next();
       } else {
-        console.log('req.user.role', req.user.role);
         return res
           .status(401)
-          .send({ status: 'error', error: 'You must an admin user' });
+          .send({ status: 'error', error: 'You must be an admin user' });
       }
     });
   } catch (error) {

@@ -1,7 +1,7 @@
 const Hotel = require('../model/hotel');
 
 // All Hotels
-exports.all_hotels = (req, res) => {
+exports.all_hotels = (req, res, next) => {
   Hotel.find({}, (err, hotel) => {
     if (err) {
       res.send(err);

@@ -34,6 +34,24 @@ app.use('/api/messages', messages);
 app.use('/api/users', users);
 app.use('/api/dashboard', auth, dashboard);
 
+app.use((req, res, next) => {
+  // res.status(404).send({ status: 'error', error: 'Not Found' });
+  const err = new Error('Not found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handler - catched all next(err)
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).send({
+    error: {
+      status: err.status || 500,
+      message: err.message || 'Internal server error',
+    },
+  });
+});
+
+// Start Server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
