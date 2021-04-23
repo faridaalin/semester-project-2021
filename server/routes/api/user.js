@@ -3,18 +3,23 @@ const router = express.Router();
 
 const userController = require('../../controllers/user_controller');
 const validateSchema = require('../../middleware/yupValidation');
-const userSchema = require('../../utils/yupSchema');
-
-// /messages
-router.get('/', userController.all_users);
+const userSchema = require('../../utils/userSchema');
 
 // /users/register
 router.post(
   '/register',
-  validateSchema(userSchema),
+  validateSchema(userSchema.registerSchema),
   userController.user_register
 );
-router.post('/login', userController.user_login);
-router.post('/change-password', userController.user_changePassword);
+router.post(
+  '/login',
+  validateSchema(userSchema.loginSchema),
+  userController.user_login
+);
+router.post(
+  '/change-password',
+  validateSchema(userSchema.changePasswordSchema),
+  userController.user_changePassword
+);
 
 module.exports = router;
