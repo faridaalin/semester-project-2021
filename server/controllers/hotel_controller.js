@@ -1,79 +1,77 @@
 const Hotel = require('../model/hotel');
+const ApiError = require('../error/apiError');
 
 // All Hotels
-exports.all_hotels = (req, res, next) => {
-  Hotel.find({}, (err, hotel) => {
-    if (err) {
-      res.send(err);
-      return next(err);
-    }
-    res.send(hotel);
-  });
+exports.all_hotels = async (req, res, next) => {
+  try {
+    const hotels = await Hotel.find({});
+    res.status(200).send({ status: 'ok', result: hotels.length, data: hotels });
+  } catch (err) {
+    next(ApiError.internalServerError('Internal Server error'));
+  }
 };
 
 // Single Hotel
-exports.hotel_details = (req, res) => {
-  Hotel.findById(req.params.id, (err, hotel) => {
-    if (err) {
-      res.send(err);
-      return next(err);
+exports.hotel_details = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    if (!hotel) throw ApiError.notFound('Hotel does not exist');
+    res.status(200).send({ status: 'ok', data: hotel });
+  } catch (err) {
+    if (err.name === 'CastError') {
+      return next(ApiError.badRequest('Invalid id'));
     }
-    res.send(hotel);
-  });
+    next(err);
+  }
 };
 
 // Create a hotel
-exports.hotel_create = (req, res, next) => {
-  const { role } = req.user;
-  if (role !== 'admin')
-    return res.status(403).send({ status: 'error', error: 'Access denied' });
+exports.hotel_create = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.create(req.body);
 
-  const hotel = new Hotel(req.body);
-  console.log(hotel);
-  hotel.save((err) => {
-    if (err) {
-      res.send(err);
-      return next(err);
+    res.status(200).send({ status: 'ok', data: hotel });
+  } catch (err) {
+    if (err.code === 11000) {
+      next(ApiError.requestConflict(err.message));
     }
-    res.send(hotel);
-  });
+    next(err);
+  }
 };
 
 // Update hotel
-exports.hotel_update = (req, res, next) => {
-  const { role } = req.user;
-  if (role !== 'admin')
-    return res.status(403).send({ status: 'error', error: 'Access denied' });
-
-  Hotel.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, result) => {
-      if (err) {
-        res.send(err);
-        return next(err);
-      } else {
-        res.send({ result });
-      }
-    }
-  );
+exports.hotel_update = async (req, res, next) => {
+  try {
+    const updatedHotel = await Hotel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.status(200).send({ status: 'ok', data: updatedHotel });
+    console.log('UPDATE PROD', req.body);
+  } catch (err) {
+    if (err.name === 'CastError')
+      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
+    next(err);
+  }
 };
 
 // Delete Hotel
-
-exports.hotel_delete = (req, res) => {
-  const { role } = req.user;
-  if (role !== 'admin')
-    return res
-      .status(403)
-      .send({ status: 'error', error: 'You must be logged in as admin user' });
-
-  Hotel.findByIdAndRemove(req.params.id, (err) => {
-    if (err) {
-      res.send(err);
-      return next(err);
+exports.hotel_delete = async (req, res, next) => {
+  try {
+    const hotelToDelete = await Hotel.findByIdAndRemove(req.params.id);
+    if (!hotelToDelete) {
+      return next(ApiError.notFound('Hotel not found'));
     }
-    res.send('Hotel Deleted');
-  });
+
+    res.status(202).send({
+      status: 'Accepted',
+      message: 'Resource deleted successfully',
+    });
+  } catch (err) {
+    if (err.name === 'CastError')
+      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
+
+    next(err);
+  }
 };

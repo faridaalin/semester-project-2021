@@ -7,7 +7,7 @@ exports.all_messages = async (req, res, next) => {
     const messages = await Message.find({});
     res.status(200).send({ status: 'ok', data: messages });
   } catch (err) {
-    next(ApiError.internalServerError(err));
+    next(err);
   }
 };
 
@@ -21,7 +21,7 @@ exports.messages_details = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError')
       next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
-    next(ApiError.internalServerError(err));
+    next(err);
   }
 };
 
@@ -31,7 +31,7 @@ exports.messages_create = async (req, res, next) => {
     await Message.create(req.body);
     res.status(201).send({ status: 'ok', message: 'Resource created' });
   } catch (err) {
-    next(ApiError.internalServerError('Someting went wrong, try again later'));
+    next(err);
   }
 };
 
@@ -48,6 +48,8 @@ exports.messages_delete = async (req, res, next) => {
       message: 'Resource deleted successfully',
     });
   } catch (err) {
-    next(ApiError.internalServerError('Someting went wrong, try again later'));
+    if (err.name === 'CastError')
+      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
+    next(err);
   }
 };

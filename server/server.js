@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 
 const auth = require('./middleware/auth');
+const ApiError = require('./error/apiError');
 const apiErrorHandler = require('./error/apiErrorHandler');
 
 const hotels = require('./routes/api/hotel');
@@ -42,9 +43,7 @@ app.use('/api/dashboard', auth, dashboard);
 
 app.use((req, res, next) => {
   // res.status(404).send({ status: 'error', error: 'Not Found' });
-  const err = new Error('Enpoint Not Found');
-  err.status = 404;
-  next(err);
+  next(ApiError.notFound('Not found'));
 });
 
 // Error handler - catched all next(err)

@@ -29,7 +29,6 @@ exports.user_register = async (req, res, next) => {
 
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
-    console.log('INSIDE ERROR 🙇‍😀');
     next(ApiError.requestConflict('Email is already registered'));
   }
 };
@@ -84,6 +83,6 @@ exports.user_changePassword = async (req, res, next) => {
     );
     res.status(200).send({ data: 'Your password has been updated' });
   } catch (err) {
-    next(ApiError.badRequest('Authorization failed '));
+    next(ApiError.badRequest('Authorization failed'));
   }
 };

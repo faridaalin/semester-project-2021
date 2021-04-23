@@ -18,6 +18,10 @@ class ApiError {
     //invalid auth/permission
     return new ApiError(401, msg);
   }
+  static UnprocessableError(msg) {
+    //Unprossesable entity
+    return new ApiError(422, msg);
+  }
   static forbiddenRequest(msg) {
     //invalid_operation, refuses to authorize it, Key is expired or does not exists
     return new ApiError(403, msg);
