@@ -9,7 +9,7 @@ const EnquirySchema = new Schema(
       type: String,
       required: [true, 'Hotel title is required'],
       minLength: [2, 'Title must be at least 2 char.'],
-      maxLength: [20, 'Title can not be longer than 100 char.'],
+      maxLength: [40, 'Title can not be longer than 100 char.'],
     },
     check_in: { type: Date },
     check_out: { type: Date, required: [true, 'Check out date is required'] },

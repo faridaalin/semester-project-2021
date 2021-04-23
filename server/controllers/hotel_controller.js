@@ -18,9 +18,6 @@ exports.hotel_details = async (req, res, next) => {
     if (!hotel) throw ApiError.notFound('Hotel does not exist');
     res.status(200).send({ status: 'ok', data: hotel });
   } catch (err) {
-    if (err.name === 'CastError') {
-      return next(ApiError.badRequest('Invalid id'));
-    }
     next(err);
   }
 };
@@ -32,9 +29,6 @@ exports.hotel_create = async (req, res, next) => {
 
     res.status(200).send({ status: 'ok', data: hotel });
   } catch (err) {
-    if (err.code === 11000) {
-      next(ApiError.requestConflict(err.message));
-    }
     next(err);
   }
 };
@@ -50,8 +44,6 @@ exports.hotel_update = async (req, res, next) => {
     if (!updatedHotel) throw ApiError.notFound('Hotel does not exist');
     res.status(200).send({ status: 'ok', data: updatedHotel });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
     next(err);
   }
 };
@@ -69,9 +61,6 @@ exports.hotel_delete = async (req, res, next) => {
       message: 'Resource deleted successfully',
     });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
-
     next(err);
   }
 };

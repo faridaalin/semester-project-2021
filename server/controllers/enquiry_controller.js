@@ -20,10 +20,6 @@ exports.enquiry_details = async (req, res, next) => {
     if (!enquiry) throw ApiError.notFound('Enquiry does not exist');
     res.status(200).send({ status: 'ok', data: enquiry });
   } catch (err) {
-    console.log('err', err);
-    if (err.name === 'CastError') {
-      return next(ApiError.badRequest('Invalid id'));
-    }
     next(err);
   }
 };
@@ -49,8 +45,6 @@ exports.enquiry_update = async (req, res, next) => {
     if (!updatedEnquiry) throw ApiError.notFound('Enquiry does not exist');
     res.status(200).send({ status: 'ok', data: updatedEnquiry });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
     next(err);
   }
 };
@@ -66,9 +60,6 @@ exports.enquiry_delete = async (req, res, next) => {
       message: 'Resource deleted successfully',
     });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
-
     next(err);
   }
 };

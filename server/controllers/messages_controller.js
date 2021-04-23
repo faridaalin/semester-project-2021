@@ -19,8 +19,6 @@ exports.messages_details = async (req, res, next) => {
 
     res.status(200).send({ status: 'ok', data: message });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
     next(err);
   }
 };
@@ -48,8 +46,6 @@ exports.messages_delete = async (req, res, next) => {
       message: 'Resource deleted successfully',
     });
   } catch (err) {
-    if (err.name === 'CastError')
-      next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
     next(err);
   }
 };

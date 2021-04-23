@@ -29,7 +29,7 @@ exports.user_register = async (req, res, next) => {
 
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
-    next(ApiError.requestConflict('Email is already registered'));
+    next(err);
   }
 };
 
