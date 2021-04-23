@@ -7,7 +7,9 @@ const EnquirySchema = new Schema(
   {
     hotel_name: {
       type: String,
-      required: [true, 'Hotel name is required'],
+      required: [true, 'Hotel title is required'],
+      minLength: [2, 'Title must be at least 2 char.'],
+      maxLength: [20, 'Title can not be longer than 100 char.'],
     },
     check_in: { type: Date },
     check_out: { type: Date, required: [true, 'Check out date is required'] },
@@ -20,7 +22,7 @@ const EnquirySchema = new Schema(
     children: {
       type: Number,
       required: [true, 'Children are required'],
-      min: 0,
+      default: 0,
     },
     price: { type: Number, required: [true, 'Price is required'] },
     firstname: {
@@ -46,7 +48,7 @@ const EnquirySchema = new Schema(
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },
-  { collection: 'enquiry' }
+  { collection: 'enquiries' }
 );
 
 module.exports = mongoose.model('Enquiry', EnquirySchema);

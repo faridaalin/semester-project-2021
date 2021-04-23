@@ -3,10 +3,10 @@ const dotenv = require('dotenv');
 const ApiError = require('../error/apiError');
 
 module.exports = (req, res, next) => {
-  console.log('Auth middleware called😀');
+  console.log('Auth middleware called😀 - ROLE IS', req.user);
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
-  if (!token) return res.status(401).send({ status: 'Access denied' });
+  if (!token) throw ApiError.unauthorizedRequest('Access denied');
 
   try {
     // Validate token

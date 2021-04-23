@@ -7,7 +7,7 @@ exports.all_hotels = async (req, res, next) => {
     const hotels = await Hotel.find({});
     res.status(200).send({ status: 'ok', result: hotels.length, data: hotels });
   } catch (err) {
-    next(ApiError.internalServerError('Internal Server error'));
+    next(err);
   }
 };
 
@@ -47,8 +47,8 @@ exports.hotel_update = async (req, res, next) => {
       req.body,
       { new: true }
     );
+    if (!updatedHotel) throw ApiError.notFound('Hotel does not exist');
     res.status(200).send({ status: 'ok', data: updatedHotel });
-    console.log('UPDATE PROD', req.body);
   } catch (err) {
     if (err.name === 'CastError')
       next(ApiError.badRequest(`Invalid path with value: ${err.value}`));
