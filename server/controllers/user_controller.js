@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 
-const catchAsyncHandler = require('../middleware/catchAsyncHandler');
 const ApiError = require('../error/apiError');
 
 // Create user

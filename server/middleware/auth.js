@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const User = require('../model/user');
+const ApiError = require('../error/apiError');
 
 module.exports = (req, res, next) => {
-  console.log('Auth middleware😀');
+  console.log('Auth middleware called😀');
   const authHeader = req.headers.authorization;
-  console.log('authHeader', authHeader);
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) return res.status(401).send({ status: 'Access denied' });
 
@@ -13,8 +12,7 @@ module.exports = (req, res, next) => {
     // Validate token
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
-        console.log('err', err);
-        res.status(401).send({ status: 'error', error: 'Access denied' });
+        next(ApiError.forbiddenRequest('Forbidden, access denied'));
         return res.redirect('/');
       }
 
@@ -23,13 +21,10 @@ module.exports = (req, res, next) => {
       if (user.role === 'admin') {
         next();
       } else {
-        return res
-          .status(401)
-          .send({ status: 'error', error: 'You must be an admin user' });
+        next(ApiError.unauthorizedRequest('Forbidden, access denied'));
       }
     });
   } catch (error) {
-    console.log(error);
-    res.send({ status: 'error', error: error.message });
+    next(ApiError.internalServerError(err));
   }
 };
