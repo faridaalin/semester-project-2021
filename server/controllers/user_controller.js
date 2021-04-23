@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 
 const catchAsyncHandler = require('../middleware/catchAsyncHandler');
+const ApiError = require('../error/apiError');
 
 // all users
 exports.all_users = (req, res, next) => {
@@ -11,7 +12,7 @@ exports.all_users = (req, res, next) => {
 };
 
 // Create user
-exports.user_register = catchAsyncHandler(async (req, res, next) => {
+exports.user_register = async (req, res, next) => {
   const {
     password: unshashedPassword,
     email,
@@ -19,42 +20,24 @@ exports.user_register = catchAsyncHandler(async (req, res, next) => {
     lastname,
     role,
   } = req.body;
+  try {
+    // Hashing Password
+    const password = await bcrypt.hash(unshashedPassword, 10);
+    // Create new user
+    const newUser = await User.create({
+      email,
+      password,
+      firstname,
+      lastname,
+      role,
+    });
 
-  if (!email || typeof email !== 'string') {
-    const error = new Error('Invalid email');
-    error.status = 403;
-    return next(error);
+    res.status(200).send({ status: 'Success', data: newUser });
+  } catch (err) {
+    console.log('INSIDE ERROR 🙇‍😀');
+    next(ApiError.requestConflict('Email is already registered'));
   }
-
-  if (!unshashedPassword || typeof unshashedPassword !== 'string') {
-    const error = new Error('Invalid password');
-    error.status = 403;
-    return next(error);
-  }
-
-  if (unshashedPassword < 8) {
-    const error = new Error('Password is too short, 8 char at least.');
-    error.status = 403;
-    return next(error);
-  }
-
-  // Hashing Password
-  const password = await bcrypt.hash(unshashedPassword, 10);
-  // Create new user
-  const newUser = await User.create({
-    email,
-    password,
-    firstname,
-    lastname,
-    role,
-  });
-  res.status(200).send({ status: 'Success', data: newUser });
-
-  // Duplicate key
-  const error = new Error('Email is already registered');
-  error.status = 403;
-  next(error);
-});
+};
 
 // Login user
 exports.user_login = catchAsyncHandler(async (req, res, next) => {

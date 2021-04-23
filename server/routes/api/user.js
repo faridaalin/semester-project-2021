@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../../controllers/user_controller');
-const validate = require('../../utils/validate');
-const userSchema = require('../../utils/validate');
-// console.log('validate:', validate);
-// console.log('userSchema:', userSchema);
+const validateSchema = require('../../middleware/yupValidation');
+const userSchema = require('../../utils/yupSchema');
 
 // /messages
 router.get('/', userController.all_users);
@@ -13,7 +11,7 @@ router.get('/', userController.all_users);
 // /users/register
 router.post(
   '/register',
-  validate.validate(userSchema.userSchema),
+  validateSchema(userSchema),
   userController.user_register
 );
 router.post('/login', userController.user_login);

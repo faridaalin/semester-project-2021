@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 
 const auth = require('./middleware/auth');
+const apiErrorHandler = require('./error/apiErrorHandler');
 
 const hotels = require('./routes/api/hotel');
 const enquiries = require('./routes/api/enquiry');
@@ -47,15 +48,7 @@ app.use((req, res, next) => {
 });
 
 // Error handler - catched all next(err)
-app.use((err, req, res, next) => {
-  console.log('ERROR ⛔', err);
-  res.status(err.status || 500).send({
-    error: {
-      status: err.status || 500,
-      message: err.message || 'Internal server error',
-    },
-  });
-});
+app.use(apiErrorHandler);
 
 // Start Server
 app.listen(port, () => {
