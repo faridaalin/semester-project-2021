@@ -38,8 +38,6 @@ exports.user_register = async (req, res, next) => {
       role,
     });
 
-    console.log('newUser ', newUser);
-
     const token = createToken(newUser, newUser);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).send({ status: 'ok', data: newUser });
@@ -67,7 +65,6 @@ exports.user_login = async (req, res, next) => {
         httpOnly: true,
         maxAge: maxAge * 1000,
       });
-      console.log('cookie', res.cookie);
 
       return res.status(200).send({ status: 'ok', token: token, data: user });
     }

@@ -44,12 +44,13 @@ app.use('/api/users', users);
 app.use('/api/dashboard', auth, dashboard);
 
 app.use((req, res, next) => {
-  // res.status(404).send({ status: 'error', error: 'Not Found' });
   next(ApiError.notFound('Not found'));
 });
 
 // Error handler - catched all next(err)
 app.use(apiErrorHandler);
+
+console.log(process.env.NODE_ENV);
 
 // Start Server
 app.listen(port, () => {
