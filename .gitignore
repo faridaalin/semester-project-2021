@@ -1,6 +1,9 @@
 node_modules/
 config
 jspm_packages/
+/dist
+
 
 .env
 .env.test
+.env.local
