@@ -11,8 +11,7 @@ module.exports = (req, res, next) => {
     // Validate token
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
-        next(ApiError.forbiddenRequest('Forbidden, access denied'));
-        return res.redirect('/');
+        return next(ApiError.forbiddenRequest('Forbidden, access denied'));
       }
 
       req.user = user;
