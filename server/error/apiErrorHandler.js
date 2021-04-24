@@ -3,6 +3,8 @@ const ApiError = require('./apiError');
 const apiErrorHandler = (err, req, res, next) => {
   // Production - don not use  console.log(error), remove it later
 
+  console.log('ERROR🔥', err);
+
   if (err.name === 'CastError') {
     return res.status(400).send({
       status: 'Request Conflict',

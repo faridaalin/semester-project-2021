@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 const auth = require('./middleware/auth');
 const ApiError = require('./error/apiError');
@@ -31,6 +32,7 @@ mongoose.connect(
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 

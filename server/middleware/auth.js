@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const ApiError = require('../error/apiError');
+const User = require('../model/user');
 
 module.exports = (req, res, next) => {
-  console.log('Auth middleware called😀 - ROLE IS', req.user);
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = req.cookies.jwt;
   if (!token) throw ApiError.unauthorizedRequest('Access denied');
 
   try {
@@ -18,13 +17,13 @@ module.exports = (req, res, next) => {
 
       req.user = user;
 
-      if (user.role === 'admin') {
+      if (user.payload.role === 'admin') {
         next();
       } else {
         next(ApiError.unauthorizedRequest('Forbidden, access denied'));
       }
     });
-  } catch (error) {
-    next(ApiError.internalServerError(err));
+  } catch (err) {
+    next(err);
   }
 };

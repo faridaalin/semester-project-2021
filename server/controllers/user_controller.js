@@ -5,6 +5,18 @@ const User = require('../model/user');
 
 const ApiError = require('../error/apiError');
 
+// 3 days
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (user) => {
+  const id = user._id;
+  const payload = ({ _id, role, firstname, lastname, email } = user);
+  console.log('payload 13', payload);
+
+  return jwt.sign({ payload }, process.env.JWT_SECRET, {
+    expiresIn: maxAge,
+  });
+};
+
 // Create user
 exports.user_register = async (req, res, next) => {
   const {
@@ -27,6 +39,10 @@ exports.user_register = async (req, res, next) => {
       role,
     });
 
+    console.log('newUser ', newUser);
+
+    const token = createToken(newUser, newUser);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
     next(err);
@@ -46,15 +62,20 @@ exports.user_login = async (req, res, next) => {
 
     if (await bcrypt.compare(password, user.password)) {
       // password is a match
-      const payload = { id: user.id, email: user.email, role: user.role };
-      const token = jwt.sign(payload, process.env.JWT_SECRET);
+      const payload = user;
+      const token = createToken(payload);
+      res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: maxAge * 1000,
+      });
+      console.log('cookie', res.cookie);
 
       return res.status(200).send({ status: 'ok', token: token, data: user });
     }
     // Invalid password
     return next(ApiError.forbiddenRequest('Invalid username/password'));
   } catch (err) {
-    next(ApiError.forbiddenRequest('Invalid username/password'));
+    next(err);
   }
 };
 
