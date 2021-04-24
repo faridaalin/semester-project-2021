@@ -21,5 +21,6 @@ router.post(
   validateSchema(userSchema.changePasswordSchema),
   userController.user_changePassword
 );
+router.get('logout', userController.user_logout);
 
 module.exports = router;

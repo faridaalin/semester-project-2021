@@ -10,7 +10,6 @@ const maxAge = 3 * 24 * 60 * 60;
 const createToken = (user) => {
   const id = user._id;
   const payload = ({ _id, role, firstname, lastname, email } = user);
-  console.log('payload 13', payload);
 
   return jwt.sign({ payload }, process.env.JWT_SECRET, {
     expiresIn: maxAge,
@@ -106,4 +105,9 @@ exports.user_changePassword = async (req, res, next) => {
   } catch (err) {
     next(ApiError.badRequest('Authorization failed'));
   }
+};
+
+exports.user_logout = (req, res, next) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
 };
