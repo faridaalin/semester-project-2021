@@ -13,7 +13,6 @@ const hotels = require('./routes/api/hotel');
 const enquiries = require('./routes/api/enquiry');
 const messages = require('./routes/api/message');
 const users = require('./routes/api/user');
-const dashboard = require('./routes/api/dashbaord');
 
 const app = express();
 dotenv.config();
@@ -41,18 +40,28 @@ app.use('/api/hotels', hotels);
 app.use('/api/enquiries', enquiries);
 app.use('/api/messages', messages);
 app.use('/api/users', users);
-app.use('/api/dashboard', auth, dashboard);
 
 app.use((req, res, next) => {
-  next(ApiError.notFound('Not found'));
+  next(ApiError.notFound('Not Found'));
 });
 
-// Error handler - catched all next(err)
+// Error handler - next(err)
 app.use(apiErrorHandler);
-
-console.log(process.env.NODE_ENV);
 
 // Start Server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+});
+
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing http server.');
+  server.close(() => {
+    console.log('Http server closed.');
+    // boolean means [force], see in mongoose doc
+    mongoose.connection.close(false, () => {
+      console.log('MongoDb connection closed.');
+      process.exit(0);
+    });
+  });
 });
