@@ -136,5 +136,128 @@
         "price": 3200
       }
     ]
+  },
+  {
+    "title": "Annehelenes B&B",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 5,
+    "description": "Annehelene's B&B offers a small, but nice room adjoining private entrance and bathroom in a new part of an old wooden house at Nordnes. The house is from 1864 and neatly restored to meet the comfort demands of our days. We have however put love and effort into keeping its original soul and atmosphere. The neighbourhood is well known for its charming old wooden houses side by side in narrow cobble streets with small gardens.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619436170/annehelene-bb-main_tw4lxk.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619436170/annehelene-bb-3_srxpdj.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619436170/annehelene-bb-1_p8jerb.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619436170/annehelene-bb-2_znjl30.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619436170/annehelene-bb-4_njnaqp.jpg"
+    ],
+    "address": "Nedre Strangehagen 8",
+    "category": "Bed & Breakfast",
+    "rooms": [
+      {
+        "room_type": "Small Double Room",
+        "sleeps": 2,
+        "price": 950
+      }
+    ]
+  },
+  {
+    "title": "ANA's Bed & Breakfast",
+    "subheading": "Close to Badeplass Beach and room with Mountain View",
+    "rating": 3,
+    "description": "Our newly renovated home is secluded on the mountain side, just half an hour walk from the city center. From the bedroom window you will have a complete overview of the Valley of Bergen and can admire both Mt. Floien and Mt. Ulriken. With public transport (departing every 20 minutes, just outside the door) you can easily get to Bergen Airport Flesland (BGO) and Bergen Railway Station, as well as all the city and fjord region has to offer of exciting nature and cultural experiences.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619437328/AnasBB-main_pojiok.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619437328/AnasBB-1_jyvdja.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619437328/AnasBB-3_krssm4.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619437328/AnasBB-2_m8gr9p.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619437328/AnasBB-4_bnvlsp.jpg"
+    ],
+    "address": "Søndre Skogveien 61",
+    "category": "Bed & Breakfast",
+    "rooms": [
+      {
+        "room_type": "Small Double Room",
+        "sleeps": 2,
+        "price": 868
+      }
+    ]
+  },
+  {
+    "title": "Barfot Apartments",
+    "subheading": "One of our bestsellers in Bergen!",
+    "rating": 4,
+    "description": "Situated in Bergen, near Møhlenpris Badeplass Beach, Bergen University and University Museum of Bergen, Barfot Apartments features free WiFi. Featuring a kitchen with a dishwasher and a fridge, each unit also comes with a cable flat-screen TV, ironing facilities, wardrobe and a seating area with a sofa. There is a fully equipped private bathroom with shower and a hairdryer. Popular points of interest near the apartment include Hurtigruten Terminal Bergen, Rosenkrantz Tower and St. John's Church. The nearest airport is Bergen Airport, Flesland Airport, 12 km from Barfot Apartments.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619438606/Barfor-main_p9dwpw.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619438606/Barfor-1_odqnuq.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619438606/Barfor-4_fjq4bk.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619438606/Barfor-2_a8gksv.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619438606/Barfor-3_ft5vfw.jpg"
+    ],
+    "address": "37 Magnus Barfots gate",
+    "category": "Apartments",
+    "rooms": [
+      {
+        "room_type": "Three-Bedroom Apartment",
+        "sleeps": 6,
+        "price": 2264
+      },
+      {
+        "room_type": "Three-Bedroom Apartment",
+        "sleeps": 6,
+        "price": 1924
+      },
+      {
+        "room_type": "One-Bedroom Apartment",
+        "sleeps": 2,
+        "price": 1103
+      },
+      {
+        "room_type": "Apartment",
+        "sleeps": 1,
+        "price": 933
+      }
+    ]
+  },
+  {
+    "title": "Clarion Hotel Havnekontoret",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 4,
+    "description": "This fashionable hotel is housed in a Neoclassical 1920s stone building, in the historic Bryggen area of Bergen. It offers a free evening meal and harbour views from the rooftop. All rooms at Hotel Havnekontoret have a flat-screen TV and safety deposit box. Some rooms include views of Vågen Bay, while others overlook the hotel garden. Clarion Collection Hotel Havnekontoret offers 24-hour tea/coffee, afternoon pancakes or waffles and a light evening meal for free. Guests can relax in the hotel’s library-lounge or sauna. Other facilities include a gym and a free internet computer in the lobby.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619439767/CCHH-main_njiwox.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619439767/CCHH-4_au3dq9.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619439767/CCHH-1_s3qhap.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619439767/CCHH-2_ugwqwa.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619439767/CCHH-3_fdiiyn.jpg"
+    ],
+    "address": "Slottsgaten 1",
+    "category": "Boutique",
+    "rooms": [
+      {
+        "room_type": "Deluxe Double Room",
+        "sleeps": 4,
+        "price": 2301
+      },
+      {
+        "room_type": "Superior Double Room",
+        "sleeps": 3,
+        "price": 1971
+      },
+      {
+        "room_type": "Superior Twin Room",
+        "sleeps": 2,
+        "price": 2140
+      },
+      {
+        "room_type": "Standard Double Room",
+        "sleeps": 2,
+        "price": 1790
+      },
+      {
+        "room_type": "Economy Double Room",
+        "sleeps": 2,
+        "price": 1690
+      }
+    ]
   }
 ]
