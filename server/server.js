@@ -4,15 +4,22 @@ const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const auth = require('./middleware/auth');
 const ApiError = require('./error/apiError');
 const apiErrorHandler = require('./error/apiErrorHandler');
 
+const home = require('./routes/api/home');
 const hotels = require('./routes/api/hotel');
 const enquiries = require('./routes/api/enquiry');
 const messages = require('./routes/api/message');
 const users = require('./routes/api/user');
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  process.exit(1);
+});
 
 const app = express();
 dotenv.config();
@@ -34,8 +41,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
 
 // ROUTES
+app.use('/', home);
 app.use('/api/hotels', hotels);
 app.use('/api/enquiries', enquiries);
 app.use('/api/messages', messages);
@@ -51,9 +60,4 @@ app.use(apiErrorHandler);
 // Start Server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-});
-
-process.on('unhandledRejection', (err) => {
-  console.log(err.name, err.message);
-  process.exit(1);
 });
