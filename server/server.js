@@ -53,15 +53,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-process.on('SIGTERM', () => {
-  console.info('SIGTERM signal received.');
-  console.log('Closing http server.');
-  server.close(() => {
-    console.log('Http server closed.');
-    // boolean means [force], see in mongoose doc
-    mongoose.connection.close(false, () => {
-      console.log('MongoDb connection closed.');
-      process.exit(0);
-    });
-  });
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  process.exit(1);
 });
