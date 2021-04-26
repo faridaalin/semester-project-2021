@@ -6,7 +6,7 @@ const RoomSchema = new Schema({
   room_type: {
     type: String,
     required: [true, 'Room type is required'],
-    maxlength: [20, 'Room can not be longer than 100 char.'],
+    maxlength: [30, 'Room can not be longer than 30 char.'],
   },
   sleeps: {
     type: Number,
@@ -24,13 +24,13 @@ const HotelSchema = new Schema(
       unique: true,
       required: [true, 'Hotel title is required'],
       minLength: [2, 'Title must be at least 2 char.'],
-      maxLength: [20, 'Title can not be longer than 100 char.'],
+      maxLength: [30, 'Title can not be longer than 30 char.'],
     },
     subheading: {
       type: String,
       required: [true, 'Hotel title is required'],
       minLength: [2, 'Title must be at least 2 char.'],
-      maxLength: [20, 'Title can not be longer than 100 char.'],
+      maxLength: [100, 'Title can not be longer than 100 char.'],
     },
     rating: {
       type: Number,
@@ -45,7 +45,7 @@ const HotelSchema = new Schema(
       required: [true, 'Description is required'],
     },
     main_image: {
-      type: [String],
+      type: String,
       required: [true, 'Hotel must have a main image.'],
     },
     images: [{ type: [String], required: [true, 'Hotel image is required'] }],
