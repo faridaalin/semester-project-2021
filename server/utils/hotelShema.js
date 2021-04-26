@@ -4,6 +4,7 @@ const { object, string, number, array } = yup;
 
 exports.hotelSchema = object({
   title: string().required().min(2).max(20),
+  subheading: string().required().min(2).max(20),
   rating: number().required().min(0).max(5),
   description: string().required().min(10),
   main_image: string()

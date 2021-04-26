@@ -1,0 +1,140 @@
+[
+  {
+    "title": "Bergen Harbour Hotel",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 5,
+    "description": "A Boutique HOTEL - Our wish is to offer you a unique and more personal hotel experience. We want you to feel at home when you’re staying at our hotel – that means we go the extra mile to ensure your needs and wants are fulfilled. If you need anything, we stand ready to assist. Within walking distance TO EVERYTHING -We don’t use the term “in the heart of Bergen” lightly – we really mean it. From the Hotel in Finnegårdsgaten you’ll find all of the city’s sights and attractions just a couple of minutes away. The perfect place and location to explore the heart of Bergen",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619429641/harbour-hotel-bergen_yra834.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619429641/bergen-harbour-hotel_nafgkg.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619429642/harbour-hotel-room-1_hltu18.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619429641/bergen-harbour-hotel-3_doxn4v.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619429641/bergen-harbour-hotel-2_zsovtv.jpg"
+    ],
+    "address": "Finnegårdsgaten 6",
+    "category": "Boutique",
+    "rooms": [
+      {
+        "room_type": "Standard Single Room",
+        "sleeps": 1,
+        "price": 1267
+      },
+      {
+        "room_type": "Superior Twin Room",
+        "sleeps": 2,
+        "price": 1779
+      },
+      {
+        "room_type": "Superior King Room",
+        "sleeps": 2,
+        "price": 1779
+      },
+      {
+        "room_type": "Queen Room",
+        "sleeps": 2,
+        "price": 1380
+      }
+    ]
+  },
+  {
+    "title": "Zander K Hotel",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 5,
+    "description": "Located next to Bergen Train Station, Zander K Hotel offers designer hotel accommodation in Bergen, 1.1 km from Bergen University. Guests can benefit from the fitness room, on-site wine bar and restaurant. Each room includes a flat-screen TV. All rooms have a private bathroom fitted with a shower. You will find free WiFi, a 24-hour front desk and indoor bicycle parking at the property. The hotel also offers free use of bicycles. Hurtigruten Terminal Bergen is 1.5 km from Zander K Hotel, while Aquarium Bergen is 2 km from the property. The nearest airport is Bergen , Flesland Airport, 16 km from the property.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619430904/Zander-K-Hotel-main_filojn.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619430904/Zander-K-Hotel-4_zwg4hk.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619430904/Zander-K-Hotel-3_jn8wb7.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619430904/Zander-K-Hotel-1_yrmmyy.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619430904/Zander-K-Hotel-2_zc2zd1.jpg"
+    ],
+    "address": "Zander Kaaes gate 8",
+    "category": "Business Hotels",
+    "rooms": [
+      {
+        "room_type": "Standard Queen Room",
+        "sleeps": 2,
+        "price": 971
+      },
+      {
+        "room_type": "Standard Twin Room",
+        "sleeps": 2,
+        "price": 971
+      },
+      {
+        "room_type": "Superior Twin Room",
+        "sleeps": 2,
+        "price": 1122
+      },
+      {
+        "room_type": "Family Twin Room",
+        "sleeps": 2,
+        "price": 1200
+      }
+    ]
+  },
+  {
+    "title": "Quality Hotel Edvard Grieg",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 5,
+    "description": "Quality Hotel Edvard Grieg is a fullservice hotel only a 5 minute drive from Bergen Airport and 20 minutes to the city centre. Close to local transport such as the tram (bybanen) and buses. Attractions, shopping, hiking, beaches, golf and activities such as climbingparks/trampolinepark/toycentre/bowling are all within a few minutes driving from here. The hotel has been recently renovated and expanded to become Western Norways largest conference hotel. The hotel offers free indoor and outdoors parking, restaurant with a la carte, bar with shuffleboard and a large fitness department. ",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619431758/QHEG-main_mjhnsc.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619431758/QHEG-1_jgosvi.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619431758/QHEG-2_jldqzp.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619431758/QHEG-4_w4thx7.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619431758/QHEG-3_xjzopt.jpg"
+    ],
+    "address": "Sandsliåsen 50",
+    "category": "Business Hotels",
+    "rooms": [
+      {
+        "room_type": "Double Room",
+        "sleeps": 2,
+        "price": 1618
+      },
+      {
+        "room_type": "Superior Double or Twin Room",
+        "sleeps": 2,
+        "price": 1804
+      },
+      {
+        "room_type": "Family Room",
+        "sleeps": 4,
+        "price": 2269
+      }
+    ]
+  },
+  {
+    "title": "Keyser Apartments 6",
+    "subheading": "Stay in the heart of Bergen",
+    "rating": 5,
+    "description": "Set in Bergen, near Bergen University, University Museum of Bergen and Haakon's Hall, Keyser Apartments 6 features free WiFi. All units come with a living room, a seating area with a sofa, a flat-screen TV with cable channels, a fully equipped kitchen and a private bathroom with shower. For added convenience, the property can provide towels and bed linen for an extra charge. Popular points of interest near the apartment include Bergen Maritime Museum, Grieg Hall and Bergen Art Museum. The nearest airport is Bergen, Flesland Airport, 17 km from Keyser Apartments 6.",
+    "main_image": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619432592/KA-main_lyunwq.jpg",
+    "images": [
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619432592/KA-2_yui4xy.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619432592/KA-4_etvuwj.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619432592/KA-1_p08tj3.jpg",
+      "https://res.cloudinary.com/djey7uz4e/image/upload/v1619432592/KA-3_uybvfa.jpg"
+    ],
+    "address": "Professor Keysers gate 6B",
+    "category": "Apartments",
+    "rooms": [
+      {
+        "room_type": "Loft",
+        "sleeps": 2,
+        "price": 1608
+      },
+      {
+        "room_type": "Two-Bedroom Apartment",
+        "sleeps": 3,
+        "price": 1790
+      },
+      {
+        "room_type": "Three-Bedroom Apartment",
+        "sleeps": 6,
+        "price": 3200
+      }
+    ]
+  }
+]

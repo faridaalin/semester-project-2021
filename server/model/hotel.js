@@ -26,6 +26,12 @@ const HotelSchema = new Schema(
       minLength: [2, 'Title must be at least 2 char.'],
       maxLength: [20, 'Title can not be longer than 100 char.'],
     },
+    subheading: {
+      type: String,
+      required: [true, 'Hotel title is required'],
+      minLength: [2, 'Title must be at least 2 char.'],
+      maxLength: [20, 'Title can not be longer than 100 char.'],
+    },
     rating: {
       type: Number,
       min: 0,
