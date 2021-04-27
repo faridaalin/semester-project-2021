@@ -1,27 +1,35 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import Button from '../button/Button';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
-  return (
-    <header className={styles.container}>
-      <Link href='/'>
-        <a>
-          <img src='/logo.png' alt='Holidaze logo' className={styles.logo} />
-        </a>
-      </Link>
-      <nav className={styles.nav}>
-        <button
-          aria-expanded='false'
-          aria-label='Menu'
-          className={styles.hamburgerWrapper}
-        >
-          <span className={styles.hamburger}></span>
-          <span className={styles.hamburger}></span>
-          <span className={styles.hamburger}></span>
-        </button>
+  const [open, setOpen] = useState(false);
+  const toggleMenu = () => {
+    setOpen(!open);
+  };
 
-        <ul className={styles.items}>
+  return (
+    <header className={`${styles.container} ${open && styles.headerColor}`}>
+      <button
+        aria-expanded='false'
+        aria-label='Menu'
+        className={styles.hamburgerWrapper}
+        onClick={toggleMenu}
+      >
+        <span className={styles.hamburger}></span>
+        <span className={styles.hamburger}></span>
+        <span className={styles.hamburger}></span>
+      </button>
+
+      <nav>
+        <Link href='/'>
+          <a>
+            <img src='/logo.png' alt='Holidaze logo' className={styles.logo} />
+          </a>
+        </Link>
+
+        <ul className={`${styles.items}  ${open && styles.show}`}>
           <li className={styles.item}>
             <Link href='/'>
               <a className={styles.itemLink}>Home</a>

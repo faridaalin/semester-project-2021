@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './button.module.css';
 
 const Button = ({ children, size, color }) => {
-  const getColor = (color) => {
+  const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
     }
@@ -15,9 +15,7 @@ const Button = ({ children, size, color }) => {
   return (
     <Link href='/dashboard'>
       <a>
-        <button className={`${styles.button} ${getColor(color)}`}>
-          {children}
-        </button>
+        <button className={`${styles.button} ${getColor()}`}>{children}</button>
       </a>
     </Link>
   );
