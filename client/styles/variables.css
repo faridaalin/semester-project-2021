@@ -1,3 +1,26 @@
 :root {
-  --blue: #0000ff;
+  --orange-100: #f8d4cc;
+  --orange-200: #f2a998;
+  --orange-300: #eb7e65;
+  --orange-400: #e55332;
+
+  --black-100: #cdcdd1;
+  --black-200: #9a9ba4;
+  --black-300: #686876;
+  --black-400: #353649;
+
+  --grey-100: #e4e8ec;
+  --grey-200: #c9d1d9;
+  --grey-300: #afbac6;
+  --grey-400: #94a3b3;
+
+  --white-100: #f8f8f8;
+  --white-200: #f2f2f2;
+  --white-300: #ebebeb;
+  --white-400: #e5e5e5;
+
+  --success-100: #74c69d;
+  --info-200: #48bfe3;
+  --warning-300: #ffdd00;
+  --danger-400: #e71d36;
 }
