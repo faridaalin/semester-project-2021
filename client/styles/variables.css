@@ -23,4 +23,7 @@
   --info-200: #48bfe3;
   --warning-300: #ffdd00;
   --danger-400: #e71d36;
+
+  --header-font: 'Poppins', sans-serif;
+  --body-font: 'Montserrat', sans-serif;
 }

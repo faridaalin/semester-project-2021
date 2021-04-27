@@ -1,10 +1,17 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
   return (
-    <nav className={styles.nav}>
-      <ul>
+    <header className={styles.nav}>
+      <Link href='/'>
+        <a>
+          <img src='/logo.png' alt='Holidaze logo' className={styles.logo} />
+        </a>
+      </Link>
+
+      <nav>
         <li>
           <Link href='/'>
             <a>Home</a>
@@ -35,8 +42,8 @@ const Navbar = () => {
             <a>Dashboard</a>
           </Link>
         </li>
-      </ul>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
