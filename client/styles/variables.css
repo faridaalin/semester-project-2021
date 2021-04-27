@@ -32,4 +32,9 @@
   --fontWeight-m: 500;
   --fontWeight-sm: 600;
   --fontWeight-b: 700;
+
+  --small: 576px;
+  --medium: 768px;
+  --large: 992px;
+  --xl: 1200px;
 }

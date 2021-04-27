@@ -76,7 +76,7 @@
 
 .hamburgerWrapper {
   border: none;
-  background: var(--grey-100);
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -88,4 +88,39 @@
 .hamburger {
   height: 100%;
   background: var(--orange-400);
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    background: var(--grey-100);
+  }
+  .items {
+    transform: translateX(0);
+    position: initial;
+    padding-top: 0;
+    height: auto;
+    width: auto;
+    display: flex;
+  }
+
+  .hamburgerWrapper {
+    display: none;
+    height: auto;
+    width: auto;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .item {
+    padding: 0;
+  }
+
+  .itemLink {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 }

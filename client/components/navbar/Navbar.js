@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Button from '../button/Button';
 import styles from './navbar.module.css';
 
-const Navbar = () => {
+const Navbar = (e) => {
   const [open, setOpen] = useState(false);
   const toggleMenu = () => {
     setOpen(!open);
@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
       <button
-        aria-expanded='false'
+        aria-expanded={open}
         aria-label='Menu'
         className={styles.hamburgerWrapper}
         onClick={toggleMenu}
@@ -22,7 +22,7 @@ const Navbar = () => {
         <span className={styles.hamburger}></span>
       </button>
 
-      <nav>
+      <nav className={styles.nav}>
         <Link href='/'>
           <a>
             <img src='/logo.png' alt='Holidaze logo' className={styles.logo} />
