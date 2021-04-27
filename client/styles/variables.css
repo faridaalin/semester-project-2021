@@ -3,11 +3,12 @@
   --orange-200: #f2a998;
   --orange-300: #eb7e65;
   --orange-400: #e55332;
+  --orange-hover: hsl(11deg 77% 52%);
 
-  --black-100: #cdcdd1;
-  --black-200: #9a9ba4;
-  --black-300: #686876;
-  --black-400: #353649;
+  --blue-100: #cdcdd1;
+  --blue-200: #9a9ba4;
+  --blue-300: #686876;
+  --blue-400: #353649;
 
   --grey-100: #e4e8ec;
   --grey-200: #c9d1d9;
@@ -19,11 +20,16 @@
   --white-300: #ebebeb;
   --white-400: #e5e5e5;
 
-  --success-100: #74c69d;
-  --info-200: #48bfe3;
-  --warning-300: #ffdd00;
-  --danger-400: #e71d36;
+  --success: #74c69d;
+  --info: #48bfe3;
+  --warning: #ffdd00;
+  --danger: #e71d36;
 
   --header-font: 'Poppins', sans-serif;
   --body-font: 'Montserrat', sans-serif;
+
+  --fontWeight-r: 400;
+  --fontWeight-m: 500;
+  --fontWeight-sm: 600;
+  --fontWeight-b: 700;
 }

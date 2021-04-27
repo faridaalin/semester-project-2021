@@ -1,0 +1,33 @@
+.button {
+  font-size: 18px;
+  line-height: 18px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 6px;
+  font-weight: var(--fontWeight-m);
+}
+
+.button:hover {
+  background-color: var(--grey-200);
+}
+
+.buttonOrange {
+  background: var(--orange-400);
+  color: var(--white-100);
+}
+.buttonOrange:hover {
+  background: var(--orange-hover);
+}
+
+.buttonGrey {
+  background: var(--grey-200);
+  color: var(--black-400);
+}
+.buttonGrey:hover {
+  background: var(--grey-300);
+}

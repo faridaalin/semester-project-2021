@@ -14,7 +14,9 @@ const Layout = ({ title, children }) => {
 
       <main className={styles.main}>
         <Navbar />
-        <PageHeader title={title} />
+        <section className={styles.mainInner}>
+          <PageHeader title={title} />
+        </section>
 
         {children}
       </main>
