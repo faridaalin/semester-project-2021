@@ -1,5 +1,5 @@
 .container {
-  background: transparent;
+  /* background: transparent;
   display: grid;
   grid-auto-flow: column;
   -webkit-box-align: center;
@@ -12,14 +12,21 @@
   position: fixed;
   top: 0;
   z-index: 20000;
-  min-height: 85px;
+  min-height: 85px; */
 }
 
 .logo {
-  width: 100px;
+  font-family: var(--header-font);
+  color: var(--orange-400);
+  font-weight: var(--fontWeight-sm);
+  font-size: 22px;
+}
+
+.logoLetters {
+  color: var(--orange-300);
 }
 .items {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0px;
   padding-top: 180px;
@@ -35,7 +42,7 @@
   gap: 16px;
   align-items: center;
   justify-content: center;
-  z-index: -1;
+  z-index: -1; */
 }
 
 .show {
@@ -96,7 +103,7 @@
   }
   .items {
     transform: translateX(0);
-    position: initial;
+    position: static;
     padding-top: 0;
     height: auto;
     width: auto;

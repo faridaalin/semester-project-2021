@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '../button/Button';
 import styles from './navbar.module.css';
+import getWindowWidth from '../utils/getWindowWidth';
 
 const Navbar = (e) => {
   const [open, setOpen] = useState(false);
+  const [width, setWidth] = useState(getWindowWidth());
+  const breakpoint = 768;
   const toggleMenu = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    const handleResize = () => setWidth(getWindowWidth());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
@@ -24,8 +33,9 @@ const Navbar = (e) => {
 
       <nav className={styles.nav}>
         <Link href='/'>
-          <a>
-            <img src='/logo.png' alt='Holidaze logo' className={styles.logo} />
+          <a className={styles.logo}>
+            <span className={styles.logoLetter}>H</span>
+            <span className={styles.logoLetters}>olidaze</span>
           </a>
         </Link>
 
@@ -54,7 +64,8 @@ const Navbar = (e) => {
             <Button color='orange'>Login</Button>
           </li>
           <li className={styles.itemButton}>
-            <Button color='grey'>Dashboard</Button>
+            {width >= breakpoint ? 'small' : 'big'}
+            {/* <Button color='grey'>Dashboard</Button> */}
           </li>
         </ul>
       </nav>
