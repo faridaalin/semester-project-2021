@@ -4,19 +4,27 @@ import Button from '../button/Button';
 import styles from './navbar.module.css';
 import getWindowWidth from '../utils/getWindowWidth';
 
-const Navbar = (e) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [width, setWidth] = useState(getWindowWidth());
-  const breakpoint = 768;
+
   const toggleMenu = () => {
     setOpen(!open);
   };
 
   useEffect(() => {
-    const handleResize = () => setWidth(getWindowWidth());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const breakpoint = 768;
+
+    const hidemenu = () => {
+      if (getWindowWidth() > breakpoint && open) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener('resize', hidemenu);
+
+    return () => {
+      window.removeEventListener('resize', hidemenu);
+    };
+  }, [open]);
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
