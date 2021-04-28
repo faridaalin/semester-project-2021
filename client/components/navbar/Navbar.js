@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Button from '../button/Button';
 import styles from './navbar.module.css';
 import getWindowWidth from '../utils/getWindowWidth';
+import { ChevronDown } from 'react-feather';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -71,7 +72,9 @@ const Navbar = () => {
             <Button color='orange'>Login</Button>
           </li>
           <li>
-            <Button color='grey'>Dashboard</Button>
+            <Button color='grey'>
+              Dashboard <ChevronDown />
+            </Button>
           </li>
         </ul>
       </nav>

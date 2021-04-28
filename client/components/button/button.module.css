@@ -25,6 +25,11 @@
 .buttonGrey {
   background: var(--grey-200);
   color: var(--black-400);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  grid-column-gap: 4px;
+  place-items: center;
 }
 .buttonGrey:hover {
   background: var(--grey-300);
