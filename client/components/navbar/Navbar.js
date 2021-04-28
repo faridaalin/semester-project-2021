@@ -23,49 +23,47 @@ const Navbar = (e) => {
       <button
         aria-expanded={open}
         aria-label='Menu'
-        className={styles.hamburgerWrapper}
+        className={styles.hamburgerButton}
         onClick={toggleMenu}
       >
         <span className={styles.hamburger}></span>
         <span className={styles.hamburger}></span>
         <span className={styles.hamburger}></span>
       </button>
+      <Link href='/'>
+        <a className={styles.logo}>
+          <span className={styles.logoLetter}>H</span>
+          <span className={styles.logoLetters}>olidaze</span>
+        </a>
+      </Link>
 
-      <nav className={styles.nav}>
-        <Link href='/'>
-          <a className={styles.logo}>
-            <span className={styles.logoLetter}>H</span>
-            <span className={styles.logoLetters}>olidaze</span>
-          </a>
-        </Link>
-
-        <ul className={`${styles.items}  ${open && styles.show}`}>
+      <nav className={`${styles.nav}  ${open && styles.show}`}>
+        <ul className={`${styles.items}`}>
           <li className={styles.item}>
             <Link href='/'>
-              <a className={styles.itemLink}>Home</a>
+              <a>Home</a>
             </Link>
           </li>
           <li className={styles.item}>
             <Link href='/hotels'>
-              <a className={styles.itemLink}>Hotels</a>
+              <a>Hotels</a>
             </Link>
           </li>
           <li className={styles.item}>
             <Link href='/about'>
-              <a className={styles.itemLink}>About</a>
+              <a>About</a>
             </Link>
           </li>
           <li className={styles.item}>
             <Link href='/contact'>
-              <a className={styles.itemLink}>Contact</a>
+              <a>Contact</a>
             </Link>
           </li>
           <li className={styles.itemButton}>
             <Button color='orange'>Login</Button>
           </li>
-          <li className={styles.itemButton}>
-            {width >= breakpoint ? 'small' : 'big'}
-            {/* <Button color='grey'>Dashboard</Button> */}
+          <li>
+            <Button color='grey'>Dashboard</Button>
           </li>
         </ul>
       </nav>
