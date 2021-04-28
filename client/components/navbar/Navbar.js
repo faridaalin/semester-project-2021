@@ -14,14 +14,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const breakpoint = 768;
-
     const hidemenu = () => {
       if (getWindowWidth() > breakpoint && open) {
         setOpen(false);
       }
     };
     window.addEventListener('resize', hidemenu);
-
     return () => {
       window.removeEventListener('resize', hidemenu);
     };
@@ -46,7 +44,7 @@ const Navbar = () => {
         </a>
       </Link>
 
-      <nav className={`${styles.nav}  ${open && styles.show}`}>
+      <nav className={`${styles.nav}  ${open ? styles.show : ''}`}>
         <ul className={`${styles.items}`}>
           <li className={styles.item}>
             <Link href='/'>
@@ -68,6 +66,7 @@ const Navbar = () => {
               <a>Contact</a>
             </Link>
           </li>
+
           <li className={styles.itemButton}>
             <Button color='orange'>Login</Button>
           </li>
