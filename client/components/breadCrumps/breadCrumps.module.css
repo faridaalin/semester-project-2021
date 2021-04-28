@@ -1,0 +1,22 @@
+.linkContainer {
+  display: flex;
+  padding: 0 2rem;
+}
+
+.link {
+  color: var(--blue-200);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: var(--blue-400);
+}
+
+.active {
+  color: var(--blue-400);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-content: center;
+}
