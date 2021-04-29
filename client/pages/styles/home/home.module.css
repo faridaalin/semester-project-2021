@@ -4,7 +4,7 @@
 .background {
   background-image: url('/mobile-hero.png');
   background-repeat: no-repeat;
-  background-color: bisque;
+  background-color: var(--blue-400);
   height: 500px;
   background-position: center center;
   background-size: cover;

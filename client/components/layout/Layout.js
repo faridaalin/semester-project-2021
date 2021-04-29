@@ -14,6 +14,7 @@ const Layout = ({ title, children }) => {
       <Navbar />
       <main className={styles.main}>
         <BreadCrumps path={path === '/' ? '' : path} />
+
         <PageHeader title={title} />
         <article className={styles.mainInner}>{children}</article>
       </main>
