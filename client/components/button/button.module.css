@@ -24,7 +24,7 @@
 
 .buttonGrey {
   background: var(--grey-200);
-  color: var(--black-400);
+  color: var(--blue-400);
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;

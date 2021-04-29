@@ -86,6 +86,10 @@
   border-radius: 6px;
   font-weight: var(--fontWeight-m);
   margin-bottom: 16px;
+  color: var(--blue-400);
+}
+.item > a {
+  color: var(--blue-400);
 }
 .itemButton {
   justify-self: center;
