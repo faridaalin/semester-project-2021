@@ -23,13 +23,14 @@ const Search = () => {
             <Calendar className={styles.icon} />
             Dates
           </label>
-          <input
+          {/* <input
             type='date'
             name='dates'
             id='dates'
             placeholder='Add dates'
             className={styles.input}
-          />
+          /> */}
+          <button className={`${styles.inputButton}`}>Add dates</button>
         </div>
         <div>
           <label htmlFor='guests' className={styles.label}>

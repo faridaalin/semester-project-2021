@@ -27,6 +27,7 @@
   font-size: 12px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
+  color: var(--blue-300);
 }
 
 .input {
@@ -37,6 +38,18 @@
   border: 1px solid var(--grey-200);
   border-radius: 8px;
   background-color: var(--white-100);
+  width: 100%;
+}
+
+.inputButton {
+  font-size: 12px;
+  font-weight: var(--fontWeight-r);
+  font-family: var(--header-font);
+  background-color: var(--white-100);
+  color: var(--blue-300);
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+  padding: 14px 16px;
   width: 100%;
 }
 
