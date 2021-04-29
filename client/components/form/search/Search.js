@@ -1,5 +1,6 @@
 import { MapPin, Calendar, Users } from 'react-feather';
-import styles from './serach.module.css';
+import Button from '../../button/Button';
+import styles from './search.module.css';
 
 const Search = () => {
   return (
@@ -23,13 +24,6 @@ const Search = () => {
             <Calendar className={styles.icon} />
             Dates
           </label>
-          {/* <input
-            type='date'
-            name='dates'
-            id='dates'
-            placeholder='Add dates'
-            className={styles.input}
-          /> */}
           <button className={`${styles.inputButton}`}>Add dates</button>
         </div>
         <div>
@@ -46,7 +40,9 @@ const Search = () => {
           />
         </div>
       </div>
-      <button>Search</button>
+      <Button btnType='search' className={styles.searchBtn}>
+        Search
+      </Button>
     </form>
   );
 };

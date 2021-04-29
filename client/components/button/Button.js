@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import styles from './button.module.css';
 
-const Button = ({ children, size, color }) => {
+const Button = ({ children, size, color, btnType }) => {
+  console.log('search', btnType);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
     }
     if (color === 'grey') {
       return `${styles.buttonGrey}`;
+    }
+    if (btnType === 'search') {
+      return `${styles.buttonOrange} ${styles.buttonSearch}`;
     }
   };
 

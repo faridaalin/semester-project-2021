@@ -5,9 +5,9 @@
   font-family: var(--header-font);
 }
 
-/* .inputContainer {
-  font-family: var(--header-font);
-} */
+.inputContainer {
+  margin-bottom: 16px;
+}
 .icon {
   height: 14px;
   width: 14px;
@@ -58,8 +58,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 16px;
 }
 
 .column > div {
   width: 45%;
+}
+
+.searchBtn {
+  width: 100%;
 }
