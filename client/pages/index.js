@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import Card from '../components/card/Card';
+import Search from '../components/form/search/Search';
 import styles from './styles/home/home.module.css';
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
             Bergen is the Gateway to the Fjords of Norway and a UNESCO World
             Heritage City.
           </p>
-          <p>Booking</p>
+          <Search />
         </div>
       </section>
       <section>Customer Favs</section>
