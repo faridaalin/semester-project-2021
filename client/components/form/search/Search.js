@@ -7,7 +7,7 @@ import 'rsuite/dist/styles/rsuite-default.css';
 import styles from './search.module.css';
 
 const Search = () => {
-  const [showGuests, setShowGuests] = useState(true);
+  const [showGuests, setShowGuests] = useState(false);
   const handleSearch = (e) => {
     e.preventDefault();
   };
