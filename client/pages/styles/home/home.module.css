@@ -1,0 +1,59 @@
+.home {
+  padding-bottom: 80vh;
+}
+.background {
+  background-image: url('/mobile-hero.png');
+  background-repeat: no-repeat;
+  background-color: bisque;
+  height: 500px;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.background::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.content {
+  position: absolute;
+
+  padding-right: 2rem;
+}
+
+.explore {
+  color: var(--grey-400);
+  font-family: var(--header-font);
+  line-height: 18px;
+  font-size: 24px;
+}
+
+.header {
+  color: var(--grey-300);
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  font-size: 85px;
+  line-height: 18px;
+  padding-top: 45px;
+  margin-left: -6px;
+  padding-bottom: 60px;
+}
+
+.paragraph {
+  font-family: var(--body-font);
+  color: var(--grey-200);
+  line-height: 24px;
+  font-weight: var(--fontWeight-r);
+  font-size: 14px;
+}
