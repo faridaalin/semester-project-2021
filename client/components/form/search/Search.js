@@ -1,15 +1,33 @@
 import { useState } from 'react';
 import { MapPin, Calendar, Users } from 'react-feather';
 import Button from '../../button/Button';
-import { DateRangePicker } from 'rsuite';
 import Guests from './guest/Guests';
-import 'rsuite/dist/styles/rsuite-default.css';
 import styles from './search.module.css';
+import { DateRangePicker } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const Search = () => {
+  const [showDates, setShowDates] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [openDates, setDates] = useState(false);
+  const [dateRange, setDateRange] = useState({});
+
   const handleSearch = (e) => {
     e.preventDefault();
+  };
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
+  };
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
   };
 
   return (
@@ -33,12 +51,20 @@ const Search = () => {
             <Calendar className={styles.icon} />
             Dates
           </label>
-          <DateRangePicker
-            oneTap
-            appearance='default'
-            placeholder='Add date'
-            className={styles.datepicker}
-          />
+
+          <button
+            className={styles.inputButton}
+            onClick={() => setShowDates(!showDates)}
+          >
+            Add dates
+          </button>
+          {showDates && (
+            <DateRangePicker
+              ranges={[selectionRange]}
+              open={openDates}
+              onChange={handleSelect}
+            />
+          )}
         </div>
         <div>
           <label htmlFor='guests' className={styles.label}>
@@ -51,7 +77,7 @@ const Search = () => {
           >
             Add guests
           </button>
-          {showGuests && <Guests s setShowGuests={setShowGuests} />}
+          {showGuests && <Guests setShowGuests={setShowGuests} />}
         </div>
       </div>
       <Button btnType='search' className={styles.searchBtn}>
