@@ -1,0 +1,7 @@
+.h2 {
+  font-family: var(--header-font);
+  color: var(--blue-400);
+  font-size: 22px;
+  line-height: 33px;
+  margin-bottom: 32px;
+}

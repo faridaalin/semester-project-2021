@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import Card from '../components/card/Card';
+import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Search from '../components/form/search/Search';
 import styles from './styles/home/home.module.css';
 
@@ -21,11 +22,15 @@ export default function Home() {
           <Search />
         </div>
       </section>
-      <section>Customer Favs</section>
-      <section>Choose your style</section>
-      <section>Attractions in Bergen</section>
-
-      <Card />
+      <section>
+        <SectionHeading>Customer Favourites</SectionHeading>
+      </section>
+      <section>
+        <SectionHeading>Choose your style</SectionHeading>
+      </section>
+      <section>
+        <SectionHeading>Attractions in Bergen</SectionHeading>
+      </section>
     </Layout>
   );
 }
