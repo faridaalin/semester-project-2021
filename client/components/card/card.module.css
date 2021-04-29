@@ -1,12 +1,4 @@
-.grid {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
-}
-
 .card {
-  /* margin: 1rem; */
   flex-basis: 45%;
   padding: 1.5rem;
   text-align: left;
@@ -35,11 +27,6 @@
   line-height: 1.5;
 }
 
-@media (min-width: 600px) {
-  .grid {
-    flex-direction: initial;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin-top: 3rem;
-  }
+.h4 {
+  font-size: 12px;
 }

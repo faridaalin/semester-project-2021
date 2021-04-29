@@ -56,3 +56,19 @@
   font-weight: var(--fontWeight-m);
   font-size: 14px;
 }
+
+.grid {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .grid {
+    flex-direction: initial;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin-top: 3rem;
+  }
+}
