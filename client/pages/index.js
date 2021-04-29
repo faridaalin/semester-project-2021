@@ -6,7 +6,7 @@ import styles from './styles/home/home.module.css';
 export default function Home() {
   return (
     <Layout title='Home'>
-      {/* <section className={styles.home}>
+      <section className={styles.home}>
         <div className={styles.background} />
         <div className={styles.content}>
           <span className={styles.explore}>Explore</span>
@@ -21,8 +21,8 @@ export default function Home() {
       </section>
       <section>Customer Favs</section>
       <section>Choose your style</section>
-      <section>Attractions in Bergen</section> */}
-      Home
+      <section>Attractions in Bergen</section>
+
       <Card />
     </Layout>
   );

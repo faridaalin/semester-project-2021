@@ -1,8 +1,10 @@
 .form {
+  position: relative;
   background: var(--white-200);
   border-radius: 8px;
   padding: 16px;
-  font-family: var(--header-font);
+  margin-top: 40px;
+  width: 100%;
 }
 
 .inputContainer {
@@ -16,11 +18,12 @@
 .label {
   color: var(--blue-400);
   font-size: 12px;
+  font-weight: var(--fontWeight-m);
   line-height: 24px;
   display: flex;
   align-items: center;
   gap: 4px;
-  font-weight: var(--fontWeight-m);
+  margin-bottom: 4px;
 }
 
 .input::placeholder {
@@ -32,12 +35,12 @@
 
 .input {
   color: var(--blue-400);
+  background-color: var(--white-100);
   font-size: 16px;
   font-size: max(16px, 1em);
   padding: 14px 16px;
   border: 1px solid var(--grey-200);
   border-radius: 8px;
-  background-color: var(--white-100);
   width: 100%;
 }
 

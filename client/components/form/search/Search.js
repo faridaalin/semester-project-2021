@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { MapPin, Calendar, Users } from 'react-feather';
 import Button from '../../button/Button';
-import Datepicker from '../datePicker/Datepicker';
+import { DateRangePicker } from 'rsuite';
+import Guests from './guest/Guests';
+import 'rsuite/dist/styles/rsuite-default.css';
 import styles from './search.module.css';
 
 const Search = () => {
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showGuests, setShowGuests] = useState(true);
   const handleSearch = (e) => {
     e.preventDefault();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>
-      {showDatePicker && <Datepicker />}
-
       <div className={styles.inputContainer}>
         <label htmlFor='search' className={styles.label}>
           <MapPin className={styles.icon} />
@@ -33,25 +33,25 @@ const Search = () => {
             <Calendar className={styles.icon} />
             Dates
           </label>
-          <button
-            className={`${styles.inputButton}`}
-            onClick={() => setShowDatePicker(!showDatePicker)}
-          >
-            Add dates
-          </button>
+          <DateRangePicker
+            oneTap
+            appearance='default'
+            placeholder='Add date'
+            className={styles.datepicker}
+          />
         </div>
         <div>
           <label htmlFor='guests' className={styles.label}>
             <Users className={styles.icon} />
             Guests
           </label>
-          <input
-            type='number'
-            name='guests'
-            id='guests'
-            placeholder='Add guests'
-            className={styles.input}
-          />
+          <button
+            className={styles.inputButton}
+            onClick={() => setShowGuests(!showGuests)}
+          >
+            Add guests
+          </button>
+          {showGuests && <Guests s setShowGuests={setShowGuests} />}
         </div>
       </div>
       <Button btnType='search' className={styles.searchBtn}>
