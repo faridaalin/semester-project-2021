@@ -18,7 +18,7 @@
 .label {
   color: var(--blue-400);
   font-size: 12px;
-  font-weight: var(--fontWeight-m);
+  font-weight: var(--fontWeight-sm);
   line-height: 24px;
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 .input::placeholder {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
   color: var(--blue-300);
@@ -45,7 +45,7 @@
 }
 
 .inputButton {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
   background-color: var(--white-100);

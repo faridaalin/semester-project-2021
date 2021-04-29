@@ -58,11 +58,8 @@ img {
   text-align: center;
 }
 
-rs-picker-toggle-placeholder {
-  color: var(--blue-300);
-}
-
 .rs-picker-toggle .rs-picker-toggle-placeholder {
   font-family: var(--header-font);
-  font-size: 12px;
+  font-size: 14px;
+  color: var(--blue-300) !important;
 }

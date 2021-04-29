@@ -28,8 +28,8 @@
 
 .content {
   position: absolute;
-
   padding-right: 2rem;
+  margin-top: -40px;
 }
 
 .explore {
@@ -40,7 +40,7 @@
 }
 
 .header {
-  color: var(--grey-300);
+  color: var(--grey-200);
   font-family: var(--header-font);
   font-weight: var(--fontWeight-r);
   font-size: 85px;
@@ -54,6 +54,6 @@
   font-family: var(--body-font);
   color: var(--grey-200);
   line-height: 24px;
-  font-weight: var(--fontWeight-r);
+  font-weight: var(--fontWeight-m);
   font-size: 14px;
 }

@@ -13,8 +13,10 @@ export default function Home() {
           <h1 className={styles.header}>Bergen</h1>
 
           <p className={styles.paragraph}>
-            Bergen is the Gateway to the Fjords of Norway and a UNESCO World
-            Heritage City.
+            Bergen is the Gateway to the Fjords of Norway. As a UNESCO World
+            Heritage City and a European City of Culture, the Bergen region has
+            the ideal combination of nature, culture and exciting urban life all
+            year around.
           </p>
           <Search />
         </div>
