@@ -2,31 +2,47 @@
   display: grid;
   grid-auto-flow: column;
   padding: 24px 2rem;
+  font-family: var(--header-font);
 }
 
 .hamburgerButton {
   z-index: 2000;
   border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.hamburgerWrapper {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 4px;
-  height: 27px;
+  height: 20px;
   width: 2rem;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .hamburger {
   height: 100%;
   background: var(--orange-400);
 }
+.menu {
+  color: var(--orange-300);
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-sm);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
 .logo {
   font-family: var(--header-font);
   color: var(--orange-400);
   font-weight: var(--fontWeight-sm);
-  font-size: 22px;
+  font-size: 18px;
   z-index: 2000;
   margin-left: auto;
 }

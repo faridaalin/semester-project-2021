@@ -33,9 +33,12 @@ const Navbar = () => {
         className={styles.hamburgerButton}
         onClick={toggleMenu}
       >
-        <span className={styles.hamburger}></span>
-        <span className={styles.hamburger}></span>
-        <span className={styles.hamburger}></span>
+        <div className={styles.hamburgerWrapper}>
+          <span className={styles.hamburger}></span>
+          <span className={styles.hamburger}></span>
+          <span className={styles.hamburger}></span>
+        </div>
+        <span className={styles.menu}>Menu</span>
       </button>
       <Link href='/'>
         <a className={styles.logo}>
