@@ -15,6 +15,7 @@ const hotels = require('./routes/api/hotel');
 const enquiries = require('./routes/api/enquiry');
 const messages = require('./routes/api/message');
 const users = require('./routes/api/user');
+const attractions = require('./routes/api/attraction');
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
@@ -49,6 +50,7 @@ app.use('/api/hotels', hotels);
 app.use('/api/enquiries', enquiries);
 app.use('/api/messages', messages);
 app.use('/api/users', users);
+app.use('/api/attractions', attractions);
 
 app.use((req, res, next) => {
   next(ApiError.notFound('Not Found'));
