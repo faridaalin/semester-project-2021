@@ -1,0 +1,21 @@
+.P {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: var(--body-font);
+  font-weight: var(--fontWeight-r);
+  color: var(--blue-400);
+  margin-bottom: 16px;
+}
+
+.H3 {
+  font-family: var(--header-font);
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: rgb(53 54 73 / 0.85);
+  font-weight: var(--fontWeight-sm);
+}
+
+.image {
+  margin-bottom: 38px;
+}

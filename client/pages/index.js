@@ -1,12 +1,19 @@
+
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Search from '../components/form/search/Search';
 import Card from '../components/card/Card';
+import AttractionsCard from '../components/card/AttractionsCard';
 import styles from './styles/home/home.module.css';
 
 export default function Home(props) {
   const { data } = props;
+  const images = [
+    { imageurl: '/boutiqueHotel.png', type: 'Boutique Hotel' },
+    { imageurl: '/BB.png', type: 'Bed and Breakfast' },
+    { imageurl: '/apartment.png', type: 'Apartment Hotel' },
+  ];
   return (
     <Layout title='Home'>
       <section className={styles.home}>
@@ -27,16 +34,23 @@ export default function Home(props) {
       <section>
         <SectionHeading>Customer Favourites</SectionHeading>
         <div className={styles.grid}>
-          {data.map((hotel) => (
-            <Card key={hotel._id} hotel={hotel} />
-          ))}
+          {data.map(
+            (hotel) =>
+              hotel.rating >= 5 && <Card key={hotel._id} hotel={hotel} />
+          )}
         </div>
       </section>
       <section>
         <SectionHeading>Choose your style</SectionHeading>
+        <div className={styles.grid}>
+          {images.map((style) => (
+            <Card key={style.type} hotelStyle={style} />
+          ))}
+        </div>
       </section>
       <section>
         <SectionHeading>Attractions in Bergen</SectionHeading>
+        <AttractionsCard />
       </section>
     </Layout>
   );
