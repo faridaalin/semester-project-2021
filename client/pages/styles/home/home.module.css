@@ -62,13 +62,14 @@
   align-items: center;
   width: 100%;
   flex-direction: column;
+  gap: 18px;
 }
 
 @media (min-width: 600px) {
   .grid {
     flex-direction: initial;
     flex-wrap: wrap;
-    max-width: 800px;
+    /* max-width: 800px; */
     margin-top: 3rem;
   }
 }

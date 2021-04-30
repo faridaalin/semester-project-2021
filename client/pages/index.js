@@ -26,7 +26,7 @@ export default function Home(props) {
       </section>
       <section>
         <SectionHeading>Customer Favourites</SectionHeading>
-        <div>
+        <div className={styles.grid}>
           {data.map((hotel) => (
             <Card key={hotel._id} hotel={hotel} />
           ))}
