@@ -38,7 +38,7 @@ const Card = (props) => {
   return (
     <a
       href='https://nextjs.org/docs'
-      className={`${styles.card} ${styles.cardType}`}
+      className={styles.cardType}
       style={{
         backgroundImage: `url(${hotelStyle.imageurl})`,
       }}

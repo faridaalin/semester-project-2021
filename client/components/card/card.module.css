@@ -4,8 +4,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 467px;
-  width: 310px;
+  height: 520px;
+  width: 100%;
+  max-width: 340px;
   margin-bottom: 60px;
   border-radius: 8px;
   position: relative;
@@ -34,7 +35,7 @@
   flex-direction: column;
   justify-content: flex-end;
   border-radius: 8px;
-  height: 467px;
+  height: 520px;
 }
 
 .h3 {
@@ -73,6 +74,7 @@
 }
 
 .cardType {
-  min-width: 310px;
-  width: 30%;
+  composes: card;
+  max-width: initial;
+  width: 29em;
 }
