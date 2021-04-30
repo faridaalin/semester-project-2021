@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import { HotelProvider } from '../context/HotelsContext';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <HotelProvider>
+      <Component {...pageProps} />
+    </HotelProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

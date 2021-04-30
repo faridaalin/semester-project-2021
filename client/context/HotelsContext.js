@@ -1,20 +1,21 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import axios from '../utils/axios';
 
 const HotelsContext = createContext();
 
-export const TodosProvider = ({ children }) => {
+export const HotelProvider = ({ children }) => {
   const [hotels, setHotels] = useState([]);
+
   const getHotels = async () => {
     try {
-      const hotels = await axios.get(`/hotels/${params.id}`);
+      const hotels = await axios.get('/hotels');
       const data = hotels.data;
-      console.log('DATA', data);
-      setHotels(data);
+      setHotels(data.data);
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <HotelsContext.Provider value={[hotels, setHotels, getHotels]}>
       {children}
@@ -22,8 +23,6 @@ export const TodosProvider = ({ children }) => {
   );
 };
 
-const useHotels = () => {
+export function useHotelsContext() {
   return useContext(HotelsContext);
-};
-
-export default useHotels;
+}
