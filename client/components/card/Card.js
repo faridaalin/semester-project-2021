@@ -1,11 +1,9 @@
+import { Star } from 'react-feather';
+import truncate from '../utils/truncate';
+import showRating from '../utils/showRating';
 import styles from './card.module.css';
 
 const Card = ({ hotel }) => {
-  console.log('HOTEL:', hotel);
-  const truncate = (text, size) => {
-    return text.length > size ? text.slice(0, size - 1) + ' ...' : text;
-  };
-
   return (
     <a
       href='https://nextjs.org/docs'
@@ -15,10 +13,15 @@ const Card = ({ hotel }) => {
       }}
     >
       <div className={styles.content}>
-        <span>{hotel.rating}</span>
-        <h3 className={styles.h4}>{hotel.title}</h3>
+        <span>
+          {showRating(hotel.rating).map((i) => (
+            <Star key={i} className={styles.rating} />
+          ))}
+        </span>
+        <h3 className={styles.h3}>{hotel.title}</h3>
         <h4 className={styles.h4}>{hotel.address}</h4>
-        <div
+        <section
+          className={styles.description}
           dangerouslySetInnerHTML={{ __html: truncate(hotel.description, 120) }}
         />
       </div>
