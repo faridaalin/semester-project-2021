@@ -60,6 +60,6 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: end;
+  justify-content: flex-start;
   gap: 20px;
 }

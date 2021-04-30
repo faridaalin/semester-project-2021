@@ -37,7 +37,7 @@ const Card = (props) => {
     );
   }
   return (
-    <Link href={`/category`}>
+    <Link href={`/category/${hotelStyle.slug}`}>
       <a
         className={styles.cardType}
         style={{
