@@ -2,27 +2,26 @@ import Image from 'next/image';
 import styles from './attractionsCard.module.css';
 
 const AttractionsCard = (props) => {
+  const { attractions } = props;
+  console.log('attraction :', attractions);
   return (
-    <div className='attractionsCard'>
+    <div className={styles.attractionsCard}>
       <div className={styles.image}>
         <Image
-          src='/wharf.png'
-          alt='Picture of the author'
+          src={attractions.image_url}
+          alt={attractions.name}
           width={400}
           height={400}
         />
       </div>
 
-      <h3 className={styles.H3}>Bryggen Hanseatic Wharf</h3>
-      <p className={styles.P}>
-        Bryggen is one of Bergen's and Norway's main attractions. Bryggen was
-        built after the great fire in 1702 and is included on UNESCO's World
-        Heritage List.
-      </p>
-      <p className={styles.P}>
-        The very first buildings in Bergen were situated at Bryggen, which has
-        been a vibrant and important area of the city for many centuries.
-      </p>
+      <h3 className={styles.H3}>{attractions.name}</h3>
+      <section
+        className={styles.description}
+        dangerouslySetInnerHTML={{
+          __html: attractions.description,
+        }}
+      />
     </div>
   );
 };

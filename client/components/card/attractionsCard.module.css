@@ -1,4 +1,10 @@
-.P {
+.attractionsCard:first-of-type {
+  margin-top: 0;
+}
+.attractionsCard {
+  margin-top: 38px;
+}
+.description > p {
   font-size: 16px;
   line-height: 1.5;
   font-family: var(--body-font);

@@ -1,4 +1,3 @@
-
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
@@ -8,12 +7,21 @@ import AttractionsCard from '../components/card/AttractionsCard';
 import styles from './styles/home/home.module.css';
 
 export default function Home(props) {
-  const { data } = props;
+  const { hotels, attractions } = props;
+
   const images = [
     { imageurl: '/boutiqueHotel.png', type: 'Boutique Hotel' },
     { imageurl: '/BB.png', type: 'Bed and Breakfast' },
     { imageurl: '/apartment.png', type: 'Apartment Hotel' },
   ];
+
+  if (!hotels.data || hotels.data.length === 0) {
+    return (
+      <Layout>
+        <div>Nothing here</div>
+      </Layout>
+    );
+  }
   return (
     <Layout title='Home'>
       <section className={styles.home}>
@@ -34,7 +42,7 @@ export default function Home(props) {
       <section>
         <SectionHeading>Customer Favourites</SectionHeading>
         <div className={styles.grid}>
-          {data.map(
+          {hotels.data.map(
             (hotel) =>
               hotel.rating >= 5 && <Card key={hotel._id} hotel={hotel} />
           )}
@@ -50,7 +58,14 @@ export default function Home(props) {
       </section>
       <section>
         <SectionHeading>Attractions in Bergen</SectionHeading>
-        <AttractionsCard />
+        {!attractions.data ||
+          (attractions.data.length === 0 ? (
+            <div>Sorry, error happend</div>
+          ) : (
+            attractions.data.map((attraction, i) => (
+              <AttractionsCard key={i} attractions={attraction} />
+            ))
+          ))}
       </section>
     </Layout>
   );
@@ -58,18 +73,21 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   try {
-    const res = await axios.get('/hotels');
+    const hotels = axios.get('/hotels');
+    const attractions = axios.get('/attractions');
+    const [hotelsResult, attractionsResult] = await Promise.all([
+      hotels,
+      attractions,
+    ]);
 
-    const { data } = res.data;
-
-    if (!data) {
+    if (!hotelsResult.data || !attractionsResult.data) {
       return {
         notFound: true,
       };
     }
 
     return {
-      props: { data },
+      props: { hotels: hotelsResult.data, attractions: attractionsResult.data },
     };
   } catch (err) {
     console.error(err);
