@@ -10,9 +10,21 @@ export default function Home(props) {
   const { hotels, attractions } = props;
 
   const images = [
-    { imageurl: '/boutiqueHotel.png', type: 'Boutique Hotel' },
-    { imageurl: '/BB.png', type: 'Bed and Breakfast' },
-    { imageurl: '/apartment.png', type: 'Apartment Hotel' },
+    {
+      imageurl: '/boutiqueHotel.png',
+      type: 'Boutique Hotel',
+      slug: 'boutique-hotel',
+    },
+    {
+      imageurl: '/BB.png',
+      type: 'Bed and Breakfast',
+      slug: 'bed-and-breakfast',
+    },
+    {
+      imageurl: '/apartment.png',
+      type: 'Apartment Hotel',
+      slug: 'apartment-hotel',
+    },
   ];
 
   if (!hotels.data || hotels.data.length === 0) {
@@ -39,7 +51,7 @@ export default function Home(props) {
           <Search />
         </div>
       </section>
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Customer Favourites</SectionHeading>
         <div className={styles.grid}>
           {hotels.data.map(
@@ -48,7 +60,7 @@ export default function Home(props) {
           )}
         </div>
       </section>
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Choose your style</SectionHeading>
         <div className={styles.grid}>
           {images.map((style) => (
@@ -56,16 +68,18 @@ export default function Home(props) {
           ))}
         </div>
       </section>
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Attractions in Bergen</SectionHeading>
-        {!attractions.data ||
-          (attractions.data.length === 0 ? (
-            <div>Sorry, error happend</div>
-          ) : (
-            attractions.data.map((attraction, i) => (
-              <AttractionsCard key={i} attractions={attraction} />
-            ))
-          ))}
+        <div className={styles.grid}>
+          {!attractions.data ||
+            (attractions.data.length === 0 ? (
+              <div>Sorry, error happend</div>
+            ) : (
+              attractions.data.map((attraction, i) => (
+                <AttractionsCard key={i} attractions={attraction} />
+              ))
+            ))}
+        </div>
       </section>
     </Layout>
   );

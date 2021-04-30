@@ -4,9 +4,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 520px;
+  height: 380px;
   width: 100%;
-  max-width: 340px;
+  max-width: 260px;
   margin-bottom: 60px;
   border-radius: 8px;
   position: relative;
@@ -76,5 +76,5 @@
 .cardType {
   composes: card;
   max-width: initial;
-  width: 29em;
+  width: 363px;
 }

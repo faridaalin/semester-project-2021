@@ -3,15 +3,15 @@ import styles from './attractionsCard.module.css';
 
 const AttractionsCard = (props) => {
   const { attractions } = props;
-  console.log('attraction :', attractions);
+
   return (
     <div className={styles.attractionsCard}>
       <div className={styles.image}>
         <Image
           src={attractions.image_url}
           alt={attractions.name}
-          width={400}
-          height={400}
+          width={464}
+          height={464}
         />
       </div>
 

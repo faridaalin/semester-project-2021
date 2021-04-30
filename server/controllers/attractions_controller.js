@@ -13,14 +13,12 @@ exports.all_attractions = async (req, res, next) => {
 
 // Single attractions
 exports.attraction_details = async (req, res, next) => {
-  console.log(req.params.id);
   try {
     const attraction = await Attractions.findById(req.params.id);
     if (!attraction) next(ApiError.notFound('Attraction not found'));
 
     res.status(200).send({ status: 'ok', data: attraction });
   } catch (err) {
-    console.log('ERROR 🔥', err);
     next(err);
   }
 };
