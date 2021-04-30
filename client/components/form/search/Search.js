@@ -6,6 +6,7 @@ import styles from './search.module.css';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { X } from 'react-feather';
 
 const Search = () => {
   const [showDates, setShowDates] = useState(false);
@@ -59,11 +60,14 @@ const Search = () => {
             Add dates
           </button>
           {showDates && (
-            <DateRangePicker
-              ranges={[selectionRange]}
-              open={openDates}
-              onChange={handleSelect}
-            />
+            <div>
+              <X className={styles.icon} onClick={closeModal} />
+              <DateRangePicker
+                ranges={[selectionRange]}
+                open={openDates}
+                onChange={handleSelect}
+              />
+            </div>
           )}
         </div>
         <div>

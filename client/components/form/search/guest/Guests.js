@@ -22,19 +22,17 @@ const Guests = ({ setShowGuests }) => {
           <div className={styles.info}>Ages 18 or above</div>
         </div>
         <div className={styles.guestsInput}>
-          <InputGroup>
-            <InputGroup.Button
+          <div>
+            <button
               onClick={() =>
                 adults <= 1 ? setAdults(1) : setAdults(adults - 1)
               }
             >
               -
-            </InputGroup.Button>
-            <InputNumber className={'custom-input-number'} value={adults} />
-            <InputGroup.Button onClick={() => setAdults(adults + 1)}>
-              +
-            </InputGroup.Button>
-          </InputGroup>
+            </button>
+            <span>{adults}</span>
+            <button onClick={() => setAdults(adults + 1)}>+</button>
+          </div>
         </div>
       </div>
       <div className={styles.flex}>
@@ -43,19 +41,19 @@ const Guests = ({ setShowGuests }) => {
           <div className={styles.info}>Ages 12 or above</div>
         </div>
         <div className={styles.guestsInput}>
-          <InputGroup>
-            <InputGroup.Button
-              onClick={() =>
-                children <= 0 ? setChildren(0) : setChildren(children - 1)
-              }
-            >
-              -
-            </InputGroup.Button>
-            <InputNumber className={'custom-input-number'} value={children} />
-            <InputGroup.Button onClick={() => setChildren(children + 1)}>
-              +
-            </InputGroup.Button>
-          </InputGroup>
+          <div className={styles.guestsInput}>
+            <div>
+              <button
+                onClick={() =>
+                  children <= 0 ? setChildren(0) : setChildren(children - 1)
+                }
+              >
+                -
+              </button>
+              <span>{children}</span>
+              <button onClick={() => setChildren(children + 1)}>+</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
