@@ -1,12 +1,16 @@
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
+import getWindowWidth from '../components/helpers/getWindowWidth';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Search from '../components/form/search/Search';
 import Card from '../components/card/Card';
 import AttractionsCard from '../components/card/AttractionsCard';
+import DesktopHero from '../components/desktopHero/DesktopHero';
 import styles from './styles/home/home.module.css';
 
 export default function Home(props) {
+  const [desktopHero, setDesktopHero] = useState(false);
   const { hotels, attractions } = props;
 
   const images = [
@@ -27,28 +31,48 @@ export default function Home(props) {
     },
   ];
 
+  useEffect(() => {
+    const breakpoint = 768;
+    const showDesktopHero = () => {
+      if (getWindowWidth() >= breakpoint) {
+        setDesktopHero(true);
+      }
+    };
+    window.addEventListener('resize', showDesktopHero);
+    return () => {
+      window.removeEventListener('resize', showDesktopHero);
+    };
+  }, [open]);
+
+  console.log('Display Desktop Hero:', desktopHero);
+
   if (!hotels.data || hotels.data.length === 0) {
     return (
       <Layout>
-        <div>Nothing here</div>
+        <div>Sorry, please come back later.</div>
       </Layout>
     );
   }
   return (
     <Layout>
-      <div className={styles.heroSection}>
-        <div className={styles.background}></div>
-        <div className={styles.content}>
-          <span className={styles.explore}>Explore</span>
-          <h1 className={styles.header}>Bergen</h1>
+      {desktopHero ? (
+        <DesktopHero />
+      ) : (
+        <div className={styles.heroSection}>
+          <div className={styles.background}></div>
+          <div className={styles.content}>
+            <span className={styles.explore}>Explore</span>
+            <h1 className={styles.header}>Bergen</h1>
 
-          <p className={styles.paragraph}>
-            Bergen is the Gateway to the Fjords of Norway and a UNESCO World
-            Heritage City.
-          </p>
-          <Search />
+            <p className={styles.paragraph}>
+              Bergen is the Gateway to the Fjords of Norway and a UNESCO World
+              Heritage City.
+            </p>
+            <Search />
+          </div>
         </div>
-      </div>
+      )}
+
       <section className={styles.section}>
         <SectionHeading>Customer Favourites</SectionHeading>
         <div className={styles.grid}>

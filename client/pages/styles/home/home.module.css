@@ -63,3 +63,13 @@
   justify-content: center;
   gap: 20px;
 }
+
+@media only screen and (min-width: 768px) {
+  .heroSection {
+    height: 100vh;
+    margin-top: 0;
+  }
+  .content {
+    padding-top: 5em;
+  }
+}
