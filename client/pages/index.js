@@ -1,19 +1,12 @@
-import { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
-import getWindowWidth from '../components/helpers/getWindowWidth';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Card from '../components/card/Card';
 import AttractionsCard from '../components/card/AttractionsCard';
 import CardContainer from '../components/cardContainer/CardContainer';
-import DesktopHero from '../components/desktopHero/DesktopHero';
 import MobileHero from '../components/mobileHero/MobileHero';
 
 export default function Home(props) {
-  const breakpoint = 768;
-  const [desktopHero, setDesktopHero] = useState(
-    getWindowWidth() >= breakpoint ? true : false
-  );
   const { hotels, attractions } = props;
 
   const images = [
@@ -34,23 +27,6 @@ export default function Home(props) {
     },
   ];
 
-  useEffect(() => {
-    const showDesktopHero = () => {
-      if (getWindowWidth() >= breakpoint) {
-        setDesktopHero(true);
-      } else {
-        setDesktopHero(false);
-      }
-    };
-    window.addEventListener('resize', showDesktopHero);
-    return () => {
-      window.removeEventListener('resize', showDesktopHero);
-    };
-  }, []);
-
-  console.log('desktopHero', desktopHero);
-  console.log('getWindowWidth>= breakpoint', getWindowWidth() >= breakpoint);
-
   if (!hotels.data || hotels.data.length === 0) {
     return (
       <Layout>
@@ -60,9 +36,7 @@ export default function Home(props) {
   }
   return (
     <Layout>
-      {/* {desktopHero === true ? <DesktopHero /> : <MobileHero />} */}
-      {desktopHero === true ? <DesktopHero /> : <div>Mobile</div>}
-
+      <MobileHero />
       <section>
         <SectionHeading>Customer Favourites</SectionHeading>
         <CardContainer>
