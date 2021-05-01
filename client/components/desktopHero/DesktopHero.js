@@ -4,22 +4,25 @@ import styles from './desktopHero.module.css';
 
 const DesktopHero = () => {
   return (
-    <div className={styles.container}>
+    <section className={styles.desktopHero}>
       <div className={styles.imgContainer}>
-        <img src='/hero-desktop.png' alt='Bergen City Harbour' />
+        <img src={'/hero-desktop.png'} alt='Bergen City Harbour' />
       </div>
-      <div className={styles.content}>
-        <span>Explor</span>
-        <h1>Bergen</h1>
-        <p>
+      <div className={styles.wrapper}>
+        <span className={styles.desktopExplore}>Explore</span>
+        <h1 className={styles.dekstopHeader}>Bergen</h1>
+        <p className={styles.desktopParagraph}>
           Bergen is the Gateway to the Fjords of Norway. As a UNESCO World
           Heritage City and a European City of Culture, the Bergen region has
           the ideal combination of nature, culture and exciting urban life all
           year around.
         </p>
-        <Search />
+
+        <div className={styles.desktopContent}>
+          <Search />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,13 +1,75 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  align-items: center;
+.desktopHero {
+  position: relative;
+  height: 100vh;
 }
 
 .imgContainer {
-  grid-area: 3 / 12 -1/ -1;
+  height: 100%;
+  height: 100%;
+  width: 80%;
+  margin-left: auto;
+}
+.imgContainer > img {
+  height: 100%;
+  object-fit: cover;
+}
+.desktopExplore {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  font-size: 32px;
+  position: absolute;
+  top: 0;
+  color: var(--blue-200);
+  left: 16px;
+}
+.dekstopHeader {
+  font-size: 200px;
+  position: absolute;
+  top: 0;
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  background-color: rgb(53, 54, 73);
+  background: linear-gradient(
+    81deg,
+    rgba(53, 54, 73, 1),
+    rgb(205 205 209 / 66%) 58%
+  );
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+.desktopParagraph {
+  list-style: 1.5;
+  font-size: 16px;
+  position: absolute;
+
+  left: 8px;
+  top: 300px;
+  z-index: 1;
+  width: 50ch;
+  background-color: #35364959;
+  background-color: rgb(53, 54, 73);
+  background: linear-gradient(
+    81deg,
+    rgba(53, 54, 73, 1) 0%,
+    rgba(205, 205, 209, 1) 58%
+  );
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
-.content {
-  grid-area: 1 / 3 -1/ -1;
+.desktopContent {
+  left: 8px;
+  position: absolute;
+  top: 430px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 60px;
 }

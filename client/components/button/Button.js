@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './button.module.css';
 
-const Button = ({ children, size, color, btnType }) => {
+const Button = ({ children, size, color, btnType, link }) => {
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
@@ -16,7 +16,7 @@ const Button = ({ children, size, color, btnType }) => {
 
   getColor(color);
   return (
-    <Link href='/dashboard'>
+    <Link href={!link ? '/' : link}>
       <a>
         <button className={`${styles.button} ${getColor()}`}>{children}</button>
       </a>

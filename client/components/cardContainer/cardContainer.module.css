@@ -1,8 +1,4 @@
-.section {
-  padding: 0 1rem;
-}
-
-.grid {
+.cardGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

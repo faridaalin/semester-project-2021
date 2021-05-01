@@ -53,12 +53,13 @@ const Search = () => {
             Dates
           </label>
 
-          <button
+          <input
+            type='button'
+            value='Add dates'
             className={styles.inputButton}
             onClick={() => setShowDates(!showDates)}
-          >
-            Add dates
-          </button>
+          />
+
           {showDates && (
             <div>
               <X className={styles.icon} onClick={closeModal} />
@@ -75,12 +76,13 @@ const Search = () => {
             <Users className={styles.icon} />
             Guests
           </label>
-          <button
+          <input
+            type='button'
+            value='Add guests'
             className={styles.inputButton}
             onClick={() => setShowGuests(!showGuests)}
-          >
-            Add guests
-          </button>
+          />
+
           {showGuests && <Guests setShowGuests={setShowGuests} />}
         </div>
       </div>

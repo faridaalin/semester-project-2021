@@ -72,3 +72,21 @@
 .searchBtn {
   width: 100%;
 }
+
+@media only screen and (min-width: 768px) {
+  .form {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 32px;
+    max-width: 50ch;
+  }
+  .column {
+    margin-bottom: 0;
+  }
+  .inputContainer {
+    margin-bottom: 0;
+  }
+}

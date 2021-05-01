@@ -5,9 +5,9 @@ import getWindowWidth from '../components/helpers/getWindowWidth';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Card from '../components/card/Card';
 import AttractionsCard from '../components/card/AttractionsCard';
+import CardContainer from '../components/cardContainer/CardContainer';
 import DesktopHero from '../components/desktopHero/DesktopHero';
 import MobileHero from '../components/mobileHero/MobileHero';
-import styles from './styles/home/home.module.css';
 
 export default function Home(props) {
   const breakpoint = 768;
@@ -63,26 +63,26 @@ export default function Home(props) {
       {/* {desktopHero === true ? <DesktopHero /> : <MobileHero />} */}
       {desktopHero === true ? <DesktopHero /> : <div>Mobile</div>}
 
-      <section className={styles.section}>
+      <section>
         <SectionHeading>Customer Favourites</SectionHeading>
-        <div className={styles.grid}>
+        <CardContainer>
           {hotels.data.map(
             (hotel) =>
               hotel.rating >= 5 && <Card key={hotel._id} hotel={hotel} />
           )}
-        </div>
+        </CardContainer>
       </section>
-      <section className={styles.section}>
+      <section>
         <SectionHeading>Choose your style</SectionHeading>
-        <div className={styles.grid}>
+        <CardContainer>
           {images.map((style) => (
             <Card key={style.type} hotelStyle={style} />
           ))}
-        </div>
+        </CardContainer>
       </section>
-      <section className={styles.section}>
+      <section>
         <SectionHeading>Attractions in Bergen</SectionHeading>
-        <div className={styles.grid}>
+        <CardContainer>
           {!attractions.data ||
             (attractions.data.length === 0 ? (
               <div>Sorry, error happend</div>
@@ -91,7 +91,7 @@ export default function Home(props) {
                 <AttractionsCard key={i} attractions={attraction} />
               ))
             ))}
-        </div>
+        </CardContainer>
       </section>
     </Layout>
   );
