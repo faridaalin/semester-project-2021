@@ -2,7 +2,6 @@
   width: 100%;
   height: 125vh;
   margin-top: -25vh;
-  background-image: url('/mobile-hero.png');
   background-repeat: no-repeat;
   background-color: var(--blue-400);
   background-position: center center;
@@ -57,13 +56,59 @@
 
 @media only screen and (min-width: 768px) {
   .heroImage {
-    height: 100vh;
+    height: 80vh;
     margin-top: 0;
+    max-width: 970px;
+    margin-left: auto;
   }
 
   .overlay {
     backdrop-filter: none;
     background: rgb(0 0 0 / 47%);
-    height: 100vh;
+    height: 80vh;
+  }
+
+  .heroSection {
+    position: relative;
+  }
+  .explore {
+    font-family: var(--header-font);
+    font-weight: var(--fontWeight-r);
+    font-size: 32px;
+    color: var(--blue-200);
+  }
+
+  .header {
+    font-size: 200px;
+    font-family: var(--header-font);
+    font-weight: var(--fontWeight-r);
+    background-color: rgb(53, 54, 73);
+    background: linear-gradient(
+      81deg,
+      rgba(53, 54, 73, 1),
+      rgb(205 205 209 / 66%) 58%
+    );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  .paragraph {
+    line-height: 1.5;
+    font-size: 16px;
+    width: 50ch;
+    background-color: #35364959;
+    background-color: rgb(53, 54, 73);
+    background: linear-gradient(
+      81deg,
+      rgba(53, 54, 73, 1) 0%,
+      rgba(205, 205, 209, 1) 58%
+    );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
   }
 }

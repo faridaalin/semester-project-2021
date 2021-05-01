@@ -17,9 +17,9 @@
   font-family: var(--header-font);
   font-weight: var(--fontWeight-r);
   font-size: 32px;
+  color: var(--blue-200);
   position: absolute;
   top: 0;
-  color: var(--blue-200);
   left: 16px;
 }
 .dekstopHeader {
@@ -41,13 +41,12 @@
   -moz-text-fill-color: transparent;
 }
 .desktopParagraph {
-  list-style: 1.5;
-  font-size: 16px;
   position: absolute;
-
   left: 8px;
   top: 300px;
   z-index: 1;
+  line-height: 1.5;
+  font-size: 16px;
   width: 50ch;
   background-color: #35364959;
   background-color: rgb(53, 54, 73);

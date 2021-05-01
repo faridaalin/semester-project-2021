@@ -24,7 +24,10 @@ const MobileHero = () => {
   console.log('width >= breakpoint', width >= breakpoint);
 
   return (
-    <section className={styles.heroSection}>
+    <section
+      className={styles.heroSection}
+      style={{ backgroundImage: `url("/mobile-hero.png")` }}
+    >
       <div className={styles.heroImage}>
         <div className={styles.overlay}></div>
       </div>
