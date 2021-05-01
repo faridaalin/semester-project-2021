@@ -28,7 +28,7 @@
 }
 
 .input::placeholder {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
   color: var(--blue-300);
@@ -46,7 +46,7 @@
 }
 
 .inputButton {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
   background-color: var(--white-100);

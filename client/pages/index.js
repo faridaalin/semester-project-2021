@@ -35,22 +35,20 @@ export default function Home(props) {
     );
   }
   return (
-    <Layout title='Home'>
-      <section className={styles.home}>
-        <div className={styles.background} />
+    <Layout>
+      <div className={styles.heroSection}>
+        <div className={styles.background}></div>
         <div className={styles.content}>
           <span className={styles.explore}>Explore</span>
           <h1 className={styles.header}>Bergen</h1>
 
           <p className={styles.paragraph}>
-            Bergen is the Gateway to the Fjords of Norway. As a UNESCO World
-            Heritage City and a European City of Culture, the Bergen region has
-            the ideal combination of nature, culture and exciting urban life all
-            year around.
+            Bergen is the Gateway to the Fjords of Norway and a UNESCO World
+            Heritage City.
           </p>
           <Search />
         </div>
-      </section>
+      </div>
       <section className={styles.section}>
         <SectionHeading>Customer Favourites</SectionHeading>
         <div className={styles.grid}>
