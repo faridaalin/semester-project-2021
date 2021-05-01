@@ -24,9 +24,9 @@
   padding: 16px 16px 24px 16px;
   background: linear-gradient(
     180deg,
-    rgba(53, 54, 73, 0) 37.5%,
-    rgba(53, 54, 73, 0.44898) 60.42%,
-    #353649 88.54%
+    rgba(53, 54, 73, 0) 20.83%,
+    rgba(53, 54, 73, 0.511811) 48.44%,
+    #353649 100%
   );
 
   z-index: 10001;
@@ -40,10 +40,10 @@
 .h3 {
   font-family: var(--header-font);
   font-weight: var(--fontWeight-b);
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--white-400);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
   margin-bottom: 8px;
 }
 
@@ -52,17 +52,18 @@
   font-family: var(--body-font);
 }
 .h4 {
-  font-weight: var(--fontWeight-m);
+  font-weight: var(--fontWeight-r);
   font-size: 14px;
-  color: var(--white-300);
-  line-height: 18px;
+  color: var(--blue-100);
+  line-height: 1.5;
   letter-spacing: 0.1px;
   margin-bottom: 16px;
 }
 
 .description p {
   color: var(--grey-100);
-  line-height: 24px;
+  line-height: 1.5;
+  font-size: 14px;
   font-weight: var(--fontWeight-r);
 }
 
