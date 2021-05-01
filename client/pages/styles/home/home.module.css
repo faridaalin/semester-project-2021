@@ -1,60 +1,5 @@
-.heroSection {
-  width: 100%;
-  height: 125vh;
-  margin-top: -25vh;
-  background-image: url('/mobile-hero.png');
-  background-repeat: no-repeat;
-  background-color: var(--blue-400);
-  background-position: center center;
-  background-size: cover;
-  position: relative;
-}
-
 .section {
   padding: 0 1rem;
-}
-
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  background: rgba(0, 0, 0, 0.35);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  pointer-events: none;
-}
-
-.content {
-  padding: 0 1em;
-  position: relative;
-  padding-top: 25vh;
-}
-
-.explore {
-  color: var(--grey-400);
-  font-family: var(--header-font);
-  line-height: 18px;
-  font-size: 24px;
-}
-
-.header {
-  color: var(--grey-200);
-  font-family: var(--header-font);
-  font-weight: var(--fontWeight-r);
-  font-size: 70px;
-  line-height: 18px;
-  padding-top: 45px;
-  margin-left: -6px;
-  padding-bottom: 60px;
-}
-
-.paragraph {
-  font-family: var(--body-font);
-  color: var(--grey-200);
-  line-height: 1.5;
-  font-weight: var(--fontWeight-r);
-  font-size: 14px;
 }
 
 .grid {
@@ -62,14 +7,4 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}
-
-@media only screen and (min-width: 768px) {
-  .heroSection {
-    height: 100vh;
-    margin-top: 0;
-  }
-  .content {
-    padding-top: 5em;
-  }
 }

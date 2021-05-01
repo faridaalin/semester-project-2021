@@ -3,14 +3,17 @@ import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
 import getWindowWidth from '../components/helpers/getWindowWidth';
 import SectionHeading from '../components/sectionHeading/SectionHeading';
-import Search from '../components/form/search/Search';
 import Card from '../components/card/Card';
 import AttractionsCard from '../components/card/AttractionsCard';
 import DesktopHero from '../components/desktopHero/DesktopHero';
+import MobileHero from '../components/mobileHero/MobileHero';
 import styles from './styles/home/home.module.css';
 
 export default function Home(props) {
-  const [desktopHero, setDesktopHero] = useState(false);
+  const breakpoint = 768;
+  const [desktopHero, setDesktopHero] = useState(
+    getWindowWidth() >= breakpoint ? true : false
+  );
   const { hotels, attractions } = props;
 
   const images = [
@@ -32,19 +35,21 @@ export default function Home(props) {
   ];
 
   useEffect(() => {
-    const breakpoint = 768;
     const showDesktopHero = () => {
       if (getWindowWidth() >= breakpoint) {
         setDesktopHero(true);
+      } else {
+        setDesktopHero(false);
       }
     };
     window.addEventListener('resize', showDesktopHero);
     return () => {
       window.removeEventListener('resize', showDesktopHero);
     };
-  }, [open]);
+  }, []);
 
-  console.log('Display Desktop Hero:', desktopHero);
+  console.log('desktopHero', desktopHero);
+  console.log('getWindowWidth>= breakpoint', getWindowWidth() >= breakpoint);
 
   if (!hotels.data || hotels.data.length === 0) {
     return (
@@ -55,23 +60,8 @@ export default function Home(props) {
   }
   return (
     <Layout>
-      {desktopHero ? (
-        <DesktopHero />
-      ) : (
-        <div className={styles.heroSection}>
-          <div className={styles.background}></div>
-          <div className={styles.content}>
-            <span className={styles.explore}>Explore</span>
-            <h1 className={styles.header}>Bergen</h1>
-
-            <p className={styles.paragraph}>
-              Bergen is the Gateway to the Fjords of Norway and a UNESCO World
-              Heritage City.
-            </p>
-            <Search />
-          </div>
-        </div>
-      )}
+      {/* {desktopHero === true ? <DesktopHero /> : <MobileHero />} */}
+      {desktopHero === true ? <DesktopHero /> : <div>Mobile</div>}
 
       <section className={styles.section}>
         <SectionHeading>Customer Favourites</SectionHeading>
