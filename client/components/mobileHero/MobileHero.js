@@ -25,8 +25,10 @@ const MobileHero = () => {
 
   return (
     <section className={styles.heroSection}>
-      <div className={styles.heroImage}></div>
-      <div className={styles.overlay}></div>
+      <div className={styles.heroImage}>
+        <div className={styles.overlay}></div>
+      </div>
+
       <div className={styles.content}>
         <span className={styles.explore}>Explore</span>
         <h1 className={styles.header}>Bergen</h1>
