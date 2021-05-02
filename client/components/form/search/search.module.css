@@ -15,7 +15,26 @@
   height: 14px;
   width: 14px;
 }
+.closeIcon {
+  height: 20px;
+  width: 20px;
+  color: var(--blue-300);
+}
+.closeModel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border: 1.5px solid transparent;
+  border-radius: 26%;
+  height: 30px;
+  width: 30px;
+  margin-left: calc(100% - 30px);
+}
 
+.closeModel:focus {
+  border-color: rgb(50, 50, 161);
+}
 .label {
   color: var(--blue-400);
   font-size: 12px;
@@ -71,6 +90,16 @@
 
 .searchBtn {
   width: 100%;
+}
+.dateRange {
+  background: var(--grey-100);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 40%;
+  padding: 32px;
+  display: grid;
+  box-shadow: 2px 0px 20px rgb(140 162 181 / 48%);
 }
 
 @media only screen and (min-width: 768px) {

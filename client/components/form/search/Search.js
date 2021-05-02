@@ -3,7 +3,7 @@ import { MapPin, Calendar, Users } from 'react-feather';
 import Button from '../../button/Button';
 import Guests from './guest/Guests';
 import styles from './search.module.css';
-import { DateRangePicker } from 'react-date-range';
+import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { X } from 'react-feather';
@@ -11,24 +11,20 @@ import { X } from 'react-feather';
 const Search = () => {
   const [showDates, setShowDates] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [openDates, setDates] = useState(false);
-  const [dateRange, setDateRange] = useState({});
+  const [dateRage, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
 
   const handleSearch = (e) => {
     e.preventDefault();
   };
 
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  };
-
-  const handleSelect = (ranges) => {
-    setStartDate(ranges.selection.startDate);
-    setEndDate(ranges.selection.endDate);
+  const closeModal = () => {
+    setShowDates(false);
   };
 
   return (
@@ -61,12 +57,15 @@ const Search = () => {
           />
 
           {showDates && (
-            <div>
-              <X className={styles.icon} onClick={closeModal} />
-              <DateRangePicker
-                ranges={[selectionRange]}
-                open={openDates}
-                onChange={handleSelect}
+            <div className={styles.dateRange}>
+              <button className={styles.closeModel}>
+                <X className={styles.closeicon} onClick={closeModal} />
+              </button>
+              <DateRange
+                editableDateInputs={true}
+                onChange={(item) => setDateRange([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={dateRage}
               />
             </div>
           )}

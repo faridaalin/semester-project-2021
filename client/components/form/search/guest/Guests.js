@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { InputNumber, InputGroup } from 'rsuite';
 import { X } from 'react-feather';
 import styles from './guests.module.css';
 
