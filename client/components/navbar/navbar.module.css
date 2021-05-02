@@ -3,6 +3,7 @@
   grid-auto-flow: column;
   padding: 24px 1rem;
   font-family: var(--header-font);
+  max-width: 1324px;
 }
 
 .hamburgerButton {
@@ -139,5 +140,12 @@
     width: auto;
     height: auto;
     background: transparent;
+  }
+}
+
+@media only screen and (min-width: 1334px) {
+  .container {
+    width: 1324px;
+    place-self: center;
   }
 }
