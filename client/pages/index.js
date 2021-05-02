@@ -6,6 +6,8 @@ import AttractionsCard from '../components/card/AttractionsCard';
 import CardContainer from '../components/cardContainer/CardContainer';
 import HeroSection from '../components/heroSection/HeroSection';
 
+import styles from './index.module.css';
+
 export default function Home(props) {
   const { hotels, attractions } = props;
 
@@ -37,7 +39,7 @@ export default function Home(props) {
   return (
     <Layout>
       <HeroSection />
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Customer Favourites</SectionHeading>
         <CardContainer>
           {hotels.data.map(
@@ -46,7 +48,7 @@ export default function Home(props) {
           )}
         </CardContainer>
       </section>
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Choose your style</SectionHeading>
         <CardContainer>
           {images.map((style) => (
@@ -54,7 +56,7 @@ export default function Home(props) {
           ))}
         </CardContainer>
       </section>
-      <section>
+      <section className={styles.section}>
         <SectionHeading>Attractions in Bergen</SectionHeading>
         <CardContainer>
           {!attractions.data ||
