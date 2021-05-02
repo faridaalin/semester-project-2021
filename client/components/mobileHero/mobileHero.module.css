@@ -71,6 +71,9 @@
   .heroSection {
     position: relative;
   }
+  .content {
+    padding-top: 83px;
+  }
   .explore {
     font-family: var(--header-font);
     font-weight: var(--fontWeight-r);
@@ -93,6 +96,11 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+
+    margin: -16px 0 40px -16px;
+    height: 246px;
+    display: flex;
+    align-items: center;
   }
   .paragraph {
     line-height: 1.5;

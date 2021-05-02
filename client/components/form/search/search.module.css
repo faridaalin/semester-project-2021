@@ -81,12 +81,15 @@
     gap: 16px;
     margin-top: 20px;
     padding: 32px;
-    max-width: 50ch;
   }
   .column {
     margin-bottom: 0;
   }
   .inputContainer {
     margin-bottom: 0;
+  }
+
+  .input {
+    min-width: 267px;
   }
 }
