@@ -83,11 +83,16 @@
     padding: 32px;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   }
+
   .column {
     margin-bottom: 0;
   }
   .inputContainer {
     margin-bottom: 0;
+  }
+
+  .label {
+    font-size: 14px;
   }
 
   .input {

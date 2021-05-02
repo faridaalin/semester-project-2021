@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getWindowWidth from '../helpers/getWindowWidth';
+import getWindowWidth from '../../helpers/getWindowWidth';
 import Search from '../form/search/Search';
 import styles from './heroSection.module.css';
 

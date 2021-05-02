@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '../button/Button';
 import styles from './navbar.module.css';
-import getWindowWidth from '../helpers/getWindowWidth';
+import getWindowWidth from '../../helpers/getWindowWidth';
 import { ChevronDown } from 'react-feather';
 
 const Navbar = () => {

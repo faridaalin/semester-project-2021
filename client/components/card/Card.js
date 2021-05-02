@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Star } from 'react-feather';
-import truncate from '../helpers/truncate';
-import showRating from '../helpers/showRating';
+import truncate from '../../helpers/truncate';
+import showRating from '../../helpers/showRating';
 import styles from './card.module.css';
 
 const Card = (props) => {
