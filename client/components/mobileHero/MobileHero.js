@@ -6,28 +6,30 @@ import styles from './mobileHero.module.css';
 const MobileHero = () => {
   const breakpoint = 768;
   const [width, setWidth] = useState(getWindowWidth());
+  const [widthOnLoad] = useState(getWindowWidth());
   useEffect(() => {
-    const showDesktopHero = () => {
+    const handleResize = () => {
       if (getWindowWidth() >= breakpoint) {
         setWidth(getWindowWidth());
       } else {
         setWidth(getWindowWidth());
       }
     };
-    window.addEventListener('resize', showDesktopHero);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', showDesktopHero);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [width]);
-
-  console.log('width', width);
-  console.log('width >= breakpoint', width >= breakpoint);
+  }, []);
 
   return (
     <section className={styles.heroSection}>
       <div
         className={styles.heroImage}
-        style={{ backgroundImage: `url("/mobile-hero.png")` }}
+        style={{
+          backgroundImage: `url(${
+            widthOnLoad >= breakpoint ? '/mobile-hero.png' : '/hero-desktop.png'
+          })`,
+        }}
       >
         <div className={styles.overlay}></div>
       </div>
