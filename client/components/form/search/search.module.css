@@ -103,6 +103,7 @@
   box-shadow: 2px 0px 20px rgb(140 162 181 / 48%);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  max-width: 500px;
 }
 
 @media only screen and (min-width: 768px) {
