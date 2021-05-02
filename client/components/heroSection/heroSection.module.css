@@ -54,6 +54,23 @@
   font-size: 14px;
 }
 
+@media only screen and (min-width: 500px) {
+  .content {
+    top: 45%;
+    right: 50%;
+    width: 466px;
+    transform: translate(50%, -50%);
+  }
+
+  .header {
+    font-size: 70px;
+  }
+
+  .paragraph {
+    font-size: 16px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .heroImage {
     height: 80vh;
@@ -75,6 +92,10 @@
   }
   .content {
     padding-top: 30px;
+    top: 0;
+    width: initial;
+    right: initial;
+    transform: none;
   }
   .explore {
     font-family: var(--header-font);
