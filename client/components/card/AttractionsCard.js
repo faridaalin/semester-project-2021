@@ -6,12 +6,13 @@ const AttractionsCard = (props) => {
 
   return (
     <div className={styles.attractionsCard}>
-      <div className={styles.image}>
+      <div className={styles.imageContainer}>
         <Image
           src={attractions.image_url}
           alt={attractions.name}
-          width={464}
+          width={564}
           height={464}
+          className={styles.image}
         />
       </div>
       <div className={styles.content}>

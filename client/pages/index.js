@@ -61,7 +61,7 @@ export default function Home(props) {
         <CardContainer>
           {!attractions.data ||
             (attractions.data.length === 0 ? (
-              <div>Sorry, error happend</div>
+              <div>Sorry, attractions are currently not avaiable.</div>
             ) : (
               attractions.data.map((attraction, i) => (
                 <AttractionsCard key={i} attractions={attraction} />

@@ -23,8 +23,13 @@
   font-weight: var(--fontWeight-sm);
 }
 
-.image {
+.imageContainer {
   margin-bottom: 38px;
+  border-radius: 8px;
+}
+
+.image {
+  border-radius: 8px;
 }
 
 @media only screen and (min-width: 380px) {
@@ -41,6 +46,10 @@
     gap: 130px;
     place-items: center;
     margin-bottom: 304px;
+  }
+
+  .imageContainer {
+    margin-bottom: 0;
   }
 
   .attractionsCard:nth-child(even) {
