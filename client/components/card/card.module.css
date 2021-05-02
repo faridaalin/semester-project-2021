@@ -76,6 +76,7 @@
 .cardType {
   composes: card;
   max-width: initial;
+  width: 100% !important;
 }
 .cardType .content {
   background: linear-gradient(
@@ -89,9 +90,10 @@
   .card {
     width: 300px;
   }
-
+}
+@media only screen and (min-width: 380px) {
   .cardType {
-    width: 300px;
+    width: 379px !important;
   }
 }
 
@@ -118,9 +120,14 @@
     margin-bottom: 0;
     margin-right: 20px;
   }
+
   .cardType {
     min-width: 30%;
     margin-bottom: 0;
     margin-right: 18px;
+  }
+  .card:last-of-type,
+  .cardType:last-of-type {
+    margin-right: 0;
   }
 }
