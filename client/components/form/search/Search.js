@@ -72,12 +72,17 @@ const Search = () => {
 
           {calendar && (
             <div className={styles.dateRange}>
-              <button className={styles.closeModel}>
-                <X className={styles.closeicon} onClick={closeModal} />
-              </button>
-              <button onClick={() => setDateRange(intitalDateRange)}>
-                Clear
-              </button>
+              <div className={styles.removeIcons}>
+                <button className={styles.closeModel}>
+                  <X className={styles.closeicon} onClick={closeModal} />
+                </button>
+                <button
+                  onClick={() => setDateRange(intitalDateRange)}
+                  className={styles.clearButton}
+                >
+                  Clear
+                </button>
+              </div>
               <DateRange
                 editableDateInputs={true}
                 onChange={(item) => setDateRange([item.selection])}

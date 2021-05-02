@@ -41,9 +41,15 @@ const Guests = ({ setShowGuests, setGuests }) => {
 
   return (
     <section className={styles.container}>
-      <button className={styles.closeModel}>
-        <X className={styles.icon} onClick={closeModal} />
-      </button>
+      <div className={styles.removeIcons}>
+        <button className={styles.closeModel}>
+          <X className={styles.icon} onClick={closeModal} />
+        </button>
+        <button onClick={closeModal} className={styles.clearButton}>
+          Clear
+        </button>
+      </div>
+
       <div className={styles.flex}>
         <div className={styles.guests}>
           <div>Adults</div>
