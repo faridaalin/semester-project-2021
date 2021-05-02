@@ -26,6 +26,7 @@ const Search = () => {
   const closeModal = () => {
     setShowDates(false);
   };
+  console.log('showDates', showDates);
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>
