@@ -5,9 +5,9 @@
 .attractionsCard:last-of-type {
   margin-bottom: 0;
 }
-.description > p {
+.description p {
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   font-family: var(--body-font);
   font-weight: var(--fontWeight-r);
   color: var(--blue-400);
@@ -30,5 +30,31 @@
 @media only screen and (min-width: 380px) {
   .attractionsCard {
     width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .attractionsCard {
+    width: 1080px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 130px;
+    place-items: center;
+    margin-bottom: 304px;
+  }
+
+  .attractionsCard:nth-child(even) {
+    flex-direction: row;
+  }
+  .H3 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .description {
+    max-width: 420px;
+  }
+  .description p {
+    line-height: 1.7;
   }
 }

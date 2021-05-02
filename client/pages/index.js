@@ -4,7 +4,7 @@ import SectionHeading from '../components/sectionHeading/SectionHeading';
 import Card from '../components/card/Card';
 import AttractionsCard from '../components/card/AttractionsCard';
 import CardContainer from '../components/cardContainer/CardContainer';
-import MobileHero from '../components/mobileHero/MobileHero';
+import HeroSection from '../components/heroSection/HeroSection';
 
 export default function Home(props) {
   const { hotels, attractions } = props;
@@ -36,7 +36,7 @@ export default function Home(props) {
   }
   return (
     <Layout>
-      <MobileHero />
+      <HeroSection />
       <section>
         <SectionHeading>Customer Favourites</SectionHeading>
         <CardContainer>

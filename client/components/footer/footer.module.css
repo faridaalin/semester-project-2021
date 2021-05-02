@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 200px;
 }
 
 .footer section {
@@ -91,6 +92,9 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .footer {
+    margin-top: 352px;
+  }
   .innerFooter {
     display: flex;
     gap: 130px;

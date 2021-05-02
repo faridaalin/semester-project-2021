@@ -77,7 +77,7 @@
   .explore {
     font-family: var(--header-font);
     font-weight: var(--fontWeight-r);
-    font-size: 32px;
+    font-size: 24px;
     color: var(--blue-200);
   }
 
@@ -89,7 +89,7 @@
     background: linear-gradient(
       81deg,
       rgba(53, 54, 73, 1),
-      rgb(205 205 209 / 66%) 58%
+      rgb(205 205 209 / 27%) 58%
     );
     background-size: 100%;
     -webkit-background-clip: text;
@@ -97,7 +97,7 @@
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
 
-    margin: -16px 0 40px -16px;
+    margin: -16px 0 30px -16px;
     height: 246px;
     display: flex;
     align-items: center;

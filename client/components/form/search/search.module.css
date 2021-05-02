@@ -79,8 +79,9 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-top: 20px;
+    margin-top: 32px;
     padding: 32px;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   }
   .column {
     margin-bottom: 0;
@@ -91,5 +92,10 @@
 
   .input {
     min-width: 267px;
+    height: 48px;
+  }
+
+  .inputButton {
+    height: 48px;
   }
 }

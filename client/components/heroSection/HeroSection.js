@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import getWindowWidth from '../helpers/getWindowWidth';
 import Search from '../form/search/Search';
-import styles from './mobileHero.module.css';
+import styles from './heroSection.module.css';
 
-const MobileHero = () => {
+const HeroSection = () => {
   const breakpoint = 768;
   const [width, setWidth] = useState(getWindowWidth());
   const [widthOnLoad] = useState(getWindowWidth());
@@ -50,4 +50,4 @@ const MobileHero = () => {
   );
 };
 
-export default MobileHero;
+export default HeroSection;

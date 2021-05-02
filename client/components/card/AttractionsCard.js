@@ -14,14 +14,15 @@ const AttractionsCard = (props) => {
           height={464}
         />
       </div>
-
-      <h3 className={styles.H3}>{attractions.name}</h3>
-      <section
-        className={styles.description}
-        dangerouslySetInnerHTML={{
-          __html: attractions.description,
-        }}
-      />
+      <div className={styles.content}>
+        <h3 className={styles.H3}>{attractions.name}</h3>
+        <section
+          className={styles.description}
+          dangerouslySetInnerHTML={{
+            __html: attractions.description,
+          }}
+        />
+      </div>
     </div>
   );
 };
