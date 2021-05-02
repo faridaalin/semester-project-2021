@@ -26,6 +26,9 @@
 .imageContainer {
   margin-bottom: 38px;
   border-radius: 8px;
+  width: 464px;
+  height: 464px;
+  position: relative;
 }
 
 .image {

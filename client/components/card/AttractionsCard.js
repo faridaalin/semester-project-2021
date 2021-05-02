@@ -10,8 +10,8 @@ const AttractionsCard = (props) => {
         <Image
           src={attractions.image_url}
           alt={attractions.name}
-          width={564}
-          height={464}
+          layout='fill'
+          objectFit='cover'
           className={styles.image}
         />
       </div>
