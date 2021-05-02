@@ -113,13 +113,20 @@
     align-items: center;
     gap: 16px;
     margin-top: 32px;
-    padding: 32px;
+    padding: 32px 16px;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   }
 
   .column {
     margin-bottom: 0;
+    gap: initial;
+    width: 100%;
   }
+
+  .column > div {
+    width: 48%;
+  }
+
   .inputContainer {
     margin-bottom: 0;
   }

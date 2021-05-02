@@ -9,17 +9,17 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { X } from 'react-feather';
 
+const intitalDateRange = [
+  {
+    startDate: new Date(),
+    endDate: null,
+    key: 'selection',
+  },
+];
 const Search = () => {
-  const intitalDateRange = [
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: 'selection',
-    },
-  ];
   const [showGuests, setShowGuests] = useState(false);
+  const [guests, setGuests] = useState(null);
   const [calendar, setCalendar] = useState(false);
-  const [resetDateInput, setResetDateInput] = useState('Add dates');
   const [dateRage, setDateRange] = useState(intitalDateRange);
 
   const handleSearch = (e) => {
@@ -29,16 +29,13 @@ const Search = () => {
   const closeModal = () => {
     setCalendar(false);
   };
-  const handleDateReset = () => {
-    setResetDateInput('Add dates');
-    setDateRange(intitalDateRange);
-  };
 
   const formatDates = (startDate, endDate) => {
     return `${moment(startDate).add(10, 'days').calendar()} - ${moment(endDate)
       .add(10, 'days')
       .calendar()}`;
   };
+  console.log('guests', guests);
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>
@@ -78,7 +75,9 @@ const Search = () => {
               <button className={styles.closeModel}>
                 <X className={styles.closeicon} onClick={closeModal} />
               </button>
-              <button onClick={handleDateReset}>Clear</button>
+              <button onClick={() => setDateRange(intitalDateRange)}>
+                Clear
+              </button>
               <DateRange
                 editableDateInputs={true}
                 onChange={(item) => setDateRange([item.selection])}
@@ -95,12 +94,14 @@ const Search = () => {
           </label>
           <input
             type='button'
-            value='Add guests'
+            value={guests >= 1 ? guests : 'Add guests'}
             className={styles.inputButton}
             onClick={() => setShowGuests(!showGuests)}
           />
 
-          {showGuests && <Guests setShowGuests={setShowGuests} />}
+          {showGuests && (
+            <Guests setShowGuests={setShowGuests} setGuests={setGuests} />
+          )}
         </div>
       </div>
       <Button btnType='search' className={styles.searchBtn}>
