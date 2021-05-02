@@ -29,6 +29,7 @@
   font-size: 18px;
   position: relative;
   padding-bottom: 32px;
+  z-index: 1;
 }
 
 .footer h3::after {
