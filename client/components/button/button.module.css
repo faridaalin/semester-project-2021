@@ -18,6 +18,7 @@
   background: var(--orange-400);
   color: var(--white-100);
 }
+
 .buttonOrange:hover {
   background: var(--orange-hover);
 }
@@ -30,6 +31,11 @@
   grid-template-rows: 1fr;
   grid-column-gap: 4px;
   place-items: center;
+}
+
+.buttonGrey > svg {
+  height: 16px;
+  width: 16px;
 }
 .buttonGrey:hover {
   background: var(--grey-300);

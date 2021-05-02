@@ -88,6 +88,10 @@
   font-weight: var(--fontWeight-m);
   margin-bottom: 16px;
   color: var(--blue-400);
+
+  height: 100%;
+  display: flex;
+  place-items: center;
 }
 .item > a {
   color: var(--blue-400);
