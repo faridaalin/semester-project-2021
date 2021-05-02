@@ -70,6 +70,8 @@
 
   .heroSection {
     position: relative;
+    padding: 0 1rem;
+    margin-bottom: 200px;
   }
   .content {
     padding-top: 30px;

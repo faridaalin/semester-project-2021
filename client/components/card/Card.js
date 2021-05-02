@@ -23,7 +23,9 @@ const Card = (props) => {
                 <Star key={i} className={styles.rating} />
               ))}
             </span>
-            <h3 className={styles.h3}>{hotel.title}</h3>
+            <h3 className={`${styles.h3} ${styles.headerFavs}`}>
+              {hotel.title}
+            </h3>
             <h4 className={styles.h4}>{hotel.address}</h4>
             <section
               className={styles.description}
