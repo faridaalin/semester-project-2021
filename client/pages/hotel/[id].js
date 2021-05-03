@@ -20,52 +20,54 @@ const HotelDetail = (props) => {
   console.log('hotel', hotel);
   return (
     <Layout>
-      <HeroHeaderHotels />
-      <SectionHeading>{hotel.title}</SectionHeading>
-      <section className={`section ${styles.container}`}>
-        {/* <PageHeader title='Hotels' /> */}
-        <SwiperSlider images={hotel.images} title={hotel.title} />
-        <div className={styles.content}>
-          <h3 className={styles.h3}>{hotel.subheading}</h3>
-          <h4 className={styles.h4}>{hotel.address}</h4>
-          <span>
-            {showRating(hotel.rating).map((i) => (
-              <Star key={i} className={styles.rating} />
-            ))}
-          </span>
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{
-              __html: hotel.description,
-            }}
-          ></div>
-          <div className={styles.rooms}>
-            <p className={styles.roomsHeader}>Room Types</p>
-            <p className={styles.night}>per night</p>
-            <div className={styles.roomTypes}>
-              {hotel.rooms.map((room) => (
-                <div className={styles.room}>
-                  <span className={styles.type}>{room.room_type}</span>
-                  <span className={styles.sleeps}>Sleeps {room.sleeps}</span>
-                  <span className={styles.price}>{room.price} NOK</span>
-                </div>
+      <div className='fade'>
+        {/* <HeroHeaderHotels /> */}
+        <SectionHeading>{hotel.title}</SectionHeading>
+        <section className={`section ${styles.container}`}>
+          {/* <PageHeader title='Hotels' /> */}
+          <SwiperSlider images={hotel.images} title={hotel.title} />
+          <div className={styles.content}>
+            <h3 className={styles.h3}>{hotel.subheading}</h3>
+            <h4 className={styles.h4}>{hotel.address}</h4>
+            <span>
+              {showRating(hotel.rating).map((i) => (
+                <Star key={i} className={styles.rating} />
               ))}
+            </span>
+            <div
+              className={styles.description}
+              dangerouslySetInnerHTML={{
+                __html: hotel.description,
+              }}
+            ></div>
+            <div className={styles.rooms}>
+              <p className={styles.roomsHeader}>Room Types</p>
+              <p className={styles.night}>per night</p>
+              <div className={styles.roomTypes}>
+                {hotel.rooms.map((room) => (
+                  <div className={styles.room}>
+                    <span className={styles.type}>{room.room_type}</span>
+                    <span className={styles.sleeps}>Sleeps {room.sleeps}</span>
+                    <span className={styles.price}>{room.price} NOK</span>
+                  </div>
+                ))}
+              </div>
             </div>
+            <div className={styles.includesContainer}>
+              <div className={styles.includes}>
+                <Coffee className={styles.includesIcon} /> Breakfast
+              </div>
+              <div>
+                <Wifi className={styles.includesIcon} /> Wifi
+              </div>
+              <div>
+                <Tv className={styles.includesIcon} /> TV
+              </div>
+            </div>
+            <Button btnType='search'>Reserve</Button>
           </div>
-          <div className={styles.includesContainer}>
-            <div className={styles.includes}>
-              <Coffee className={styles.includesIcon} /> Breakfast
-            </div>
-            <div>
-              <Wifi className={styles.includesIcon} /> Wifi
-            </div>
-            <div>
-              <Tv className={styles.includesIcon} /> TV
-            </div>
-          </div>
-          <Button btnType='search'>Reserve</Button>
-        </div>
-      </section>
+        </section>
+      </div>
     </Layout>
   );
 };

@@ -17,10 +17,12 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
+*,
+*:after,
+*:before {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 img {
@@ -40,7 +42,18 @@ h3 {
   line-height: 1.5;
   font-weight: var(--fontWeight-sm);
 }
-
+.main {
+  /* background-image: linear-gradient(
+    to top,
+    #353649,
+    #585869,
+    #7d7d8a,
+    #a4a4ad,
+    #cdcdd1
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+}
 .section {
   padding: 0 1rem;
 }

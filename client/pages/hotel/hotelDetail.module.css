@@ -1,6 +1,9 @@
 .container {
   background-color: var(--white-200);
   padding-bottom: 112px;
+  padding-top: 44px;
+  margin-bottom: 200px;
+  border-radius: 8px;
 }
 .content {
   display: flex;
