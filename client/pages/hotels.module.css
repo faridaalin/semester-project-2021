@@ -1,3 +1,33 @@
 .section {
   padding: 0 1rem;
 }
+
+.searchHero {
+  background-image: url('https://res.cloudinary.com/djey7uz4e/image/upload/v1619951991/floybanen_wlrnlh.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  margin-top: -21vh;
+  position: relative;
+}
+
+.searchHero::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    360deg,
+    #e4e8ec 0%,
+    rgba(228, 232, 236, 0) 98.41%
+  );
+}
+
+.searchContainer {
+  position: absolute;
+  left: 32px;
+  bottom: 0;
+  z-index: 1;
+  width: 90%;
+}

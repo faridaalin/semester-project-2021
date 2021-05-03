@@ -68,6 +68,10 @@
     padding-bottom: 16px;
     display: flex;
     gap: 24px;
+    margin-right: 16px;
+  }
+  .hotelCard:last-child {
+    margin-right: 0;
   }
   .imageContainer {
     width: 100%;

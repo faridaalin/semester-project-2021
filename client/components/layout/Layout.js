@@ -13,8 +13,10 @@ const Layout = ({ title, children }) => {
     <div className={styles.container}>
       <Navbar />
       <main className={styles.main}>
-        <BreadCrumps path={path === '/' ? '' : path} />
-        {path === '/' ? '' : <PageHeader title={title} />}
+        <div className={styles.subHeader}>
+          <BreadCrumps path={path === '/' ? '' : path} />
+          {path === '/' ? '' : <PageHeader title={title} />}
+        </div>
 
         <article>{children}</article>
       </main>
