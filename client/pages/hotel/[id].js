@@ -44,9 +44,9 @@ const HotelDetail = (props) => {
             <div className={styles.roomTypes}>
               {hotel.rooms.map((room) => (
                 <div className={styles.room}>
-                  <span>{room.room_type}</span>
-                  <span>{room.sleeps}</span>
-                  <span>{room.price} NOK</span>
+                  <span classname={styles.hotelRoom}>{room.room_type}</span>
+                  <span className={styles.sleeps}>Sleeps {room.sleeps}</span>
+                  <span className={styles.price}>{room.price} NOK</span>
                 </div>
               ))}
             </div>

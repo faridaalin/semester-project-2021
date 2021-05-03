@@ -69,7 +69,28 @@
   line-height: 24px;
   display: flex;
   justify-content: space-between;
-  /* gap: 8px; */
+  align-items: center;
+}
+.hotelRoom {
+  width: 130px;
+}
+
+.sleeps {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  font-size: 12px;
+  line-height: 18px;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.price {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-sm);
+  font-size: 14px;
+  line-height: 25px;
+  text-align: right;
 }
 
 @media screen and (min-width: 992px) {
