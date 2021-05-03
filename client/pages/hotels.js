@@ -2,21 +2,16 @@ import axios from '../utils/axios';
 import Layout from '../components/layout/Layout';
 import HotelCard from '../components/card/hotelCard/hotelCard';
 import CardContainer from '../components/cardContainer/CardContainer';
-import Search from '../components/form/search/Search';
+import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
 import PageHeader from '../components/pageHeader/PageHeader';
-import styles from './hotels.module.css';
 
 export default function Hotels(props) {
   const { data } = props.data;
 
   return (
     <Layout>
-      <section className={styles.searchHero}>
-        <div className={styles.searchContainer}>
-          <Search />
-        </div>
-      </section>
-      <section className={styles.section}>
+      <HeroHeaderHotels />
+      <section className='section'>
         <PageHeader title='Hotels' />
         <CardContainer>
           {!data && <div>Error happend..</div>}

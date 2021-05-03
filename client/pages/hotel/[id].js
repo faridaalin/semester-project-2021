@@ -1,18 +1,26 @@
 import { useRouter } from 'next/router';
 import Layout from '../../components/layout/Layout';
 import axios from '../../utils/axios';
-
+import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels';
+import PageHeader from '../../components/pageHeader/PageHeader';
+import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+
+  console.log('hotel', hotel);
   return (
     <Layout>
-      Hotel Detail
-      <h2>{hotel.title}</h2>
-      <h2>{hotel.subheading}</h2>
+      <HeroHeaderHotels />
+      <section className='section'>
+        <PageHeader title='Hotels' />
+        <SwiperSlider images={hotel.images} title={hotel.title} />
+        <h2>{hotel.title}</h2>
+        <h2>{hotel.subheading}</h2>
+      </section>
     </Layout>
   );
 };
