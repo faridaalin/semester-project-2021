@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
-import { Star } from 'react-feather';
+import { Star, Tv, Coffee, Wifi } from 'react-feather';
 import Layout from '../../components/layout/Layout';
 import axios from '../../utils/axios';
 import showRating from '../../helpers/showRating';
 import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels';
-import PageHeader from '../../components/pageHeader/PageHeader';
 import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
 import SectionHeading from '../../components/sectionHeading/SectionHeading';
+import Button from '../../components/button/Button';
+
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
@@ -51,6 +52,18 @@ const HotelDetail = (props) => {
               ))}
             </div>
           </div>
+          <div className={styles.includesContainer}>
+            <div className={styles.includes}>
+              <Coffee className={styles.includesIcon} /> Breakfast
+            </div>
+            <div>
+              <Wifi className={styles.includesIcon} /> Wifi
+            </div>
+            <div>
+              <Tv className={styles.includesIcon} /> TV
+            </div>
+          </div>
+          <Button btnType='search'>Reserve</Button>
         </div>
       </section>
     </Layout>
