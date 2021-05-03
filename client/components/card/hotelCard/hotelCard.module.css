@@ -1,6 +1,6 @@
 .hotelCard {
   padding: 16px 16px 32px 16px;
-  background-color: rgb(248 248 248 / 45%);
+  background-color: rgb(248 248 248 / 30%);
   border: 2px solid var(--white-100);
   transition: background-color 0.25s ease;
   color: var(--blue-300);
@@ -64,7 +64,7 @@
 
 @media screen and (min-width: 992px) {
   .hotelCard {
-    max-width: 640px;
+    max-width: 633px;
     padding-bottom: 16px;
     display: flex;
     gap: 24px;
