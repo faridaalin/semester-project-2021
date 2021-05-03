@@ -11,13 +11,13 @@ export default function Hotels(props) {
 
   return (
     <Layout>
-      <PageHeader title='Hotels' />
       <section className={styles.searchHero}>
         <div className={styles.searchContainer}>
           <Search />
         </div>
       </section>
       <section className={styles.section}>
+        <PageHeader title='Hotels' />
         <CardContainer>
           {!data && <div>Error happend..</div>}
           {data.map((hotel) => (
