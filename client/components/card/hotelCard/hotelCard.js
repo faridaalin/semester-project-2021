@@ -4,6 +4,7 @@ import { Star } from 'react-feather';
 import truncate from '../../../helpers/truncate';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
+
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel }) => {
@@ -31,10 +32,10 @@ const HotelCard = ({ hotel }) => {
             <section
               className={styles.description}
               dangerouslySetInnerHTML={{
-                __html: truncate(hotel.description, 115),
+                __html: truncate(hotel.description, 110),
               }}
-            />
-            <Button color='orange' size='m'>
+            ></section>
+            <Button color='orange' size='s'>
               View More
             </Button>
           </div>

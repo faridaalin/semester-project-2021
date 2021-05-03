@@ -17,6 +17,9 @@ const Button = ({ children, size, color, btnType, link }) => {
     if (size === 'm') {
       return `${styles.medium}`;
     }
+    if (size === 's') {
+      return `${styles.small}`;
+    }
   };
 
   getColor(color);
