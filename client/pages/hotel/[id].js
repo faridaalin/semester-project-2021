@@ -23,46 +23,47 @@ const HotelDetail = (props) => {
   return (
     <Layout>
       <div className='fade'>
-        <section className={styles.imageGallery}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={hotel.main_image}
-              alt={hotel.title}
-              layout='fill'
-              objectFit='cover'
-              className={styles.image}
-            />
-          </div>
-          <div className={styles.imageGrid}>
-            {hotel.images.map((img) => (
-              <div className={styles.singleImg}>
-                <img
-                  src={img}
-                  alt={hotel.title}
-                  className={styles.imageGridItem}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-
         <PageHeader title={hotel.title} />
         <section className={`section ${styles.container}`}>
           {/* <SwiperSlider images={hotel.images} title={hotel.title} /> */}
-          <div className={styles.content}>
-            <h3 className={styles.h3}>{hotel.subheading}</h3>
-            <h4 className={styles.h4}>{hotel.address}</h4>
-            <span>
-              {showRating(hotel.rating).map((i) => (
-                <Star key={i} className={styles.rating} />
+          <section className={styles.imageGallery}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={hotel.main_image}
+                alt={hotel.title}
+                layout='fill'
+                objectFit='cover'
+                className={styles.image}
+              />
+            </div>
+            <div className={styles.imageGrid}>
+              {hotel.images.map((img) => (
+                <div className={styles.singleImg}>
+                  <img
+                    src={img}
+                    alt={hotel.title}
+                    className={styles.imageGridItem}
+                  />
+                </div>
               ))}
-            </span>
-            <div
-              className={styles.description}
-              dangerouslySetInnerHTML={{
-                __html: hotel.description,
-              }}
-            ></div>
+            </div>
+          </section>
+          <div className={styles.content}>
+            <div>
+              <h3 className={styles.h3}>{hotel.subheading}</h3>
+              <h4 className={styles.h4}>{hotel.address}</h4>
+              <span>
+                {showRating(hotel.rating).map((i) => (
+                  <Star key={i} className={styles.rating} />
+                ))}
+              </span>
+              <div
+                className={styles.description}
+                dangerouslySetInnerHTML={{
+                  __html: hotel.description,
+                }}
+              ></div>
+            </div>
             <div className={styles.rooms}>
               <p className={styles.roomsHeader}>Room Types</p>
               <p className={styles.night}>per night</p>
@@ -76,18 +77,20 @@ const HotelDetail = (props) => {
                 ))}
               </div>
             </div>
-            <div className={styles.includesContainer}>
-              <div className={styles.includes}>
-                <Coffee className={styles.includesIcon} /> Breakfast
+            <div className={styles.bottomContainer}>
+              <div className={styles.includesContainer}>
+                <div className={styles.includes}>
+                  <Coffee className={styles.includesIcon} /> Breakfast
+                </div>
+                <div>
+                  <Wifi className={styles.includesIcon} /> Wifi
+                </div>
+                <div>
+                  <Tv className={styles.includesIcon} /> TV
+                </div>
               </div>
-              <div>
-                <Wifi className={styles.includesIcon} /> Wifi
-              </div>
-              <div>
-                <Tv className={styles.includesIcon} /> TV
-              </div>
+              <Button btnType='search'>Reserve</Button>
             </div>
-            <Button btnType='search'>Reserve</Button>
           </div>
         </section>
       </div>
