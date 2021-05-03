@@ -7,6 +7,7 @@ import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels
 import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
 import SectionHeading from '../../components/sectionHeading/SectionHeading';
 import Button from '../../components/button/Button';
+import PageHeader from '../../components/pageHeader/PageHeader';
 
 import styles from './hotelDetail.module.css';
 
@@ -21,10 +22,9 @@ const HotelDetail = (props) => {
   return (
     <Layout>
       <div className='fade'>
-        {/* <HeroHeaderHotels /> */}
-        <SectionHeading>{hotel.title}</SectionHeading>
+        <HeroHeaderHotels />
+        <PageHeader title={hotel.title} />
         <section className={`section ${styles.container}`}>
-          {/* <PageHeader title='Hotels' /> */}
           <SwiperSlider images={hotel.images} title={hotel.title} />
           <div className={styles.content}>
             <h3 className={styles.h3}>{hotel.subheading}</h3>

@@ -3,7 +3,7 @@
   line-height: 1.15;
   font-size: 4rem;
   align-self: flex-start;
-  padding: 2rem;
+  padding: 0 1rem 2rem 1rem;
   font-family: var(--header-font);
   font-weight: var(--fontWeight-b);
   font-size: 22px;
