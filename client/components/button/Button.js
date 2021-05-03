@@ -13,12 +13,19 @@ const Button = ({ children, size, color, btnType, link }) => {
       return `${styles.buttonOrange} ${styles.buttonSearch}`;
     }
   };
+  const getSize = () => {
+    if (size === 'm') {
+      return `${styles.medium}`;
+    }
+  };
 
   getColor(color);
   return (
     <Link href={!link ? '/' : link}>
       <a>
-        <button className={`${styles.button} ${getColor()}`}>{children}</button>
+        <button className={`${styles.button} ${getColor()} ${getSize()}`}>
+          {children}
+        </button>
       </a>
     </Link>
   );

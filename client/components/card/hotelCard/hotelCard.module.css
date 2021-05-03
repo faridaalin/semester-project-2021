@@ -1,0 +1,53 @@
+.hotelCard {
+  padding: 16px;
+  background-color: var(--white-100);
+  color: var(--blue-300);
+  border-radius: 8px;
+  max-width: 347px;
+}
+.imageContainer {
+  margin-bottom: 38px;
+  border-radius: 8px;
+  width: 100%;
+  height: 271px;
+  position: relative;
+  border-radius: 6px;
+}
+
+.image {
+  border-radius: 6px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.h3 {
+  font-size: 21px;
+  font-weight: var(--fontWeight-sm);
+  font-family: var(--header-font);
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.h4 {
+  font-weight: var(--fontWeight-r);
+  font-family: var(--body-font);
+  font-size: 14px;
+}
+.rating {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-right: 8px;
+}
+.rating:last-child {
+  margin-right: 0;
+}
+
+.description {
+  line-height: 1.5;
+  font-weight: var(--fontWeight-r);
+  margin-bottom: 32px;
+}

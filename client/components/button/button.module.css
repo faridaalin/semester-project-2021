@@ -59,6 +59,11 @@
   letter-spacing: 0.3px;
 }
 
+.medium {
+  padding: 16px 24px;
+  font-size: 16px;
+}
+
 @media only screen and (min-width: 768px) {
   .buttonSearch {
     margin-top: 28px;
