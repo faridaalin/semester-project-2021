@@ -41,14 +41,14 @@ const Category = (props) => {
   console.log('newFUnc', getHotelByCategory());
   if (!hotels || hotels.lenght === 0 || !router.query.slug) {
     return (
-      <Layout title='Hotel Detail'>
+      <Layout>
         <h2> Hotel Category</h2>
         'Nothing here
       </Layout>
     );
   }
   return (
-    <Layout title='Hotel Detail'>
+    <Layout>
       <h2> Hotel Category</h2>
       <h3> show hotels ...</h3>
       <>

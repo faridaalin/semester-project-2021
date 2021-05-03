@@ -9,7 +9,7 @@ const HotelDetail = (props) => {
     return <div>Loading...</div>;
   }
   return (
-    <Layout title='Hotel Detail'>
+    <Layout>
       Hotel Detail
       <h2>{hotel.title}</h2>
       <h2>{hotel.subheading}</h2>

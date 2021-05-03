@@ -3,13 +3,15 @@ import Layout from '../components/layout/Layout';
 import HotelCard from '../components/card/hotelCard/hotelCard';
 import CardContainer from '../components/cardContainer/CardContainer';
 import Search from '../components/form/search/Search';
+import PageHeader from '../components/pageHeader/PageHeader';
 import styles from './hotels.module.css';
 
 export default function Hotels(props) {
   const { data } = props.data;
 
   return (
-    <Layout title='Hotels'>
+    <Layout>
+      <PageHeader title='Hotels' />
       <section className={styles.searchHero}>
         <div className={styles.searchContainer}>
           <Search />

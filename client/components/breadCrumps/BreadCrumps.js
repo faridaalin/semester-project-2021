@@ -19,20 +19,11 @@ const BreadCrumps = ({ path }) => {
 
   return (
     <div className={styles.linkContainer}>
-      {path === '' ? (
-        ''
-      ) : (
-        <>
-          <Link href='/'>
-            <a className={styles.link}>Home</a>
-          </Link>
-          <Link href={path}>
-            <a className={styles.active}>
-              <ChevronRight className={styles.icon} /> {lastPath()}
-            </a>
-          </Link>
-        </>
-      )}
+      <Link href='/'>
+        <a className={styles.active}>
+          <ChevronRight className={styles.icon} />
+        </a>
+      </Link>
     </div>
   );
 };
