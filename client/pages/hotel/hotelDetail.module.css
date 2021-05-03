@@ -13,6 +13,10 @@
   max-width: 450px;
   margin: 0 auto;
 }
+.flex {
+  max-width: 450px;
+  padding-left: 24px;
+}
 
 .h3 {
   font-size: 18px;
@@ -102,7 +106,7 @@
   line-height: 24px;
   margin-left: auto;
   width: fit-content;
-  color: #353649;
+  color: #353649c4;
 }
 .roomTypes {
   margin-top: 16px;
@@ -174,6 +178,26 @@
   }
   .rooms {
     place-self: center stretch;
+    padding: 32px 32px;
+  }
+  .includesContainer {
+    margin-top: 32px;
+  }
+  .room {
+    font-size: 16px;
+  }
+  .roomsHeader {
+    font-size: 18px;
+  }
+  .h3 {
+    font-size: 22px;
+  }
+  .sleeps,
+  .night {
+    font-size: 14px;
+  }
+  .price {
+    font-size: 18px;
   }
 }
 @media screen and (min-width: 992px) {
@@ -194,5 +218,11 @@
   }
   .description p {
     margin-bottom: 16px;
+  }
+  .flex {
+    display: flex;
+    gap: 32px;
+    max-width: 1104px;
+    padding-left: 100px;
   }
 }

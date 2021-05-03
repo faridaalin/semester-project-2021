@@ -48,15 +48,19 @@ const HotelDetail = (props) => {
               ))}
             </div>
           </section>
-          <div className={styles.content}>
+          <div className={styles.flex}>
             <div>
               <h3 className={styles.h3}>{hotel.subheading}</h3>
               <h4 className={styles.h4}>{hotel.address}</h4>
-              <span>
-                {showRating(hotel.rating).map((i) => (
-                  <Star key={i} className={styles.rating} />
-                ))}
-              </span>
+            </div>
+            <span>
+              {showRating(hotel.rating).map((i) => (
+                <Star key={i} className={styles.rating} />
+              ))}
+            </span>
+          </div>
+          <div className={styles.content}>
+            <div>
               <div
                 className={styles.description}
                 dangerouslySetInnerHTML={{
@@ -77,20 +81,19 @@ const HotelDetail = (props) => {
                 ))}
               </div>
             </div>
-            <div className={styles.bottomContainer}>
-              <div className={styles.includesContainer}>
-                <div className={styles.includes}>
-                  <Coffee className={styles.includesIcon} /> Breakfast
-                </div>
-                <div>
-                  <Wifi className={styles.includesIcon} /> Wifi
-                </div>
-                <div>
-                  <Tv className={styles.includesIcon} /> TV
-                </div>
+
+            <div className={styles.includesContainer}>
+              <div className={styles.includes}>
+                <Coffee className={styles.includesIcon} /> Breakfast
               </div>
-              <Button btnType='search'>Reserve</Button>
+              <div>
+                <Wifi className={styles.includesIcon} /> Wifi
+              </div>
+              <div>
+                <Tv className={styles.includesIcon} /> TV
+              </div>
             </div>
+            <Button btnType='search'>Reserve</Button>
           </div>
         </section>
       </div>

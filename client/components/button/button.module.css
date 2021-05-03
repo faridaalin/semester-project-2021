@@ -76,6 +76,13 @@
     margin-top: 28px;
     padding-left: 32px;
     padding-right: 32px;
-    width: 118px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .buttonSearch {
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
