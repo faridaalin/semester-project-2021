@@ -21,6 +21,7 @@ const HotelCard = ({ hotel }) => {
               className={styles.image}
             />
           </div>
+
           <div className={styles.content}>
             <h3 className={`${styles.h3} ${styles.header}`}>{hotel.title}</h3>
             <h4 className={styles.h4}>{hotel.address}</h4>

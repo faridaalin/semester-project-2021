@@ -1,0 +1,88 @@
+.container {
+  background-color: var(--white-200);
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: var(--fontWeight-sm);
+  font-family: var(--header-font);
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.h4 {
+  font-weight: var(--fontWeight-m);
+  font-family: var(--body-font);
+  font-size: 14px;
+}
+.rating {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-right: 4px;
+  height: 16px;
+  width: 16px;
+  color: var(--orange-400);
+}
+.rating:last-child {
+  margin-right: 0;
+}
+
+.description p {
+  font-weight: var(--fontWeight-r);
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.rooms {
+  background: var(--grey-100);
+  padding: 32px 16px;
+  border-radius: 8px;
+}
+
+.roomsHeader {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-sm);
+  font-size: 18px;
+  line-height: 25px;
+}
+.night {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-m);
+  font-size: 12px;
+  line-height: 24px;
+  margin-left: auto;
+  width: fit-content;
+}
+.roomTypes {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.room {
+  font-family: var(--body-font);
+  font-weight: var(--fontWeight-m);
+  font-size: 12px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 8px; */
+}
+
+@media screen and (min-width: 992px) {
+  .h3 {
+    margin-top: 0;
+  }
+  .h4 {
+    font-size: 12px;
+  }
+  .content {
+    align-items: flex-start;
+  }
+  .description p {
+    margin-bottom: 16px;
+  }
+}

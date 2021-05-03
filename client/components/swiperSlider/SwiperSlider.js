@@ -17,7 +17,6 @@ const SwiperSlider = ({ images, title }) => {
         wrapperTag='ul'
         pagination={{ type: 'fraction' }}
         navigation={true}
-        slidesBetween={0}
         slidesPerView={1}
         navigation
         scrollbar={{ draggable: true }}
