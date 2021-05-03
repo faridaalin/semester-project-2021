@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
 import Layout from '../../components/layout/Layout';
 import axios from '../../utils/axios';
@@ -22,10 +23,32 @@ const HotelDetail = (props) => {
   return (
     <Layout>
       <div className='fade'>
-        <HeroHeaderHotels />
+        <section className={styles.imageGallery}>
+          <div className={styles.imageContainer}>
+            <Image
+              src={hotel.main_image}
+              alt={hotel.title}
+              layout='fill'
+              objectFit='cover'
+              className={styles.image}
+            />
+          </div>
+          <div className={styles.imageGrid}>
+            {hotel.images.map((img) => (
+              <div className={styles.singleImg}>
+                <img
+                  src={img}
+                  alt={hotel.title}
+                  className={styles.imageGridItem}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
         <PageHeader title={hotel.title} />
         <section className={`section ${styles.container}`}>
-          <SwiperSlider images={hotel.images} title={hotel.title} />
+          {/* <SwiperSlider images={hotel.images} title={hotel.title} /> */}
           <div className={styles.content}>
             <h3 className={styles.h3}>{hotel.subheading}</h3>
             <h4 className={styles.h4}>{hotel.address}</h4>
