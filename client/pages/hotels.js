@@ -1,6 +1,7 @@
 import axios from '../utils/axios';
 import Layout from '../components/layout/Layout';
 import HotelCard from '../components/card/hotelCard/hotelCard';
+import styles from './hotels.module.css';
 
 export default function Hotels(props) {
   const { data } = props.data;
@@ -8,10 +9,12 @@ export default function Hotels(props) {
 
   return (
     <Layout title='Hotels'>
-      {!data && <div>Error happend..</div>}
-      {data.map((hotel) => (
-        <HotelCard key={hotel._id} hotel={hotel} />
-      ))}
+      <section className={styles.section}>
+        {!data && <div>Error happend..</div>}
+        {data.map((hotel) => (
+          <HotelCard key={hotel._id} hotel={hotel} />
+        ))}
+      </section>
     </Layout>
   );
 }

@@ -1,9 +1,15 @@
 .hotelCard {
-  padding: 16px;
-  background-color: var(--white-100);
+  padding: 16px 16px 32px 16px;
+  background-color: rgb(248 248 248 / 45%);
+  border: 2px solid var(--white-100);
+  transition: background-color 0.25s ease;
   color: var(--blue-300);
   border-radius: 8px;
   max-width: 347px;
+  margin-bottom: 40px;
+}
+.hotelCard:hover {
+  background-color: var(--white-100);
 }
 .imageContainer {
   margin-bottom: 38px;
@@ -41,6 +47,7 @@
   margin-top: 8px;
   margin-bottom: 16px;
   margin-right: 8px;
+  color: var(--orange-400);
 }
 .rating:last-child {
   margin-right: 0;

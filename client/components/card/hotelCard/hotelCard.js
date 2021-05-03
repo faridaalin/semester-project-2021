@@ -31,7 +31,7 @@ const HotelCard = ({ hotel }) => {
             <section
               className={styles.description}
               dangerouslySetInnerHTML={{
-                __html: truncate(hotel.description, 120),
+                __html: truncate(hotel.description, 115),
               }}
             />
             <Button color='orange' size='m'>
