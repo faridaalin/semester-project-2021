@@ -19,6 +19,7 @@
     "react-date-range": "^1.1.3",
     "react-dom": "17.0.2",
     "react-feather": "^2.0.9",
+    "react-hyper-modal": "^1.2.11",
     "rsuite": "^4.9.4",
     "swiper": "^6.5.9",
     "yarn": "^1.22.10"
