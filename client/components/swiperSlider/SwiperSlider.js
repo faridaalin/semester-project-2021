@@ -5,11 +5,13 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
+import styles from './swiper.module.css';
+
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperSlider = ({ images, title }) => {
   return (
-    <div className='swiperWrapper'>
+    <div className={styles.swiperWrapper}>
       <Swiper
         id='main'
         tag='section'
@@ -22,8 +24,8 @@ const SwiperSlider = ({ images, title }) => {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
-        {images.map((img) => (
-          <SwiperSlide tag='li'>
+        {images.map((img, i) => (
+          <SwiperSlide tag='li' key={i}>
             <img src={img} alt={title} />
           </SwiperSlide>
         ))}

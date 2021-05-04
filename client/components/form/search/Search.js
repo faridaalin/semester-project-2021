@@ -35,7 +35,6 @@ const Search = () => {
       .add(10, 'days')
       .calendar()}`;
   };
-  console.log('guests', guests);
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>

@@ -52,8 +52,8 @@ const Category = (props) => {
       <h2> Hotel Category</h2>
       <h3> show hotels ...</h3>
       <>
-        {getHotelByCategory().map((hotel) => (
-          <p key={hotel.title}>{hotel.title}</p>
+        {getHotelByCategory().map((hotel, i) => (
+          <p key={i}>{hotel.title}</p>
         ))}
       </>
     </Layout>

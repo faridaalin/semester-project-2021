@@ -8,10 +8,10 @@ import showRating from '../../helpers/showRating';
 import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels';
 import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
 import DesktopSlides from '../../components/desktopSlides/DesktopSlides';
-import SectionHeading from '../../components/sectionHeading/SectionHeading';
 import Button from '../../components/button/Button';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import useWindowWidth from '../../hooks/useWindowSize';
+import ReservationForm from '../../components/form/reservationForm/ReservationForm';
 
 import styles from './hotelDetail.module.css';
 
@@ -39,6 +39,8 @@ const HotelDetail = (props) => {
       }
     }
   };
+
+  const showReserveForm = () => {};
 
   if (router.isFallback) {
     return (

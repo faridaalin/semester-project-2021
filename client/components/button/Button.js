@@ -1,7 +1,17 @@
 import Link from 'next/link';
 import styles from './button.module.css';
 
-const Button = ({ children, size, color, btnType, link, width }) => {
+const Button = ({
+  children,
+  size,
+  color,
+  btnType,
+  link,
+  width,
+  clickHandler,
+}) => {
+  console.log('clickHandler', clickHandler);
+  console.log('link', link);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
@@ -28,10 +38,22 @@ const Button = ({ children, size, color, btnType, link, width }) => {
   };
 
   getColor(color);
+  if (!link) {
+    return (
+      <button
+        type='button'
+        onClick={clickHandler}
+        className={`${styles.button} ${getColor()} ${getSize()} ${getWidth()}`}
+      >
+        {children}
+      </button>
+    );
+  }
   return (
-    <Link href={!link ? '/' : link}>
+    <Link href={link}>
       <a>
         <button
+          onClick={clickHandler}
           className={`${
             styles.button
           } ${getColor()} ${getSize()} ${getWidth()}`}
