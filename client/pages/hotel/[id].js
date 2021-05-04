@@ -18,19 +18,27 @@ import styles from './hotelDetail.module.css';
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
-  const widthOnResize = useWindowWidth();
+  const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad] = useState(getWindowWidth());
-  const breakpoint = 768;
 
-  console.log('widthOnResize', widthOnResize);
-  console.log('widthOnLoad', widthOnLoad);
-  // console.log(
-  //   widthOnLoad >= breakpoint
-  //     ? 'Desktop'
-  //     : widthOnResize >= breakpoint
-  //     ? 'Desktop'
-  //     : 'Mobile'
-  // );
+  const showImageGallery = () => {
+    const breakpoint = 768;
+    if (resized === true) {
+      if (widthOnResize >= breakpoint) {
+        return <DesktopSlides hotel={hotel} />;
+      } else {
+        return <SwiperSlider images={hotel.images} title={hotel.title} />;
+      }
+    }
+
+    if (resized === false) {
+      if (widthOnLoad >= breakpoint) {
+        return <DesktopSlides hotel={hotel} />;
+      } else {
+        return <SwiperSlider images={hotel.images} title={hotel.title} />;
+      }
+    }
+  };
 
   if (router.isFallback) {
     return (
@@ -45,14 +53,7 @@ const HotelDetail = (props) => {
       <div className='fade'>
         <PageHeader title={hotel.title} />
         <section className={`section ${styles.container}`}>
-          {/* <SwiperSlider images={hotel.images} title={hotel.title} /> */}
-          {/* <DesktopSlides hotel={hotel} /> */}
-          {/* {showImageGallery()} */}
-          {widthOnLoad >= breakpoint
-            ? 'Desktop'
-            : widthOnResize >= breakpoint
-            ? 'Desktop'
-            : 'Mobile'}
+          {showImageGallery()}
           <div className={styles.flex}>
             <div>
               <h3 className={styles.h3}>{hotel.subheading}</h3>
