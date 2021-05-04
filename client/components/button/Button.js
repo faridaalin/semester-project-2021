@@ -10,8 +10,6 @@ const Button = ({
   width,
   clickHandler,
 }) => {
-  console.log('clickHandler', clickHandler);
-  console.log('link', link);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;

@@ -18,6 +18,7 @@ import styles from './hotelDetail.module.css';
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
+  const [showForm, setShowForm] = useState(false);
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad] = useState(getWindowWidth());
 
@@ -40,7 +41,10 @@ const HotelDetail = (props) => {
     }
   };
 
-  const showReserveForm = () => {};
+  const toggleForm = () => {
+    setShowForm(!showForm);
+    console.log('SHOW/HIDE');
+  };
 
   if (router.isFallback) {
     return (
@@ -49,6 +53,7 @@ const HotelDetail = (props) => {
       </Layout>
     );
   }
+  console.log('showForm', showForm);
 
   return (
     <Layout>
@@ -101,7 +106,10 @@ const HotelDetail = (props) => {
               <Tv className={styles.includesIcon} /> TV
             </div>
           </div>
-          <Button btnType='search'>Reserve</Button>
+          {showForm && <ReservationForm />}
+          <Button btnType='search' clickHandler={toggleForm}>
+            Reserve
+          </Button>
         </div>
       </section>
     </Layout>

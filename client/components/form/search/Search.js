@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { MapPin, Calendar, Users } from 'react-feather';
+import { MapPin, Calendar, Users, X } from 'react-feather';
 import moment from 'moment';
 import Button from '../../button/Button';
 import Guests from './guest/Guests';
-import styles from './search.module.css';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { X } from 'react-feather';
+
+import styles from './search.module.css';
 
 const intitalDateRange = [
   {
