@@ -4,11 +4,7 @@
   grid-template-columns: 100%;
   min-height: 100vh;
 }
-
 .main {
   max-width: 1324px;
   margin: 0 auto;
-}
-
-.subHeader {
 }

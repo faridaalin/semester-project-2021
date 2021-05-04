@@ -7,6 +7,8 @@
   margin-top: -21vh;
   position: relative;
   margin-bottom: 80px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .searchHero::after {
@@ -29,7 +31,7 @@
   left: 50%;
   transform: translate(-50%, 50%);
   z-index: 1;
-  width: 90%;
+  /* width: 90%; */
 }
 
 @media screen and (min-width: 768px) {

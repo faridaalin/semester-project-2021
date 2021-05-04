@@ -47,7 +47,7 @@ h3 {
   padding: 0 1rem;
 }
 .swiperWrapper {
-  width: 89vw;
+  width: calc(89vw - 2rem);
   max-width: 450px;
   margin: 0 auto;
   border-radius: 6px;
@@ -56,12 +56,14 @@ h3 {
 .swiper-container {
   width: 100%;
   height: 100%;
+  border-radius: 6px;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  width: 100% !important;
 
   /* Center slide text vertically */
   display: -webkit-box;
