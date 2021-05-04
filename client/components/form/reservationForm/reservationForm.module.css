@@ -1,5 +1,7 @@
 .form {
-  /* max-width: 312px; */
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--grey-200);
   border-radius: 8px;
   padding: 16px;
@@ -38,7 +40,7 @@
 @media only screen and (min-width: 768px) {
   .form,
   .innerForm {
-    max-width: initial;
+    max-width: 600px;
   }
 
   .column {

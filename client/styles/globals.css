@@ -100,16 +100,21 @@ h3 {
   text-shadow: 0 1px 0 black !important;
 }
 
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: 650px;
-    margin: 1.75rem auto;
-  }
+.hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
+  padding: 32px 16px;
+  height: 90% !important;
+  max-height: 95%;
+  width: 450px !important;
+  max-width: 800px !important;
 }
 
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;
+  }
+
+  .hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
+    min-width: 700px !important;
   }
 }
 
