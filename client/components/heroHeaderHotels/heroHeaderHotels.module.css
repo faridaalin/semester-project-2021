@@ -27,11 +27,12 @@
 
 .searchContainer {
   position: absolute;
-  top: 0;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, 50%);
   z-index: 1;
-  /* width: 90%; */
+  width: 90%;
+  max-width: 514px;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,6 +41,7 @@
   }
   .searchContainer {
     top: 40%;
+    max-width: min-content;
   }
 }
 @media screen and (min-width: 992px) {

@@ -133,8 +133,8 @@
     background-color: rgb(53, 54, 73);
     background: linear-gradient(
       81deg,
-      rgba(53, 54, 73, 1) 0%,
-      rgba(205, 205, 209, 1) 58%
+      rgba(53, 54, 73, 1) 45%,
+      rgba(205, 205, 209, 1) 45%
     );
     background-size: 100%;
     -webkit-background-clip: text;
