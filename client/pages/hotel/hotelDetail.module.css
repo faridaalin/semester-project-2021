@@ -6,6 +6,8 @@
   border-radius: 8px;
   max-width: 1104px;
   margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .content,
 .flex {
