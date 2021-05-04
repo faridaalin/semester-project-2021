@@ -1,0 +1,25 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.column {
+  flex-direction: row;
+  gap: 16px;
+}
+
+.texteraInput {
+  min-width: 100%;
+  border-radius: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+  .column {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
