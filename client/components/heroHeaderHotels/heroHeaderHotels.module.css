@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center;
   height: 82vh;
-  width: 100vw;
   margin-top: -21vh;
   position: relative;
   margin-bottom: 80px;
@@ -13,12 +12,13 @@
 .searchHero::after {
   content: '';
   position: absolute;
-  left: -16px;
-  width: calc(100% + 32px);
+  left: 0;
+  right: 0;
   height: 103%;
   background: linear-gradient(
     360deg,
     #e4e8ec 0%,
+    #e4e8ec 8%,
     rgba(228, 232, 236, 0) 98.41%
   );
 }
@@ -28,7 +28,6 @@
   top: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-
   z-index: 1;
   width: 90%;
 }
