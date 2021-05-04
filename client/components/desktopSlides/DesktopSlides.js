@@ -14,8 +14,8 @@ const DesktopSlides = ({ hotel }) => {
         />
       </div>
       <div className={styles.imageGrid}>
-        {hotel.images.map((img) => (
-          <div className={styles.singleImg}>
+        {hotel.images.map((img, i) => (
+          <div className={styles.singleImg} key={i}>
             <img src={img} alt={hotel.title} className={styles.imageGridItem} />
           </div>
         ))}

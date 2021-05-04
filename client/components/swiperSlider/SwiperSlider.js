@@ -4,13 +4,12 @@ import SwiperCore, { Pagination, Navigation } from 'swiper/core';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
-import styles from './swiperSlides.module.css';
 
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperSlider = ({ images, title }) => {
   return (
-    <div className={styles.swiperWrapper}>
+    <div className='swiperWrapper'>
       <Swiper
         id='main'
         tag='section'

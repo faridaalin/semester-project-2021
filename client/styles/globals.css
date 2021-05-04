@@ -42,20 +42,15 @@ h3 {
   line-height: 1.5;
   font-weight: var(--fontWeight-sm);
 }
-.main {
-  /* background-image: linear-gradient(
-    to top,
-    #353649,
-    #585869,
-    #7d7d8a,
-    #a4a4ad,
-    #cdcdd1
-  );
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
-}
+
 .section {
   padding: 0 1rem;
+}
+.swiperWrapper {
+  width: 89vw;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 6px;
 }
 
 .swiper-container {
