@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Calendar, Users, X } from 'react-feather';
 import { DateRange } from 'react-date-range';
+import { DefaultInput, InputCalendar } from '../input/Input';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
@@ -15,118 +16,90 @@ const intitalDateRange = [
 ];
 
 const ReservationForm = () => {
-  const [showGuests, setShowGuests] = useState(true);
-  const [guests, setGuests] = useState(null);
-  const [calendar, setCalendar] = useState(false);
-  const [dateRage, setDateRange] = useState(intitalDateRange);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const closeModal = () => {
-    setCalendar(false);
-  };
-
-  const formatDates = (startDate, endDate) => {
-    return `${moment(startDate).add(10, 'days').calendar()} - ${moment(endDate)
-      .add(10, 'days')
-      .calendar()}`;
-  };
   return (
     <form className={styles.form}>
-      <div className={styles.column}>
-        <div className={styles.inputContainer}>
-          <label htmlFor='Hotel' className={styles.label}>
-            <MapPin className={styles.icon} />
-            Location
-          </label>
-          <input
-            type='search'
-            name='search'
-            id='serach'
-            placeholder='Where do you want to stay?'
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.row}>
-          <div>
-            <label htmlFor='dates' className={styles.label}>
-              <Calendar className={styles.icon} />
-              Check in
-            </label>
-
-            <input
-              type='button'
-              value={
-                !dateRage[0].endDate
-                  ? 'Add date'
-                  : `${formatDates(dateRage[0].startDate, dateRage[0].endDate)}`
-              }
-              className={styles.inputButton}
-              onClick={() => setCalendar(!calendar)}
+      <div className={styles.innerForm}>
+        <div>
+          <div className={styles.column}>
+            <DefaultInput
+              type='search'
+              name='search'
+              placeholder='Hotel name'
+              label='Hotel'
+              icon='pin'
             />
-
-            {calendar && (
-              <div className={styles.dateRange}>
-                <div className={styles.removeIcons}>
-                  <button className={styles.closeModel}>
-                    <X className={styles.closeicon} onClick={closeModal} />
-                  </button>
-                  <button
-                    onClick={() => setDateRange(intitalDateRange)}
-                    className={styles.clearButton}
-                  >
-                    Clear
-                  </button>
-                </div>
-                <DateRange
-                  editableDateInputs={true}
-                  onChange={(item) => setDateRange([item.selection])}
-                  moveRangeOnFirstSelection={false}
-                  ranges={dateRage}
-                />
-              </div>
-            )}
+            <div className={styles.row}>
+              <InputCalendar
+                type='button'
+                name='date'
+                value='Add date'
+                label='Check in'
+                icon='dates'
+              />
+              <InputCalendar
+                type='button'
+                name='date'
+                value='Add date'
+                label='Check in'
+                icon='dates'
+              />
+            </div>
           </div>
-          <div>
-            <label htmlFor='dates' className={styles.label}>
-              <Calendar className={styles.icon} />
-              Check out
-            </label>
-
-            <input
-              type='button'
-              value={
-                !dateRage[0].endDate
-                  ? 'Add date'
-                  : `${formatDates(dateRage[0].startDate, dateRage[0].endDate)}`
-              }
-              className={styles.inputButton}
-              onClick={() => setCalendar(!calendar)}
+          <div className={styles.column}>
+            <DefaultInput
+              type='search'
+              name='search'
+              placeholder='Standard Room'
+              label='Room Type'
+              icon='night'
             />
-
-            {calendar && (
-              <div className={styles.dateRange}>
-                <div className={styles.removeIcons}>
-                  <button className={styles.closeModel}>
-                    <X className={styles.closeicon} onClick={closeModal} />
-                  </button>
-                  <button
-                    onClick={() => setDateRange(intitalDateRange)}
-                    className={styles.clearButton}
-                  >
-                    Clear
-                  </button>
-                </div>
-                <DateRange
-                  editableDateInputs={true}
-                  onChange={(item) => setDateRange([item.selection])}
-                  moveRangeOnFirstSelection={false}
-                  ranges={dateRage}
-                />
-              </div>
-            )}
+            <div className={styles.row}>
+              <InputCalendar
+                type='button'
+                name='date'
+                value='Add date'
+                label='Adults'
+                icon='users'
+              />
+              <InputCalendar
+                type='button'
+                name='date'
+                value='Add date'
+                label='Children'
+                icon='users'
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <p className={styles.infoSection}>Details</p>
+          <div className={styles.column}>
+            <DefaultInput
+              type='text'
+              name='firstName'
+              placeholder='First name'
+              label='First name'
+            />
+            <DefaultInput
+              type='text'
+              name='lastname'
+              placeholder='Last name'
+              label='Last name'
+            />
+          </div>
+          <div className={styles.column}>
+            <DefaultInput
+              type='email'
+              name='email'
+              placeholder='Email'
+              label='Email'
+            />
+            <DefaultInput
+              type='text'
+              name='request'
+              placeholder='Any requests here..'
+              label='Special Requests'
+            />
           </div>
         </div>
       </div>
