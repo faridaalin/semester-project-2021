@@ -1,5 +1,5 @@
 .form {
-  max-width: 312px;
+  /* max-width: 312px; */
   background: var(--grey-200);
   border-radius: 8px;
   padding: 16px;
@@ -26,10 +26,6 @@
 
 .row > div {
   width: 100%;
-}
-
-.innerForm {
-  max-width: 280px;
 }
 
 .infoSection {
