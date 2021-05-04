@@ -1,53 +1,58 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
+import getWindowWidth from '../../helpers/getWindowWidth';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
 import Layout from '../../components/layout/Layout';
 import axios from '../../utils/axios';
 import showRating from '../../helpers/showRating';
 import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels';
 import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
+import DesktopSlides from '../../components/desktopSlides/DesktopSlides';
 import SectionHeading from '../../components/sectionHeading/SectionHeading';
 import Button from '../../components/button/Button';
 import PageHeader from '../../components/pageHeader/PageHeader';
+import useWindowWidth from '../../hooks/useWindowSize';
 
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
+  const widthOnResize = useWindowWidth();
+  const [widthOnLoad] = useState(getWindowWidth());
+  const breakpoint = 768;
+
+  console.log('widthOnResize', widthOnResize);
+  console.log('widthOnLoad', widthOnLoad);
+  // console.log(
+  //   widthOnLoad >= breakpoint
+  //     ? 'Desktop'
+  //     : widthOnResize >= breakpoint
+  //     ? 'Desktop'
+  //     : 'Mobile'
+  // );
+
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    );
   }
 
-  console.log('hotel', hotel);
   return (
     <Layout>
       <div className='fade'>
         <PageHeader title={hotel.title} />
         <section className={`section ${styles.container}`}>
           {/* <SwiperSlider images={hotel.images} title={hotel.title} /> */}
-          <section className={styles.imageGallery}>
-            <div className={styles.imageContainer}>
-              <Image
-                src={hotel.main_image}
-                alt={hotel.title}
-                layout='fill'
-                objectFit='cover'
-                className={styles.image}
-              />
-            </div>
-            <div className={styles.imageGrid}>
-              {hotel.images.map((img) => (
-                <div className={styles.singleImg}>
-                  <img
-                    src={img}
-                    alt={hotel.title}
-                    className={styles.imageGridItem}
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* <DesktopSlides hotel={hotel} /> */}
+          {/* {showImageGallery()} */}
+          {widthOnLoad >= breakpoint
+            ? 'Desktop'
+            : widthOnResize >= breakpoint
+            ? 'Desktop'
+            : 'Mobile'}
           <div className={styles.flex}>
             <div>
               <h3 className={styles.h3}>{hotel.subheading}</h3>
@@ -73,7 +78,7 @@ const HotelDetail = (props) => {
               <p className={styles.night}>per night</p>
               <div className={styles.roomTypes}>
                 {hotel.rooms.map((room) => (
-                  <div className={styles.room}>
+                  <div className={styles.room} key={room.room_type}>
                     <span className={styles.type}>{room.room_type}</span>
                     <span className={styles.sleeps}>Sleeps {room.sleeps}</span>
                     <span className={styles.price}>{room.price} NOK</span>

@@ -26,8 +26,6 @@ const Navbar = () => {
     };
   }, []);
 
-  console.log(router.pathname);
-
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
       <button
