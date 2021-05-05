@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 82vh;
+  height: 100vh;
   margin-top: -21vh;
   position: relative;
   margin-bottom: 80px;
@@ -32,7 +32,7 @@
   transform: translate(-50%, 50%);
   z-index: 1;
   width: 90%;
-  max-width: 514px;
+  max-width: 400px;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,15 +40,12 @@
     height: 62vh;
   }
   .searchContainer {
-    top: 40%;
+    top: 100px;
     max-width: min-content;
   }
 }
 @media screen and (min-width: 992px) {
   .searchHero {
     height: 66vh;
-  }
-  .searchContainer {
-    top: 30%;
   }
 }
