@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/pageHeader/PageHeader';
-import SectionHeading from '../components/sectionHeading/SectionHeading';
 import styles from './about.module.css';
 
 export default function About() {
@@ -20,7 +19,7 @@ export default function About() {
           />
         </div>
 
-        <div>
+        <div className={styles.content}>
           <h3 className={styles.h3}>Holidaze</h3>
           <p className={styles.paragraph}>
             We are a local tourism agency in Bergen. Our service is to provide

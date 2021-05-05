@@ -1,7 +1,8 @@
 .container {
   background: var(--white-200);
-  padding: 32px 24px;
+  padding: 48px 40px;
   border-radius: 8px;
+  margin-top: 32px;
 }
 
 .imageContainer {
@@ -9,6 +10,7 @@
   width: 100%;
   height: 300px;
   position: relative;
+  border-radius: 8px;
 }
 .h3 {
   color: var(--blue-400);
@@ -28,16 +30,29 @@
 }
 
 .paragraph {
-  /* color: var(--blue-300); */
   color: #5b5b71;
   max-width: 60ch;
   line-height: 1.6;
   margin-bottom: 32px;
-  font-weight: var(--fontWeight-m);
+  font-weight: var(--fontWeight-r);
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
   .container {
     display: flex;
+    min-width: 1000px;
+    padding: 60px;
+    gap: 24px;
+  }
+
+  .imageContainer {
+    width: 40%;
+    height: auto;
+  }
+  .content {
+    width: 60%;
+  }
+  .h3 {
+    margin-top: 0;
   }
 }
