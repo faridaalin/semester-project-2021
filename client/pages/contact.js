@@ -4,6 +4,7 @@ import Textera from '../components/form/textarea/Textarea';
 import PageHeader from '../components/pageHeader/PageHeader';
 import Button from '../components/button/Button';
 import Column from '../components/column/Column';
+import Map from '../components/map/Map';
 import styles from './contact.module.css';
 
 export default function Contact() {
@@ -11,7 +12,7 @@ export default function Contact() {
     <Layout>
       <PageHeader title='Contact' />
       <section className={styles.container}>
-        <form>
+        <form className={styles.form}>
           <Column>
             <DefaultInput
               type='text'
@@ -30,7 +31,7 @@ export default function Contact() {
             <DefaultInput
               type='email'
               name='email'
-              placeholder='Email'
+              placeholder='email@email.com'
               label='Email'
             />
             <DefaultInput
@@ -46,7 +47,9 @@ export default function Contact() {
               name='message'
               label='Message'
             />
-            <Button btnType='search'>Send</Button>
+            <div className={styles.btnContainer}>
+              <Button btnType='search'>Send</Button>
+            </div>
           </div>
         </form>
         <div>
@@ -56,7 +59,9 @@ export default function Contact() {
             <p>Bergen, Norway</p>
             <p>+47 1234 5678</p>
           </div>
-          <div>map</div>
+          <div>
+            <Map />
+          </div>
         </div>
       </section>
     </Layout>

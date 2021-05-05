@@ -28,6 +28,7 @@ const Navbar = () => {
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
+      <div className={styles.blur}></div>
       <button
         aria-expanded={open}
         aria-label='Menu'

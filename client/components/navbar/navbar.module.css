@@ -4,6 +4,7 @@
   padding: 24px 1rem;
   font-family: var(--header-font);
   max-width: 1324px;
+  position: relative;
 }
 
 .hamburgerButton {
@@ -147,6 +148,17 @@
     height: auto;
     background: transparent;
   }
+}
+
+.blur {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 @media only screen and (min-width: 1334px) {

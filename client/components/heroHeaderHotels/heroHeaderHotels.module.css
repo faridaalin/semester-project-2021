@@ -1,5 +1,6 @@
 .searchHero {
-  background-image: url('https://res.cloudinary.com/djey7uz4e/image/upload/v1619951991/floybanen_wlrnlh.jpg');
+  background-image: linear-gradient(rgb(0 0 0 / 52%), rgb(228 232 236 / 66%)),
+    url('https://res.cloudinary.com/djey7uz4e/image/upload/v1619951991/floybanen_wlrnlh.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
