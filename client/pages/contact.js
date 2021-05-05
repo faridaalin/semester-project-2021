@@ -19,12 +19,14 @@ export default function Contact() {
               name='firstName'
               placeholder='First name'
               label='First name'
+              customClass={styles.contactInput}
             />
             <DefaultInput
               type='text'
               name='lastname'
               placeholder='Last name'
               label='Last name'
+              customClass={styles.contactInput}
             />
           </Column>
           <Column>
@@ -33,12 +35,14 @@ export default function Contact() {
               name='email'
               placeholder='email@email.com'
               label='Email'
+              customClass={styles.contactInput}
             />
             <DefaultInput
               type='text'
               name='subject'
               placeholder='Subject'
               label='Subject'
+              customClass={styles.contactInput}
             />
           </Column>
           <div>
@@ -52,12 +56,12 @@ export default function Contact() {
             </div>
           </div>
         </form>
-        <div>
+        <div className={styles.contact}>
           <div>
-            <h3>Address</h3>
-            <p>Håkonsgaten 15</p>
-            <p>Bergen, Norway</p>
-            <p>+47 1234 5678</p>
+            <h3 className={styles.h3}>Address</h3>
+            <p className={styles.paragraph}>Håkonsgaten 15</p>
+            <p className={styles.paragraph}>Bergen, Norway</p>
+            <p className={styles.paragraph}>+47 1234 5678</p>
           </div>
           <div>
             <Map />

@@ -56,6 +56,10 @@
     min-width: 267px;
     height: 40px;
   }
+  .input.contactInput {
+    min-width: auto !important;
+  }
+
   .inputButton {
     height: 40px;
   }

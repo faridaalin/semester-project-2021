@@ -25,7 +25,15 @@ const getIcon = (icon) => {
       return '';
   }
 };
-const DefaultInput = ({ type, name, placeholder, label, icon }) => {
+const DefaultInput = ({
+  type,
+  name,
+  placeholder,
+  label,
+  icon,
+  customClass,
+}) => {
+  console.log('customClass', customClass);
   return (
     <div className={styles.inputContainer}>
       <label htmlFor={name} className={styles.label}>
@@ -37,7 +45,7 @@ const DefaultInput = ({ type, name, placeholder, label, icon }) => {
         name={name}
         id={name}
         placeholder={placeholder}
-        className={styles.input}
+        className={`${styles.input} ${customClass}`}
       />
     </div>
   );
