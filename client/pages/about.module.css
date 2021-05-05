@@ -1,0 +1,43 @@
+.container {
+  background: var(--white-200);
+  padding: 32px 24px;
+  border-radius: 8px;
+}
+
+.imageContainer {
+  border-radius: 6px;
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
+.h3 {
+  color: var(--blue-400);
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-b);
+  font-size: 21px;
+  line-height: 25px;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.note {
+  color: var(--blue-400);
+  font-family: var(--body-font);
+  font-weight: var(--fontWeight-sm);
+  margin-bottom: 8px;
+}
+
+.paragraph {
+  /* color: var(--blue-300); */
+  color: #5b5b71;
+  max-width: 60ch;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-weight: var(--fontWeight-m);
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    display: flex;
+  }
+}

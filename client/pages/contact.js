@@ -1,7 +1,7 @@
 import Layout from '../components/layout/Layout';
+import PageHeader from '../components/pageHeader/PageHeader';
 import { DefaultInput } from '../components/form/input/Input';
 import Textera from '../components/form/textarea/Textarea';
-import PageHeader from '../components/pageHeader/PageHeader';
 import Button from '../components/button/Button';
 import Column from '../components/column/Column';
 import Map from '../components/map/Map';
