@@ -64,7 +64,7 @@
 
 @media screen and (min-width: 992px) {
   .hotelCard {
-    max-width: 630px;
+    max-width: 565px;
     padding-bottom: 16px;
     display: flex;
     gap: 24px;
@@ -84,6 +84,7 @@
   }
   .content {
     align-items: flex-start;
+    justify-content: space-between;
   }
   .description p {
     margin-bottom: 16px;

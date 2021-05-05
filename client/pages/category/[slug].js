@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Layout from '../../components/layout/Layout';
+import HotelCard from '../../components/card/hotelCard/hotelCard';
+import CardContainer from '../../components/cardContainer/CardContainer';
+import PageHeader from '../../components/pageHeader/PageHeader';
 import { useHotelsContext } from '../../context/HotelsContext';
 
 const Category = (props) => {
@@ -49,13 +52,15 @@ const Category = (props) => {
   }
   return (
     <Layout>
-      <h2> Hotel Category</h2>
-      <h3> show hotels ...</h3>
-      <>
-        {getHotelByCategory().map((hotel, i) => (
-          <p key={i}>{hotel.title}</p>
-        ))}
-      </>
+      <section className='section'>
+        <PageHeader title='Hotels' />
+
+        <CardContainer>
+          {getHotelByCategory().map((hotel, i) => (
+            <HotelCard key={hotel._id} hotel={hotel} />
+          ))}
+        </CardContainer>
+      </section>
     </Layout>
   );
 };
