@@ -7,16 +7,17 @@ import customStyles from './searchBar.module.css';
 const SearchBar = () => {
   return (
     <form className={`${styles.form} ${customStyles.customForm}`}>
-      <div>
+      <div className={customStyles.flex}>
         <DefaultInput
           type='search'
           name='search'
           placeholder='Hotel name'
           label='Hotel'
           icon='pin'
+          customContainer={customStyles.customContainer}
         />
 
-        <div className={styles.column}>
+        <div className={`${styles.column} ${customStyles.dates}  `}>
           <InputCalendar
             type='button'
             name='date'
@@ -33,8 +34,8 @@ const SearchBar = () => {
           />
         </div>
       </div>
-      <div>
-        <div className={styles.column}>
+      <div className={customStyles.flex}>
+        <div className={`${styles.column} ${customStyles.calendar}`}>
           <InputCalendar
             type='button'
             name='date'
@@ -50,7 +51,7 @@ const SearchBar = () => {
             icon='users'
           />
         </div>
-        <div className={styles.btnContainer}>
+        <div className={customStyles.btnContainer}>
           <Button btnType='search' className={customStyles.customBtn}>
             Search
           </Button>

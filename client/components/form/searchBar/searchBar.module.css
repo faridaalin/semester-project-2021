@@ -1,7 +1,38 @@
 .customForm {
   box-shadow: 1px 5px 20px rgb(48 51 53 / 23%);
 }
-.btnContainer {
+
+@media screen and (min-width: 768px) {
+  .customForm {
+    flex-direction: column;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .flex > .customContainer {
+    width: 47%;
+  }
+
+  .flex > .customColumn {
+    width: 60%;
+    margin-right: 8px;
+  }
+
+  .calendar {
+    width: 60%;
+    margin-right: 8px;
+  }
+
+  .dates {
+    width: 51%;
+  }
+
+  .btnContainer {
+    width: 40%;
+  }
 }
 @media screen and (min-width: 992px) {
   .customBtn {

@@ -32,9 +32,10 @@ const DefaultInput = ({
   label,
   icon,
   customClass,
+  customContainer,
 }) => {
   return (
-    <div className={styles.inputContainer}>
+    <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
         {getIcon(icon)}
         {label}
