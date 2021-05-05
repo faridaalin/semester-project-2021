@@ -46,7 +46,6 @@ const Card = (props) => {
           backgroundImage: `url(${hotelStyle.imageurl})`,
         }}
         data-style={hotelStyle.slug}
-        onClick={(e) => console.log(e)}
       >
         <div className={styles.content}>
           <h3 className={styles.h3}>{hotelStyle.type}</h3>

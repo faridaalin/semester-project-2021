@@ -19,7 +19,6 @@ function Map() {
     bearing: 0,
     pitch: 0,
   });
-  console.log('token', process.env.NEXT_PUBLIC_MAPBOX_TOKEN);
 
   return (
     <div className={styles.container}>

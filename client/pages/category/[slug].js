@@ -41,7 +41,6 @@ const Category = (props) => {
     return filteredHotels;
   };
 
-  console.log('newFUnc', getHotelByCategory());
   if (!hotels || hotels.lenght === 0 || !router.query.slug) {
     return (
       <Layout>

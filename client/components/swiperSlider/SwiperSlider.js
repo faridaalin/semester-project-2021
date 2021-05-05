@@ -21,8 +21,6 @@ const SwiperSlider = ({ images, title }) => {
         slidesPerView={1}
         navigation
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
       >
         {images.map((img, i) => (
           <SwiperSlide tag='li' key={i}>

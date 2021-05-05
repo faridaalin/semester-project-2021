@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
@@ -21,8 +21,13 @@ const HotelDetail = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const innerWidth = () => {
+    const isBrowser = typeof window !== 'undefined' ? window.innerWidth : null;
+    return isBrowser;
+  };
+
   const [widthOnResize, resized] = useWindowWidth();
-  const [widthOnLoad] = useState(getWindowWidth());
+  const [widthOnLoad] = useState(innerWidth());
 
   const showImageGallery = () => {
     const breakpoint = 768;
@@ -42,15 +47,6 @@ const HotelDetail = (props) => {
       }
     }
   };
-
-  if (router.isFallback) {
-    return (
-      <Layout>
-        <div>Loading...</div>
-      </Layout>
-    );
-  }
-  console.log('show', show);
 
   return (
     <Layout>

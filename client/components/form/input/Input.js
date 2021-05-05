@@ -33,7 +33,6 @@ const DefaultInput = ({
   icon,
   customClass,
 }) => {
-  console.log('customClass', customClass);
   return (
     <div className={styles.inputContainer}>
       <label htmlFor={name} className={styles.label}>

@@ -36,8 +36,6 @@ const Guests = ({ setShowGuests, setGuests }) => {
     setChildren(children + 1);
     setGuests(adults + children);
   };
-  console.log('Adults', adults);
-  console.log('children', children);
 
   return (
     <section className={styles.container}>
