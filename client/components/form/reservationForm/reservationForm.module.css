@@ -37,6 +37,11 @@
   margin-bottom: 16px;
 }
 
+@media only screen and (min-width: 576px) {
+  .form {
+    min-width: 450px;
+  }
+}
 @media only screen and (min-width: 768px) {
   .form,
   .innerForm {

@@ -1,7 +1,7 @@
 import HyperModal from 'react-hyper-modal';
 import { DefaultInput, InputCalendar } from '../input/Input';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+// import 'react-date-range/dist/styles.css'; // main style file
+// import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import styles from './reservationForm.module.css';
 

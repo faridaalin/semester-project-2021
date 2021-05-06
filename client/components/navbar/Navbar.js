@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { ChevronDown } from 'react-feather';
 import Link from 'next/link';
 import Button from '../button/Button';
-import styles from './navbar.module.css';
+import Login from '../form/login/Login';
 import getWindowWidth from '../../helpers/getWindowWidth';
-import { ChevronDown } from 'react-feather';
+import styles from './navbar.module.css';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
   const router = useRouter();
+  const handleShow = () => setShow(true);
   const toggleMenu = () => {
     setOpen(!open);
   };
@@ -89,7 +92,10 @@ const Navbar = () => {
           </li>
 
           <li className={styles.itemButton}>
-            <Button color='orange'>Login</Button>
+            {show && <Login show={show} setShow={setShow} />}
+            <Button color='orange' clickHandler={handleShow}>
+              Login
+            </Button>
           </li>
           <li>
             <Button color='grey'>
