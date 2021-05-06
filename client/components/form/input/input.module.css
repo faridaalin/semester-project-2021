@@ -1,5 +1,4 @@
 .inputContainer {
-  margin-bottom: 16px;
   width: 100%;
 }
 
@@ -53,15 +52,15 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .input {
+  /* .input {
     min-width: 267px;
     height: 40px;
-  }
+  } */
   .input.contactInput {
     min-width: auto !important;
   }
 
-  .inputButton {
+  /* .inputButton {
     height: 40px;
-  }
+  } */
 }

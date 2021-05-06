@@ -9,9 +9,9 @@
   box-shadow: 1px 5px 20px rgba(228, 232, 236, 0.23);
 }
 
-.inputContainer {
+/* .inputContainer {
   margin-bottom: 16px;
-}
+} */
 .icon {
   height: 14px;
   width: 14px;
@@ -92,9 +92,9 @@
   margin-bottom: 16px;
 }
 
-.column > div {
+/* .column > div {
   width: 45%;
-}
+} */
 
 .searchBtn {
   width: 100%;
@@ -145,7 +145,7 @@
   background: rgb(84 191 227 / 7%);
   color: var(--info);
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .form {
     flex-direction: row;
     display: flex;
@@ -182,4 +182,4 @@
   .inputButton {
     height: 48px;
   }
-}
+} */

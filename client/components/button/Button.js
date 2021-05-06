@@ -9,7 +9,9 @@ const Button = ({
   link,
   width,
   clickHandler,
+  customBtnClass,
 }) => {
+  console.log('customBtnClass', customBtnClass);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
@@ -41,7 +43,9 @@ const Button = ({
       <button
         type='button'
         onClick={clickHandler}
-        className={`${styles.button} ${getColor()} ${getSize()} ${getWidth()}`}
+        className={`${
+          styles.button
+        } ${getColor()} ${getSize()} ${getWidth()} ${customBtnClass}`}
       >
         {children}
       </button>
@@ -54,7 +58,7 @@ const Button = ({
           onClick={clickHandler}
           className={`${
             styles.button
-          } ${getColor()} ${getSize()} ${getWidth()}`}
+          } ${getColor()} ${getSize()} ${getWidth()} ${customBtnClass}`}
         >
           {children}
         </button>

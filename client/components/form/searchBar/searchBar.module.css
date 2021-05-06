@@ -2,75 +2,33 @@
   box-shadow: 1px 5px 20px rgb(48 51 53 / 23%);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .customForm {
-    flex-direction: column;
+    max-width: initial;
+    display: grid;
+    grid-template-columns: 250px 200px 200px 150px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 0px;
+    align-items: flex-end;
+    padding: 32px 60px;
   }
-
-  .flex {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .flex > .customContainer {
-    width: 47%;
-  }
-
-  .flex > .customColumn {
-    width: 60%;
-    margin-right: 8px;
-  }
-
-  .calendar {
-    width: 60%;
-    margin-right: 8px;
-  }
-
-  .dates {
-    width: 51%;
+  .customContainer {
+    margin-bottom: 0;
   }
 
   .btnContainer {
-    width: 40%;
-  }
-}
-@media screen and (min-width: 992px) {
-  .customBtn {
-  }
-  /* .form {
-    flex-direction: row;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 32px;
-    padding: 32px 16px;
-    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   }
 
-  .column {
+  .customColumn {
+    align-items: flex-end;
     margin-bottom: 0;
-    gap: initial;
-    width: 100%;
-  }
-
-  .column > div {
-    width: 48%;
-  }
-
-  .inputContainer {
     margin-bottom: 0;
+    grid-column-gap: 8px;
   }
-
-  .label {
-    font-size: 14px;
+  .customBtnClass {
+    padding: 14px 32px;
   }
-
-  .input {
-    min-width: 267px;
-    height: 48px;
-  }
-
-  /* .inputButton {
-      height: 48px;
-    } */
 }

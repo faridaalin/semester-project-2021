@@ -34,6 +34,7 @@ const DefaultInput = ({
   customClass,
   customContainer,
 }) => {
+  console.log('customContainer', customContainer);
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
