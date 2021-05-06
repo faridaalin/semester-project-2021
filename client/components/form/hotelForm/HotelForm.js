@@ -148,7 +148,7 @@ const HotelForm = () => {
           </div>
         </div>
         <div className={styles.btnContainer}>
-          <Button btnType='search'>Update</Button>
+          <Button btnType='search'>Create</Button>
         </div>
       </form>
     </>
