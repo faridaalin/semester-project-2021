@@ -7,7 +7,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
-import styles from './search.module.css';
+import styles from './searchFormHome.module.css';
 
 const intitalDateRange = [
   {

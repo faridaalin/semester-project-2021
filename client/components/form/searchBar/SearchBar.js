@@ -1,22 +1,21 @@
 import { DefaultInput, InputCalendar } from '../input/Input';
 import Button from '../../button/Button';
 
-import styles from '../search/search.module.css';
-import customStyles from './searchBar.module.css';
+import styles from './searchBar.module.css';
 
 const SearchBar = () => {
   return (
-    <form className={`${styles.form} ${customStyles.customForm}`}>
+    <form className={`${styles.form}`}>
       <DefaultInput
         type='search'
         name='search'
         placeholder='Where do toy want to stay?'
         label='Location'
         icon='pin'
-        customContainer={customStyles.customContainer}
+        customContainer={styles.customContainer}
       />
 
-      <div className={`${styles.column} ${customStyles.customColumn}`}>
+      <div className={`${styles.column} `}>
         <InputCalendar
           type='button'
           name='date'
@@ -33,7 +32,7 @@ const SearchBar = () => {
         />
       </div>
 
-      <div className={`${styles.column} ${customStyles.customColumn}`}>
+      <div className={`${styles.column} `}>
         <InputCalendar
           type='button'
           name='date'
@@ -49,8 +48,8 @@ const SearchBar = () => {
           icon='users'
         />
       </div>
-      <div className={customStyles.btnContainer}>
-        <Button btnType='search' customBtnClass={customStyles.customBtnClass}>
+      <div className={styles.btnContainer}>
+        <Button btnType='search' customBtnClass={styles.customBtnClass}>
           Search
         </Button>
       </div>

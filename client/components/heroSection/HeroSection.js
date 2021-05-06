@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import useWindowWidth from '../../hooks/useWindowSize';
-import getWindowWidth from '../../helpers/getWindowWidth';
-import Search from '../form/search/Search';
+import SearchFormHome from '../form/search/SearchFormHome';
 import styles from './heroSection.module.css';
 
 const HeroSection = () => {
@@ -71,7 +70,7 @@ const HeroSection = () => {
 
         <p className={styles.paragraph}>{`${showBackgroundImage().text}`}</p>
 
-        <Search />
+        <SearchFormHome />
       </div>
     </section>
   );
