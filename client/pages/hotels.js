@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import axios from '../utils/axios';
 import Layout from '../components/layout/Layout';
 import HotelCard from '../components/card/hotelCard/hotelCard';
 import CardContainer from '../components/cardContainer/CardContainer';
 import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
 import PageHeader from '../components/pageHeader/PageHeader';
+import Pagination from '../components/pagination/Pagination';
 
 export default function Hotels(props) {
   const [pageNumber, setPageNumber] = useState(0);
@@ -39,17 +39,7 @@ export default function Hotels(props) {
           {!data && <div>Error happend..</div>}
           {displayHotels(data)}
         </CardContainer>
-        <ReactPaginate
-          previousLabel='Previous'
-          nextLabel='Next'
-          containerClassName='paginationContainer'
-          previousClassName='prevBtn'
-          nextClassName='nextBtn'
-          disabledClassName='paginationDisabled'
-          activeClassName='paginationActive'
-          pageCount={pageCount}
-          onPageChange={changePage}
-        />
+        <Pagination pageCount={pageCount} changePage={changePage} />
       </section>
     </Layout>
   );

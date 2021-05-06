@@ -1,0 +1,25 @@
+.prevBtn {
+}
+.nextBtn {
+}
+.paginationDisabled {
+}
+.paginationContainer {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginationContainer a {
+  padding: 8px 24px;
+  border-radius: 5px;
+  border: 1px solid rgba(31, 41, 55, 1);
+  color: rgba(31, 41, 55, 1);
+  cursor: pointer;
+}
+
+.paginationActive a,
+.paginationContainer a:hover {
+  color: white;
+  background-color: rgba(31, 41, 55, 1);
+}
