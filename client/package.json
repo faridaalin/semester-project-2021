@@ -19,6 +19,7 @@
     "react-feather": "^2.0.9",
     "react-hyper-modal": "^1.2.11",
     "react-map-gl": "^6.1.13",
+    "react-paginate": "^7.1.2",
     "rsuite": "^4.9.4",
     "swiper": "^6.5.9",
     "yarn": "^1.22.10"

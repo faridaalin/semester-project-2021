@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import axios from '../utils/axios';
 import Layout from '../components/layout/Layout';
 import HotelCard from '../components/card/hotelCard/hotelCard';
@@ -6,7 +8,27 @@ import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
 import PageHeader from '../components/pageHeader/PageHeader';
 
 export default function Hotels(props) {
+  const [pageNumber, setPageNumber] = useState(0);
   const { data } = props.data;
+
+  const hotelsPerPage = 6;
+  const hotelsVisited = pageNumber * hotelsPerPage;
+
+  const displayHotels = (hotels) => {
+    const hotelsToDisplay =
+      hotels &&
+      hotels
+        .slice(hotelsVisited, hotelsVisited + hotelsPerPage)
+        .map((hotel) => {
+          return <HotelCard key={hotel._id} hotel={hotel} />;
+        });
+
+    return hotelsToDisplay;
+  };
+  const pageCount = Math.ceil(data.length / hotelsPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <Layout>
@@ -15,10 +37,19 @@ export default function Hotels(props) {
         <PageHeader title='Hotels' />
         <CardContainer>
           {!data && <div>Error happend..</div>}
-          {data.map((hotel) => (
-            <HotelCard key={hotel._id} hotel={hotel} />
-          ))}
+          {displayHotels(data)}
         </CardContainer>
+        <ReactPaginate
+          previousLabel='Previous'
+          nextLabel='Next'
+          containerClassName='paginationContainer'
+          previousClassName='prevBtn'
+          nextClassName='nextBtn'
+          disabledClassName='paginationDisabled'
+          activeClassName='paginationActive'
+          pageCount={pageCount}
+          onPageChange={changePage}
+        />
       </section>
     </Layout>
   );
