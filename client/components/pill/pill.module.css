@@ -1,7 +1,9 @@
 .container {
+  position: relative;
 }
 
 .buttonContainer {
+  position: absolute;
   display: flex;
   flex-direction: column;
   padding: 16px;
