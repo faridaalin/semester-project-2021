@@ -62,7 +62,7 @@
   font-size: 14px;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
   .hotelCard {
     max-width: 565px;
     padding-bottom: 16px;
