@@ -63,7 +63,7 @@ export default function Contact() {
             <p className={styles.paragraph}>Bergen, Norway</p>
             <p className={styles.paragraph}>+47 1234 5678</p>
           </div>
-          <div>
+          <div className={styles.map}>
             <Map />
           </div>
         </div>
