@@ -35,6 +35,8 @@
   font-family: var(--header-font);
   margin-top: 32px;
   margin-bottom: 16px;
+  border-bottom: 2px solid #68687673;
+  padding-bottom: 8px;
 }
 
 @media only screen and (min-width: 576px) {

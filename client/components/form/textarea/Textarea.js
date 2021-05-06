@@ -2,9 +2,9 @@ import React from 'react';
 import styles from '../input/input.module.css';
 import textareaStyles from './textarea.module.css';
 
-const Textera = ({ placeholder, label, name }) => {
+const Textera = ({ placeholder, label, name, customContainer }) => {
   return (
-    <div>
+    <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>

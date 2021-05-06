@@ -13,6 +13,7 @@ const ReservationForm = ({ show, setShow }) => {
         <form className={styles.form}>
           <div className={styles.innerForm}>
             <div>
+              <p className={styles.infoSection}>Hotel Details</p>
               <div className={styles.column}>
                 <DefaultInput
                   type='search'
@@ -65,7 +66,7 @@ const ReservationForm = ({ show, setShow }) => {
               </div>
             </div>
             <div>
-              <p className={styles.infoSection}>Details</p>
+              <p className={styles.infoSection}>Personal Information</p>
               <div className={styles.column}>
                 <DefaultInput
                   type='text'
