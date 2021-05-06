@@ -58,6 +58,9 @@
   .btnContainer {
     margin-top: 24px;
   }
+  .map {
+    margin-top: -60px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -65,10 +68,7 @@
     width: 60%;
     padding: 32px 40px;
   }
-  .contact {
-    width: 40%;
-    margin-left: 32px;
-  }
+
   .map {
     margin-top: -50px;
   }

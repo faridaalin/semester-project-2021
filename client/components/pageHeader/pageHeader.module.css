@@ -4,8 +4,15 @@
   font-size: 4rem;
   align-self: flex-start;
   padding: 0 1rem 2rem 1rem;
+  font-size: 22px;
   font-family: var(--header-font);
   font-weight: var(--fontWeight-b);
-  font-size: 22px;
   color: var(--blue-400);
+}
+@media only screen and (min-width: 1200px) {
+  .title {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2rem;
+  }
 }

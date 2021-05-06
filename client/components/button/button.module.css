@@ -8,6 +8,7 @@
   border-radius: 6px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
+  height: fit-content;
 }
 
 .button:hover {
