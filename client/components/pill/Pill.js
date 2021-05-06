@@ -2,8 +2,17 @@ import { useState } from 'react';
 import { ChevronDown } from 'react-feather';
 import styles from './pill.module.css';
 
-const Pill = ({ name, select }) => {
+const Pill = ({ name, select, hotels, setSorted }) => {
   const [show, setShow] = useState(false);
+
+  const sortHeightToLow = () => {
+    const sortedHotels = hotels.slice().sort((a, b) => b - a);
+    setSorted(sorted);
+  };
+  const sortLowToHeigh = () => {
+    const sortedHotels = hotels.slice().sort((a, b) => b - a);
+    setSorted(sorted);
+  };
   if (select < 2) {
     return <button className={`${styles.primaryButton}`}>{name}</button>;
   }
