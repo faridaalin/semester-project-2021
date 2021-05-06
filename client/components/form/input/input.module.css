@@ -47,20 +47,12 @@
   color: var(--blue-300);
   border: 1px solid var(--grey-200);
   border-radius: 6px;
-  padding: 10px 16px;
+  padding: 9px 16px;
   width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
-  /* .input {
-    min-width: 267px;
-    height: 40px;
-  } */
   .input.contactInput {
     min-width: auto !important;
   }
-
-  /* .inputButton {
-    height: 40px;
-  } */
 }

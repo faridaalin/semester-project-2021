@@ -17,6 +17,7 @@
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 16px;
+  gap: 16px;
   width: 100%;
 }
 .row {
