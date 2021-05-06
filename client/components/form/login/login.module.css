@@ -1,0 +1,7 @@
+.form {
+  display: grid;
+  gap: 8px;
+}
+.btnContainer {
+  margin-top: 16px;
+}

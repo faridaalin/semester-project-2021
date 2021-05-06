@@ -1,11 +1,13 @@
 import HyperModal from 'react-hyper-modal';
 import { DefaultInput } from '../input/Input';
+import Button from '../../button/Button';
+import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
   const handleClose = () => setShow(false);
   return (
     <HyperModal isOpen={show} requestClose={handleClose}>
-      <form>
+      <form className={styles.form}>
         <DefaultInput
           type='email'
           name='email'
@@ -15,9 +17,12 @@ const Login = ({ show, setShow }) => {
         <DefaultInput
           type='password'
           name='password'
-          placeholder=''
+          placeholder='Password'
           label='Password'
         />
+        <div className={styles.btnContainer}>
+          <Button btnType='search'>Login</Button>
+        </div>
       </form>
     </HyperModal>
   );
