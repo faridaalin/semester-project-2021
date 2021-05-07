@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Field } from 'formik';
 import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
 import { DateRange } from 'react-date-range';
-import { Input } from '../input/Input';
+// import { Input } from '../input/Input';
 import moment from 'moment';
 
 import 'react-date-range/dist/styles.css'; // main style file
@@ -33,8 +34,9 @@ const DefaultInput = ({
   icon,
   customClass,
   customContainer,
+  value,
+  handleChange,
 }) => {
-  console.log('customContainer', customContainer);
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
@@ -44,7 +46,9 @@ const DefaultInput = ({
       <input
         type={type}
         name={name}
-        id={name}
+        id={label}
+        value={value ? value : ''}
+        onChange={handleChange}
         placeholder={placeholder}
         className={`${styles.input} ${customClass}`}
       />
@@ -52,7 +56,15 @@ const DefaultInput = ({
   );
 };
 
-const InputCalendar = ({ type, name, label, value, icon, calendarType }) => {
+const InputCalendar = ({
+  type,
+  name,
+  label,
+  value,
+  icon,
+  calendarType,
+  handleChange,
+}) => {
   const intitalDateRange = [
     {
       startDate: new Date(),
@@ -82,7 +94,8 @@ const InputCalendar = ({ type, name, label, value, icon, calendarType }) => {
       <input
         type={type}
         name={name}
-        id={name}
+        id={label}
+        onChange={handleChange}
         value={
           !dateRage[0].endDate
             ? value

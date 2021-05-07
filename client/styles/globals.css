@@ -117,6 +117,13 @@ h3 {
   width: 24px;
 }
 
+.hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
+  top: 200px;
+}
+
+.hyperDimmerWrapper___3pEXB {
+  background-color: rgb(53 54 73 / 65%) !important;
+}
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;

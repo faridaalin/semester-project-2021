@@ -10,8 +10,8 @@ const Button = ({
   width,
   clickHandler,
   customBtnClass,
+  submit,
 }) => {
-  console.log('customBtnClass', customBtnClass);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
@@ -38,6 +38,19 @@ const Button = ({
   };
 
   getColor(color);
+
+  if (submit) {
+    return (
+      <input
+        type='submit'
+        value='Login'
+        onClick={clickHandler}
+        className={`${
+          styles.button
+        } ${getColor()} ${getSize()} ${getWidth()} ${customBtnClass}`}
+      />
+    );
+  }
   if (!link) {
     return (
       <button
