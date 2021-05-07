@@ -75,11 +75,8 @@ const Login = ({ show, setShow }) => {
           label='Email'
           value={formik.values.email}
           handleChange={formik.handleChange}
-          errorClass={
-            formik.errors.email && formik.touched.email && 'is-invalid'
-          }
+          handleBlur={formik.handleBlur}
         />
-
         {formik.errors.email && formik.touched.email && (
           <ErrorMessage>{formik.errors.email}</ErrorMessage>
         )}
@@ -90,14 +87,9 @@ const Login = ({ show, setShow }) => {
           label='Password'
           value={formik.values.password}
           handleChange={formik.handleChange}
-          errorClass={
-            formik.errors.password && formik.touched.password && 'is-invalid'
-          }
+          handleBlur={formik.handleBlur}
         />
-        {console.log(
-          'Err',
-          formik.errors.password && formik.touched.password && 'is-invalid'
-        )}
+        {console.log(formik.touched)}
         {formik.errors.password && formik.touched.password && (
           <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}

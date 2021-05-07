@@ -35,9 +35,8 @@ const DefaultInput = ({
   customContainer,
   value,
   handleChange,
-  errorClass,
+  handleBlur,
 }) => {
-  console.log('errorClass', errorClass);
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
@@ -50,8 +49,9 @@ const DefaultInput = ({
         id={label}
         value={value ? value : ''}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder={placeholder}
-        className={`${styles.input} ${customClass} ${errorClass}`}
+        className={`${styles.input} ${customClass} `}
       />
     </div>
   );
