@@ -102,11 +102,10 @@ h3 {
 .hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
   height: auto !important;
   width: auto !important;
-}
-
-.hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
+  min-width: 280px !important;
   padding: 32px 16px;
 }
+
 .hyperCloseIcon___14vht {
   width: 50% !important;
   height: 50% !important;

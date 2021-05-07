@@ -3,6 +3,7 @@ import { object, string } from 'yup';
 import HyperModal from 'react-hyper-modal';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
+import ErrorMessage from '../../errorMessage/ErrorMessage';
 import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
@@ -39,7 +40,7 @@ const Login = ({ show, setShow }) => {
           handleChange={formik.handleChange}
         />
         {formik.errors.email && formik.touched.email && (
-          <p>{formik.errors.email}</p>
+          <ErrorMessage>{formik.errors.email}</ErrorMessage>
         )}
         <DefaultInput
           type='password'
@@ -50,7 +51,7 @@ const Login = ({ show, setShow }) => {
           handleChange={formik.handleChange}
         />
         {formik.errors.password && formik.touched.password && (
-          <p>{formik.errors.password}</p>
+          <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}
         <div className={styles.btnContainer}>
           <Button btnType='search' submit>
