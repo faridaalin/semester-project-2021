@@ -11,8 +11,7 @@ import { USER_TOKEN } from '../../../config/contants';
 import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
-  const { isLoading, setIsLoading } = useState(false);
-  const { fetchError, setFetchError } = useState(null);
+  const router = useRouter();
   const handleClose = () => setShow(false);
   const loginSchema = object({
     email: string().required('Required!').email('Invalid email address.'),
@@ -28,8 +27,6 @@ const Login = ({ show, setShow }) => {
       values,
       { setStatus, setErrors, setSubmitting, resetForm }
     ) => {
-      console.log('values', values);
-
       setSubmitting(true);
       try {
         const res = await axios.post('/users/login', {
@@ -38,36 +35,34 @@ const Login = ({ show, setShow }) => {
         });
         console.log('res', res);
         if (res.status === 200) {
-          const { data, token } = res;
+          const { data } = res;
           setSubmitting(false);
           setStatus({
             success: true,
           });
-          localStorage.setItem(USER_TOKEN, JSON.stringify(token));
+
+          localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
         }
       } catch (err) {
         if (err.response) {
-          // console.log(err.response.data.error.message);
           setErrors({ error: err.response.data.error.message });
           setStatus({
             success: false,
           });
           resetForm();
         }
-      } finally {
-        setSubmitting(false);
       }
     },
   });
 
-  console.log('FORMIK', formik);
-
   return (
     <HyperModal isOpen={show} requestClose={handleClose}>
       <form className={styles.form} onSubmit={formik.handleSubmit}>
+        {formik.errors && <ErrorMessage>{formik.errors.error}</ErrorMessage>}
+
         <DefaultInput
           type='email'
           name='email'
@@ -94,7 +89,7 @@ const Login = ({ show, setShow }) => {
           <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}
         <div className={styles.btnContainer}>
-          <Button btnType='search' submit>
+          <Button color='grey' submit>
             Login
           </Button>
         </div>
