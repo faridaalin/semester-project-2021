@@ -1,12 +1,18 @@
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import HyperModal from 'react-hyper-modal';
+import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
+import { USER_TOKEN } from '../../../config/contants';
 import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
+  const { isLoading, setIsLoading } = useState(false);
+  const { fetchError, setFetchError } = useState(null);
   const handleClose = () => setShow(false);
   const loginSchema = object({
     email: string().required('Required!').email('Invalid email address.'),
@@ -18,15 +24,46 @@ const Login = ({ show, setShow }) => {
       password: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      console.log('SUBMIT', formik);
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (
+      values,
+      { setStatus, setErrors, setSubmitting, resetForm }
+    ) => {
+      console.log('values', values);
+
+      setSubmitting(true);
+      try {
+        const res = await axios.post('/users/login', {
+          email: values.email,
+          password: values.password,
+        });
+        console.log('res', res);
+        if (res.status === 200) {
+          const { data, token } = res;
+          setSubmitting(false);
+          setStatus({
+            success: true,
+          });
+          localStorage.setItem(USER_TOKEN, JSON.stringify(token));
+          if (typeof window !== 'undefined') {
+            router.push('/dashboard');
+          }
+        }
+      } catch (err) {
+        if (err.response) {
+          // console.log(err.response.data.error.message);
+          setErrors({ error: err.response.data.error.message });
+          setStatus({
+            success: false,
+          });
+          resetForm();
+        }
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
-  console.log('TOUCHED', formik.touched);
-  console.log('ERRORS🔥', formik.errors);
-  console.log('VALUES', formik.values);
+  console.log('FORMIK', formik);
 
   return (
     <HyperModal isOpen={show} requestClose={handleClose}>
@@ -38,7 +75,11 @@ const Login = ({ show, setShow }) => {
           label='Email'
           value={formik.values.email}
           handleChange={formik.handleChange}
+          errorClass={
+            formik.errors.email && formik.touched.email && 'is-invalid'
+          }
         />
+
         {formik.errors.email && formik.touched.email && (
           <ErrorMessage>{formik.errors.email}</ErrorMessage>
         )}
@@ -49,7 +90,14 @@ const Login = ({ show, setShow }) => {
           label='Password'
           value={formik.values.password}
           handleChange={formik.handleChange}
+          errorClass={
+            formik.errors.password && formik.touched.password && 'is-invalid'
+          }
         />
+        {console.log(
+          'Err',
+          formik.errors.password && formik.touched.password && 'is-invalid'
+        )}
         {formik.errors.password && formik.touched.password && (
           <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}
