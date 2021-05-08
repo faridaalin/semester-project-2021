@@ -65,8 +65,14 @@ exports.user_login = async (req, res, next) => {
         httpOnly: true,
         maxAge: maxAge * 1000,
       });
+      console.log('USER', user);
+      const { role, email, firstname, lastname } = user;
 
-      return res.status(200).send({ status: 'ok', token: token, data: user });
+      return res.status(200).send({
+        status: 'ok',
+        token: token,
+        data: { firstname, lastname, email, role },
+      });
     }
     // Invalid password
     return next(ApiError.forbiddenRequest('Invalid username/password'));
