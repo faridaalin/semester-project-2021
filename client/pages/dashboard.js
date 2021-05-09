@@ -4,8 +4,9 @@ import axios from '../utils/axios';
 import { parseCookies } from '../helpers/parseCookies';
 import cookie from 'cookie';
 
-export default function Dashboard({ data }) {
+export default function Dashboard(props) {
   const user = useAuthContext();
+  console.log('PROPS', props);
 
   return (
     <Layout>
@@ -16,13 +17,20 @@ export default function Dashboard({ data }) {
 }
 
 Dashboard.getInitialProps = async ({ req, res }) => {
-  if (req.headers.cookie) {
+  const data = parseCookies(req);
+  console.log('COOKIE🔥', data.jwt);
+  const token = data.jwt;
+  if (token) {
     console.log('🔥GET DATA');
     try {
       // const enquiries = await axios.get('/enquiries');
-      const messages = await axios.get('/messages');
+      const messages = await axios.get('/messages', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // const { data } = messages;
-      console.log('messages🔥', messages);
+      console.log('messages🔥', messages.data.data);
 
       if (!data) {
         return {
@@ -31,7 +39,7 @@ Dashboard.getInitialProps = async ({ req, res }) => {
       }
 
       return {
-        data: {},
+        data: messages.data.data,
       };
     } catch (err) {
       console.log('🔥🔥ERROR🔥🔥');
@@ -43,7 +51,4 @@ Dashboard.getInitialProps = async ({ req, res }) => {
       res.end();
     }
   }
-  return {
-    data: {},
-  };
 };

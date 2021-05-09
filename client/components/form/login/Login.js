@@ -37,7 +37,6 @@ const Login = ({ show, setShow }) => {
           email: values.email,
           password: values.password,
         });
-        console.log('res', res);
 
         if (res.status === 200) {
           const { data } = res;
@@ -46,6 +45,12 @@ const Login = ({ show, setShow }) => {
             success: true,
           });
           setUser(data.user);
+
+          setCookie('user', JSON.stringify(data), {
+            path: '/',
+            maxAge: 3600,
+            sameSite: true,
+          });
 
           console.log('data', data);
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
