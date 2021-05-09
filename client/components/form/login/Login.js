@@ -48,7 +48,7 @@ const Login = ({ show, setShow }) => {
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           setCookie('user', JSON.stringify(data), {
             path: '/',
-            maxAge: 3600,
+            maxAge: 3 * 24 * 60 * 60,
             sameSite: true,
           });
           if (typeof window !== 'undefined') {
@@ -65,8 +65,6 @@ const Login = ({ show, setShow }) => {
       }
     },
   });
-
-  console.log('formik.errors ', formik.errors.error);
 
   return (
     <HyperModal isOpen={show} requestClose={handleClose}>

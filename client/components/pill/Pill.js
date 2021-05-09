@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { ChevronDown } from 'react-feather';
-import styles from './pill.module.css';
+import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import axios from '../../utils/axios';
+
+import styles from './pill.module.css';
 
 const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const [show, setShow] = useState(false);
+  const [cookie, setCookie, removeCookie] = useCookies(['user']);
   const router = useRouter();
 
   const sortHeightToLow = () => {
@@ -27,8 +31,18 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     console.log('Show ADD Product form');
     router.push('/product');
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
     console.log('User is logged out');
+    try {
+      const logOut = await axios.get('/users/logout');
+      console.log('COOKIE', cookie);
+      removeCookie('user', cookie, { path: '/', maxAge: 0, sameSite: true });
+
+      console.log('STATUS', logOut);
+      router.push('/');
+    } catch (err) {
+      console.log('Log put ERROR', err);
+    }
   };
   console.log('dashboard', dashboard);
   if (select < 2) {

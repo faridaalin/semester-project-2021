@@ -18,6 +18,7 @@ export default function Dashboard(props) {
 export async function getServerSideProps(context) {
   const userdata = parseCookies(context.req);
   const token = userdata.jwt;
+  console.log('Userdata😃', userdata);
 
   let data;
   try {
