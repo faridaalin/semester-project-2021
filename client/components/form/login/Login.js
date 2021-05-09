@@ -1,16 +1,20 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
+import { useCookies } from 'react-cookie';
 import HyperModal from 'react-hyper-modal';
-import axios from '../../../utils/axios';
+import axios from 'axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
 import { USER_TOKEN } from '../../../config/contants';
+import useAuthContext from '../../../context/AuthContext';
 import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
+  const { setUser } = useAuthContext();
+  const [cookie, setCookie] = useCookies(['user']);
+
   const router = useRouter();
   const handleClose = () => setShow(false);
   const loginSchema = object({
@@ -29,34 +33,44 @@ const Login = ({ show, setShow }) => {
     ) => {
       setSubmitting(true);
       try {
-        const res = await axios.post('/users/login', {
+        const res = await axios.post('http://localhost:3000/api/login', {
           email: values.email,
           password: values.password,
         });
-        console.log('res', res);
+
         if (res.status === 200) {
           const { data } = res;
           setSubmitting(false);
           setStatus({
             success: true,
           });
-
+          setUser(data.user);
+          setCookie('user', JSON.stringify(data), {
+            path: '/',
+            maxAge: 3600, // Expires after 1hr
+            sameSite: true,
+          });
+          console.log('data', data);
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
         }
       } catch (err) {
+        // console.log(err.response);
         if (err.response) {
+          console.log('ERROR:', err.response.data);
+          console.log('ERROR:', err.response.data.error.message);
           setErrors({ error: err.response.data.error.message });
           setStatus({
             success: false,
           });
-          resetForm();
         }
       }
     },
   });
+
+  console.log('formik.errors ', formik.errors.error);
 
   return (
     <HyperModal isOpen={show} requestClose={handleClose}>
@@ -84,7 +98,7 @@ const Login = ({ show, setShow }) => {
           handleChange={formik.handleChange}
           handleBlur={formik.handleBlur}
         />
-        {console.log(formik.touched)}
+
         {formik.errors.password && formik.touched.password && (
           <ErrorMessage>{formik.errors.password}</ErrorMessage>
         )}

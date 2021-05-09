@@ -11,6 +11,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
   const router = useRouter();
+
   const handleShow = () => setShow(true);
   const toggleMenu = () => {
     setOpen(!open);
