@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 
 const ApiError = require('../error/apiError');
-
-// 3 days
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (user) => {
   const id = user._id;
@@ -39,7 +37,10 @@ exports.user_register = async (req, res, next) => {
     });
 
     const token = createToken(newUser, newUser);
-    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      maxAge: maxAge * 1000,
+    });
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
     next(err);
@@ -62,16 +63,17 @@ exports.user_login = async (req, res, next) => {
       const payload = user;
       const token = createToken(payload);
       res.cookie('jwt', token, {
+        secure: true,
         httpOnly: true,
         maxAge: maxAge * 1000,
       });
-      console.log('USER', user);
+
       const { role, email, firstname, lastname } = user;
 
       return res.status(200).send({
         status: 'ok',
         token: token,
-        data: { firstname, lastname, email, role },
+        user: { firstname, lastname, email, role },
       });
     }
     // Invalid password

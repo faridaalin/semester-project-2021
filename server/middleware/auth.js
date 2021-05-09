@@ -5,6 +5,7 @@ const User = require('../model/user');
 
 module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
+
   if (!token) throw ApiError.unauthorizedRequest('Access denied');
 
   try {
