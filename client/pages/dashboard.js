@@ -24,14 +24,30 @@ export async function getServerSideProps(context) {
 
   let data;
   try {
-    const messages = await axios.get('/messages', {
+    const options = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
-    data = messages.data.data;
+    };
+    const messages = axios.get('/messages', options);
+    const enquiries = axios.get('/enquiries', options);
+
+    const [messagesRes, enquiriesRes] = await Promise.all([
+      messages,
+      enquiries,
+    ]);
+
+    if (!messagesRes.data || !enquiriesRes.data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    data = {
+      message: messagesRes.data,
+      enquiries: enquiriesRes.data,
+    };
   } catch (err) {
-    console.log('🔥🔥ERROR🔥🔥');
     console.error(err);
   }
 
