@@ -57,10 +57,7 @@ const Login = ({ show, setShow }) => {
           }
         }
       } catch (err) {
-        // console.log(err.response);
         if (err.response) {
-          console.log('ERROR:', err.response.data);
-          console.log('ERROR:', err.response.data.error.message);
           setErrors({ error: err.response.data.error.message });
           setStatus({
             success: false,
