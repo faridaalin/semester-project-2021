@@ -65,7 +65,7 @@ exports.user_login = async (req, res, next) => {
       res.cookie('jwt', token, {
         secure: true,
         httpOnly: true,
-        maxAge: maxAge * 1000,
+        expiresIn: maxAge * 1000,
       });
 
       const { role, email, firstname, lastname } = user;

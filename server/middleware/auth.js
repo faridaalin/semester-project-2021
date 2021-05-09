@@ -4,7 +4,12 @@ const ApiError = require('../error/apiError');
 const User = require('../model/user');
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+  if (!req.headers.authorization)
+    throw ApiError.unauthorizedRequest('Access denied');
+
+  const authHeader = req.headers.authorization;
+  const bearerToken = authHeader.split(' ');
+  const token = bearerToken[1];
 
   if (!token) throw ApiError.unauthorizedRequest('Access denied');
 
