@@ -4,10 +4,13 @@ import { Star } from 'react-feather';
 import truncate from '../../../helpers/truncate';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
+import { isAdmin } from '../../../helpers/parseCookies';
+import { Edit, Trash2 } from 'react-feather';
 
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel }) => {
+  const admin = isAdmin();
   return (
     <Link href={`/hotel/${hotel._id}`}>
       <a>
@@ -35,10 +38,18 @@ const HotelCard = ({ hotel }) => {
               dangerouslySetInnerHTML={{
                 __html: truncate(hotel.description, 110),
               }}
-            ></section>
-            <Button color='orange' size='s'>
-              View More
-            </Button>
+            />
+            <div className={styles.buttonContainer}>
+              <Button color='orange' size='s'>
+                View More
+              </Button>
+              {admin && (
+                <div className={styles.icons}>
+                  <Trash2 className={styles.iconDelete} />{' '}
+                  <Edit className={styles.iconUpdate} />{' '}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </a>

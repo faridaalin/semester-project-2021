@@ -12,6 +12,7 @@ const Button = ({
   customBtnClass,
   submit,
 }) => {
+  console.log('color', color);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;
@@ -19,6 +20,7 @@ const Button = ({
     if (color === 'grey') {
       return `${styles.buttonGrey}`;
     }
+
     if (btnType === 'search') {
       return `${styles.buttonOrange} ${styles.buttonSearch}`;
     }
@@ -36,8 +38,6 @@ const Button = ({
       return `${styles.full}`;
     }
   };
-
-  getColor(color);
 
   if (submit) {
     return (

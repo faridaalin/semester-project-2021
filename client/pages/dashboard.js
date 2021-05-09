@@ -2,8 +2,6 @@ import Layout from '../components/layout/Layout';
 import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
 import { parseCookies } from '../helpers/parseCookies';
-import cookie from 'cookie';
-import { useCookies } from 'react-cookie';
 
 export default function Dashboard(props) {
   const user = useAuthContext();
@@ -19,7 +17,6 @@ export default function Dashboard(props) {
 
 export async function getServerSideProps(context) {
   const userdata = parseCookies(context.req);
-  console.log('data', userdata);
   const token = userdata.jwt;
 
   let data;

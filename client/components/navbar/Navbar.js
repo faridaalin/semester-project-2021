@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ChevronDown } from 'react-feather';
+
 import Link from 'next/link';
 import Button from '../button/Button';
 import Login from '../form/login/Login';
+import { isAdmin } from '../../helpers/parseCookies';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import styles from './navbar.module.css';
 
@@ -11,6 +13,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
   const router = useRouter();
+  const admin = isAdmin();
 
   const handleShow = () => setShow(true);
   const toggleMenu = () => {
@@ -29,6 +32,8 @@ const Navbar = () => {
       window.removeEventListener('resize', hidemenu);
     };
   }, []);
+
+  console.log('USER COOKIE', admin);
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
@@ -92,17 +97,20 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li className={styles.itemButton}>
-            {show && <Login show={show} setShow={setShow} />}
-            <Button color='orange' clickHandler={handleShow}>
-              Login
-            </Button>
-          </li>
-          <li>
-            <Button color='grey'>
-              Dashboard <ChevronDown />
-            </Button>
-          </li>
+          {!admin ? (
+            <li className={styles.itemButton}>
+              {show && <Login show={show} setShow={setShow} />}
+              <Button color='orange' clickHandler={handleShow}>
+                Login
+              </Button>
+            </li>
+          ) : (
+            <li>
+              <Button color='grey'>
+                Dashboard <ChevronDown />
+              </Button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

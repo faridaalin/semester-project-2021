@@ -35,6 +35,7 @@ export default function Hotels(props) {
       <HeroHeaderHotels />
       <section className='section'>
         <PageHeader title='Hotels' />
+
         <CardContainer>
           {!data && <div>Error happend..</div>}
           {displayHotels(data)}

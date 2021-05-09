@@ -1,4 +1,7 @@
 .hotelCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 16px 16px 32px 16px;
   background-color: rgb(248 248 248 / 30%);
   border: 2px solid var(--white-100);
@@ -23,6 +26,31 @@
 
 .image {
   border-radius: 6px;
+}
+.iconUpdate,
+.iconDelete {
+  height: 40px;
+  width: 40px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.iconUpdate {
+  color: var(--success);
+  background-color: rgba(116, 198, 157, 0.18);
+}
+.iconDelete {
+  color: var(--danger);
+  background-color: rgba(231, 29, 54, 0.18);
+}
+.icons {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 40px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 40px;
 }
 
 .content {
@@ -66,9 +94,12 @@
   .hotelCard {
     max-width: 565px;
     padding-bottom: 16px;
-    display: flex;
+    flex-direction: row;
     gap: 24px;
     margin-right: 16px;
+  }
+  .icons {
+    margin-left: 24px;
   }
 
   .imageContainer {
