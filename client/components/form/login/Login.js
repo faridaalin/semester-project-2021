@@ -45,15 +45,12 @@ const Login = ({ show, setShow }) => {
             success: true,
           });
           setUser(data.user);
-
+          localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           setCookie('user', JSON.stringify(data), {
             path: '/',
-            maxAge: 1,
+            maxAge: 3600,
             sameSite: true,
           });
-
-          console.log('data', data);
-          localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
