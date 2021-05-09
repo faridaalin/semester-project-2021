@@ -48,7 +48,7 @@ const Login = ({ show, setShow }) => {
 
           setCookie('user', JSON.stringify(data), {
             path: '/',
-            maxAge: 3600,
+            maxAge: 1,
             sameSite: true,
           });
 
