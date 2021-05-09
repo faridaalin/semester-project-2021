@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
+import PageHeader from '../components/pageHeader/PageHeader';
 import { parseCookies } from '../helpers/parseCookies';
 
 export default function Dashboard(props) {
@@ -10,10 +11,17 @@ export default function Dashboard(props) {
 
   return (
     <Layout>
-      Dashboard
-      <div>
-        <span>Your messages here..</span>
-      </div>
+      <PageHeader title='Dashboard' />
+      <section>
+        <header>
+          <button>back</button>
+          <nav>Nav link</nav>
+        </header>
+        <div>
+          <div>Table</div>
+          <div>One message</div>
+        </div>
+      </section>
     </Layout>
   );
 }

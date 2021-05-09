@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import HotelForm from '../components/form/hotelForm/HotelForm';
+
 import Pill from '../components/pill/Pill';
 
 export default function Category() {
