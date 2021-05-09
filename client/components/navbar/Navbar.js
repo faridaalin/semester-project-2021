@@ -7,11 +7,13 @@ import Button from '../button/Button';
 import Login from '../form/login/Login';
 import { isAdmin } from '../../helpers/parseCookies';
 import getWindowWidth from '../../helpers/getWindowWidth';
+import Pill from '../pill/Pill';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+  const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
   const admin = isAdmin();
 
@@ -19,7 +21,10 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-
+  const clickHandler = () => {
+    console.log('toggle');
+    setDropDownMenu(!dropDownMenu);
+  };
   useEffect(() => {
     const breakpoint = 768;
     const hidemenu = () => {
@@ -32,8 +37,7 @@ const Navbar = () => {
       window.removeEventListener('resize', hidemenu);
     };
   }, []);
-
-  console.log('USER COOKIE', admin);
+  console.log('dropDownMenu', dropDownMenu);
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
@@ -106,9 +110,7 @@ const Navbar = () => {
             </li>
           ) : (
             <li>
-              <Button color='grey'>
-                Dashboard <ChevronDown />
-              </Button>
+              <Pill name='Dashboard' select={2} dashboard='true' />
             </li>
           )}
         </ul>
