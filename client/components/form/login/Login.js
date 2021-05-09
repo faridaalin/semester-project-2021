@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { useCookies } from 'react-cookie';
 import HyperModal from 'react-hyper-modal';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
@@ -33,10 +33,11 @@ const Login = ({ show, setShow }) => {
     ) => {
       setSubmitting(true);
       try {
-        const res = await axios.post('http://localhost:3000/api/login', {
+        const res = await axios.post('/users/login', {
           email: values.email,
           password: values.password,
         });
+        console.log('res', res);
 
         if (res.status === 200) {
           const { data } = res;
@@ -45,11 +46,7 @@ const Login = ({ show, setShow }) => {
             success: true,
           });
           setUser(data.user);
-          setCookie('user', JSON.stringify(data), {
-            path: '/',
-            maxAge: 3600, // Expires after 1hr
-            sameSite: true,
-          });
+
           console.log('data', data);
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           if (typeof window !== 'undefined') {

@@ -10,7 +10,7 @@ export default async (req, res) => {
 
     const { data } = result;
 
-    console.log(data);
+    console.log('🔥🔥RESPONSE🔥🔥', res);
     res.status(200).send({ data: data });
   } catch (err) {
     console.log('ERROR response data 🔥', err.response.data);

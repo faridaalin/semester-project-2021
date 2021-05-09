@@ -16,18 +16,34 @@ export default function Dashboard({ data }) {
 }
 
 Dashboard.getInitialProps = async ({ req, res }) => {
-  const data = parseCookies(req);
-  const userObj = JSON.parse(data.user);
-  const { role } = userObj.data.user;
+  if (req.headers.cookie) {
+    console.log('🔥GET DATA');
+    try {
+      // const enquiries = await axios.get('/enquiries');
+      const messages = await axios.get('/messages');
+      // const { data } = messages;
+      console.log('messages🔥', messages);
 
-  if (role !== 'admin') {
+      if (!data) {
+        return {
+          notFound: true,
+        };
+      }
+
+      return {
+        data: {},
+      };
+    } catch (err) {
+      console.log('🔥🔥ERROR🔥🔥');
+      console.error(err);
+    }
+  } else {
     if (Object.keys(data).length === 0 && data.constructor === Object) {
       res.writeHead(301, { Location: '/' });
       res.end();
     }
   }
-
   return {
-    data: userObj.data.user,
+    data: {},
   };
 };
