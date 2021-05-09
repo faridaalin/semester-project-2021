@@ -1,6 +1,7 @@
 const ApiError = require('./apiError');
 
 const devError = (err, req, res, next) => {
+  console.log('err', err);
   if (err.name === 'CastError') {
     return res.status(400).send({
       status: 'Request Conflict',
