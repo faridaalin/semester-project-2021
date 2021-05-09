@@ -35,21 +35,18 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     console.log('User is logged out');
     try {
       const logOut = await axios.get('/users/logout');
-      console.log('COOKIE', cookie);
       removeCookie('user', cookie, { path: '/', maxAge: 0, sameSite: true });
-
-      console.log('STATUS', logOut);
       router.push('/');
     } catch (err) {
       console.log('Log put ERROR', err);
     }
   };
-  console.log('dashboard', dashboard);
+
   if (select < 2) {
     return <button className={`${styles.primaryButton}`}>{name}</button>;
   }
   return (
-    <div className={styles.container}>
+    <div className={styles.container} suppressHydrationWarning={true}>
       <button
         className={`${styles.primaryButton}`}
         onClick={() => setShow(!show)}

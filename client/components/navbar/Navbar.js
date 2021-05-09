@@ -13,10 +13,10 @@ import styles from './navbar.module.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
   const admin = isAdmin();
-
   const handleShow = () => setShow(true);
   const toggleMenu = () => {
     setOpen(!open);
@@ -37,7 +37,6 @@ const Navbar = () => {
       window.removeEventListener('resize', hidemenu);
     };
   }, []);
-  console.log('dropDownMenu', dropDownMenu);
 
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
@@ -62,58 +61,63 @@ const Navbar = () => {
         </a>
       </Link>
 
-      <nav className={`${styles.nav}  ${open ? styles.show : ''}`}>
-        <ul className={`${styles.items}`}>
-          <li
-            className={`${styles.item} ${
-              router.pathname === '/' && styles.active
-            } `}
-          >
-            <Link href='/'>
-              <a>Home</a>
-            </Link>
-          </li>
-          <li
-            className={`${styles.item} ${
-              router.pathname === '/hotels' && styles.active
-            } `}
-          >
-            <Link href='/hotels'>
-              <a>Hotels</a>
-            </Link>
-          </li>
-          <li
-            className={`${styles.item} ${
-              router.pathname === '/about' && styles.active
-            } `}
-          >
-            <Link href='/about'>
-              <a>About</a>
-            </Link>
-          </li>
-          <li
-            className={`${styles.item} ${
-              router.pathname === '/contact' && styles.active
-            } `}
-          >
-            <Link href='/contact'>
-              <a>Contact</a>
-            </Link>
-          </li>
+      <nav
+        className={`${styles.nav}  ${open ? styles.show : ''}`}
+        suppressHydrationWarning={true}
+      >
+        {process.browser && (
+          <ul className={`${styles.items}`}>
+            <li
+              className={`${styles.item} ${
+                router.pathname === '/' && styles.active
+              } `}
+            >
+              <Link href='/'>
+                <a>Home</a>
+              </Link>
+            </li>
+            <li
+              className={`${styles.item} ${
+                router.pathname === '/hotels' && styles.active
+              } `}
+            >
+              <Link href='/hotels'>
+                <a>Hotels</a>
+              </Link>
+            </li>
+            <li
+              className={`${styles.item} ${
+                router.pathname === '/about' && styles.active
+              } `}
+            >
+              <Link href='/about'>
+                <a>About</a>
+              </Link>
+            </li>
+            <li
+              className={`${styles.item} ${
+                router.pathname === '/contact' && styles.active
+              } `}
+            >
+              <Link href='/contact'>
+                <a>Contact</a>
+              </Link>
+            </li>
 
-          {!admin ? (
-            <li className={styles.itemButton}>
-              {show && <Login show={show} setShow={setShow} />}
-              <Button color='orange' clickHandler={handleShow}>
-                Login
-              </Button>
-            </li>
-          ) : (
-            <li>
-              <Pill name='Dashboard' select={2} dashboard='true' />
-            </li>
-          )}
-        </ul>
+            {!admin ? (
+              <li className={styles.itemButton}>
+                {show && <Login show={show} setShow={setShow} />}
+                <Button color='orange' clickHandler={handleShow}>
+                  Login
+                </Button>
+              </li>
+            ) : (
+              <li>
+                <Pill name='Dashboard' select={2} dashboard='true' />
+              </li>
+            )}
+          </ul>
+        )}
       </nav>
     </header>
   );
