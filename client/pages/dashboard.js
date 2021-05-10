@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import dateFormat from 'dateformat';
 import Layout from '../components/layout/Layout';
 import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
@@ -37,9 +38,35 @@ export default function Dashboard({ data }) {
             </ul>
           </nav>
         </header>
-        <div className={styles.table}>
-          <div>Table </div>
-          <div>One message</div>
+        <div className={styles.tableContainer}>
+          <div className={styles.tableHead}>
+            <span>From</span>
+            <span>Subject</span>
+            <span>Date</span>
+            <span>Status</span>
+          </div>
+
+          {messages.data.map((message) => (
+            <div className={styles.tableBody} key={message._id}>
+              <div className={styles.tableBodyHead}>
+                <>
+                  <span>{message.firstname}</span>
+                  <span>{message.subject}</span>
+                  <span>
+                    {dateFormat(`${message.createdAt}`, 'mm/dd/yyyy')}
+                  </span>
+                  <span>{message.isRead === false ? 'Unread' : 'Read'}</span>
+                </>
+              </div>
+              <p className={styles.paragraph}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Molestias aut doloremque facere, est adipisci ratione
+                repellendus, expedita labore officiis alias saepe illum tempore
+                modi hic. Voluptates perspiciatis praesentium laudantium
+                tempora!
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </Layout>
