@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react';
-import dateFormat from 'dateformat';
 import Layout from '../components/layout/Layout';
-import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
 import PageHeader from '../components/pageHeader/PageHeader';
 import { parseCookies } from '../helpers/parseCookies';
 import Accordion from '../components/accordion/Accordion';
+import useDashboardContext from '../context/DashboardContext';
 import styles from './dashboard.module.css';
 
 export default function Dashboard({ data }) {
   const [openNav, setOpenNav] = useState(false);
-  const breakpoint = 768;
-
   const [widthOnLoad, setWidthOnLoad] = useState(null);
+  const [state, setState] = useState('messages');
+  const {
+    showMessages,
+    setShowMessages,
+    showEnq,
+    setShowEnq,
+  } = useDashboardContext();
+  const breakpoint = 768;
 
   const { messages, enquiries } = data;
 
@@ -31,47 +36,93 @@ export default function Dashboard({ data }) {
     return () => {
       window.removeEventListener('load', handlePageLoad);
     };
-  }, [setWidthOnLoad]);
-
-  console.log('navigation', openNav);
-  console.log('openNav === open', openNav === 'open');
+  }, []);
+  useEffect(() => {
+    setShowMessages(true);
+  }, []);
 
   return (
     <Layout>
       <PageHeader title='Dashboard' />
+
       <section className={styles.container}>
-        <header
-          className={`${styles.navigation} ${
-            openNav ? styles.dark : styles.light
-          }`}
-        >
-          <button className={styles.navButton} onClick={handleNavToggle}>
-            Messages
-          </button>
-          <p className={`${styles.navItem} ${styles.active} ${styles.current}`}>
-            Current
-          </p>
+        {showMessages ? (
+          <>
+            <header
+              className={`${styles.navigation} ${
+                openNav ? styles.dark : styles.light
+              }`}
+            >
+              <button className={styles.navButton} onClick={handleNavToggle}>
+                Messages
+              </button>
+              <p
+                className={`${styles.navItem} ${styles.active} ${styles.current}`}
+              >
+                Current
+              </p>
 
-          {openNav ||
-            (widthOnLoad >= breakpoint && (
-              <nav className={`${styles.navContainer} `}>
-                <ul className={styles.navItems}>
-                  <li className={`${styles.navItem} ${styles.active}`}>
-                    All {messages.data.length}
-                  </li>
-                  <li className={styles.navItem}>Unread</li>
-                  <li className={styles.navItem}>Sent</li>
-                  <li className={styles.navItem}>Trash</li>
-                </ul>
+              {openNav ||
+                (widthOnLoad >= breakpoint && (
+                  <nav className={`${styles.navContainer} `}>
+                    <ul className={styles.navItems}>
+                      <li className={`${styles.navItem} ${styles.active}`}>
+                        All {messages.data.length}
+                      </li>
+                      <li className={styles.navItem}>Unread</li>
+                      <li className={styles.navItem}>Sent</li>
+                      <li className={styles.navItem}>Trash</li>
+                    </ul>
 
-                <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                  <li className={styles.navItem}>Enquiries</li>
-                  <li className={styles.navItem}>Logout</li>
-                </ul>
-              </nav>
-            ))}
-        </header>
-        <Accordion messages={messages} />
+                    <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                      <li className={styles.navItem}>Enquiries</li>
+                      <li className={styles.navItem}>Logout</li>
+                    </ul>
+                  </nav>
+                ))}
+            </header>
+            <Accordion content={messages} type='messages' />
+          </>
+        ) : showEnq ? (
+          <>
+            <header
+              className={`${styles.navigation} ${
+                openNav ? styles.dark : styles.light
+              }`}
+            >
+              <button className={styles.navButton} onClick={handleNavToggle}>
+                Enquiries
+              </button>
+              <p
+                className={`${styles.navItem} ${styles.active} ${styles.current}`}
+              >
+                Current
+              </p>
+
+              {openNav ||
+                (widthOnLoad >= breakpoint && (
+                  <nav className={`${styles.navContainer} `}>
+                    <ul className={styles.navItems}>
+                      <li className={`${styles.navItem} ${styles.active}`}>
+                        All {enquiries.data.length}
+                      </li>
+                      <li className={styles.navItem}>Unread</li>
+                      <li className={styles.navItem}>Sent</li>
+                      <li className={styles.navItem}>Trash</li>
+                    </ul>
+
+                    <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                      <li className={styles.navItem}>Messages</li>
+                      <li className={styles.navItem}>Logout</li>
+                    </ul>
+                  </nav>
+                ))}
+            </header>
+            <Accordion content={enquiries} type='enquiries' />
+          </>
+        ) : (
+          'Welcome to your dashboard'
+        )}
       </section>
     </Layout>
   );
@@ -102,7 +153,6 @@ export async function getServerSideProps(context) {
         notFound: true,
       };
     }
-    console.log('messagesRes', messagesRes);
 
     data = {
       messages: messagesRes.data,
@@ -133,3 +183,43 @@ export async function getServerSideProps(context) {
     props: { data },
   };
 }
+
+/*
+        <>
+          <header
+            className={`${styles.navigation} ${
+              openNav ? styles.dark : styles.light
+            }`}
+          >
+            <button className={styles.navButton} onClick={handleNavToggle}>
+              Messages
+            </button>
+            <p
+              className={`${styles.navItem} ${styles.active} ${styles.current}`}
+            >
+              Current
+            </p>
+
+            {openNav ||
+              (widthOnLoad >= breakpoint && (
+                <nav className={`${styles.navContainer} `}>
+                  <ul className={styles.navItems}>
+                    <li className={`${styles.navItem} ${styles.active}`}>
+                      All {messages.data.length}
+                    </li>
+                    <li className={styles.navItem}>Unread</li>
+                    <li className={styles.navItem}>Sent</li>
+                    <li className={styles.navItem}>Trash</li>
+                  </ul>
+
+                  <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                    <li className={styles.navItem}>Enquiries</li>
+                    <li className={styles.navItem}>Logout</li>
+                  </ul>
+                </nav>
+              ))}
+          </header>
+          <Accordion messages={messages} />
+        </> 
+
+ */

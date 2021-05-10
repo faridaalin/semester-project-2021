@@ -8,11 +8,9 @@ import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
 import { USER_TOKEN } from '../../../config/contants';
-import useAuthContext from '../../../context/AuthContext';
 import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
-  const { setUser } = useAuthContext();
   const [, setCookie] = useCookies(['isAdmin']);
 
   const router = useRouter();
@@ -44,7 +42,7 @@ const Login = ({ show, setShow }) => {
           setStatus({
             success: true,
           });
-          setUser(data.user);
+
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           console.log('user role', data.user.role);
           if (data.user.role === 'admin') {

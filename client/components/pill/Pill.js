@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'react-feather';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import useDashboardContext from '../../context/DashboardContext';
 import axios from '../../utils/axios';
 
 import styles from './pill.module.css';
@@ -10,6 +11,14 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const [show, setShow] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
+  const { pathname } = router;
+
+  const {
+    showMessages,
+    setShowMessages,
+    showEnq,
+    setShowEnq,
+  } = useDashboardContext();
 
   const sortHeightToLow = () => {
     const sortedHotels = hotels.slice().sort((a, b) => b - a);
@@ -20,16 +29,34 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     setSorted(sorted);
   };
   const handleMessages = () => {
-    console.log('Show Messages');
-    router.push('/dashboard');
+    if (pathname === '/dashboard') {
+      setShowMessages(true);
+      setShowEnq(false);
+      setShow(!show);
+    } else {
+      setShowMessages(true);
+      setShowEnq(false);
+      router.push('/dashboard');
+    }
   };
   const handleEnquires = () => {
-    console.log('Show Enquires');
-    router.push('/dashboard');
+    if (pathname === '/dashboard') {
+      setShow(!show);
+      setShowEnq(true);
+      setShowMessages(false);
+    } else {
+      router.push('/dashboard');
+      setShowEnq(true);
+      setShowMessages(false);
+    }
   };
   const HandleEnquireForm = () => {
     console.log('Show ADD Product form');
-    router.push('/product');
+    if (pathname === '/product') {
+      setShow(!show);
+    } else {
+      router.push('/product');
+    }
   };
   const handleLogout = async () => {
     console.log('User is logged out');

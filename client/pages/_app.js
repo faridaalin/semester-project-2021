@@ -1,17 +1,17 @@
 import { CookiesProvider } from 'react-cookie';
 import { HotelProvider } from '../context/HotelsContext';
-import { AuthContextProvider } from '../context/AuthContext';
+import { DashboardContextProvider } from '../context/DashboardContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthContextProvider>
-      <HotelProvider>
-        <CookiesProvider>
+    <CookiesProvider>
+      <DashboardContextProvider>
+        <HotelProvider>
           <Component {...pageProps} />
-        </CookiesProvider>
-      </HotelProvider>
-    </AuthContextProvider>
+        </HotelProvider>
+      </DashboardContextProvider>
+    </CookiesProvider>
   );
 }
 

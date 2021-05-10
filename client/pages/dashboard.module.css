@@ -44,6 +44,7 @@
 .navItem:hover {
   background: rgba(229, 229, 229, 0.11);
   border-left: 8px solid #ee9285;
+  padding-left: 24px;
 }
 
 .navButton {
@@ -97,6 +98,10 @@
     display: grid;
     grid-template-columns: 200px 2fr;
     position: static;
+    padding: 0;
+  }
+  .navButton {
+    border-top-right-radius: 0;
   }
 
   .navButton,
@@ -120,5 +125,11 @@
   .navigation > * {
     background: var(--blue-400) !important;
     color: var(--grey-200);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    min-width: 900px;
   }
 }
