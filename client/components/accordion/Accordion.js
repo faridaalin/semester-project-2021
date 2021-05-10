@@ -12,8 +12,6 @@ const Accordion = ({ content, type }) => {
     setOpen(index);
   };
 
-  console.log('Content', content);
-
   if (type === 'messages') {
     return (
       <div className={styles.accordionSection}>

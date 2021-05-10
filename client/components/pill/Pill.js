@@ -18,6 +18,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     setShowMessages,
     showEnq,
     setShowEnq,
+    logout,
   } = useDashboardContext();
 
   const sortHeightToLow = () => {
@@ -58,17 +59,17 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
       router.push('/product');
     }
   };
-  const handleLogout = async () => {
-    console.log('User is logged out');
-    try {
-      const logOut = await axios.get('/users/logout');
-      removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
-      localStorage.removeItem('userToken');
-      router.push('/');
-    } catch (err) {
-      console.log('Log put ERROR', err);
-    }
-  };
+  // const handleLogout = async () => {
+  //   console.log('User is logged out');
+  //   try {
+  //     const logOut = await axios.get('/users/logout');
+  //     removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
+  //     localStorage.removeItem('userToken');
+  //     router.push('/');
+  //   } catch (err) {
+  //     console.log('Log put ERROR', err);
+  //   }
+  // };
 
   if (select < 2) {
     return <button className={`${styles.primaryButton}`}>{name}</button>;
@@ -94,7 +95,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
               <button className={styles.button} onClick={HandleEnquireForm}>
                 Create Enquiries
               </button>
-              <button className={styles.button} onClick={handleLogout}>
+              <button className={styles.button} onClick={logout}>
                 Logout
               </button>
             </>
