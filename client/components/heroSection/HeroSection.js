@@ -5,7 +5,6 @@ import styles from './heroSection.module.css';
 
 const HeroSection = () => {
   const breakpoint = 768;
-
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad, setWidthOnLoad] = useState(null);
 

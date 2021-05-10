@@ -27,9 +27,9 @@
   cursor: pointer;
   border-bottom: 1px solid var(--grey-300);
 }
-.accordionText {
+.accordionText > p {
   font-family: var(--body-font);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   padding: 32px;
   border-bottom: 1px solid var(--grey-300);
@@ -38,4 +38,10 @@
 
 .open {
   background-color: rgba(175, 186, 198, 0.35);
+}
+
+@media screen and (min-width: 768px) {
+  .accordionSection {
+    padding-top: 0;
+  }
 }

@@ -75,6 +75,8 @@ const Navbar = () => {
     }
   };
 
+  console.log('cookie.isAdmin', cookie.isAdmin);
+
   return (
     <header className={`${styles.container} ${open && styles.headerColor}`}>
       <div className={styles.blur}></div>

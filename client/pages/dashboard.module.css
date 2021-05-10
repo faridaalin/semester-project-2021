@@ -86,10 +86,39 @@
 .light > .active,
 .dark > .active {
   color: #353649db;
-  font-size: 16px;
-  font-weight: var(--fontWeight-m);
 }
 
 .secondaryNav {
   padding-top: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 200px 2fr;
+    position: static;
+  }
+
+  .navButton,
+  .active {
+    color: var(--grey-200) !important;
+  }
+
+  .navigation {
+    position: static;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  .navContainer {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    min-height: initial;
+  }
+
+  .navigation,
+  .navigation > * {
+    background: var(--blue-400) !important;
+    color: var(--grey-200);
+  }
 }

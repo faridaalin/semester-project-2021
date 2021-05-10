@@ -10,12 +10,28 @@ import styles from './dashboard.module.css';
 
 export default function Dashboard({ data }) {
   const [openNav, setOpenNav] = useState(false);
-  const user = useAuthContext();
+  const breakpoint = 768;
+
+  const [widthOnLoad, setWidthOnLoad] = useState(null);
+
   const { messages, enquiries } = data;
 
   const handleNavToggle = () => {
+    if (widthOnLoad >= breakpoint) {
+      return setOpenNav(() => false);
+    }
     setOpenNav(() => !openNav);
   };
+
+  useEffect(() => {
+    const handlePageLoad = () => {
+      setWidthOnLoad(window.innerWidth);
+    };
+    window.addEventListener('load', handlePageLoad);
+    return () => {
+      window.removeEventListener('load', handlePageLoad);
+    };
+  }, [setWidthOnLoad]);
 
   console.log('navigation', openNav);
   console.log('openNav === open', openNav === 'open');
@@ -32,29 +48,28 @@ export default function Dashboard({ data }) {
           <button className={styles.navButton} onClick={handleNavToggle}>
             Messages
           </button>
-          <p
-            className={`${styles.navItem} ${styles.active}  ${styles.current}`}
-          >
+          <p className={`${styles.navItem} ${styles.active} ${styles.current}`}>
             Current
           </p>
 
-          {openNav && (
-            <nav className={`${styles.navContainer} `}>
-              <ul className={styles.navItems}>
-                <li className={`${styles.navItem} ${styles.active}`}>
-                  All {messages.data.length}
-                </li>
-                <li className={styles.navItem}>Unread</li>
-                <li className={styles.navItem}>Sent</li>
-                <li className={styles.navItem}>Trash</li>
-              </ul>
+          {openNav ||
+            (widthOnLoad >= breakpoint && (
+              <nav className={`${styles.navContainer} `}>
+                <ul className={styles.navItems}>
+                  <li className={`${styles.navItem} ${styles.active}`}>
+                    All {messages.data.length}
+                  </li>
+                  <li className={styles.navItem}>Unread</li>
+                  <li className={styles.navItem}>Sent</li>
+                  <li className={styles.navItem}>Trash</li>
+                </ul>
 
-              <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                <li className={styles.navItem}>Enquiries</li>
-                <li className={styles.navItem}>Logout</li>
-              </ul>
-            </nav>
-          )}
+                <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                  <li className={styles.navItem}>Enquiries</li>
+                  <li className={styles.navItem}>Logout</li>
+                </ul>
+              </nav>
+            ))}
         </header>
         <Accordion messages={messages} />
       </section>
@@ -65,6 +80,7 @@ export default function Dashboard({ data }) {
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
   const token = cookie.jwt;
+  const admin = cookie.isAdmin;
 
   let data;
   try {
@@ -104,7 +120,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  if (!data) {
+  if (!data || !admin || !token) {
     return {
       redirect: {
         destination: '/',
