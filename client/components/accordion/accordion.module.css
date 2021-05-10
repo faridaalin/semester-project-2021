@@ -1,0 +1,38 @@
+.accordionSection {
+  padding-top: 132px;
+}
+.accordion {
+  background: var(--grey-400);
+  color: var(--white-100);
+  padding: 16px 32px;
+  display: grid;
+  grid-auto-flow: column;
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.accordionContent {
+}
+.accordionHeader {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-r);
+  font-size: 12px;
+  padding: 16px 32px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 6px;
+  color: var(--blue-400);
+}
+.accordionText {
+  font-family: var(--body-font);
+  font-size: 16px;
+  line-height: 24px;
+  padding: 32px;
+  transition: max-height 0.6s ease;
+}
+
+.open {
+  background-color: var(--grey-300);
+}

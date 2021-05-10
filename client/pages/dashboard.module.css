@@ -47,10 +47,10 @@
   top: 0;
 }
 
-.tableContainer {
+.accordionSection {
   padding-top: 132px;
 }
-.tableHead {
+.accordion {
   background: var(--grey-400);
   color: var(--white-100);
   padding: 16px 32px;
@@ -62,9 +62,9 @@
   line-height: 24px;
 }
 
-.tableBody {
+.accordionContent {
 }
-.tableBodyHead {
+.accordionHeader {
   font-family: var(--header-font);
   font-weight: var(--fontWeight-r);
   font-size: 12px;
@@ -74,7 +74,7 @@
   gap: 6px;
   color: var(--blue-400);
 }
-.paragraph {
+.accordionText {
   font-family: var(--body-font);
   font-size: 16px;
   line-height: 24px;

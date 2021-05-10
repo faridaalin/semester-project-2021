@@ -5,6 +5,7 @@ import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
 import PageHeader from '../components/pageHeader/PageHeader';
 import { parseCookies } from '../helpers/parseCookies';
+import Accordion from '../components/accordion/Accordion';
 import styles from './dashboard.module.css';
 
 export default function Dashboard({ data }) {
@@ -38,36 +39,7 @@ export default function Dashboard({ data }) {
             </ul>
           </nav>
         </header>
-        <div className={styles.tableContainer}>
-          <div className={styles.tableHead}>
-            <span>From</span>
-            <span>Subject</span>
-            <span>Date</span>
-            <span>Status</span>
-          </div>
-
-          {messages.data.map((message) => (
-            <div className={styles.tableBody} key={message._id}>
-              <div className={styles.tableBodyHead}>
-                <>
-                  <span>{message.firstname}</span>
-                  <span>{message.subject}</span>
-                  <span>
-                    {dateFormat(`${message.createdAt}`, 'mm/dd/yyyy')}
-                  </span>
-                  <span>{message.isRead === false ? 'Unread' : 'Read'}</span>
-                </>
-              </div>
-              <p className={styles.paragraph}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Molestias aut doloremque facere, est adipisci ratione
-                repellendus, expedita labore officiis alias saepe illum tempore
-                modi hic. Voluptates perspiciatis praesentium laudantium
-                tempora!
-              </p>
-            </div>
-          ))}
-        </div>
+        <Accordion messages={messages} />
       </section>
     </Layout>
   );
