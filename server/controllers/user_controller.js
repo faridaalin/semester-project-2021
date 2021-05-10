@@ -38,8 +38,10 @@ exports.user_register = async (req, res, next) => {
 
     const token = createToken(newUser, newUser);
     res.cookie('jwt', token, {
-      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      httpOnly: process.env.NODE_ENV !== 'development',
       maxAge: maxAge * 1000,
+      path: '/',
     });
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
@@ -63,9 +65,10 @@ exports.user_login = async (req, res, next) => {
       const payload = user;
       const token = createToken(payload);
       res.cookie('jwt', token, {
-        secure: true,
-        httpOnly: true,
-        expiresIn: maxAge * 1000,
+        secure: process.env.NODE_ENV !== 'development',
+        httpOnly: process.env.NODE_ENV !== 'development',
+        maxAge: maxAge * 1000,
+        path: '/',
       });
 
       const { role, email, firstname, lastname } = user;
