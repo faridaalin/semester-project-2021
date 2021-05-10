@@ -1,16 +1,21 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Star } from 'react-feather';
 import truncate from '../../../helpers/truncate';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
-import { isAdmin } from '../../../helpers/parseCookies';
+// import { isAdmin } from '../../../helpers/parseCookies';
 import { Edit, Trash2 } from 'react-feather';
-
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel }) => {
-  const admin = isAdmin();
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    setAdmin(localStorage.getItem('userToken') ? true : false);
+  }, []);
+  console.log('ADMIN', admin);
   return (
     <Link href={`/hotel/${hotel._id}`}>
       <a>

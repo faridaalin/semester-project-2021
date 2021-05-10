@@ -46,7 +46,7 @@ export default function Hotels(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   try {
     const hotels = await axios.get('/hotels');
     const { data } = hotels;

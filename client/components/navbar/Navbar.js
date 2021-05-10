@@ -13,10 +13,15 @@ import styles from './navbar.module.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    setAdmin(localStorage.getItem('userToken') ? true : false);
+  }, []);
+  console.log('ADMIN', admin);
 
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
-  const admin = isAdmin();
   const handleShow = () => setShow(true);
   const toggleMenu = () => {
     setOpen(!open);

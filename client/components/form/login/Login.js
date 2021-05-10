@@ -46,11 +46,11 @@ const Login = ({ show, setShow }) => {
           });
           setUser(data.user);
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
-          setCookie('user', JSON.stringify(data), {
-            path: '/',
-            maxAge: 3 * 24 * 60 * 60,
-            sameSite: true,
-          });
+          // setCookie('user', JSON.stringify(data), {
+          //   path: '/',
+          //   maxAge: 3 * 24 * 60 * 60,
+          //   sameSite: true,
+          // });
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
