@@ -39,7 +39,6 @@ const MessageSchema = new Schema(
     },
     isRead: {
       type: Boolean,
-      required: [true, 'Please enter Email Address'],
       default: false,
     },
     createdAt: { type: Date, default: Date.now },
