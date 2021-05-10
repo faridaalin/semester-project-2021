@@ -11,9 +11,8 @@ import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel }) => {
   const [cookie] = useCookies(['isAdmin']);
-  const admin = cookie.isAdmin;
-  console.log('cookie', cookie.isAdmin);
-  console.log('ADMIN', admin);
+  const admin = cookie.isAdmin === 'admin' ? true : false;
+
   return (
     <Link href={`/hotel/${hotel._id}`}>
       <a>

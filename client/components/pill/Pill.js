@@ -8,7 +8,7 @@ import styles from './pill.module.css';
 
 const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const [show, setShow] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies(['user']);
+  const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
 
   const sortHeightToLow = () => {

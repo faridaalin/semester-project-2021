@@ -48,7 +48,7 @@ const Login = ({ show, setShow }) => {
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
           console.log('user role', data.user.role);
           if (data.user.role === 'admin') {
-            setCookie('isAdmin', 'true', {
+            setCookie('isAdmin', 'admin', {
               maxAge: 60 * 60,
               path: '/',
             });
@@ -57,7 +57,7 @@ const Login = ({ show, setShow }) => {
             }
             return;
           } else {
-            setCookie('isAdmin', 'false', {
+            setCookie('isAdmin', 'public', {
               maxAge: 60 * 60,
               path: '/',
             });
