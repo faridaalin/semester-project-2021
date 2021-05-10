@@ -5,16 +5,14 @@ import { Star } from 'react-feather';
 import truncate from '../../../helpers/truncate';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
-// import { isAdmin } from '../../../helpers/parseCookies';
+import { useCookies } from 'react-cookie';
 import { Edit, Trash2 } from 'react-feather';
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel }) => {
-  const [admin, setAdmin] = useState(null);
-
-  useEffect(() => {
-    setAdmin(localStorage.getItem('userToken') ? true : false);
-  }, []);
+  const [cookie] = useCookies(['isAdmin']);
+  const admin = cookie.isAdmin;
+  console.log('cookie', cookie.isAdmin);
   console.log('ADMIN', admin);
   return (
     <Link href={`/hotel/${hotel._id}`}>
@@ -48,7 +46,7 @@ const HotelCard = ({ hotel }) => {
               <Button color='orange' size='s'>
                 View More
               </Button>
-              {admin && (
+              {admin === true && (
                 <div className={styles.icons}>
                   <Trash2 className={styles.iconDelete} />{' '}
                   <Edit className={styles.iconUpdate} />{' '}

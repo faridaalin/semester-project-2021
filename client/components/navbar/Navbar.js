@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ChevronDown } from 'react-feather';
-
+import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import Button from '../button/Button';
 import Login from '../form/login/Login';
-import { isAdmin } from '../../helpers/parseCookies';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
 import styles from './navbar.module.css';
@@ -13,13 +12,10 @@ import styles from './navbar.module.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
-  const [admin, setAdmin] = useState(null);
 
-  useEffect(() => {
-    setAdmin(localStorage.getItem('userToken') ? true : false);
-  }, []);
-  console.log('ADMIN', admin);
-
+  const [cookie] = useCookies(['isAdmin']);
+  const admin = cookie.isAdmin;
+  console.log('cookie', cookie.isAdmin);
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
   const handleShow = () => setShow(true);
@@ -27,7 +23,6 @@ const Navbar = () => {
     setOpen(!open);
   };
   const clickHandler = () => {
-    console.log('toggle');
     setDropDownMenu(!dropDownMenu);
   };
   useEffect(() => {
@@ -109,16 +104,16 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {!admin ? (
+            {admin === true ? (
+              <li>
+                <Pill name='Dashboard' select={2} dashboard='true' />
+              </li>
+            ) : (
               <li className={styles.itemButton}>
                 {show && <Login show={show} setShow={setShow} />}
                 <Button color='orange' clickHandler={handleShow}>
                   Login
                 </Button>
-              </li>
-            ) : (
-              <li>
-                <Pill name='Dashboard' select={2} dashboard='true' />
               </li>
             )}
           </ul>

@@ -117,7 +117,7 @@ exports.user_changePassword = async (req, res, next) => {
 
 exports.user_logout = (req, res, next) => {
   try {
-    res.cookie('jwt', '', { maxAge: 1 });
+    res.cookie('jwt', '', { maxAge: 0 });
     res.status(200).send({ data: 'Logged out' });
   } catch (err) {
     next(err);

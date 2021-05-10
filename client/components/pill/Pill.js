@@ -35,7 +35,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     console.log('User is logged out');
     try {
       const logOut = await axios.get('/users/logout');
-      removeCookie('user', cookie, { path: '/', maxAge: 0, sameSite: true });
+      removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
       localStorage.removeItem('userToken');
       router.push('/');
     } catch (err) {

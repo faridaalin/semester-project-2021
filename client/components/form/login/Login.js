@@ -13,7 +13,7 @@ import styles from './login.module.css';
 
 const Login = ({ show, setShow }) => {
   const { setUser } = useAuthContext();
-  const [cookie, setCookie] = useCookies(['user']);
+  const [, setCookie] = useCookies(['isAdmin']);
 
   const router = useRouter();
   const handleClose = () => setShow(false);
@@ -46,18 +46,34 @@ const Login = ({ show, setShow }) => {
           });
           setUser(data.user);
           localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
-          // setCookie('user', JSON.stringify(data), {
-          //   path: '/',
-          //   maxAge: 3 * 24 * 60 * 60,
-          //   sameSite: true,
-          // });
-          if (typeof window !== 'undefined') {
-            router.push('/dashboard');
+          console.log('user role', data.user.role);
+          if (data.user.role === 'admin') {
+            setCookie('isAdmin', 'true', {
+              maxAge: 60 * 60,
+              path: '/',
+            });
+            if (typeof window !== 'undefined') {
+              router.push('/dashboard');
+            }
+            return;
+          } else {
+            setCookie('isAdmin', 'false', {
+              maxAge: 60 * 60,
+              path: '/',
+            });
+            if (typeof window !== 'undefined') {
+              router.push('/hotels');
+            }
+            return;
           }
         }
       } catch (err) {
         if (err.response) {
-          setErrors({ error: err.response.data.error.message });
+          console.log(err.response);
+          console.log(err.response.data.message);
+          setErrors({
+            error: err.response.data.message,
+          });
           setStatus({
             success: false,
           });

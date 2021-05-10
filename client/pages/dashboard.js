@@ -28,6 +28,7 @@ export default function Dashboard(props) {
 
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
+
   const token = cookie.jwt;
 
   let data;
@@ -50,12 +51,21 @@ export async function getServerSideProps(context) {
         notFound: true,
       };
     }
+    console.log('messagesRes', messagesRes);
 
     data = {
       message: messagesRes.data,
       enquiries: enquiriesRes.data,
     };
   } catch (err) {
+    if (err.response.status === 401) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
     console.error(err);
   }
 
