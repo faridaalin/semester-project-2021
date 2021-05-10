@@ -24,6 +24,7 @@
   grid-auto-flow: column;
   gap: 6px;
   color: var(--blue-400);
+  cursor: pointer;
 }
 .accordionText {
   font-family: var(--body-font);
