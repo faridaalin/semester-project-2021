@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  padding-bottom: 30vh;
+}
+
+.navigation {
+  background: var(--blue-400);
+  position: absolute;
+  width: 100%;
+}
+
+.navContainer {
+  display: none;
+}
+.navItems,
+.current {
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-m);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.navButton {
+  padding: 40px 16px 32px 16px;
+}
+
+.navItem {
+  color: var(--grey-200);
+  padding: 16px 32px;
+  background: transparent;
+  position: relative;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+}
+
+.active {
+  background: rgba(229, 229, 229, 0.11);
+}
+
+.active::after {
+  position: absolute;
+  content: '';
+  width: 7px;
+  height: 100%;
+  background: #ee9285;
+  left: 0;
+  top: 0;
+}
+
+.table {
+  padding-top: 132px;
+}

@@ -12,7 +12,6 @@ const Button = ({
   customBtnClass,
   submit,
 }) => {
-  console.log('color', color);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;

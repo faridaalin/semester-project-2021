@@ -14,8 +14,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
-  const admin = cookie.isAdmin === 'admin' ? true : false;
-  console.log('cookie.isAdmin', cookie.isAdmin);
+
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
   const handleShow = () => setShow(true);
@@ -50,17 +49,13 @@ const Navbar = () => {
     }
   };
   const userNavigation = () => {
-    console.log('admin !== false', admin !== false);
-
     if (cookie.isAdmin === 'admin') {
-      console.log('ADMIN', admin);
       return (
         <li>
           <Pill name='Dashboard' select={2} dashboard='true' />
         </li>
       );
     } else if (cookie.isAdmin === 'public') {
-      console.log('Public', admin);
       return (
         <li className={styles.itemButton}>
           <Button color='orange' clickHandler={handleLogout}>

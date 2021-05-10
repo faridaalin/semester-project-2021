@@ -4,21 +4,41 @@ import useAuthContext from '../context/AuthContext';
 import axios from '../utils/axios';
 import PageHeader from '../components/pageHeader/PageHeader';
 import { parseCookies } from '../helpers/parseCookies';
+import styles from './dashboard.module.css';
 
-export default function Dashboard(props) {
+export default function Dashboard({ data }) {
   const user = useAuthContext();
-  console.log('PROPS', props);
+  const { messages, enquiries } = data;
+  console.log('messages', messages.data);
+  console.log('Total', messages.data.length);
 
   return (
     <Layout>
       <PageHeader title='Dashboard' />
-      <section>
-        <header>
-          <button>back</button>
-          <nav>Nav link</nav>
+      <section className={styles.container}>
+        <header className={styles.navigation}>
+          <button className={`${styles.navItem} ${styles.navButton}`}>
+            Messages
+          </button>
+          <p
+            className={`${styles.navItem} ${styles.active}  ${styles.current}`}
+          >
+            Cuurent
+          </p>
+
+          <nav className={styles.navContainer}>
+            <ul className={styles.navItems}>
+              <li className={`${styles.navItem} ${styles.active}`}>
+                All {messages.data.length}
+              </li>
+              <li className={styles.navItem}>Unread</li>
+              <li className={styles.navItem}>Sent</li>
+              <li className={styles.navItem}>Trash</li>
+            </ul>
+          </nav>
         </header>
-        <div>
-          <div>Table</div>
+        <div className={styles.table}>
+          <div>Table </div>
           <div>One message</div>
         </div>
       </section>
@@ -28,7 +48,6 @@ export default function Dashboard(props) {
 
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
-
   const token = cookie.jwt;
 
   let data;
@@ -54,10 +73,11 @@ export async function getServerSideProps(context) {
     console.log('messagesRes', messagesRes);
 
     data = {
-      message: messagesRes.data,
+      messages: messagesRes.data,
       enquiries: enquiriesRes.data,
     };
   } catch (err) {
+    console.error(err);
     if (err.response.status === 401) {
       return {
         redirect: {
@@ -66,7 +86,6 @@ export async function getServerSideProps(context) {
         },
       };
     }
-    console.error(err);
   }
 
   if (!data) {
