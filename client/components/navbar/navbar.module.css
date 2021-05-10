@@ -188,10 +188,3 @@
   bottom: 0;
   z-index: 1;
 }
-
-@media only screen and (min-width: 1334px) {
-  /* .container {
-    width: 1324px;
-    place-self: center;
-  } */
-}

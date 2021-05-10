@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import dateFormat from 'dateformat';
 import Layout from '../components/layout/Layout';
 import useAuthContext from '../context/AuthContext';
@@ -9,35 +9,52 @@ import Accordion from '../components/accordion/Accordion';
 import styles from './dashboard.module.css';
 
 export default function Dashboard({ data }) {
+  const [openNav, setOpenNav] = useState(false);
   const user = useAuthContext();
   const { messages, enquiries } = data;
-  console.log('messages', messages.data);
-  console.log('Total', messages.data.length);
+
+  const handleNavToggle = () => {
+    setOpenNav(() => !openNav);
+  };
+
+  console.log('navigation', openNav);
+  console.log('openNav === open', openNav === 'open');
 
   return (
     <Layout>
       <PageHeader title='Dashboard' />
       <section className={styles.container}>
-        <header className={styles.navigation}>
-          <button className={`${styles.navItem} ${styles.navButton}`}>
+        <header
+          className={`${styles.navigation} ${
+            openNav ? styles.dark : styles.light
+          }`}
+        >
+          <button className={styles.navButton} onClick={handleNavToggle}>
             Messages
           </button>
           <p
             className={`${styles.navItem} ${styles.active}  ${styles.current}`}
           >
-            Cuurent
+            Current
           </p>
 
-          <nav className={styles.navContainer}>
-            <ul className={styles.navItems}>
-              <li className={`${styles.navItem} ${styles.active}`}>
-                All {messages.data.length}
-              </li>
-              <li className={styles.navItem}>Unread</li>
-              <li className={styles.navItem}>Sent</li>
-              <li className={styles.navItem}>Trash</li>
-            </ul>
-          </nav>
+          {openNav && (
+            <nav className={`${styles.navContainer} `}>
+              <ul className={styles.navItems}>
+                <li className={`${styles.navItem} ${styles.active}`}>
+                  All {messages.data.length}
+                </li>
+                <li className={styles.navItem}>Unread</li>
+                <li className={styles.navItem}>Sent</li>
+                <li className={styles.navItem}>Trash</li>
+              </ul>
+
+              <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                <li className={styles.navItem}>Enquiries</li>
+                <li className={styles.navItem}>Logout</li>
+              </ul>
+            </nav>
+          )}
         </header>
         <Accordion messages={messages} />
       </section>
