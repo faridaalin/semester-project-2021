@@ -144,6 +144,38 @@
   background: rgb(84 191 227 / 7%);
   color: var(--info);
 }
+.searchInput {
+  position: relative;
+}
+
+.suggestions {
+  position: absolute;
+  background: var(--white-100);
+  top: 80px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  font-size: 14px;
+}
+
+.suggestionItem {
+  padding: 16px 16px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.suggestionItem:hover {
+  background: var(--white-300);
+  color: var(--blue-400);
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+  color: var(--blue-400);
+  margin-right: 8px;
+}
+
 @media only screen and (min-width: 768px) {
   .form {
     display: grid;

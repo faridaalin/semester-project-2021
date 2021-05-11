@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MapPin, Calendar, Users, X } from 'react-feather';
+import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
 import dateFormat from 'dateformat';
 import Button from '../../button/Button';
 import Guests from './guest/Guests';
@@ -22,6 +22,8 @@ const Search = ({ content }) => {
   const [calendar, setCalendar] = useState(false);
   const [dateRage, setDateRange] = useState(intitalDateRange);
   const [searchMatch, setSearchMatch] = useState(null);
+  const [search, setSearch] = useState('');
+  const [display, setDisplay] = useState(false);
 
   const [hotels, setHotels] = useHotelsContext();
   const input = useRef(null);
@@ -45,6 +47,7 @@ const Search = ({ content }) => {
   }, []);
 
   const handleSearchChange = () => {
+    setSearch(input.current.value);
     const text = input.current.value;
     let matches = hotels.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
@@ -54,31 +57,58 @@ const Search = ({ content }) => {
         hotel.title.toLowerCase().includes(text.toLowerCase())
       );
     });
+
     if (matches.length > 0) {
       setSearchMatch(matches);
-    } else {
-      setSearchMatch('Sorry, no matches on this search.');
+      setDisplay(true);
     }
   };
-  console.log('searchMatch', searchMatch);
+  const handleClickedSearch = (value) => {
+    setSearch(value);
+    setDisplay(!display);
+  };
+
+  // console.log('search', search);
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>
-      <div className={styles.inputContainer}>
+      <div className={`${styles.inputContainer} ${styles.searchInput}`}>
         <label htmlFor='search' className={styles.label}>
           <MapPin className={styles.icon} />
           Location
         </label>
         <input
+          autoComplete='false'
+          autoComplete='off'
           type='search'
           name='search'
           id='serach'
+          value={search}
           placeholder='Where do you want to stay?'
           className={styles.input}
           onChange={handleSearchChange}
+          // onBlur={() => setDisplay(!display)}
           ref={input}
         />
+        {display && searchMatch.length > 0 && (
+          <div className={styles.suggestions}>
+            {searchMatch.map((value, index) => {
+              return (
+                <div
+                  className={styles.suggestionItem}
+                  key={index}
+                  onClick={() => handleClickedSearch(value.title)}
+                >
+                  <span>
+                    <Moon className={styles.icon} /> {value.title}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
+
       <div className={styles.column}>
         <div>
           <label htmlFor='dates' className={styles.label}>
