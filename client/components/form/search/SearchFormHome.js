@@ -27,6 +27,7 @@ const Search = ({ content }) => {
 
   const [hotels, setHotels] = useHotelsContext();
   const input = useRef(null);
+  const suggestionsContainer = useRef(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -67,8 +68,19 @@ const Search = ({ content }) => {
     setSearch(value);
     setDisplay(!display);
   };
+  const handleClickOutside = (e) => {
+    const { current } = suggestionsContainer;
+    if (current && !current.contains(e.target)) {
+      setDisplay(false);
+    }
+  };
 
-  // console.log('search', search);
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
 
   return (
     <form className={styles.form} onSubmit={handleSearch}>
@@ -87,11 +99,10 @@ const Search = ({ content }) => {
           placeholder='Where do you want to stay?'
           className={styles.input}
           onChange={handleSearchChange}
-          // onBlur={() => setDisplay(!display)}
           ref={input}
         />
         {display && searchMatch.length > 0 && (
-          <div className={styles.suggestions}>
+          <div className={styles.suggestions} ref={suggestionsContainer}>
             {searchMatch.map((value, index) => {
               return (
                 <div
