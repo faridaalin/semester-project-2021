@@ -6,10 +6,12 @@ import CardContainer from '../components/cardContainer/CardContainer';
 import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
 import PageHeader from '../components/pageHeader/PageHeader';
 import Pagination from '../components/pagination/Pagination';
+import { useHotelsContext } from '../context/HotelsContext';
 
 export default function Hotels(props) {
   const [pageNumber, setPageNumber] = useState(0);
-  const { data } = props.data;
+  const [hotels, setHotels] = useHotelsContext();
+  const data = hotels.length > 0 ? hotels : props.data.data;
 
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
@@ -25,6 +27,8 @@ export default function Hotels(props) {
 
     return hotelsToDisplay;
   };
+
+  console.log('data', data);
   const pageCount = Math.ceil(data.length / hotelsPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -35,11 +39,12 @@ export default function Hotels(props) {
       <HeroHeaderHotels />
       <section className='section'>
         <PageHeader title='Hotels' />
-
-        <CardContainer>
-          {!data && <div>Error happend..</div>}
-          {displayHotels(data)}
-        </CardContainer>
+        <>
+          <CardContainer>
+            {!data && <div>Error happend..</div>}
+            {displayHotels(data)}
+          </CardContainer>
+        </>
         <Pagination pageCount={pageCount} changePage={changePage} />
       </section>
     </Layout>

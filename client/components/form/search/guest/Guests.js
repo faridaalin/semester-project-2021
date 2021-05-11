@@ -10,11 +10,13 @@ const Guests = ({ setShowGuests, setGuests }) => {
     setShowGuests(false);
   };
 
-  const plusAdults = () => {
+  const plusAdults = (e) => {
+    e.preventDefault();
     setAdults(adults + 1);
     setGuests(adults + children);
   };
-  const minusdults = () => {
+  const minusdults = (e) => {
+    e.preventDefault();
     if (adults <= 1) {
       setAdults(1);
       setGuests(adults + children);
@@ -23,7 +25,8 @@ const Guests = ({ setShowGuests, setGuests }) => {
       setGuests(adults + children);
     }
   };
-  const minusChildren = () => {
+  const minusChildren = (e) => {
+    e.preventDefault();
     if (children <= 1) {
       setChildren(0);
       setGuests(adults + children);
@@ -32,7 +35,8 @@ const Guests = ({ setShowGuests, setGuests }) => {
       setChildren(children - 1);
     }
   };
-  const plusChildren = () => {
+  const plusChildren = (e) => {
+    e.preventDefault();
     setChildren(children + 1);
     setGuests(adults + children);
   };

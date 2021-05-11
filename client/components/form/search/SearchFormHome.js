@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
+import * as yup from 'yup';
 import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
 import dateFormat from 'dateformat';
 import Button from '../../button/Button';
@@ -9,14 +11,14 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from './searchFormHome.module.css';
 
-const intitalDateRange = [
-  {
-    startDate: new Date(),
-    endDate: null,
-    key: 'selection',
-  },
-];
 const Search = ({ content }) => {
+  const intitalDateRange = [
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: 'selection',
+    },
+  ];
   const [showGuests, setShowGuests] = useState(false);
   const [guests, setGuests] = useState(null);
   const [calendar, setCalendar] = useState(false);
@@ -24,13 +26,55 @@ const Search = ({ content }) => {
   const [searchMatch, setSearchMatch] = useState(null);
   const [search, setSearch] = useState('');
   const [display, setDisplay] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [hotels, setHotels] = useHotelsContext();
   const input = useRef(null);
   const suggestionsContainer = useRef(null);
+  const router = useRouter();
+
+  let schema = yup.object().shape({
+    search: yup.string().required(),
+    guests: yup
+      .number()
+      .required('Must be greater than 0')
+      .positive()
+      .integer(),
+    dates: yup.date(),
+  });
 
   const handleSearch = (e) => {
     e.preventDefault();
+    console.log(typeof guests);
+    console.log(dateRage[0].endDate);
+    schema
+      .validate({
+        search: input.current.value,
+        guests: guests,
+        dates: dateRage[0].endDate,
+      })
+      .then(function (valid) {
+        valid; // => true
+        console.log(valid);
+      })
+      .catch(function (err) {
+        console.log(err);
+        return setErrors({ name: err.name, message: err.errors });
+      });
+
+    if (input.current.value > 1 || !dateRage[0].endDate || guests < 1) {
+      return console.log('Check unput fields');
+    }
+    const checkIn = dateFormat(`${dateRage[0].startDate}`, 'mm/dd/yyyy');
+    const checkOut = dateFormat(`${dateRage[0].endDate}`, 'mm/dd/yyyy');
+
+    console.log('Guests', guests);
+    console.log('Check in:', checkIn);
+    console.log('Check Out', checkOut);
+    console.log('searchMatch', searchMatch);
+
+    setHotels(searchMatch);
+    // router.replace('/hotels');
   };
 
   const closeModal = () => {
@@ -52,11 +96,7 @@ const Search = ({ content }) => {
     const text = input.current.value;
     let matches = hotels.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
-      return (
-        hotel.title.match(regex) ||
-        hotel.category.match(regex) ||
-        hotel.title.toLowerCase().includes(text.toLowerCase())
-      );
+      return hotel.title.match(regex) || hotel.category.match(regex);
     });
 
     if (matches.length > 0) {
@@ -64,6 +104,8 @@ const Search = ({ content }) => {
       setDisplay(true);
     }
   };
+
+  const handleGuests = () => {};
   const handleClickedSearch = (value) => {
     setSearch(value);
     setDisplay(!display);
@@ -82,8 +124,24 @@ const Search = ({ content }) => {
     };
   });
 
+  const getErrorField = (errors) => {
+    let errorField;
+
+    if (errors && errors.name) {
+      const name =
+        errors.message !== undefined && errors.message[0].split(' ')[0];
+      if (name === 'search')
+        errorField = { name: 'search', msg: 'This field must have a value' };
+      if (name === 'guests')
+        errorField = { name: 'guests', msg: 'Gueste must be greater than 0' };
+      if (name === 'dates')
+        errorField = { name: 'dates', msg: 'Invalid date(s).' };
+    }
+    return errorField;
+  };
+
   return (
-    <form className={styles.form} onSubmit={handleSearch}>
+    <form className={styles.form}>
       <div className={`${styles.inputContainer} ${styles.searchInput}`}>
         <label htmlFor='search' className={styles.label}>
           <MapPin className={styles.icon} />
@@ -101,6 +159,11 @@ const Search = ({ content }) => {
           onChange={handleSearchChange}
           ref={input}
         />
+        {getErrorField(errors)?.name &&
+          getErrorField(errors)?.name === 'search' && (
+            <span>{getErrorField(errors).msg}</span>
+          )}
+
         {display && searchMatch.length > 0 && (
           <div className={styles.suggestions} ref={suggestionsContainer}>
             {searchMatch.map((value, index) => {
@@ -128,6 +191,7 @@ const Search = ({ content }) => {
           </label>
 
           <input
+            name='dates'
             type='button'
             value={
               !dateRage[0].endDate
@@ -137,6 +201,10 @@ const Search = ({ content }) => {
             className={styles.inputButton}
             onClick={() => setCalendar(!calendar)}
           />
+          {getErrorField(errors)?.name &&
+            getErrorField(errors)?.name === 'dates' && (
+              <span>{getErrorField(errors).msg}</span>
+            )}
 
           {calendar && (
             <div className={styles.dateRange}>
@@ -166,18 +234,27 @@ const Search = ({ content }) => {
             Guests
           </label>
           <input
+            name='guests'
             type='button'
             value={guests >= 1 ? guests : 'Add guests'}
             className={styles.inputButton}
             onClick={() => setShowGuests(!showGuests)}
           />
+          {getErrorField(errors)?.name &&
+            getErrorField(errors).name === 'guests' && (
+              <span>{getErrorField(errors).msg}</span>
+            )}
 
           {showGuests && (
             <Guests setShowGuests={setShowGuests} setGuests={setGuests} />
           )}
         </div>
       </div>
-      <Button btnType='search' className={styles.searchBtn}>
+      <Button
+        btnType='search'
+        className={styles.searchBtn}
+        clickHandler={handleSearch}
+      >
         Search
       </Button>
     </form>
