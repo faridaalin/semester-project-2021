@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'react-feather';
 import styles from './guests.module.css';
 
-const Guests = ({ setShowGuests, setGuests }) => {
+const Guests = ({ setShowGuests, setGuests, wrapper }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
@@ -12,43 +12,39 @@ const Guests = ({ setShowGuests, setGuests }) => {
 
   const plusAdults = (e) => {
     e.preventDefault();
-    setAdults(adults + 1);
-    setGuests(adults + children);
+    setAdults(() => adults + 1);
   };
   const minusdults = (e) => {
     e.preventDefault();
     if (adults <= 1) {
       setAdults(1);
-      setGuests(adults + children);
     } else {
       setAdults(adults - 1);
-      setGuests(adults + children);
     }
+  };
+  const plusChildren = (e) => {
+    e.preventDefault();
+    setChildren(() => children + 1);
   };
   const minusChildren = (e) => {
     e.preventDefault();
     if (children <= 1) {
       setChildren(0);
-      setGuests(adults + children);
     } else {
-      setGuests(adults + children);
       setChildren(children - 1);
     }
   };
-  const plusChildren = (e) => {
-    e.preventDefault();
-    setChildren(children + 1);
+
+  useEffect(() => {
     setGuests(adults + children);
-  };
+  }, [children, adults]);
+  console.log(wrapper);
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} ref={wrapper}>
       <div className={styles.removeIcons}>
         <button className={styles.closeModel}>
           <X className={styles.icon} onClick={closeModal} />
-        </button>
-        <button onClick={closeModal} className={styles.clearButton}>
-          Clear
         </button>
       </div>
 

@@ -31,6 +31,9 @@ const Search = ({ content }) => {
   const [hotels, setHotels] = useHotelsContext();
   const input = useRef(null);
   const suggestionsContainer = useRef(null);
+  const calendarContainer = useRef(null);
+  const guestContainer = useRef(null);
+
   const router = useRouter();
 
   let schema = yup.object().shape({
@@ -97,9 +100,18 @@ const Search = ({ content }) => {
     setDisplay(!display);
   };
   const handleClickOutside = (e) => {
-    const { current } = suggestionsContainer;
-    if (current && !current.contains(e.target)) {
+    const suggestionWrapper = suggestionsContainer.current;
+    const calendarWrapper = calendarContainer.current;
+    const guestWrapper = guestContainer.current;
+
+    if (
+      (suggestionWrapper && !suggestionWrapper.contains(e.target)) ||
+      (calendarWrapper && !calendarWrapper.contains(e.target)) ||
+      (guestWrapper && !guestWrapper.contains(e.target))
+    ) {
       setDisplay(false);
+      setCalendar(false);
+      setShowGuests(false);
     }
   };
 
@@ -193,7 +205,7 @@ const Search = ({ content }) => {
             )}
 
           {calendar && (
-            <div className={styles.dateRange}>
+            <div className={styles.dateRange} ref={calendarContainer}>
               <div className={styles.removeIcons}>
                 <button className={styles.closeModel}>
                   <X className={styles.closeicon} onClick={closeModal} />
@@ -232,7 +244,11 @@ const Search = ({ content }) => {
             )}
 
           {showGuests && (
-            <Guests setShowGuests={setShowGuests} setGuests={setGuests} />
+            <Guests
+              setShowGuests={setShowGuests}
+              setGuests={setGuests}
+              wrapper={guestContainer}
+            />
           )}
         </div>
       </div>
