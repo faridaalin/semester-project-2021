@@ -4,7 +4,7 @@ import styles from './pagination.module.css';
 const Pagination = ({ pageCount, changePage }) => {
   return (
     <ReactPaginate
-      previousLabel='Previous'
+      previousLabel='Prev'
       nextLabel='Next'
       containerClassName={styles.paginationContainer}
       previousClassName={styles.prevBtn}

@@ -1,25 +1,41 @@
 .prevBtn {
+  border-radius: 8px;
+  margin-right: 32px;
 }
 .nextBtn {
+  border-radius: 8px;
+  margin-left: 32px;
 }
-.paginationDisabled {
-}
+
 .paginationContainer {
   margin: 2rem 0;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
 
 .paginationContainer a {
-  padding: 8px 24px;
-  border-radius: 5px;
+  font-family: var(--header-font);
+  padding: 8px 16px;
+  border-radius: 8px;
   border: 1px solid rgba(31, 41, 55, 1);
   color: rgba(31, 41, 55, 1);
   cursor: pointer;
 }
 
-.paginationActive a,
-.paginationContainer a:hover {
-  color: white;
+.paginationActive a {
+  color: var(--white-100);
   background-color: rgba(31, 41, 55, 1);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.paginationActive a {
+  background-color: rgba(31, 41, 55, 1);
+}
+
+.paginationContainer a:hover {
+  color: var(--white-100);
+  background-color: rgba(31, 41, 55, 0.87);
 }
