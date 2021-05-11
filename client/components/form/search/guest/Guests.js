@@ -38,7 +38,6 @@ const Guests = ({ setShowGuests, setGuests, wrapper }) => {
   useEffect(() => {
     setGuests(adults + children);
   }, [children, adults]);
-  console.log(wrapper);
 
   return (
     <section className={styles.container} ref={wrapper}>

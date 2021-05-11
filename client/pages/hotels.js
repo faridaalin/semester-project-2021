@@ -11,7 +11,7 @@ import { useHotelsContext } from '../context/HotelsContext';
 export default function Hotels(props) {
   const [pageNumber, setPageNumber] = useState(0);
   const [hotels, setHotels] = useHotelsContext();
-  const data = hotels.length > 0 ? hotels : props.data.data;
+  const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
 
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
@@ -28,15 +28,15 @@ export default function Hotels(props) {
     return hotelsToDisplay;
   };
 
-  console.log('data', data);
   const pageCount = Math.ceil(data.length / hotelsPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+  console.log('hotels', hotels);
 
   return (
     <Layout>
-      <HeroHeaderHotels />
+      <HeroHeaderHotels content={props.data.data} />
       <section className='section'>
         <PageHeader title='Hotels' />
         <>

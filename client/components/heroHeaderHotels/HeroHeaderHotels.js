@@ -1,11 +1,12 @@
-import SearchBar from '../form/searchBar/SearchBar';
+// import SearchBar from '../form/searchBar/SearchBar';
+import SearchBar from '../form/search/SearchFormHome';
 import styles from './heroHeaderHotels.module.css';
 
-const HeroHeaderHotels = () => {
+const HeroHeaderHotels = ({ content }) => {
   return (
     <section className={styles.searchHero}>
       <div className={styles.searchContainer}>
-        <SearchBar />
+        <SearchBar content={content} />
       </div>
     </section>
   );

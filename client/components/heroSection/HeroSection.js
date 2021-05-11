@@ -70,7 +70,7 @@ const HeroSection = ({ hotels }) => {
 
         <p className={styles.paragraph}>{`${showBackgroundImage().text}`}</p>
 
-        <SearchFormHome content={hotels} />
+        <SearchFormHome content={data} />
       </div>
     </section>
   );

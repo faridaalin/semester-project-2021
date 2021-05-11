@@ -33,11 +33,12 @@ const Search = ({ content }) => {
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
   const guestContainer = useRef(null);
+  const formRef = useRef(null);
 
   const router = useRouter();
 
   let schema = yup.object().shape({
-    search: yup.string().required(),
+    search: yup.string().optional(),
     guests: yup
       .number()
       .required('Must be greater than 0')
@@ -49,7 +50,7 @@ const Search = ({ content }) => {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (search < 1 || !dateRage[0].endDate || guests < 1) {
+    if (!dateRage[0].endDate || guests < 1) {
       schema
         .validate({
           search: search,
@@ -61,9 +62,12 @@ const Search = ({ content }) => {
         });
       return;
     }
-
-    setHotels(searchMatch);
-    router.replace('/hotels');
+    if (search === '') {
+      setSearchMatch(content);
+    } else {
+      setHotels(searchMatch);
+    }
+    if (router.pathname !== '/hotels') router.replace('/hotels');
   };
 
   const closeModal = () => {
@@ -77,7 +81,7 @@ const Search = ({ content }) => {
     )}`;
   };
   useEffect(() => {
-    setHotels(content.data);
+    setHotels(content);
   }, []);
 
   const handleSearchChange = () => {
@@ -90,6 +94,9 @@ const Search = ({ content }) => {
 
     if (matches.length > 0) {
       setSearchMatch(matches);
+      setDisplay(true);
+    } else {
+      setSearchMatch(hotels);
       setDisplay(true);
     }
   };
@@ -139,7 +146,7 @@ const Search = ({ content }) => {
   };
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} ref={formRef}>
       <div className={`${styles.inputContainer} ${styles.searchInput}`}>
         <label htmlFor='search' className={styles.label}>
           <MapPin className={styles.icon} />
@@ -207,9 +214,9 @@ const Search = ({ content }) => {
           {calendar && (
             <div className={styles.dateRange} ref={calendarContainer}>
               <div className={styles.removeIcons}>
-                <button className={styles.closeModel}>
+                <div className={styles.closeModel}>
                   <X className={styles.closeicon} onClick={closeModal} />
-                </button>
+                </div>
                 <button
                   onClick={() => setDateRange(intitalDateRange)}
                   className={styles.clearButton}
