@@ -3,10 +3,11 @@ import useWindowWidth from '../../hooks/useWindowSize';
 import SearchFormHome from '../form/search/SearchFormHome';
 import styles from './heroSection.module.css';
 
-const HeroSection = () => {
+const HeroSection = ({ hotels }) => {
   const breakpoint = 768;
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad, setWidthOnLoad] = useState(null);
+  const { data } = hotels;
 
   useEffect(() => {
     const handlePageLoad = () => {
@@ -69,7 +70,7 @@ const HeroSection = () => {
 
         <p className={styles.paragraph}>{`${showBackgroundImage().text}`}</p>
 
-        <SearchFormHome />
+        <SearchFormHome content={hotels} />
       </div>
     </section>
   );

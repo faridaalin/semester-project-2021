@@ -16,6 +16,7 @@ export const HotelProvider = ({ children }) => {
     }
   };
 
+
   return (
     <HotelsContext.Provider value={[hotels, setHotels, getHotels]}>
       {children}

@@ -1,0 +1,19 @@
+{
+  "images": [
+    {
+      "imageurl": "/boutiqueHotel.png",
+      "type": "Boutique Hotel",
+      "slug": "boutique-hotel"
+    },
+    {
+      "imageurl": "/BB.png",
+      "type": "Bed and Breakfast",
+      "slug": "bed-and-breakfast"
+    },
+    {
+      "imageurl": "/apartment.png",
+      "type": "Apartment Hotel",
+      "slug": "apartment-hotel"
+    }
+  ]
+}

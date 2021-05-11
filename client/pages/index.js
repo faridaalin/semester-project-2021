@@ -6,26 +6,10 @@ import AttractionsCard from '../components/card/AttractionsCard';
 import CardContainer from '../components/cardContainer/CardContainer';
 import HeroSection from '../components/heroSection/HeroSection';
 
+import data from '../data/imgCategory.json';
+
 export default function Home(props) {
   const { hotels, attractions } = props;
-
-  const images = [
-    {
-      imageurl: '/boutiqueHotel.png',
-      type: 'Boutique Hotel',
-      slug: 'boutique-hotel',
-    },
-    {
-      imageurl: '/BB.png',
-      type: 'Bed and Breakfast',
-      slug: 'bed-and-breakfast',
-    },
-    {
-      imageurl: '/apartment.png',
-      type: 'Apartment Hotel',
-      slug: 'apartment-hotel',
-    },
-  ];
 
   if (!hotels.data || hotels.data.length === 0) {
     return (
@@ -36,7 +20,7 @@ export default function Home(props) {
   }
   return (
     <Layout>
-      <HeroSection />
+      <HeroSection hotels={hotels} />
       <section className='section'>
         <SectionHeading>Customer Favourites</SectionHeading>
         <CardContainer>
@@ -49,7 +33,7 @@ export default function Home(props) {
       <section className='section'>
         <SectionHeading>Choose your style</SectionHeading>
         <CardContainer>
-          {images.map((style) => (
+          {data.images.map((style) => (
             <Card key={style.type} hotelStyle={style} />
           ))}
         </CardContainer>
