@@ -45,36 +45,22 @@ const Search = ({ content }) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(typeof guests);
-    console.log(dateRage[0].endDate);
-    schema
-      .validate({
-        search: input.current.value,
-        guests: guests,
-        dates: dateRage[0].endDate,
-      })
-      .then(function (valid) {
-        valid; // => true
-        console.log(valid);
-      })
-      .catch(function (err) {
-        console.log(err);
-        return setErrors({ name: err.name, message: err.errors });
-      });
 
-    if (input.current.value > 1 || !dateRage[0].endDate || guests < 1) {
-      return console.log('Check unput fields');
+    if (search < 1 || !dateRage[0].endDate || guests < 1) {
+      schema
+        .validate({
+          search: search,
+          guests: guests,
+          dates: dateRage[0].endDate,
+        })
+        .catch(function (err) {
+          setErrors({ name: err.name, message: err.errors });
+        });
+      return;
     }
-    const checkIn = dateFormat(`${dateRage[0].startDate}`, 'mm/dd/yyyy');
-    const checkOut = dateFormat(`${dateRage[0].endDate}`, 'mm/dd/yyyy');
-
-    console.log('Guests', guests);
-    console.log('Check in:', checkIn);
-    console.log('Check Out', checkOut);
-    console.log('searchMatch', searchMatch);
 
     setHotels(searchMatch);
-    // router.replace('/hotels');
+    router.replace('/hotels');
   };
 
   const closeModal = () => {
@@ -92,9 +78,9 @@ const Search = ({ content }) => {
   }, []);
 
   const handleSearchChange = () => {
-    setSearch(input.current.value);
+    setSearch(input.current.value.trim());
     const text = input.current.value;
-    let matches = hotels.filter((hotel) => {
+    let matches = hotels?.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
       return hotel.title.match(regex) || hotel.category.match(regex);
     });
