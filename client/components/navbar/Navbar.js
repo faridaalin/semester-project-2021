@@ -38,7 +38,6 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = async () => {
-    console.log('User is logged out');
     try {
       await axios.get('/users/logout');
       removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });

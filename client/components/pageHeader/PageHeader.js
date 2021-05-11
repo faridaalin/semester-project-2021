@@ -8,7 +8,7 @@ const PageHeader = ({ title }) => {
 
   return (
     <h1 className={styles.title}>
-      <BreadCrumps />
+      <BreadCrumps pathname={path} />
       {title}
     </h1>
   );

@@ -11,6 +11,11 @@
   line-height: 24px;
   color: var(--blue-300);
 }
+.linkActive {
+  composes: link;
+  color: var(--blue-400) !important;
+  font-weight: var(--fontWeight-m);
+}
 
 .icon {
   width: 16px;

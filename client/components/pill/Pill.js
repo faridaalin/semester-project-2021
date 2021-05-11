@@ -59,17 +59,6 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
       router.push('/product');
     }
   };
-  // const handleLogout = async () => {
-  //   console.log('User is logged out');
-  //   try {
-  //     const logOut = await axios.get('/users/logout');
-  //     removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
-  //     localStorage.removeItem('userToken');
-  //     router.push('/');
-  //   } catch (err) {
-  //     console.log('Log put ERROR', err);
-  //   }
-  // };
 
   if (select < 2) {
     return <button className={`${styles.primaryButton}`}>{name}</button>;

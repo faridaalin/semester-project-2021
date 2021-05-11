@@ -3,12 +3,13 @@ import { ChevronRight } from 'react-feather';
 
 import styles from './breadCrumps.module.css';
 
-const BreadCrumps = () => {
-  const lastPath = () => {
+const BreadCrumps = ({ pathname }) => {
+  const lastPath = (path) => {
     let modifiedPath;
 
     if (path.includes('/')) {
       modifiedPath = path.replace('/', '');
+      console.log('mod', modifiedPath.slice(' '));
       const pathToUpperCase =
         modifiedPath.charAt(0).toUpperCase() + modifiedPath.slice(1);
       return (modifiedPath = pathToUpperCase);
@@ -16,15 +17,16 @@ const BreadCrumps = () => {
 
     return modifiedPath;
   };
-
+  console.log('pathname', lastPath(pathname));
   return (
     <div className={styles.linkContainer}>
       <Link href='/'>
         <a className={styles.link}>Home</a>
       </Link>
       <Link href='/'>
-        <a className={styles.active}>
+        <a className={`${styles.active} ${styles.linkActive}`}>
           <ChevronRight className={styles.icon} />
+          {lastPath(pathname)}
         </a>
       </Link>
     </div>
