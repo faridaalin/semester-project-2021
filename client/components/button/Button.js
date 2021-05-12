@@ -11,6 +11,7 @@ const Button = ({
   clickHandler,
   customBtnClass,
   submit,
+  isDisabled,
 }) => {
   const getColor = () => {
     if (color === 'orange') {
@@ -43,6 +44,7 @@ const Button = ({
       <input
         type='submit'
         value='Login'
+        disabled={isDisabled}
         onClick={clickHandler}
         className={`${
           styles.button

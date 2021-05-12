@@ -76,121 +76,132 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           validationSchema={enquirySchema}
           onSubmit={onSubmit}
         >
-          <Form className={styles.form}>
-            <div className={styles.innerForm}>
-              <div>
-                <p className={styles.infoSection}>Hotel Details</p>
-                <div className={styles.column}>
-                  <DefaultInput
-                    type='text'
-                    name='hotel_name'
-                    placeholder='Hotel name'
-                    label='Hotel'
-                    value={hotel.title}
-                    icon='pin'
-                    readonly={true}
-                  />
-                  <div className={styles.row}>
-                    <DateWrapper
-                      name='check_in'
-                      label='Check In'
-                      selectedDate={startDate}
-                      setDateFunc={setStartDate}
-                      icon='dates'
-                      placeholder='Add date'
-                    />
-                    <DateWrapper
-                      name='check_out'
-                      label='Check Out'
-                      selectedDate={endDate}
-                      setDateFunc={setEndDate}
-                      icon='dates'
-                      placeholder='Add date'
-                    />
-                  </div>
-                </div>
-                <div className={styles.column}>
-                  <Select
-                    name='room_type'
-                    options={hotel.rooms}
-                    label='Room Type'
-                    icon='night'
-                    handleChange={handleChange}
-                  />
+          {(formik) => {
+            return (
+              <Form className={styles.form}>
+                <div className={styles.innerForm}>
+                  <div>
+                    <p className={styles.infoSection}>Hotel Details</p>
+                    <div className={styles.column}>
+                      <DefaultInput
+                        type='text'
+                        name='hotel_name'
+                        placeholder='Hotel name'
+                        label='Hotel'
+                        value={hotel.title}
+                        icon='pin'
+                        readonly={true}
+                      />
+                      <div className={styles.row}>
+                        <DateWrapper
+                          name='check_in'
+                          label='Check In'
+                          selectedDate={startDate}
+                          setDateFunc={setStartDate}
+                          icon='dates'
+                          placeholder='Add date'
+                        />
+                        <DateWrapper
+                          name='check_out'
+                          label='Check Out'
+                          selectedDate={endDate}
+                          setDateFunc={setEndDate}
+                          icon='dates'
+                          placeholder='Add date'
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.column}>
+                      <Select
+                        name='room_type'
+                        options={hotel.rooms}
+                        label='Room Type'
+                        icon='night'
+                        handleChange={handleChange}
+                      />
 
-                  <div className={styles.row}>
-                    <DefaultInput
-                      type='number'
-                      name='adults'
-                      value={adults}
-                      label='Adults'
-                      icon='users'
-                      handleChange={handleChange}
-                      placeholder='Adults'
-                      min='1'
-                      max='100'
-                    />
-                    <DefaultInput
-                      type='number'
-                      name='children'
-                      value={children}
-                      label='Children'
-                      icon='users'
-                      handleChange={handleChange}
-                      placeholder='Children'
-                      min='0'
-                      max='100'
-                    />
+                      <div className={styles.row}>
+                        <DefaultInput
+                          type='number'
+                          name='adults'
+                          value={adults}
+                          label='Adults'
+                          icon='users'
+                          handleChange={handleChange}
+                          placeholder='Adults'
+                          min='1'
+                          max='100'
+                        />
+                        <DefaultInput
+                          type='number'
+                          name='children'
+                          value={children}
+                          label='Children'
+                          icon='users'
+                          handleChange={handleChange}
+                          placeholder='Children'
+                          min='0'
+                          max='100'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className={styles.infoSection}>Personal Information</p>
+                    <div className={styles.column}>
+                      <DefaultInput
+                        type='text'
+                        name='firstname'
+                        placeholder='First name'
+                        label='First name'
+                        handleChange={handleChange}
+                      />
+                      <DefaultInput
+                        type='text'
+                        name='lastname'
+                        placeholder='Last name'
+                        label='Last name'
+                        handleChange={handleChange}
+                      />
+                    </div>
+                    <div className={styles.column}>
+                      <DefaultInput
+                        type='email'
+                        name='email'
+                        placeholder='Email'
+                        label='Email'
+                        handleChange={handleChange}
+                      />
+                      <DefaultInput
+                        type='text'
+                        name='special_requests'
+                        placeholder='Any requests here..'
+                        label='Special Requests'
+                        handleChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.total}>
+                    <span>Total</span>
+                    <div className={styles.priceWrapper}>
+                      <span className={styles.price}>4 239 NOK</span>
+                      <span className={styles.night}>x nights</span>
+                    </div>
+                  </div>
+                  <div className={styles.buttonContainer}>
+                    <Button
+                      btnType='search'
+                      submit
+                      isDisabled={!(formik.dirty && formik.isValid)}
+                    >
+                      Reserve
+                      {isLoading ? 'Sending..' : 'Reserve'}
+                    </Button>
                   </div>
                 </div>
-              </div>
-              <div>
-                <p className={styles.infoSection}>Personal Information</p>
-                <div className={styles.column}>
-                  <DefaultInput
-                    type='text'
-                    name='firstname'
-                    placeholder='First name'
-                    label='First name'
-                    handleChange={handleChange}
-                  />
-                  <DefaultInput
-                    type='text'
-                    name='lastname'
-                    placeholder='Last name'
-                    label='Last name'
-                    handleChange={handleChange}
-                  />
-                </div>
-                <div className={styles.column}>
-                  <DefaultInput
-                    type='email'
-                    name='email'
-                    placeholder='Email'
-                    label='Email'
-                    handleChange={handleChange}
-                  />
-                  <DefaultInput
-                    type='text'
-                    name='special_requests'
-                    placeholder='Any requests here..'
-                    label='Special Requests'
-                    handleChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className={styles.total}>
-                <span>Total</span>
-                <div className={styles.priceWrapper}>
-                  <span className={styles.price}>4 239 NOK</span>
-                  <span className={styles.night}>x nights</span>
-                </div>
-              </div>
-              <div className={styles.buttonContainer}>
-                <Button btnType='search'>Reserve</Button>
-              </div>
-            </div>
-          </Form>
+              </Form>
+            );
+          }}
         </Formik>
       </PureModal>
     </>
