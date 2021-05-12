@@ -1,20 +1,48 @@
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'react-feather';
-import PureModal from 'react-pure-modal';
 import dateFormat from 'dateformat';
-import { DefaultInput, InputCalendar } from '../input/Input';
+import PureModal from 'react-pure-modal';
+import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import Select from '../select/Select';
 import DateWrapper from '../date/Date';
 import styles from './reservationForm.module.css';
 
 const ReservationForm = ({ modal, setModal, hotel }) => {
-  // console.log('hotel', hotel);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [adults, setAdults] = useState(null);
+  const [children, setChildren] = useState(null);
+  const [total, setTotal] = useState(undefined);
+  const [personalInfo, setPersonalInfo] = useState({});
+  const [hotelInfo, setHotelInfo] = useState({});
+  const [formData, setFormData] = useState({});
 
-  
+  const handleNumChildren = (e) => {
+    setChildren(e.target.value);
+  };
+
+  const handleNumAdults = (e) => {
+    setAdults(e.target.value);
+  };
+  const handleChange = (e) => {
+    setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  useEffect(() => {
+    setFormData({
+      ...personalInfo,
+      hotel_name: hotel.title,
+      check_in: dateFormat(`${startDate}`, 'mm/dd/yyyy'),
+      check_out: dateFormat(`${endDate}`, 'mm/dd/yyyy'),
+    });
+  }, [personalInfo, startDate, endDate, hotel.title]);
+
+  console.log('personalInfo', personalInfo);
+  console.log('formData', formData);
+
   return (
     <>
       <PureModal
@@ -25,22 +53,23 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
         }
         isOpen={modal}
       >
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.innerForm}>
             <div>
               <p className={styles.infoSection}>Hotel Details</p>
               <div className={styles.column}>
                 <DefaultInput
                   type='text'
-                  name='hotelName'
+                  name='hotel_name'
                   placeholder='Hotel name'
                   label='Hotel'
                   value={hotel.title}
                   icon='pin'
+                  readonly={true}
                 />
                 <div className={styles.row}>
                   <DateWrapper
-                    name='checkin'
+                    name='check_in'
                     label='Check In'
                     selectedDate={startDate}
                     setDateFunc={setStartDate}
@@ -48,7 +77,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                     placeholder='Add date'
                   />
                   <DateWrapper
-                    name='checkout'
+                    name='check_out'
                     label='Check Out'
                     selectedDate={endDate}
                     setDateFunc={setEndDate}
@@ -59,26 +88,35 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
               </div>
               <div className={styles.column}>
                 <Select
-                  name='rooms'
+                  name='room_type'
                   options={hotel.rooms}
                   label='Room Type'
                   icon='night'
+                  handleChange={handleChange}
                 />
 
                 <div className={styles.row}>
-                  <InputCalendar
-                    type='button'
-                    name='date'
-                    value='Add date'
+                  <DefaultInput
+                    type='number'
+                    name='adults'
+                    value={adults}
                     label='Adults'
                     icon='users'
+                    handleChange={handleChange}
+                    placeholder='Adults'
+                    min='1'
+                    max='100'
                   />
-                  <InputCalendar
-                    type='button'
-                    name='date'
-                    value='Add date'
+                  <DefaultInput
+                    type='number'
+                    name='children'
+                    value={children}
                     label='Children'
                     icon='users'
+                    handleChange={handleChange}
+                    placeholder='Children'
+                    min='0'
+                    max='100'
                   />
                 </div>
               </div>
@@ -88,15 +126,17 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
               <div className={styles.column}>
                 <DefaultInput
                   type='text'
-                  name='firstName'
+                  name='firstname'
                   placeholder='First name'
                   label='First name'
+                  handleChange={handleChange}
                 />
                 <DefaultInput
                   type='text'
                   name='lastname'
                   placeholder='Last name'
                   label='Last name'
+                  handleChange={handleChange}
                 />
               </div>
               <div className={styles.column}>
@@ -105,13 +145,22 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   name='email'
                   placeholder='Email'
                   label='Email'
+                  handleChange={handleChange}
                 />
                 <DefaultInput
                   type='text'
-                  name='request'
+                  name='special_requests'
                   placeholder='Any requests here..'
                   label='Special Requests'
+                  handleChange={handleChange}
                 />
+              </div>
+            </div>
+            <div className={styles.total}>
+              <span>Total</span>
+              <div className={styles.priceWrapper}>
+                <span className={styles.price}>4 239 NOK</span>
+                <span className={styles.night}>x nights</span>
               </div>
             </div>
             <div className={styles.buttonContainer}>

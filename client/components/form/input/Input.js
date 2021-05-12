@@ -25,6 +25,31 @@ export const getIcon = (icon) => {
       return '';
   }
 };
+
+export const InputNumber = ({
+  name,
+  label,
+  icon,
+  value,
+  placeholder,
+  handleChandler,
+}) => {
+  return (
+    <div className={`${styles.inputContainer} `}>
+      <label htmlFor={name} className={styles.label}>
+        {getIcon(icon)}
+        {label}
+      </label>
+      <input
+        type='number'
+        id={name}
+        onChange={handleChandler}
+        value={value || undefined}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};
 const DefaultInput = ({
   type,
   name,
@@ -36,6 +61,8 @@ const DefaultInput = ({
   value,
   handleChange,
   handleBlur,
+  min,
+  max,
 }) => {
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
@@ -47,11 +74,14 @@ const DefaultInput = ({
         type={type}
         name={name}
         id={label}
-        value={value ? value : ''}
+        value={value || undefined}
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder={placeholder}
         className={`${styles.input} ${customClass} `}
+        readonly
+        min={min}
+        max={max}
       />
     </div>
   );

@@ -111,12 +111,17 @@ h3 {
 .pure-modal .panel-title {
   background: #f8f8f8;
 }
+
+.pure-modal-backdrop .pure-modal {
+  width: inherit;
+}
+
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;
   }
   .pure-modal-backdrop .pure-modal {
-    width: 600px;
+    min-width: 600px;
   }
 }
 

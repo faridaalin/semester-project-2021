@@ -2,7 +2,14 @@ import { ChevronDown } from 'react-feather';
 import { getIcon } from '../input/Input';
 import styles from '../input/input.module.css';
 
-const Select = ({ name, options, label, icon, customContainer }) => {
+const Select = ({
+  name,
+  options,
+  label,
+  icon,
+  customContainer,
+  handleChange,
+}) => {
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
@@ -12,10 +19,15 @@ const Select = ({ name, options, label, icon, customContainer }) => {
       <select
         id={name}
         name={name}
+        onChange={handleChange}
         className={`${styles.input} ${styles.select}`}
       >
         {options.map((room, i) => {
-          return <option value={room.room_type}>{room.room_type}</option>;
+          return (
+            <option value={room.price}>
+              {room.room_type} {room.price} NOK
+            </option>
+          );
         })}
       </select>
     </div>
