@@ -7,22 +7,13 @@ import { getIcon } from '../input/Input';
 import styles from '../input/input.module.css';
 
 const DateWrapper = (props) => {
-  const {
-    label,
-    selectedDate,
-    setDateFunc,
-    icon,
-    name,
-    placeholder,
-    handleChange,
-    onChange,
-  } = props;
+  const { label, selectedDate, setDateFunc, icon, name, placeholder } = props;
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
   const handleDateSelection = (date) => {
     setDateFunc(new Date(date));
   };
-  console.log('FIELD', field.name, field.value);
+
   return (
     <div className={`${styles.inputContainer} `}>
       <label htmlFor={name} className={styles.label}>

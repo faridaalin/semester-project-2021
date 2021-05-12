@@ -53,7 +53,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     hotel_name: hotel.title,
     check_in: '',
     check_out: '',
-    room_type: '',
+    room_type: hotel.rooms[0].room_type,
     adults: '',
     children: '',
     price: '',
@@ -78,9 +78,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            // console.log('FORMIK:', formik);
             console.log('FORMIK:', formik.values);
-            // console.log('HOTEM NAME', hotel.title);
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -104,13 +102,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           setDateFunc={setStartDate}
                           icon='dates'
                           placeholder='Add date'
-                          onChange={(value) =>
-                            formik.setFieldValue(
-                              'check_in',
-                              dateFormat(`${value.value}`, 'mm/dd/yyyy')
-                            )
-                          }
-                          handleChange={formik.handleChange}
                         />
                         <DateWrapper
                           name='check_out'
@@ -119,10 +110,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           setDateFunc={setEndDate}
                           icon='dates'
                           placeholder='Add date'
-                          onChange={(value) =>
-                            formik.setFieldValue(console.log(value))
-                          }
-                          handleChange={formik.handleChange}
                         />
                       </div>
                     </div>
@@ -200,7 +187,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   <div className={styles.total}>
                     <span>Total</span>
                     <div className={styles.priceWrapper}>
-                      <span className={styles.price}>4 239 NOK</span>
+                      <input className={styles.price}>4 239 NOK</input>
                       <span className={styles.night}>x nights</span>
                     </div>
                   </div>
