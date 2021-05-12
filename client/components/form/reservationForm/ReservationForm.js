@@ -8,20 +8,22 @@ import Button from '../../button/Button';
 import SelectField from '../select/Select';
 import DateWrapper from '../date/Date';
 import DatePicker from 'react-datepicker';
-
+import calcNights from '../../../helpers/calcNight';
 import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
 import styles from './reservationForm.module.css';
 
 const ReservationForm = ({ modal, setModal, hotel }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [adults, setAdults] = useState(null);
   const [children, setChildren] = useState(null);
-  const [total, setTotal] = useState(undefined);
+  const [total, setTotal] = useState(null);
   const [personalInfo, setPersonalInfo] = useState({});
   const [hotelInfo, setHotelInfo] = useState({});
   const [formData, setFormData] = useState({});
+  const [nights, setNights] = useState(0);
+  const [roomType, setRoomType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleNumChildren = (e) => {
@@ -45,9 +47,12 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
       check_in: dateFormat(`${startDate}`, 'mm/dd/yyyy'),
       check_out: dateFormat(`${endDate}`, 'mm/dd/yyyy'),
     });
+    setNights(calcNights(startDate, endDate));
+    // setTotal(nights > 0 night * );
   }, [personalInfo, startDate, endDate, hotel.title]);
 
-  // console.log('formData', formData);
+  console.log('formData', formData);
+  console.log('nights', nights);
 
   const initialFormData = {
     hotel_name: hotel.title,
@@ -56,7 +61,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     room_type: hotel.rooms[0].room_type,
     adults: '',
     children: '',
-    price: '',
+    price: total,
     firstname: '',
     lastname: '',
     email: '',
@@ -78,7 +83,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('FORMIK:', formik.values);
+            // console.log('FORMIK:', formik.values);
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -187,8 +192,8 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   <div className={styles.total}>
                     <span>Total</span>
                     <div className={styles.priceWrapper}>
-                      <input className={styles.price}>4 239 NOK</input>
-                      <span className={styles.night}>x nights</span>
+                      <span className={styles.price}>{total} NOK</span>
+                      <span className={styles.night}>{nights} nights</span>
                     </div>
                   </div>
                   <div className={styles.buttonContainer}>
@@ -211,3 +216,13 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
 };
 
 export default ReservationForm;
+
+const calcPrice = (roomList, room, nights, adults, children) => {
+  const roomType = roomList.find((roomType) => roomType.room_type === room);
+  const guest = adults + children;
+  const numRooms = Math.ceil(guest * roomType.sleeps);
+  const pricePerRoom = numRooms * roomType.price;
+  const TotalPrice = pricePerRoom * nights;
+
+  return TotalPrice;
+};

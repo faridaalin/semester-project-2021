@@ -23,6 +23,7 @@ const DateWrapper = (props) => {
       <DatePicker
         {...field}
         onChange={(val) => {
+          setDateFunc(new Date(val));
           setFieldValue(field.name, val);
         }}
         selected={(field.value && new Date(field.value)) || null}
