@@ -24,7 +24,7 @@
   color: var(--blue-400);
   background-color: var(--white-100);
   font-size: 14px;
-  font-size: max(16px, 1em);
+  font-size: max(14px, 0.3em);
   padding: 10px 16px;
   border: 1px solid var(--grey-200);
   border-radius: 6px;

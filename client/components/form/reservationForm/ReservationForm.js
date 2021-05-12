@@ -1,13 +1,20 @@
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { X } from 'react-feather';
 import PureModal from 'react-pure-modal';
+import dateFormat from 'dateformat';
 import { DefaultInput, InputCalendar } from '../input/Input';
 import Button from '../../button/Button';
 import Select from '../select/Select';
+import DateWrapper from '../date/Date';
 import styles from './reservationForm.module.css';
 
 const ReservationForm = ({ modal, setModal, hotel }) => {
-  console.log('hotel', hotel);
+  // console.log('hotel', hotel);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  
   return (
     <>
       <PureModal
@@ -32,19 +39,21 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   icon='pin'
                 />
                 <div className={styles.row}>
-                  <InputCalendar
-                    type='button'
-                    name='date'
-                    value='Add date'
-                    label='Check in'
+                  <DateWrapper
+                    name='checkin'
+                    label='Check In'
+                    selectedDate={startDate}
+                    setDateFunc={setStartDate}
                     icon='dates'
+                    placeholder='Add date'
                   />
-                  <InputCalendar
-                    type='button'
-                    name='date'
-                    value='Add date'
-                    label='Check in'
+                  <DateWrapper
+                    name='checkout'
+                    label='Check Out'
+                    selectedDate={endDate}
+                    setDateFunc={setEndDate}
                     icon='dates'
+                    placeholder='Add date'
                   />
                 </div>
               </div>
