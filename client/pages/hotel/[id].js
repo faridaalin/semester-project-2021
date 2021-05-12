@@ -18,9 +18,9 @@ import styles from './hotelDetail.module.css';
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [modal, setModal] = useState(false);
+  const handleClose = () => setModal(false);
+  const handleShow = () => setModal(true);
   const innerWidth = () => {
     const isBrowser = typeof window !== 'undefined' ? window.innerWidth : null;
     return isBrowser;
@@ -99,7 +99,7 @@ const HotelDetail = (props) => {
               <Tv className={styles.includesIcon} /> TV
             </div>
           </div>
-          {show && <ReservationForm show={show} setShow={setShow} />}
+          {modal && <ReservationForm modal={modal} setModal={setModal} />}
           <Button btnType='search' clickHandler={handleShow}>
             Reserve
           </Button>

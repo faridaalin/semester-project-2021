@@ -99,33 +99,20 @@ h3 {
   color: rgba(248, 248, 248, 0.72) !important;
   text-shadow: 0 1px 0 black !important;
 }
-.hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
-  height: auto !important;
-  width: auto !important;
-  min-width: 280px !important;
-  padding: 32px 16px;
+.pure-modal .close {
+  display: none;
 }
-
-.hyperCloseIcon___14vht {
-  width: 50% !important;
-  height: 50% !important;
-  margin-left: auto !important;
-}
-.hyperCloseIconWrapper___ujoQX {
-  height: 24px;
-  width: 24px;
-}
-
-.hyperModalWrapper___2sZCR .hyperModalContentWrapper___1o7Ug {
-  top: 200px;
-}
-
-.hyperDimmerWrapper___3pEXB {
-  background-color: rgb(53 54 73 / 65%) !important;
+.pure-modal .panel-body,
+.pure-modal .panel-footer,
+.pure-modal .panel-title {
+  text-align: end;
 }
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;
+  }
+  .pure-modal-backdrop .pure-modal {
+    width: 600px;
   }
 }
 

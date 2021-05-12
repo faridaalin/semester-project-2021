@@ -10,7 +10,7 @@
 }
 
 .hamburgerButton {
-  z-index: 20001;
+  z-index: 300;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -47,7 +47,7 @@
   color: var(--orange-400);
   font-weight: var(--fontWeight-sm);
   font-size: 18px;
-  z-index: 20001;
+  z-index: 300;
   margin-left: auto;
 }
 
@@ -58,7 +58,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 20000;
+  z-index: 200;
   width: 100vw;
   height: 100vh;
   transition: transform 0.3s ease;

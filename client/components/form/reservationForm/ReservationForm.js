@@ -1,15 +1,16 @@
-import HyperModal from 'react-hyper-modal';
+import { useState } from 'react';
+import { X } from 'react-feather';
+import PureModal from 'react-pure-modal';
 import { DefaultInput, InputCalendar } from '../input/Input';
-// import 'react-date-range/dist/styles.css'; // main style file
-// import 'react-date-range/dist/theme/default.css'; // theme css file
-
 import styles from './reservationForm.module.css';
 
-const ReservationForm = ({ show, setShow }) => {
-  const handleClose = () => setShow(false);
+const ReservationForm = ({ modal, setModal }) => {
   return (
     <>
-      <HyperModal isOpen={show} requestClose={handleClose}>
+      <PureModal
+        header={<span onClick={() => setModal(false)}>X</span>}
+        isOpen={modal}
+      >
         <form className={styles.form}>
           <div className={styles.innerForm}>
             <div>
@@ -98,7 +99,7 @@ const ReservationForm = ({ show, setShow }) => {
             </div>
           </div>
         </form>
-      </HyperModal>
+      </PureModal>
     </>
   );
 };

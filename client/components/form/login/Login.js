@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { useCookies } from 'react-cookie';
-import HyperModal from 'react-hyper-modal';
 import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
@@ -81,42 +80,40 @@ const Login = ({ show, setShow }) => {
   });
 
   return (
-    <HyperModal isOpen={show} requestClose={handleClose}>
-      <form className={styles.form} onSubmit={formik.handleSubmit}>
-        {formik.errors && <ErrorMessage>{formik.errors.error}</ErrorMessage>}
+    <form className={styles.form} onSubmit={formik.handleSubmit}>
+      {formik.errors && <ErrorMessage>{formik.errors.error}</ErrorMessage>}
 
-        <DefaultInput
-          type='email'
-          name='email'
-          placeholder='email@email.com'
-          label='Email'
-          value={formik.values.email}
-          handleChange={formik.handleChange}
-          handleBlur={formik.handleBlur}
-        />
-        {formik.errors.email && formik.touched.email && (
-          <ErrorMessage>{formik.errors.email}</ErrorMessage>
-        )}
-        <DefaultInput
-          type='password'
-          name='password'
-          placeholder='Password'
-          label='Password'
-          value={formik.values.password}
-          handleChange={formik.handleChange}
-          handleBlur={formik.handleBlur}
-        />
+      <DefaultInput
+        type='email'
+        name='email'
+        placeholder='email@email.com'
+        label='Email'
+        value={formik.values.email}
+        handleChange={formik.handleChange}
+        handleBlur={formik.handleBlur}
+      />
+      {formik.errors.email && formik.touched.email && (
+        <ErrorMessage>{formik.errors.email}</ErrorMessage>
+      )}
+      <DefaultInput
+        type='password'
+        name='password'
+        placeholder='Password'
+        label='Password'
+        value={formik.values.password}
+        handleChange={formik.handleChange}
+        handleBlur={formik.handleBlur}
+      />
 
-        {formik.errors.password && formik.touched.password && (
-          <ErrorMessage>{formik.errors.password}</ErrorMessage>
-        )}
-        <div className={styles.btnContainer}>
-          <Button color='grey' submit>
-            Login
-          </Button>
-        </div>
-      </form>
-    </HyperModal>
+      {formik.errors.password && formik.touched.password && (
+        <ErrorMessage>{formik.errors.password}</ErrorMessage>
+      )}
+      <div className={styles.btnContainer}>
+        <Button color='grey' submit>
+          Login
+        </Button>
+      </div>
+    </form>
   );
 };
 

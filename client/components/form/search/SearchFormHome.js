@@ -101,7 +101,6 @@ const Search = ({ content }) => {
     }
   };
 
-  const handleGuests = () => {};
   const handleClickedSearch = (value) => {
     setSearch(value);
     setDisplay(!display);
@@ -228,6 +227,7 @@ const Search = ({ content }) => {
                 editableDateInputs={true}
                 onChange={(item) => setDateRange([item.selection])}
                 moveRangeOnFirstSelection={false}
+                minDate={new Date()}
                 ranges={dateRage}
               />
             </div>
