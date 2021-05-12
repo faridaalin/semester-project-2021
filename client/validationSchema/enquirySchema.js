@@ -11,7 +11,7 @@ export const enquirySchema = object({
     .test('Unique', 'Must be a valid date', (value) => {
       return !value;
     }),
-  hotel_name: string().required('Hotel is required').min(2).max(8),
+  hotel_name: string().required('Hotel is required').min(2),
   price: number().required('Required').integer().positive(),
   children: number().optional().integer().positive().min(0).max(8),
   adults: number().required('Required').integer().positive().min(1).max(8),

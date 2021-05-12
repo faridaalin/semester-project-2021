@@ -1,21 +1,28 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useField, useFormikContext } from 'formik';
 import dateFormat from 'dateformat';
 import { getIcon } from '../input/Input';
 
 import styles from '../input/input.module.css';
 
-const DateWrapper = ({
-  name,
-  label,
-  selectedDate,
-  setDateFunc,
-  icon,
-  placeholder,
-}) => {
-  const handleDateChange = (date) => {
+const DateWrapper = (props) => {
+  const {
+    label,
+    selectedDate,
+    setDateFunc,
+    icon,
+    name,
+    placeholder,
+    handleChange,
+    onChange,
+  } = props;
+  const { setFieldValue } = useFormikContext();
+  const [field] = useField(props);
+  const handleDateSelection = (date) => {
     setDateFunc(new Date(date));
   };
+  console.log('FIELD', field.name, field.value);
   return (
     <div className={`${styles.inputContainer} `}>
       <label htmlFor={name} className={styles.label}>
@@ -23,11 +30,15 @@ const DateWrapper = ({
         {label}
       </label>
       <DatePicker
-        onChange={(date) => handleDateChange(date)}
-        selected={selectedDate}
+        {...field}
+        onChange={(val) => {
+          setFieldValue(field.name, val);
+        }}
+        selected={(field.value && new Date(field.value)) || null}
         startDate={selectedDate}
         className={styles.input}
         minDate={new Date()}
+        name={name}
         placeholderText={placeholder}
       />
     </div>

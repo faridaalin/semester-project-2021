@@ -7,6 +7,8 @@ import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import SelectField from '../select/Select';
 import DateWrapper from '../date/Date';
+import DatePicker from 'react-datepicker';
+
 import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
 import styles from './reservationForm.module.css';
@@ -48,7 +50,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   // console.log('formData', formData);
 
   const initialFormData = {
-    hotel_name: '',
+    hotel_name: hotel.title,
     check_in: '',
     check_out: '',
     room_type: '',
@@ -76,7 +78,9 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            // console.log('FORMIK:', formik.values);
+            // console.log('FORMIK:', formik);
+            console.log('FORMIK:', formik.values);
+            // console.log('HOTEM NAME', hotel.title);
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -88,7 +92,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                         name='hotel_name'
                         placeholder='Hotel name'
                         label='Hotel'
-                        value={hotel.title}
+                        value={formik.values.hotel_name}
                         icon='pin'
                         readonly={true}
                       />
@@ -100,6 +104,13 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           setDateFunc={setStartDate}
                           icon='dates'
                           placeholder='Add date'
+                          onChange={(value) =>
+                            formik.setFieldValue(
+                              'check_in',
+                              dateFormat(`${value.value}`, 'mm/dd/yyyy')
+                            )
+                          }
+                          handleChange={formik.handleChange}
                         />
                         <DateWrapper
                           name='check_out'
@@ -108,6 +119,10 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           setDateFunc={setEndDate}
                           icon='dates'
                           placeholder='Add date'
+                          onChange={(value) =>
+                            formik.setFieldValue(console.log(value))
+                          }
+                          handleChange={formik.handleChange}
                         />
                       </div>
                     </div>
@@ -118,7 +133,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                         value={formik.values.room_type}
                         label='Room Type'
                         icon='night'
-                        onChange={formik.handleChange}
+                        handleChange={formik.handleChange}
                         formik={formik}
                       />
                       <div className={styles.row}>

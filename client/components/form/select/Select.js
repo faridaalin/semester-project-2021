@@ -10,10 +10,7 @@ const SelectField = ({
   icon,
   customContainer,
   onChange,
-
-  formik,
 }) => {
-  console.log('formik', formik);
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
@@ -24,7 +21,7 @@ const SelectField = ({
         as='select'
         id={name}
         name={name}
-        onChange={(item) => onChange(item)}
+        handleChange={(item) => onChange(item)}
         options={options}
         className={`${styles.input} ${styles.select}`}
       >
