@@ -35,19 +35,23 @@ export const InputNumber = ({
   handleChandler,
 }) => {
   return (
-    <div className={`${styles.inputContainer} `}>
-      <label htmlFor={name} className={styles.label}>
-        {getIcon(icon)}
-        {label}
-      </label>
-      <input
-        type='number'
-        id={name}
-        onChange={handleChandler}
-        value={value || undefined}
-        placeholder={placeholder}
-      />
-    </div>
+    <Field name={name} className={`${styles.inputContainer} `}>
+      {({ field, form: { touched, errors }, meta }) => (
+        <>
+          <label htmlFor={name} className={styles.label}>
+            {getIcon(icon)}
+            {label}
+          </label>
+          <input
+            type='number'
+            id={name}
+            onChange={handleChandler}
+            value={value || undefined}
+            placeholder={placeholder}
+          />
+        </>
+      )}
+    </Field>
   );
 };
 const DefaultInput = ({
@@ -65,25 +69,33 @@ const DefaultInput = ({
   max,
 }) => {
   return (
-    <div className={`${styles.inputContainer} ${customContainer}`}>
-      <label htmlFor={name} className={styles.label}>
-        {getIcon(icon)}
-        {label}
-      </label>
-      <input
-        type={type}
-        name={name}
-        id={label}
-        value={value || undefined}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        placeholder={placeholder}
-        className={`${styles.input} ${customClass} `}
-        readonly
-        min={min}
-        max={max}
-      />
-    </div>
+    <Field name={name}>
+      {({ field, form: { touched, errors }, meta }) => (
+        <div className={`${styles.inputContainer} ${customContainer}`}>
+          <label htmlFor={name} className={styles.label}>
+            {getIcon(icon)}
+            {label}
+          </label>
+          <input
+            type={type}
+            name={name}
+            id={label}
+            value={value || undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder={placeholder}
+            className={`${styles.input} ${customClass} `}
+            readonly
+            min={min}
+            max={max}
+            {...field}
+          />
+          {meta.touched && meta.error && (
+            <div className={styles.error}>{meta.error}</div>
+          )}
+        </div>
+      )}
+    </Field>
   );
 };
 

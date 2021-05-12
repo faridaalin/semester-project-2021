@@ -1,5 +1,6 @@
 .inputContainer {
   width: 100%;
+  position: relative;
 }
 
 .label {
@@ -17,6 +18,16 @@
 .icon {
   height: 14px;
   width: 14px;
+}
+
+.error {
+  font-size: 12px;
+  color: var(--danger);
+  font-weight: var(--fontWeight-m);
+  padding-left: 8px;
+  text-align: left;
+  position: absolute;
+  bottom: -16px;
 }
 
 .input,

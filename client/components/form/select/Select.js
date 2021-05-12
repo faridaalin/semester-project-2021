@@ -1,37 +1,43 @@
 import { ChevronDown } from 'react-feather';
+import { Field } from 'formik';
 import { getIcon } from '../input/Input';
 import styles from '../input/input.module.css';
 
-const Select = ({
+const SelectField = ({
   name,
   options,
   label,
   icon,
   customContainer,
-  handleChange,
+  onChange,
+
+  formik,
 }) => {
+  console.log('formik', formik);
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
       <label htmlFor={name} className={styles.label}>
         {getIcon(icon)}
         {label}
       </label>
-      <select
+      <Field
+        as='select'
         id={name}
         name={name}
-        onChange={handleChange}
+        onChange={(item) => onChange(item)}
+        options={options}
         className={`${styles.input} ${styles.select}`}
       >
         {options.map((room, i) => {
           return (
-            <option value={room.price}>
+            <option value={room.room_type}>
               {room.room_type} {room.price} NOK
             </option>
           );
         })}
-      </select>
+      </Field>
     </div>
   );
 };
 
-export default Select;
+export default SelectField;

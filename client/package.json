@@ -25,6 +25,7 @@
     "react-map-gl": "^6.1.13",
     "react-paginate": "^7.1.2",
     "react-pure-modal": "^2.0.19",
+    "react-select": "^4.3.1",
     "rsuite": "^4.9.4",
     "swiper": "^6.5.9",
     "yarn": "^1.22.10",

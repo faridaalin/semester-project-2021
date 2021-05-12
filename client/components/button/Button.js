@@ -41,15 +41,16 @@ const Button = ({
 
   if (submit) {
     return (
-      <input
+      <button
         type='submit'
-        value='Login'
         disabled={isDisabled}
         onClick={clickHandler}
         className={`${
           styles.button
         } ${getColor()} ${getSize()} ${getWidth()} ${customBtnClass}`}
-      />
+      >
+        {children}
+      </button>
     );
   }
   if (!link) {

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { X } from 'react-feather';
 import dateFormat from 'dateformat';
 import PureModal from 'react-pure-modal';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
-import Select from '../select/Select';
+import SelectField from '../select/Select';
 import DateWrapper from '../date/Date';
 import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
@@ -33,8 +33,8 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
   const onSubmit = async (values, onSubmitProps) => {
-    console.log('Values', values);
-    console.log('onSubmitProps', onSubmitProps);
+    // console.log('Values', values);
+    // console.log('onSubmitProps', onSubmitProps);
   };
   useEffect(() => {
     setFormData({
@@ -45,8 +45,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     });
   }, [personalInfo, startDate, endDate, hotel.title]);
 
-  console.log('personalInfo', personalInfo);
-  console.log('formData', formData);
+  // console.log('formData', formData);
 
   const initialFormData = {
     hotel_name: '',
@@ -77,6 +76,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
+            // console.log('FORMIK:', formik.values);
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -112,14 +112,15 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                       </div>
                     </div>
                     <div className={styles.column}>
-                      <Select
+                      <SelectField
                         name='room_type'
                         options={hotel.rooms}
+                        value={formik.values.room_type}
                         label='Room Type'
                         icon='night'
-                        handleChange={handleChange}
+                        onChange={formik.handleChange}
+                        formik={formik}
                       />
-
                       <div className={styles.row}>
                         <DefaultInput
                           type='number'
@@ -194,7 +195,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                       submit
                       isDisabled={!(formik.dirty && formik.isValid)}
                     >
-                      Reserve
                       {isLoading ? 'Sending..' : 'Reserve'}
                     </Button>
                   </div>

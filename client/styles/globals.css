@@ -116,6 +116,9 @@ h3 {
   width: inherit;
 }
 
+.css-2b097c-container {
+  width: 100%;
+}
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;
