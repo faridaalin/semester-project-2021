@@ -107,6 +107,10 @@ h3 {
 .pure-modal .panel-title {
   text-align: end;
 }
+
+.pure-modal .panel-title {
+  background: #f8f8f8;
+}
 @media only screen and (min-width: 768px) {
   .section {
     margin-bottom: 152px;

@@ -23,12 +23,13 @@
 .textarea {
   color: var(--blue-400);
   background-color: var(--white-100);
-  font-size: 16px;
+  font-size: 14px;
   font-size: max(16px, 1em);
   padding: 10px 16px;
   border: 1px solid var(--grey-200);
   border-radius: 6px;
   width: 100%;
+  font-family: var(--header-font);
 }
 
 .input::placeholder,
@@ -49,6 +50,12 @@
   border-radius: 6px;
   padding: 9px 16px;
   width: 100%;
+}
+
+.select {
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
 }
 
 @media only screen and (min-width: 768px) {

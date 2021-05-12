@@ -2,13 +2,20 @@ import { useState } from 'react';
 import { X } from 'react-feather';
 import PureModal from 'react-pure-modal';
 import { DefaultInput, InputCalendar } from '../input/Input';
+import Button from '../../button/Button';
+import Select from '../select/Select';
 import styles from './reservationForm.module.css';
 
-const ReservationForm = ({ modal, setModal }) => {
+const ReservationForm = ({ modal, setModal, hotel }) => {
+  console.log('hotel', hotel);
   return (
     <>
       <PureModal
-        header={<span onClick={() => setModal(false)}>X</span>}
+        header={
+          <span onClick={() => setModal(false)}>
+            <X />
+          </span>
+        }
         isOpen={modal}
       >
         <form className={styles.form}>
@@ -17,10 +24,11 @@ const ReservationForm = ({ modal, setModal }) => {
               <p className={styles.infoSection}>Hotel Details</p>
               <div className={styles.column}>
                 <DefaultInput
-                  type='search'
-                  name='search'
+                  type='text'
+                  name='hotelName'
                   placeholder='Hotel name'
                   label='Hotel'
+                  value={hotel.title}
                   icon='pin'
                 />
                 <div className={styles.row}>
@@ -41,13 +49,13 @@ const ReservationForm = ({ modal, setModal }) => {
                 </div>
               </div>
               <div className={styles.column}>
-                <DefaultInput
-                  type='search'
-                  name='search'
-                  placeholder='Standard Room'
+                <Select
+                  name='rooms'
+                  options={hotel.rooms}
                   label='Room Type'
                   icon='night'
                 />
+
                 <div className={styles.row}>
                   <InputCalendar
                     type='button'
@@ -96,6 +104,9 @@ const ReservationForm = ({ modal, setModal }) => {
                   label='Special Requests'
                 />
               </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Button btnType='search'>Reserve</Button>
             </div>
           </div>
         </form>

@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from './input.module.css';
 
-const getIcon = (icon) => {
+export const getIcon = (icon) => {
   switch (icon) {
     case 'pin':
       return <MapPin className={styles.icon} />;

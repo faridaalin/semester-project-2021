@@ -99,7 +99,9 @@ const HotelDetail = (props) => {
               <Tv className={styles.includesIcon} /> TV
             </div>
           </div>
-          {modal && <ReservationForm modal={modal} setModal={setModal} />}
+          {modal && (
+            <ReservationForm modal={modal} setModal={setModal} hotel={hotel} />
+          )}
           <Button btnType='search' clickHandler={handleShow}>
             Reserve
           </Button>
