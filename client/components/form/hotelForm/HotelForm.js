@@ -92,25 +92,39 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                   />
                   <div>
                     <p className={styles.title}>Images</p>
-                    <DefaultInput
-                      type='url'
+                    <FieldArray
                       name='images'
-                      placeholder='Image url'
-                    />
-                    <DefaultInput
-                      type='url'
-                      name='images'
-                      placeholder='Image url'
-                    />
-                    <DefaultInput
-                      type='url'
-                      name='images'
-                      placeholder='Image url'
-                    />
-                    <DefaultInput
-                      type='url'
-                      name='images'
-                      placeholder='Image url'
+                      render={(arrayHelpers) => {
+                        const images = formik.values.images;
+                        return (
+                          <>
+                            {images && images.length > 0
+                              ? images.map((image, index) => (
+                                  <>
+                                    <DefaultInput
+                                      type='url'
+                                      name='images'
+                                      placeholder='Image url'
+                                    />
+
+                                    <button
+                                      type='button'
+                                      onClick={() => arrayHelpers.remove(index)}
+                                    >
+                                      Remove image
+                                    </button>
+                                  </>
+                                ))
+                              : null}
+                            <button
+                              type='button'
+                              onClick={() => arrayHelpers.push('')}
+                            >
+                              Add image
+                            </button>
+                          </>
+                        );
+                      }}
                     />
                   </div>
                 </div>
@@ -131,19 +145,16 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                                     </p>
                                     <DefaultInput
                                       type='text'
-                                      // name='room_type'
                                       name={`rooms.${index}.room_type`}
                                       placeholder='Room Type'
                                     />
                                     <DefaultInput
                                       type='number'
-                                      // name='sleeps'
                                       name={`rooms.${index}.sleeps`}
                                       placeholder='Sleeps'
                                     />
                                     <DefaultInput
                                       type='number'
-                                      // name='price'
                                       name={`rooms.${index}.price`}
                                       placeholder='Room Price'
                                     />
@@ -151,7 +162,7 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                                       type='button'
                                       onClick={() => arrayHelpers.remove(index)}
                                     >
-                                      Remove
+                                      Remove room
                                     </button>
                                   </div>
                                 ))
@@ -197,24 +208,3 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
 };
 
 export default HotelForm;
-
-/*
-                    <div className={styles.roomsContainer}>
-                      <p className={styles.roomType}>Standard Room</p>
-                      <DefaultInput
-                        type='text'
-                        name='room_type'
-                        placeholder='Room Type'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='sleeps'
-                        placeholder='Sleeps'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='price'
-                        placeholder='Room Price'
-                      />
-                    </div>
-*/

@@ -5,8 +5,8 @@ export const initialProductValues = {
   subheading: '',
   address: '',
   description: '',
-  main_image: [],
-  images: '',
+  main_image: '',
+  images: [''],
   address: '',
   category: '',
   rooms: [
