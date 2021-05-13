@@ -1,4 +1,4 @@
-import { object, string, date, number, array } from 'yup';
+import { object, string, number, array } from 'yup';
 
 export const initialProductValues = {
   title: '',

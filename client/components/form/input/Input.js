@@ -45,8 +45,6 @@ const DefaultInput = ({
   return (
     <Field name={name}>
       {({ field, meta }) => {
-        console.log('FIELD', field);
-        console.log('META', meta);
         return (
           <div className={`${styles.inputContainer} ${customContainer}`}>
             <label htmlFor={name} className={styles.label}>
@@ -57,7 +55,7 @@ const DefaultInput = ({
               type={type}
               name={name}
               id={label}
-              value={value}
+              value={value ? value : ''}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder={placeholder}

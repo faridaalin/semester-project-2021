@@ -63,6 +63,7 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                     placeholder='Hotel description...'
                     name='description'
                     label='Description'
+                    formik={formik}
                     customContainer={styles.customContainer}
                   />
 
@@ -92,54 +93,61 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                   />
                   <div>
                     <p className={styles.title}>Images</p>
-                    <FieldArray
-                      name='images'
-                      render={(arrayHelpers) => {
-                        const images = formik.values.images;
+
+                    <FieldArray name='images'>
+                      {(fieldArrayProps) => {
+                        const { push, remove, form } = fieldArrayProps;
+                        const images = form.values.images;
                         return (
                           <>
-                            {images && images.length > 0
-                              ? images.map((image, index) => (
-                                  <>
-                                    <DefaultInput
-                                      type='url'
-                                      name='images'
-                                      placeholder='Image url'
-                                    />
+                            {images &&
+                              images.map((image, index) => (
+                                <div key={index}>
+                                  <DefaultInput
+                                    type='url'
+                                    name={`images[${index}]`}
+                                    placeholder='Image url'
+                                  />
+                                  <div>
+                                    {index > 0 && (
+                                      <button
+                                        type='button'
+                                        onClick={() => remove(index)}
+                                      >
+                                        Remove image
+                                      </button>
+                                    )}
 
                                     <button
                                       type='button'
-                                      onClick={() => arrayHelpers.remove(index)}
+                                      onClick={() => push('')}
                                     >
-                                      Remove image
+                                      Add image
                                     </button>
-                                  </>
-                                ))
-                              : null}
-                            <button
-                              type='button'
-                              onClick={() => arrayHelpers.push('')}
-                            >
-                              Add image
-                            </button>
+                                  </div>
+                                </div>
+                              ))}
                           </>
                         );
                       }}
-                    />
+                    </FieldArray>
                   </div>
                 </div>
                 <div className={styles.flex}>
                   <div>
                     <p className={styles.title}>Room Types</p>
-                    <FieldArray
-                      name='rooms'
-                      render={(arrayHelpers) => {
-                        const rooms = formik.values.rooms;
+                    <FieldArray name='rooms'>
+                      {(fieldArrayProps) => {
+                        const { push, remove, form } = fieldArrayProps;
+                        const rooms = form.values.rooms;
                         return (
                           <>
                             {rooms && rooms.length > 0
                               ? rooms.map((room, index) => (
-                                  <div className={styles.roomsContainer}>
+                                  <div
+                                    className={styles.roomsContainer}
+                                    key={index}
+                                  >
                                     <p className={styles.roomType}>
                                       Standard Room
                                     </p>
@@ -158,19 +166,21 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                                       name={`rooms.${index}.price`}
                                       placeholder='Room Price'
                                     />
-                                    <button
-                                      type='button'
-                                      onClick={() => arrayHelpers.remove(index)}
-                                    >
-                                      Remove room
-                                    </button>
+                                    {index > 0 && (
+                                      <button
+                                        type='button'
+                                        onClick={() => remove(index)}
+                                      >
+                                        Remove room
+                                      </button>
+                                    )}
                                   </div>
                                 ))
                               : null}
                             <button
                               type='button'
                               onClick={() =>
-                                arrayHelpers.push({
+                                push({
                                   room_type: '',
                                   sleeps: '',
                                   price: '',
@@ -182,7 +192,7 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                           </>
                         );
                       }}
-                    />
+                    </FieldArray>
                   </div>
                 </div>
               </div>

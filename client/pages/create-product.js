@@ -8,7 +8,6 @@ import {
 } from '../validationSchema/productSchema';
 
 export default function CreateProduct({ admin }) {
-  console.log('admin', admin);
   return (
     <Layout>
       <PageHeader title=' Create a new product' />
