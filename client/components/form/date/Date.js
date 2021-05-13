@@ -17,7 +17,7 @@ const DateWrapper = (props) => {
       <DatePicker
         {...field}
         onChange={(val) => {
-          setDateFunc(new Date(val));
+          setDateFunc(val);
           setFieldValue(field.name, val);
         }}
         onBlur={handleBlur}
@@ -29,7 +29,7 @@ const DateWrapper = (props) => {
         placeholderText={placeholder}
       />
 
-      {field.name === name && touched[name] && errors[name] && (
+      {touched[name] && errors[name] && (
         <div className={styles.error}>{errors[name]}</div>
       )}
     </div>

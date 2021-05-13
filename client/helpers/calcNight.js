@@ -3,7 +3,8 @@ const calcNights = (checkin, checkout) => {
   const end = new Date(checkout);
   const timeDiff = Math.abs(start.getTime() - end.getTime());
   const numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  return numberOfNights;
+
+  return numberOfNights === 0 ? 1 : numberOfNights;
 };
 
 export default calcNights;

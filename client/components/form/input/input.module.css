@@ -35,8 +35,6 @@
   font-weight: var(--fontWeight-m);
   padding-left: 8px;
   text-align: left;
-  position: absolute;
-  bottom: -16px;
 }
 
 .input,
