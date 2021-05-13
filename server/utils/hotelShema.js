@@ -16,7 +16,9 @@ exports.hotelSchema = object({
       .trim()
       .matches(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim)
       .required()
-  ),
+  )
+    .required()
+    .min(1),
   address: string().required(),
   category: string().required(),
   rooms: array(
@@ -25,7 +27,9 @@ exports.hotelSchema = object({
       sleeps: number().required().min(1),
       price: number().required(),
     })
-  ),
+  )
+    .required()
+    .min(1),
 });
 exports.hotelSchemaUpdate = object({
   title: string().min(2).max(20),

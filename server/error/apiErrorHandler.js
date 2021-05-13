@@ -1,7 +1,6 @@
 const ApiError = require('./apiError');
 
 const devError = (err, req, res, next) => {
-  console.log('err', err);
   if (err.name === 'CastError') {
     return res.status(400).send({
       status: 'Request Conflict',
@@ -33,9 +32,15 @@ const prodError = (err, req, res, next) => {
 };
 
 const apiErrorHandler = (err, req, res, next) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'dev'
+  ) {
     devError(err, req, res, next);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (
+    process.env.NODE_ENV === 'production' ||
+    process.env.NODE_ENV === 'prod'
+  ) {
     prodError(err, req, res, next);
   } else {
     return res.status(err.code || 500).send({
