@@ -52,7 +52,7 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: var(--fontWeight-r);
   font-family: var(--header-font);
   color: var(--blue-300);

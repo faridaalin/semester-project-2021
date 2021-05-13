@@ -33,9 +33,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
 
   const priceRef = useRef(null);
 
-  const handleChange = (e) => {
-    setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
-  };
   const onSubmit = async (values, onSubmitProps) => {
     const { setStatus } = onSubmitProps;
     const price = parseFloat(priceRef.current.innerText);
@@ -178,7 +175,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                             label='Adults'
                             smallLabel='18 or above'
                             icon='users'
-                            handleChange={handleChange}
                             placeholder='Adults'
                             min='1'
                             max='100'
@@ -190,7 +186,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                             label='Children'
                             smallLabel='12 or above'
                             icon='users'
-                            handleChange={handleChange}
                             placeholder='Children'
                             min='0'
                             max='100'

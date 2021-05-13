@@ -13,13 +13,8 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const router = useRouter();
   const { pathname } = router;
 
-  const {
-    showMessages,
-    setShowMessages,
-    showEnq,
-    setShowEnq,
-    logout,
-  } = useDashboardContext();
+  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
+    useDashboardContext();
 
   const sortHeightToLow = () => {
     const sortedHotels = hotels.slice().sort((a, b) => b - a);
@@ -53,10 +48,10 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   };
   const HandleEnquireForm = () => {
     console.log('Show ADD Product form');
-    if (pathname === '/product') {
+    if (pathname === '/create-product') {
       setShow(!show);
     } else {
-      router.push('/product');
+      router.push('/create-product');
     }
   };
 

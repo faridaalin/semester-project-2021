@@ -1,6 +1,6 @@
 import { object, string, date, number, ref } from 'yup';
 
-export const enquirySchema = object({
+const enquirySchema = object({
   check_in: date().required('Required').nullable().min(new Date()),
   check_out: date()
     .required('Required')
