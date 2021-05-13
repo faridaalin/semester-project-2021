@@ -7,7 +7,6 @@ export const enquirySchema = object({
     .nullable()
     .min(new Date()),
   hotel_name: string().required('Hotel is required').min(2),
-  price: number().required('Required').integer().positive(),
   children: number().optional().integer().positive().min(0).max(8),
   adults: number().required('Required').integer().positive().min(1).max(8),
   room_type: string().required('Required').min(5),

@@ -13,20 +13,21 @@ import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
 import styles from './reservationForm.module.css';
 
-const calcPrice = (roomList, room, nights, adults, children, setTotalFunc) => {
+const calcPrice = (roomList, room, nights, adults, children) => {
   const roomType = roomList.find((roomType) => roomType.room_type === room);
   const totalGuests = adults + children;
   const numRooms = Math.ceil(totalGuests / roomType.sleeps);
   const pricePerRoom = numRooms * roomType.price;
-  const TotalPrice = pricePerRoom * nights;
-  setTotalFunc(TotalPrice);
+  const totalPrice = pricePerRoom * nights;
+  // setTotalFunc(parseFloat(TotalPrice));
+  return totalPrice;
 };
 
 const ReservationForm = ({ modal, setModal, hotel }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [adults, setAdults] = useState(null);
-  const [children, setChildren] = useState(null);
+  const [endDate, setEndDate] = useState(new Date() + 1);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
   const [total, setTotal] = useState(null);
   const [personalInfo, setPersonalInfo] = useState({});
   const [hotelInfo, setHotelInfo] = useState({});
@@ -34,7 +35,10 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const [nights, setNights] = useState(0);
   const [roomType, setRoomType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [postError, setPostError] = useState(null);
 
+  const priceRef = useRef(null);
   const handleNumChildren = (e) => {
     setChildren(e.target.value);
   };
@@ -46,27 +50,55 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
   const onSubmit = async (values, onSubmitProps) => {
-    // console.log('Values', values);
-    // console.log('onSubmitProps', onSubmitProps);
+    setSuccess(null);
+    setPostError(null);
+    const price = parseFloat(priceRef.current.innerText);
+
+    if (price > 0 && typeof price === 'number') {
+      // console.log('Values', values);
+      // console.log('onSubmitProps', onSubmitProps);
+      setIsLoading(true);
+      const enquiryData = {
+        ...values,
+        price,
+      };
+
+      try {
+        const res = await axios.post('/enquiries/create', enquiryData);
+
+        if (res.status === 200) {
+          setIsLoading(false);
+          onSubmitProps.resetForm();
+          setSuccess(
+            'Your reservation enquiry has been sent. We will send you confirmation in 2-3 days.'
+          );
+        }
+      } catch (error) {
+        if (error.response && error.response.status) {
+          if (error.response.status === 404) {
+            return setPostError(error.response.statusText);
+          }
+        } else {
+          return setPostError('Something went wrong, please try again later.');
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
+  console.log('success', success);
+  console.log('postError', postError);
   useEffect(() => {
-    setFormData({
-      ...personalInfo,
-      hotel_name: hotel.title,
-      check_in: dateFormat(`${startDate}`, 'mm/dd/yyyy'),
-      check_out: dateFormat(`${endDate}`, 'mm/dd/yyyy'),
-    });
     setNights(calcNights(startDate, endDate));
-  }, [personalInfo, startDate, endDate, hotel.title]);
+  }, [startDate, endDate]);
 
   const initialFormData = {
     hotel_name: hotel.title,
-    check_in: '',
-    check_out: '',
+    check_in: new Date(),
+    check_out: new Date() + 1,
     room_type: hotel.rooms[0].room_type,
-    adults: '',
-    children: '',
-    price: total,
+    adults: 1,
+    children: 0,
     firstname: '',
     lastname: '',
     email: '',
@@ -89,17 +121,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('button state:', formik.dirty && formik.isValid);
-            {
-              calcPrice(
-                hotel.rooms,
-                formik.values.room_type,
-                nights,
-                formik.values.adults,
-                formik.values.children,
-                setTotal
-              );
-            }
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -209,16 +230,25 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   </div>
                   <div className={styles.total}>
                     <span>Total</span>
-                    <div className={styles.priceWrapper}>
-                      <span className={styles.price}>{total} NOK</span>
+                    <Field as='div' className={styles.priceWrapper}>
+                      <span ref={priceRef} className={styles.price}>
+                        {calcPrice(
+                          hotel.rooms,
+                          formik.values.room_type,
+                          nights,
+                          formik.values.adults,
+                          formik.values.children
+                        )}{' '}
+                      </span>
+                      <span>NOK</span>
                       <span className={styles.night}>{nights} nights</span>
-                    </div>
+                    </Field>
                   </div>
                   <div className={styles.buttonContainer}>
                     <Button
                       btnType='search'
                       submit
-                      isDisabled={!(formik.dirty && formik.isValid)}
+                      isDisabled={!formik.isValid}
                     >
                       {isLoading ? 'Sending..' : 'Reserve'}
                     </Button>
