@@ -12,9 +12,10 @@ const RoomSchema = new Schema({
     type: Number,
     trim: true,
     min: 1,
+    max: 6,
     required: [true, 'Number of guests are required'],
   },
-  price: { type: Number, required: [true, 'Prise is required'], trim: true },
+  price: { type: Number, required: [true, 'Price is required'], trim: true },
 });
 
 const HotelSchema = new Schema(

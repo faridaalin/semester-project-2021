@@ -5,7 +5,7 @@ const { object, string, number, array } = yup;
 exports.hotelSchema = object({
   title: string().required().min(2).max(30),
   subheading: string().required().min(2).max(100),
-  rating: number().required().min(0).max(5),
+  rating: number().optional().min(0).max(5),
   description: string().required().min(10),
   main_image: string()
     .trim()
@@ -23,9 +23,9 @@ exports.hotelSchema = object({
     object({
       room_type: string().required().max(30),
       sleeps: number().required().min(1),
+      price: number().required(),
     })
   ),
-  price: number().required(),
 });
 exports.hotelSchemaUpdate = object({
   title: string().min(2).max(20),
@@ -45,7 +45,7 @@ exports.hotelSchemaUpdate = object({
     object({
       room_type: string().max(20),
       sleeps: number().min(1),
+      price: number(),
     })
   ),
-  price: number(),
 });
