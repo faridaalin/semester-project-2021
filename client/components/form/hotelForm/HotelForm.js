@@ -22,6 +22,7 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
       onSubmit={onSubmit}
     >
       {(formik) => {
+        console.log('Formik', formik);
         return (
           <Form className={styles.form}>
             {/* {formik.status && formik.status.msg && (
@@ -51,6 +52,20 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                     label='Hotel Address'
                     customContainer={styles.customContainer}
                   />
+                  <DefaultInput
+                    type='text'
+                    name='subheading'
+                    placeholder='Subheading'
+                    label='Subheading'
+                    customContainer={styles.customContainer}
+                  />
+                  <Textera
+                    placeholder='Hotel description...'
+                    name='description'
+                    label='Description'
+                    customContainer={styles.customContainer}
+                  />
+
                   {rating && (
                     <DefaultInput
                       type='number'
@@ -60,20 +75,6 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                       customContainer={styles.customContainer}
                     />
                   )}
-
-                  <DefaultInput
-                    type='number'
-                    name='price'
-                    placeholder='Price'
-                    label='Price'
-                    customContainer={styles.customContainer}
-                  />
-                  <Textera
-                    placeholder='Hotel description...'
-                    name='description'
-                    label='Description'
-                    customContainer={styles.customContainer}
-                  />
 
                   <DefaultInput
                     type='url'
@@ -120,17 +121,17 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                       <p className={styles.roomType}>Standard Room</p>
                       <DefaultInput
                         type='text'
-                        name='roomType'
+                        name='room_type'
                         placeholder='Room Type'
                       />
                       <DefaultInput
                         type='number'
-                        name='Sleeps'
+                        name='sleeps'
                         placeholder='Sleeps'
                       />
                       <DefaultInput
                         type='number'
-                        name='Price'
+                        name='price'
                         placeholder='Room Price'
                       />
                     </div>
@@ -138,17 +139,17 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                       <p className={styles.roomType}>Standard Room</p>
                       <DefaultInput
                         type='text'
-                        name='roomType'
+                        name='room_type'
                         placeholder='Room Type'
                       />
                       <DefaultInput
                         type='number'
-                        name='Sleeps'
+                        name='sleeps'
                         placeholder='Sleeps'
                       />
                       <DefaultInput
                         type='number'
-                        name='Price'
+                        name='price'
                         placeholder='Room Price'
                       />
                     </div>
@@ -156,17 +157,17 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                       <p className={styles.roomType}>Standard Room</p>
                       <DefaultInput
                         type='text'
-                        name='roomType'
+                        name='room_type'
                         placeholder='Room Type'
                       />
                       <DefaultInput
                         type='number'
-                        name='Sleeps'
+                        name='sleeps'
                         placeholder='Sleeps'
                       />
                       <DefaultInput
                         type='number'
-                        name='Price'
+                        name='price'
                         placeholder='Room Price'
                       />
                     </div>
@@ -174,17 +175,17 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                       <p className={styles.roomType}>Standard Room</p>
                       <DefaultInput
                         type='text'
-                        name='roomType'
+                        name='room_type'
                         placeholder='Room Type'
                       />
                       <DefaultInput
                         type='number'
-                        name='Sleeps'
+                        name='sleeps'
                         placeholder='Sleeps'
                       />
                       <DefaultInput
                         type='number'
-                        name='Price'
+                        name='price'
                         placeholder='Room Price'
                       />
                     </div>

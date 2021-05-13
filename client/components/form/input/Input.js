@@ -26,34 +26,6 @@ export const getIcon = (icon) => {
   }
 };
 
-export const InputNumber = ({
-  name,
-  label,
-  icon,
-  value,
-  placeholder,
-  handleChandler,
-}) => {
-  return (
-    <Field name={name} className={`${styles.inputContainer} `}>
-      {({ field, form: { touched, errors }, meta }) => (
-        <>
-          <label htmlFor={name} className={styles.label}>
-            {getIcon(icon)}
-            {label}
-          </label>
-          <input
-            type='number'
-            id={name}
-            onChange={handleChandler}
-            value={value || undefined}
-            placeholder={placeholder}
-          />
-        </>
-      )}
-    </Field>
-  );
-};
 const DefaultInput = ({
   type,
   name,
