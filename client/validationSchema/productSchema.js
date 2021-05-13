@@ -5,11 +5,17 @@ export const initialProductValues = {
   subheading: '',
   address: '',
   description: '',
-  main_image: '',
+  main_image: [],
   images: '',
   address: '',
   category: '',
-  rooms: '',
+  rooms: [
+    {
+      room_type: '',
+      sleeps: '',
+      price: '',
+    },
+  ],
 };
 
 export const productSchema = object({
@@ -17,12 +23,10 @@ export const productSchema = object({
   subheading: string().required('Required').min(2).max(100),
   description: string().required('Required').min(10),
   main_image: string()
-    .trim()
     .matches(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim)
     .required('Required'),
   images: array(
     string()
-      .trim()
       .matches(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim)
       .required('Required')
   )

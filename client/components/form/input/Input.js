@@ -44,31 +44,35 @@ const DefaultInput = ({
 }) => {
   return (
     <Field name={name}>
-      {({ field, meta }) => (
-        <div className={`${styles.inputContainer} ${customContainer}`}>
-          <label htmlFor={name} className={styles.label}>
-            {getIcon(icon)}
-            {label} <span className={styles.smallLabel}>{smallLabel}</span>
-          </label>
-          <input
-            type={type}
-            name={name}
-            id={label}
-            value={value}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            placeholder={placeholder}
-            className={`${styles.input} ${customClass} `}
-            readOnly={readonly}
-            min={min}
-            max={max}
-            {...field}
-          />
-          {meta.touched && meta.error && (
-            <div className={styles.error}>{meta.error}</div>
-          )}
-        </div>
-      )}
+      {({ field, meta }) => {
+        console.log('FIELD', field);
+        console.log('META', meta);
+        return (
+          <div className={`${styles.inputContainer} ${customContainer}`}>
+            <label htmlFor={name} className={styles.label}>
+              {getIcon(icon)}
+              {label} <span className={styles.smallLabel}>{smallLabel}</span>
+            </label>
+            <input
+              type={type}
+              name={name}
+              id={label}
+              value={value}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder={placeholder}
+              className={`${styles.input} ${customClass} `}
+              readOnly={readonly}
+              min={min}
+              max={max}
+              {...field}
+            />
+            {meta.touched && meta.error && (
+              <div className={styles.error}>{meta.error}</div>
+            )}
+          </div>
+        );
+      }}
     </Field>
   );
 };

@@ -6,8 +6,6 @@ const Textera = ({ placeholder, label, name, customContainer }) => {
   return (
     <Field name={name}>
       {({ field, meta }) => {
-        console.log('Field', field);
-        console.log('Meta', meta);
         return (
           <div className={`${styles.inputContainer} ${customContainer}`}>
             <label htmlFor={name} className={styles.label}>

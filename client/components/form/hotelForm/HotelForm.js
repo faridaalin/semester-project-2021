@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { Loader } from 'react-feather';
 import PureModal from 'react-pure-modal';
 import { DefaultInput } from '../input/Input';
@@ -117,78 +117,61 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
                 <div className={styles.flex}>
                   <div>
                     <p className={styles.title}>Room Types</p>
-                    <div className={styles.roomsContainer}>
-                      <p className={styles.roomType}>Standard Room</p>
-                      <DefaultInput
-                        type='text'
-                        name='room_type'
-                        placeholder='Room Type'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='sleeps'
-                        placeholder='Sleeps'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='price'
-                        placeholder='Room Price'
-                      />
-                    </div>
-                    <div className={styles.roomsContainer}>
-                      <p className={styles.roomType}>Standard Room</p>
-                      <DefaultInput
-                        type='text'
-                        name='room_type'
-                        placeholder='Room Type'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='sleeps'
-                        placeholder='Sleeps'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='price'
-                        placeholder='Room Price'
-                      />
-                    </div>
-                    <div className={styles.roomsContainer}>
-                      <p className={styles.roomType}>Standard Room</p>
-                      <DefaultInput
-                        type='text'
-                        name='room_type'
-                        placeholder='Room Type'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='sleeps'
-                        placeholder='Sleeps'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='price'
-                        placeholder='Room Price'
-                      />
-                    </div>
-                    <div className={styles.roomsContainer}>
-                      <p className={styles.roomType}>Standard Room</p>
-                      <DefaultInput
-                        type='text'
-                        name='room_type'
-                        placeholder='Room Type'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='sleeps'
-                        placeholder='Sleeps'
-                      />
-                      <DefaultInput
-                        type='number'
-                        name='price'
-                        placeholder='Room Price'
-                      />
-                    </div>
+                    <FieldArray
+                      name='rooms'
+                      render={(arrayHelpers) => {
+                        const rooms = formik.values.rooms;
+                        return (
+                          <>
+                            {rooms && rooms.length > 0
+                              ? rooms.map((room, index) => (
+                                  <div className={styles.roomsContainer}>
+                                    <p className={styles.roomType}>
+                                      Standard Room
+                                    </p>
+                                    <DefaultInput
+                                      type='text'
+                                      // name='room_type'
+                                      name={`rooms.${index}.room_type`}
+                                      placeholder='Room Type'
+                                    />
+                                    <DefaultInput
+                                      type='number'
+                                      // name='sleeps'
+                                      name={`rooms.${index}.sleeps`}
+                                      placeholder='Sleeps'
+                                    />
+                                    <DefaultInput
+                                      type='number'
+                                      // name='price'
+                                      name={`rooms.${index}.price`}
+                                      placeholder='Room Price'
+                                    />
+                                    <button
+                                      type='button'
+                                      onClick={() => arrayHelpers.remove(index)}
+                                    >
+                                      Remove
+                                    </button>
+                                  </div>
+                                ))
+                              : null}
+                            <button
+                              type='button'
+                              onClick={() =>
+                                arrayHelpers.push({
+                                  room_type: '',
+                                  sleeps: '',
+                                  price: '',
+                                })
+                              }
+                            >
+                              Add room
+                            </button>
+                          </>
+                        );
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -214,3 +197,24 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
 };
 
 export default HotelForm;
+
+/*
+                    <div className={styles.roomsContainer}>
+                      <p className={styles.roomType}>Standard Room</p>
+                      <DefaultInput
+                        type='text'
+                        name='room_type'
+                        placeholder='Room Type'
+                      />
+                      <DefaultInput
+                        type='number'
+                        name='sleeps'
+                        placeholder='Sleeps'
+                      />
+                      <DefaultInput
+                        type='number'
+                        name='price'
+                        placeholder='Room Price'
+                      />
+                    </div>
+*/
