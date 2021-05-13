@@ -72,7 +72,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     email: '',
     special_requests: '',
   };
-  console.log('total:', total);
+
   return (
     <>
       <PureModal
@@ -89,8 +89,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('FORMIK:', formik);
-            console.log('VALUES:', formik.values);
+            console.log('button state:', formik.dirty && formik.isValid);
             {
               calcPrice(
                 hotel.rooms,

@@ -15,6 +15,13 @@
   background-color: var(--grey-200);
 }
 
+.button[disabled],
+.button[disabled]:hover,
+.button[disabled]:focus,
+.button[disabled]:active {
+  background: var(--orange-200);
+}
+
 .buttonOrange {
   background: var(--orange-400);
   color: var(--white-100);

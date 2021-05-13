@@ -113,11 +113,18 @@ h3 {
 }
 
 .pure-modal-backdrop .pure-modal {
-  width: inherit;
+  width: 100%;
 }
 
-.css-2b097c-container {
+.css-2b097c-container,
+.react-datepicker-wrapper {
   width: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+  .pure-modal-backdrop .pure-modal {
+    width: 80%;
+  }
 }
 @media only screen and (min-width: 768px) {
   .section {
