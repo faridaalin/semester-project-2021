@@ -4,9 +4,9 @@ import textareaStyles from './textarea.module.css';
 
 const Textera = ({ ...props }) => {
   const [field, meta] = useField(props);
-  const { placeholder, label, name, customContainer } = props;
+  const { placeholder, label, name } = props;
   return (
-    <div className={`${styles.inputContainer} ${customContainer}`}>
+    <div className={`${styles.inputContainer} `}>
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>

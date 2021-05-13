@@ -26,7 +26,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   tomorrow.setDate(today.getDate() + 1);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(tomorrow.toDateString());
-  const [personalInfo, setPersonalInfo] = useState({});
   const [nights, setNights] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [showForm, setShowForm] = useState(true);

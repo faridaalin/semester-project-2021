@@ -11,13 +11,8 @@ export default function Dashboard({ data }) {
   const [openNav, setOpenNav] = useState(false);
   const [widthOnLoad, setWidthOnLoad] = useState(null);
 
-  const {
-    showMessages,
-    setShowMessages,
-    showEnq,
-    setShowEnq,
-    logout,
-  } = useDashboardContext();
+  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
+    useDashboardContext();
   const breakpoint = 768;
 
   const { messages, enquiries } = data;
@@ -160,7 +155,7 @@ export async function getServerSideProps(context) {
   try {
     const options = {
       headers: {
-        cookie: token,
+        Authorization: token,
       },
     };
     const messages = axios.get('/messages', options);

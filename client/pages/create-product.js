@@ -7,7 +7,7 @@ import {
   initialProductValues,
 } from '../validationSchema/productSchema';
 
-export default function CreateProduct({ admin }) {
+export default function CreateProduct({ admin, token }) {
   return (
     <Layout>
       <PageHeader title=' Create a new product' />
@@ -17,6 +17,7 @@ export default function CreateProduct({ admin }) {
           initalValues={initialProductValues}
           newProduct
           endpoint='/hotels/create'
+          token={token}
         />
       </section>
     </Layout>
@@ -37,6 +38,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { admin },
+    props: { admin, token },
   };
 }

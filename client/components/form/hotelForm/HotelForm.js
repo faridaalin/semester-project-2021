@@ -9,10 +9,54 @@ import axios from '../../../utils/axios';
 
 import styles from './hotelForm.module.css';
 
-const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
+const HotelForm = ({
+  schema,
+  initalValues,
+  rating,
+  newProduct,
+  endpoint,
+  token,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (values, onSubmitProps) => {
-    console.log('VALUES', values);
+    const { setStatus } = onSubmitProps;
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log('options', values, options);
+
+    try {
+      const res = await axios.post(endpoint, values, options);
+
+      if (res.status === 200) {
+        setIsLoading(false);
+
+        setStatus({
+          sent: true,
+          msg: `${values.title} has been created.`,
+        });
+      }
+    } catch (error) {
+      if (error.response && error.response.status) {
+        if (error.response.data.status === 'Request Conflict') {
+          return setStatus({
+            sent: false,
+            msg: 'This Hotel already exist.',
+          });
+        }
+      } else {
+        setStatus({
+          sent: false,
+          msg: 'Something went wrong, please try again later.',
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -22,18 +66,17 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
       onSubmit={onSubmit}
     >
       {(formik) => {
-        console.log('Formik', formik);
         return (
           <Form className={styles.form}>
-            {/* {formik.status && formik.status.msg && (
-                <div
-                  className={` ${
-                    formik.status.sent ? styles.success : styles.error
-                  }`}
-                >
-                  <p>{formik.status.msg}</p>
-                </div>
-              )} */}
+            {formik.status && formik.status.msg && (
+              <div
+                className={` ${
+                  formik.status.sent ? styles.success : styles.error
+                }`}
+              >
+                <p>{formik.status.msg}</p>
+              </div>
+            )}
             <div>
               <p className={styles.title}>Details</p>
               <div className={styles.innerForm}>
@@ -79,7 +122,7 @@ const HotelForm = ({ schema, initalValues, rating, newProduct, endpoint }) => {
 
                   <DefaultInput
                     type='url'
-                    name='mainImage'
+                    name='main_image'
                     placeholder='url'
                     label='Main Image'
                     customContainer={styles.customContainer}
