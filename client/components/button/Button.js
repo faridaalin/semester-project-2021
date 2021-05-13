@@ -13,7 +13,6 @@ const Button = ({
   submit,
   isDisabled,
 }) => {
-  console.log('BUTTON isDisabled', isDisabled);
   const getColor = () => {
     if (color === 'orange') {
       return `${styles.buttonOrange}`;

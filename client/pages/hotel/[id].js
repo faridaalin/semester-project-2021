@@ -18,7 +18,7 @@ import styles from './hotelDetail.module.css';
 const HotelDetail = (props) => {
   const router = useRouter();
   const hotel = props.data.data;
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const handleClose = () => setModal(false);
   const handleShow = () => setModal(true);
   const innerWidth = () => {

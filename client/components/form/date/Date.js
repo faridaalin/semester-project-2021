@@ -29,9 +29,7 @@ const DateWrapper = (props) => {
         placeholderText={placeholder}
       />
 
-      {touched[name] && errors[name] && (
-        <div className={styles.error}>{errors[name]}</div>
-      )}
+      {errors[name] && <div className={styles.error}>{errors[name]}</div>}
     </div>
   );
 };

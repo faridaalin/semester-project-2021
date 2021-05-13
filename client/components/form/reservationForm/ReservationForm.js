@@ -29,8 +29,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const [personalInfo, setPersonalInfo] = useState({});
   const [nights, setNights] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
-  const [postError, setPostError] = useState(null);
+  const [showForm, setShowForm] = useState(true);
 
   const priceRef = useRef(null);
 
@@ -38,13 +37,10 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.value });
   };
   const onSubmit = async (values, onSubmitProps) => {
-    setSuccess(null);
-    setPostError(null);
+    const { setStatus } = onSubmitProps;
     const price = parseFloat(priceRef.current.innerText);
 
     if (price > 0 && typeof price === 'number') {
-      // console.log('Values', values);
-      // console.log('onSubmitProps', onSubmitProps);
       setIsLoading(true);
       const enquiryData = {
         ...values,
@@ -52,22 +48,30 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
       };
 
       try {
-        const res = await axios.post('/enquiries/creater', enquiryData);
+        const res = await axios.post('/enquiries/create', enquiryData);
 
         if (res.status === 200) {
           setIsLoading(false);
-          onSubmitProps.resetForm();
-          setSuccess(
-            'Your reservation enquiry has been sent. We will send you confirmation in 2-3 days.'
-          );
+
+          setStatus({
+            sent: true,
+            msg: 'Your reservation enquiry has been sent. We will send you confirmation in 2-3 days.',
+          });
+          setShowForm(!showForm);
         }
       } catch (error) {
         if (error.response && error.response.status) {
           if (error.response.status === 404) {
-            return setPostError(error.response.statusText);
+            setStatus({
+              sent: false,
+              msg: error.response.statusText,
+            });
           }
         } else {
-          return setPostError('Something went wrong, please try again later.');
+          setStatus({
+            sent: false,
+            msg: 'Something went wrong, please try again later.',
+          });
         }
       } finally {
         setIsLoading(false);
@@ -75,11 +79,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     }
   };
 
-  console.log('success', success);
-  console.log('postError', postError);
-  console.log('endDate', endDate);
-  console.log('startDate', startDate);
-  // console.log('Tomorrow', tomorrow.toDateString());
   useEffect(() => {
     setNights(calcNights(startDate, endDate));
   }, [startDate, endDate]);
@@ -113,148 +112,160 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('Formik', formik);
             return (
-              <Form className={styles.form}>
-                <div className={styles.innerForm}>
-                  {postError && <p>{postError}</p>}
-                  {success && <p>{success}</p>}
-                  <div>
-                    <p className={styles.infoSection}>Hotel Details</p>
-                    <div className={styles.column}>
-                      <DefaultInput
-                        type='text'
-                        name='hotel_name'
-                        placeholder='Hotel name'
-                        label='Hotel'
-                        value={formik.values.hotel_name}
-                        icon='pin'
-                        readonly={true}
-                      />
-                      <div className={styles.row}>
-                        <DateWrapper
-                          name='check_in'
-                          label='Check In'
-                          selectedDate={startDate}
-                          setDateFunc={setStartDate}
-                          icon='dates'
-                          placeholder='Add date'
-                        />
-                        <DateWrapper
-                          name='check_out'
-                          label='Check Out'
-                          selectedDate={endDate}
-                          setDateFunc={setEndDate}
-                          icon='dates'
-                          placeholder='Add date'
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.column}>
-                      <SelectField
-                        name='room_type'
-                        options={hotel.rooms}
-                        value={formik.values.room_type}
-                        label='Room Type'
-                        icon='night'
-                        onChange={formik.handleChange}
-                        formik={formik}
-                      />
-                      <div className={styles.row}>
+              <Form
+                className={`${styles.form}  ${
+                  formik.status && formik.status.sent && styles.bg
+                }`}
+              >
+                {formik.status && formik.status.msg && (
+                  <div
+                    className={` ${
+                      formik.status.sent ? styles.success : styles.error
+                    }`}
+                  >
+                    <p>{formik.status.msg}</p>
+                  </div>
+                )}
+                {showForm && (
+                  <div className={styles.innerForm}>
+                    <div>
+                      <p className={styles.infoSection}>Hotel Details</p>
+                      <div className={styles.column}>
                         <DefaultInput
-                          type='number'
-                          name='adults'
-                          value='1'
-                          label='Adults'
-                          smallLabel='18 or above'
-                          icon='users'
-                          handleChange={handleChange}
-                          placeholder='Adults'
-                          min='1'
-                          max='100'
+                          type='text'
+                          name='hotel_name'
+                          placeholder='Hotel name'
+                          label='Hotel'
+                          value={formik.values.hotel_name}
+                          icon='pin'
+                          readonly={true}
                         />
-                        <DefaultInput
-                          type='number'
-                          name='children'
-                          value='0'
-                          label='Children'
-                          smallLabel='12 or above'
-                          icon='users'
-                          handleChange={handleChange}
-                          placeholder='Children'
-                          min='0'
-                          max='100'
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <p className={styles.infoSection}>Personal Information</p>
-                    <div className={styles.column}>
-                      <DefaultInput
-                        type='text'
-                        name='firstname'
-                        placeholder='First name'
-                        label='First name'
-                        handleChange={handleChange}
-                      />
-                      <DefaultInput
-                        type='text'
-                        name='lastname'
-                        placeholder='Last name'
-                        label='Last name'
-                        handleChange={handleChange}
-                      />
-                    </div>
-                    <div className={styles.column}>
-                      <DefaultInput
-                        type='email'
-                        name='email'
-                        placeholder='Email'
-                        label='Email'
-                        handleChange={handleChange}
-                      />
-                      <DefaultInput
-                        type='text'
-                        name='special_requests'
-                        placeholder='Any requests here..'
-                        label='Special Requests'
-                        handleChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.total}>
-                    <span>Total</span>
-                    <Field as='div' className={styles.priceWrapper}>
-                      <span ref={priceRef} className={styles.price}>
-                        {calcPrice(
-                          hotel.rooms,
-                          formik.values.room_type,
-                          nights,
-                          formik.values.adults,
-                          formik.values.children
-                        )}{' '}
-                      </span>
-                      <span>NOK</span>
-                      <span className={styles.night}>{nights} nights</span>
-                    </Field>
-                  </div>
-                  <div className={styles.buttonContainer}>
-                    <Button
-                      btnType='search'
-                      submit
-                      isDisabled={!formik.isValid}
-                    >
-                      {isLoading ? (
-                        <div className='loader'>
-                          <Loader />
+                        <div className={styles.row}>
+                          <DateWrapper
+                            name='check_in'
+                            label='Check In'
+                            selectedDate={startDate}
+                            setDateFunc={setStartDate}
+                            icon='dates'
+                            placeholder='Add date'
+                          />
+                          <DateWrapper
+                            name='check_out'
+                            label='Check Out'
+                            selectedDate={endDate}
+                            setDateFunc={setEndDate}
+                            icon='dates'
+                            placeholder='Add date'
+                          />
                         </div>
-                      ) : (
-                        'Reserve'
-                      )}
-                    </Button>
+                      </div>
+                      <div className={styles.column}>
+                        <SelectField
+                          name='room_type'
+                          options={hotel.rooms}
+                          value={formik.values.room_type}
+                          label='Room Type'
+                          icon='night'
+                          onChange={formik.handleChange}
+                          formik={formik}
+                        />
+                        <div className={styles.row}>
+                          <DefaultInput
+                            type='number'
+                            name='adults'
+                            value='1'
+                            label='Adults'
+                            smallLabel='18 or above'
+                            icon='users'
+                            handleChange={handleChange}
+                            placeholder='Adults'
+                            min='1'
+                            max='100'
+                          />
+                          <DefaultInput
+                            type='number'
+                            name='children'
+                            value='0'
+                            label='Children'
+                            smallLabel='12 or above'
+                            icon='users'
+                            handleChange={handleChange}
+                            placeholder='Children'
+                            min='0'
+                            max='100'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p className={styles.infoSection}>Personal Information</p>
+                      <div className={styles.column}>
+                        <DefaultInput
+                          type='text'
+                          name='firstname'
+                          placeholder='First name'
+                          label='First name'
+                          handleChange={handleChange}
+                        />
+                        <DefaultInput
+                          type='text'
+                          name='lastname'
+                          placeholder='Last name'
+                          label='Last name'
+                          handleChange={handleChange}
+                        />
+                      </div>
+                      <div className={styles.column}>
+                        <DefaultInput
+                          type='email'
+                          name='email'
+                          placeholder='Email'
+                          label='Email'
+                          handleChange={handleChange}
+                        />
+                        <DefaultInput
+                          type='text'
+                          name='special_requests'
+                          placeholder='Any requests here..'
+                          label='Special Requests'
+                          handleChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.total}>
+                      <span>Total</span>
+                      <Field as='div' className={styles.priceWrapper}>
+                        <span ref={priceRef} className={styles.price}>
+                          {calcPrice(
+                            hotel.rooms,
+                            formik.values.room_type,
+                            nights,
+                            formik.values.adults,
+                            formik.values.children
+                          )}{' '}
+                        </span>
+                        <span>NOK</span>
+                        <span className={styles.night}>{nights} nights</span>
+                      </Field>
+                    </div>
+                    <div className={styles.buttonContainer}>
+                      <Button
+                        btnType='search'
+                        submit
+                        isDisabled={!formik.isValid}
+                      >
+                        {isLoading ? (
+                          <div className='loader'>
+                            <Loader />
+                          </div>
+                        ) : (
+                          'Reserve'
+                        )}
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                )}
               </Form>
             );
           }}
