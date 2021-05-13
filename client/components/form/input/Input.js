@@ -59,6 +59,7 @@ const DefaultInput = ({
   name,
   placeholder,
   label,
+  smallLabel,
   icon,
   customClass,
   customContainer,
@@ -71,11 +72,11 @@ const DefaultInput = ({
 }) => {
   return (
     <Field name={name}>
-      {({ field, form: { touched, errors }, meta }) => (
+      {({ field, meta }) => (
         <div className={`${styles.inputContainer} ${customContainer}`}>
           <label htmlFor={name} className={styles.label}>
             {getIcon(icon)}
-            {label}
+            {label} <span className={styles.smallLabel}>{smallLabel}</span>
           </label>
           <input
             type={type}

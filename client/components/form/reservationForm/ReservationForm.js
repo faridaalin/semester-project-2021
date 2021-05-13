@@ -13,6 +13,15 @@ import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
 import styles from './reservationForm.module.css';
 
+const calcPrice = (roomList, room, nights, adults, children, setTotalFunc) => {
+  const roomType = roomList.find((roomType) => roomType.room_type === room);
+  const totalGuests = adults + children;
+  const numRooms = Math.ceil(totalGuests / roomType.sleeps);
+  const pricePerRoom = numRooms * roomType.price;
+  const TotalPrice = pricePerRoom * nights;
+  setTotalFunc(TotalPrice);
+};
+
 const ReservationForm = ({ modal, setModal, hotel }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -48,11 +57,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
       check_out: dateFormat(`${endDate}`, 'mm/dd/yyyy'),
     });
     setNights(calcNights(startDate, endDate));
-    // setTotal(nights > 0 night * );
   }, [personalInfo, startDate, endDate, hotel.title]);
-
-  // console.log('formData', formData);
-  // console.log('nights', nights);
 
   const initialFormData = {
     hotel_name: hotel.title,
@@ -67,6 +72,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     email: '',
     special_requests: '',
   };
+  console.log('total:', total);
   return (
     <>
       <PureModal
@@ -85,6 +91,16 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           {(formik) => {
             console.log('FORMIK:', formik);
             console.log('VALUES:', formik.values);
+            {
+              calcPrice(
+                hotel.rooms,
+                formik.values.room_type,
+                nights,
+                formik.values.adults,
+                formik.values.children,
+                setTotal
+              );
+            }
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -135,6 +151,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           name='adults'
                           value={adults}
                           label='Adults'
+                          smallLabel='18 or above'
                           icon='users'
                           handleChange={handleChange}
                           placeholder='Adults'
@@ -146,6 +163,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           name='children'
                           value={children}
                           label='Children'
+                          smallLabel='12 or above'
                           icon='users'
                           handleChange={handleChange}
                           placeholder='Children'
@@ -217,13 +235,3 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
 };
 
 export default ReservationForm;
-
-const calcPrice = (roomList, room, nights, adults, children) => {
-  const roomType = roomList.find((roomType) => roomType.room_type === room);
-  const guest = adults + children;
-  const numRooms = Math.ceil(guest * roomType.sleeps);
-  const pricePerRoom = numRooms * roomType.price;
-  const TotalPrice = pricePerRoom * nights;
-
-  return TotalPrice;
-};
