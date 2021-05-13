@@ -12,12 +12,12 @@ import styles from './navbar.module.css';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [show, setShow] = useState(false);
+  const [modal, setModal] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
 
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
-  const handleShow = () => setShow(true);
+  const handleShow = () => setModal(true);
   const toggleMenu = () => {
     setOpen(!open);
   };
@@ -65,7 +65,7 @@ const Navbar = () => {
     } else {
       return (
         <li className={styles.itemButton}>
-          {show && <Login show={show} setShow={setShow} />}
+          {modal && <Login modal={modal} setModal={setModal} />}
           <Button color='orange' clickHandler={handleShow}>
             Login
           </Button>

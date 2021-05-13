@@ -64,7 +64,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           if (error.response.status === 404) {
             setStatus({
               sent: false,
-              msg: error.response.statusText,
+              msg: error.response.data.message,
             });
           }
         } else {
@@ -206,14 +206,12 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           name='firstname'
                           placeholder='First name'
                           label='First name'
-                          handleChange={handleChange}
                         />
                         <DefaultInput
                           type='text'
                           name='lastname'
                           placeholder='Last name'
                           label='Last name'
-                          handleChange={handleChange}
                         />
                       </div>
                       <div className={styles.column}>
@@ -222,14 +220,12 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           name='email'
                           placeholder='Email'
                           label='Email'
-                          handleChange={handleChange}
                         />
                         <DefaultInput
                           type='text'
                           name='special_requests'
                           placeholder='Any requests here..'
                           label='Special Requests'
-                          handleChange={handleChange}
                         />
                       </div>
                     </div>

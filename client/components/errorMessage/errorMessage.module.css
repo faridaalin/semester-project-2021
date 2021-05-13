@@ -3,4 +3,5 @@
   font-size: 12px;
   padding: 8px 5px;
   font-weight: var(--fontWeight-m);
+  text-align: left;
 }

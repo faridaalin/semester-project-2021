@@ -114,6 +114,7 @@ h3 {
 
 .pure-modal-backdrop .pure-modal {
   width: 100%;
+  top: 100px;
 }
 
 .css-2b097c-container,

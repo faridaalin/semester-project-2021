@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import PureModal from 'react-pure-modal';
 import { object, string } from 'yup';
 import { useCookies } from 'react-cookie';
+import { X, Loader } from 'react-feather';
 import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
@@ -9,111 +12,127 @@ import ErrorMessage from '../../errorMessage/ErrorMessage';
 import { USER_TOKEN } from '../../../config/contants';
 import styles from './login.module.css';
 
-const Login = ({ show, setShow }) => {
+const Login = ({ modal, setModal }) => {
   const [, setCookie] = useCookies(['isAdmin']);
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const handleClose = () => setShow(false);
+  const handleClose = () => setModal(false);
+
   const loginSchema = object({
     email: string().required('Required!').email('Invalid email address.'),
     password: string().required('Required!').min(8).max(12),
   });
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: loginSchema,
-    onSubmit: async (
-      values,
-      { setStatus, setErrors, setSubmitting, resetForm }
-    ) => {
-      setSubmitting(true);
-      try {
-        const res = await axios.post('/users/login', {
-          email: values.email,
-          password: values.password,
+
+  const onSubmit = async (values, onSubmitProps) => {
+    const { setStatus } = onSubmitProps;
+    setIsLoading(true);
+    try {
+      const res = await axios.post('/users/login', {
+        email: values.email,
+        password: values.password,
+      });
+
+      if (res.status === 200) {
+        const { data } = res;
+        setStatus({
+          sent: true,
+          msg: 'Your are logged in now.',
         });
 
-        if (res.status === 200) {
-          const { data } = res;
-          setSubmitting(false);
-          setStatus({
-            success: true,
+        console.log('user role', data.user.role);
+        if (data.user.role === 'admin') {
+          setCookie('isAdmin', 'admin', {
+            maxAge: 60 * 60,
+            path: '/',
           });
-
-          localStorage.setItem(USER_TOKEN, JSON.stringify(data.token));
-          console.log('user role', data.user.role);
-          if (data.user.role === 'admin') {
-            setCookie('isAdmin', 'admin', {
-              maxAge: 60 * 60,
-              path: '/',
-            });
-            if (typeof window !== 'undefined') {
-              router.push('/dashboard');
-            }
-            return;
-          } else {
-            setCookie('isAdmin', 'public', {
-              maxAge: 60 * 60,
-              path: '/',
-            });
-            if (typeof window !== 'undefined') {
-              router.push('/hotels');
-            }
-            return;
+          if (typeof window !== 'undefined') {
+            router.push('/dashboard');
           }
-        }
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response);
-          console.log(err.response.data.message);
-          setErrors({
-            error: err.response.data.message,
+          return;
+        } else {
+          setCookie('isAdmin', 'public', {
+            maxAge: 60 * 60,
+            path: '/',
           });
+          if (typeof window !== 'undefined') {
+            router.push('/hotels');
+          }
+          return;
+        }
+      }
+    } catch (error) {
+      if (error.response && error.response.status) {
+        if (error.response.status === 403) {
           setStatus({
-            success: false,
+            sent: false,
+            msg: error.response.data.message,
+          });
+        } else {
+          setStatus({
+            sent: false,
+            msg: 'Something went wrong, please try again later.',
           });
         }
       }
-    },
-  });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const initialValues = {
+    email: '',
+    password: '',
+  };
 
   return (
-    <form className={styles.form} onSubmit={formik.handleSubmit}>
-      {formik.errors && <ErrorMessage>{formik.errors.error}</ErrorMessage>}
+    <PureModal
+      header={
+        <span onClick={() => setModal(false)}>
+          <X />
+        </span>
+      }
+      isOpen={modal}
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        onSubmit={onSubmit}
+      >
+        {(formik) => {
+          return (
+            <Form className={styles.form}>
+              {formik.status && formik.status.msg && (
+                <ErrorMessage>{formik.status.msg}</ErrorMessage>
+              )}
+              <DefaultInput
+                type='email'
+                name='email'
+                placeholder='email@email.com'
+                label='Email'
+              />
 
-      <DefaultInput
-        type='email'
-        name='email'
-        placeholder='email@email.com'
-        label='Email'
-        value={formik.values.email}
-        handleChange={formik.handleChange}
-        handleBlur={formik.handleBlur}
-      />
-      {formik.errors.email && formik.touched.email && (
-        <ErrorMessage>{formik.errors.email}</ErrorMessage>
-      )}
-      <DefaultInput
-        type='password'
-        name='password'
-        placeholder='Password'
-        label='Password'
-        value={formik.values.password}
-        handleChange={formik.handleChange}
-        handleBlur={formik.handleBlur}
-      />
+              <DefaultInput
+                type='password'
+                name='password'
+                placeholder='Password'
+                label='Password'
+              />
 
-      {formik.errors.password && formik.touched.password && (
-        <ErrorMessage>{formik.errors.password}</ErrorMessage>
-      )}
-      <div className={styles.btnContainer}>
-        <Button color='grey' submit>
-          Login
-        </Button>
-      </div>
-    </form>
+              <div className={styles.btnContainer}>
+                <Button color='grey' submit isDisabled={!formik.isValid}>
+                  {isLoading ? (
+                    <div className='loader'>
+                      <Loader />
+                    </div>
+                  ) : (
+                    'Login'
+                  )}
+                </Button>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
+    </PureModal>
   );
 };
 
