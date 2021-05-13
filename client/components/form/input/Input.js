@@ -67,6 +67,7 @@ const DefaultInput = ({
   handleBlur,
   min,
   max,
+  readonly,
 }) => {
   return (
     <Field name={name}>
@@ -85,7 +86,7 @@ const DefaultInput = ({
             onBlur={handleBlur}
             placeholder={placeholder}
             className={`${styles.input} ${customClass} `}
-            readonly
+            readOnly={readonly}
             min={min}
             max={max}
             {...field}

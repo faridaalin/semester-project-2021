@@ -1,4 +1,3 @@
-import { ChevronDown } from 'react-feather';
 import { Field } from 'formik';
 import { getIcon } from '../input/Input';
 import styles from '../input/input.module.css';
@@ -9,7 +8,7 @@ const SelectField = ({
   label,
   icon,
   customContainer,
-  onChange,
+  formik,
 }) => {
   return (
     <div className={`${styles.inputContainer} ${customContainer}`}>
@@ -21,17 +20,19 @@ const SelectField = ({
         as='select'
         id={name}
         name={name}
-        handleChange={(item) => onChange(item)}
         options={options}
         className={`${styles.input} ${styles.select}`}
       >
         {options.map((room, i) => {
           return (
-            <option value={room.room_type}>
+            <option value={room.room_type} key={i}>
               {room.room_type} {room.price} NOK
             </option>
           );
         })}
+        {formik.touched.room_type && formik.errors.room_type && (
+          <div className={styles.error}>{formik.errors.room_type}</div>
+        )}
       </Field>
     </div>
   );

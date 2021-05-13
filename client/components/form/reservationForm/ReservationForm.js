@@ -51,8 +51,8 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     // setTotal(nights > 0 night * );
   }, [personalInfo, startDate, endDate, hotel.title]);
 
-  console.log('formData', formData);
-  console.log('nights', nights);
+  // console.log('formData', formData);
+  // console.log('nights', nights);
 
   const initialFormData = {
     hotel_name: hotel.title,
@@ -83,7 +83,8 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            // console.log('FORMIK:', formik.values);
+            console.log('FORMIK:', formik);
+            console.log('VALUES:', formik.values);
             return (
               <Form className={styles.form}>
                 <div className={styles.innerForm}>
@@ -125,7 +126,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                         value={formik.values.room_type}
                         label='Room Type'
                         icon='night'
-                        handleChange={formik.handleChange}
+                        onChange={formik.handleChange}
                         formik={formik}
                       />
                       <div className={styles.row}>

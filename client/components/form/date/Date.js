@@ -1,18 +1,12 @@
-import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useField, useFormikContext } from 'formik';
-import dateFormat from 'dateformat';
 import { getIcon } from '../input/Input';
-
 import styles from '../input/input.module.css';
 
 const DateWrapper = (props) => {
   const { label, selectedDate, setDateFunc, icon, name, placeholder } = props;
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, errors, touched, handleBlur } = useFormikContext();
   const [field] = useField(props);
-  const handleDateSelection = (date) => {
-    setDateFunc(new Date(date));
-  };
 
   return (
     <div className={`${styles.inputContainer} `}>
@@ -26,6 +20,7 @@ const DateWrapper = (props) => {
           setDateFunc(new Date(val));
           setFieldValue(field.name, val);
         }}
+        onBlur={handleBlur}
         selected={(field.value && new Date(field.value)) || null}
         startDate={selectedDate}
         className={styles.input}
@@ -33,6 +28,10 @@ const DateWrapper = (props) => {
         name={name}
         placeholderText={placeholder}
       />
+
+      {field.name === name && touched[name] && errors[name] && (
+        <div className={styles.error}>{errors[name]}</div>
+      )}
     </div>
   );
 };
