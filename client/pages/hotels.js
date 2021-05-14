@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PureModal from 'react-pure-modal';
+import { useRouter } from 'next/router';
 import axios from '../utils/axios';
 import { parseCookies } from '../helpers/parseCookies';
 import Layout from '../components/layout/Layout';
@@ -20,6 +21,8 @@ export default function Hotels(props) {
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
+  const router = useRouter();
+  console.log('ROUTER', router);
 
   const displayHotels = (hotels) => {
     const hotelsToDisplay =
@@ -64,9 +67,9 @@ export default function Hotels(props) {
         const deleteHotel = itemToDelete.title;
         setDeleteMsg(`${deleteHotel} has been deleted`);
         setTimeout(setModal(false), 10000);
+        router.reload();
       }
     } catch (error) {
-      console.log(error.response);
       if (error.response && error.response.status) {
         if (error.response.data.status === 404) {
           return setDeleteMsg('Hotel not found');
@@ -74,7 +77,7 @@ export default function Hotels(props) {
           return setDeleteMsg('Access denied!');
         }
       }
-      console.log('err', error);
+      return setDeleteMsg('Error happend, please try again later.');
     }
   };
   console.log('deleteMsg', deleteMsg);
