@@ -7,7 +7,7 @@ import Accordion from '../components/accordion/Accordion';
 import useDashboardContext from '../context/DashboardContext';
 import styles from './dashboard.module.css';
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, admin }) {
   const [openNav, setOpenNav] = useState(false);
   const [widthOnLoad, setWidthOnLoad] = useState(null);
 
@@ -151,11 +151,11 @@ export async function getServerSideProps(context) {
   const token = cookie.jwt;
   const admin = cookie.isAdmin;
 
-  let data;
+  let data = null;
   try {
     const options = {
       headers: {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
     };
     const messages = axios.get('/messages', options);
@@ -176,8 +176,11 @@ export async function getServerSideProps(context) {
       messages: messagesRes.data,
       enquiries: enquiriesRes.data,
     };
+    console.log('MSG:', messagesRes.data);
+    console.log('ENQ:', enquiriesRes.data);
   } catch (err) {
     console.error(err);
+
     if (err.response.status === 401) {
       return {
         redirect: {
@@ -198,6 +201,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { data },
+    props: { data, admin },
   };
 }

@@ -39,6 +39,7 @@ const HotelForm = ({
 
       if (res.status === 200) {
         setIsLoading(false);
+        update && localStorage.removeItem('itemToUpdate');
 
         setStatus({
           sent: true,

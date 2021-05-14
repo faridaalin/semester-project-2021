@@ -10,14 +10,12 @@ import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
 import styles from './navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
-  const [modal, setModal] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
-
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const router = useRouter();
-  const handleShow = () => setModal(true);
+
   const toggleMenu = () => {
     setOpen(!open);
   };
@@ -65,8 +63,7 @@ const Navbar = () => {
     } else {
       return (
         <li className={styles.itemButton}>
-          {modal && <Login modal={modal} setModal={setModal} />}
-          <Button color='orange' clickHandler={handleShow}>
+          <Button color='orange' clickHandler={() => setLoginModal(true)}>
             Login
           </Button>
         </li>

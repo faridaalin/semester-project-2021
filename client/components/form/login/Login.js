@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Formik, Form, Field } from 'formik';
-import PureModal from 'react-pure-modal';
 import { object, string } from 'yup';
 import { useCookies } from 'react-cookie';
 import { X, Loader } from 'react-feather';
@@ -12,11 +11,10 @@ import ErrorMessage from '../../errorMessage/ErrorMessage';
 import { USER_TOKEN } from '../../../config/contants';
 import styles from './login.module.css';
 
-const Login = ({ modal, setModal }) => {
+const Login = ({ setLoginModal }) => {
   const [, setCookie] = useCookies(['isAdmin']);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const handleClose = () => setModal(false);
 
   const loginSchema = object({
     email: string().required('Required!').email('Invalid email address.'),
@@ -44,21 +42,22 @@ const Login = ({ modal, setModal }) => {
             maxAge: 86400 * 3,
             path: '/',
           });
-          console.log('typeof window !== undef', typeof window !== 'undefined');
+
           if (typeof window !== 'undefined') {
+            console.log('Push to dash');
             router.push('/dashboard');
           }
-          return;
         } else {
           setCookie('isAdmin', 'public', {
             maxAge: 86400 * 3,
             path: '/',
           });
           if (typeof window !== 'undefined') {
+            console.log('Push to dash');
             router.push('/hotels');
           }
-          return;
         }
+        setLoginModal(false);
       }
     } catch (error) {
       if (error.response && error.response.status) {
@@ -84,55 +83,46 @@ const Login = ({ modal, setModal }) => {
   };
 
   return (
-    <PureModal
-      header={
-        <span onClick={() => setModal(false)}>
-          <X />
-        </span>
-      }
-      isOpen={modal}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={loginSchema}
+      onSubmit={onSubmit}
     >
-      <Formik
-        initialValues={initialValues}
-        validationSchema={loginSchema}
-        onSubmit={onSubmit}
-      >
-        {(formik) => {
-          return (
-            <Form className={styles.form}>
-              {formik.status && formik.status.msg && (
-                <ErrorMessage>{formik.status.msg}</ErrorMessage>
-              )}
-              <DefaultInput
-                type='email'
-                name='email'
-                placeholder='email@email.com'
-                label='Email'
-              />
+      {(formik) => {
+        return (
+          <Form className={styles.form}>
+            {formik.status && formik.status.msg && (
+              <ErrorMessage>{formik.status.msg}</ErrorMessage>
+            )}
+            <DefaultInput
+              type='email'
+              name='email'
+              placeholder='email@email.com'
+              label='Email'
+            />
 
-              <DefaultInput
-                type='password'
-                name='password'
-                placeholder='Password'
-                label='Password'
-              />
+            <DefaultInput
+              type='password'
+              name='password'
+              placeholder='Password'
+              label='Password'
+            />
 
-              <div className={styles.btnContainer}>
-                <Button color='grey' submit isDisabled={!formik.isValid}>
-                  {isLoading ? (
-                    <div className='loader'>
-                      <Loader />
-                    </div>
-                  ) : (
-                    'Login'
-                  )}
-                </Button>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
-    </PureModal>
+            <div className={styles.btnContainer}>
+              <Button btnType='search' submit isDisabled={!formik.isValid}>
+                {isLoading ? (
+                  <div className='loader'>
+                    <Loader />
+                  </div>
+                ) : (
+                  'Login'
+                )}
+              </Button>
+            </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 
