@@ -48,6 +48,21 @@
   gap: 40px;
 }
 
+.btnIcon {
+  border: none;
+  background: transparent;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+.btnIcon:hover {
+  transform: scale(1);
+}
+
+.iconUpdate,
+.iconDelete {
+  cursor: pointer;
+}
+
 .buttonContainer {
   display: flex;
   gap: 40px;

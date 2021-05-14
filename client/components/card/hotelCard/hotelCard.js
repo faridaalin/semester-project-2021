@@ -1,17 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Star } from 'react-feather';
 import truncate from '../../../helpers/truncate';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
 import { useCookies } from 'react-cookie';
-import { Edit, Trash2 } from 'react-feather';
+import { Star, Edit, Trash2 } from 'react-feather';
+import axios from '../../../utils/axios';
 import styles from './hotelCard.module.css';
 
-const HotelCard = ({ hotel }) => {
+const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
   const [cookie] = useCookies(['isAdmin']);
   const admin = cookie.isAdmin === 'admin' ? true : false;
+
+  const handleDeleteButton = (e) => {
+    e.preventDefault();
+    setModal(true);
+    setItemTodelete(hotel);
+  };
 
   return (
     <Link href={`/hotel/${hotel._id}`}>
@@ -47,8 +54,22 @@ const HotelCard = ({ hotel }) => {
               </Button>
               {admin === true && (
                 <div className={styles.icons}>
-                  <Trash2 className={styles.iconDelete} />{' '}
-                  <Edit className={styles.iconUpdate} />{' '}
+                  <button
+                    className={styles.btnIcon}
+                    onClick={handleDeleteButton}
+                  >
+                    <Trash2 className={styles.iconDelete} />
+                  </button>
+                  <button className={styles.btnIcon}>
+                    <Edit
+                      className={styles.iconUpdate}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log('EDIT BUTTON ID', hotel._id);
+                        Router.push('/update-product');
+                      }}
+                    />
+                  </button>
                 </div>
               )}
             </div>

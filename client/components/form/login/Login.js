@@ -42,7 +42,7 @@ const Login = ({ modal, setModal }) => {
         console.log('user role', data.user.role);
         if (data.user.role === 'admin') {
           setCookie('isAdmin', 'admin', {
-            maxAge: 60 * 60,
+            maxAge: 86400 * 3,
             path: '/',
           });
           console.log('typeof window !== undef', typeof window !== 'undefined');
@@ -52,7 +52,7 @@ const Login = ({ modal, setModal }) => {
           return;
         } else {
           setCookie('isAdmin', 'public', {
-            maxAge: 60 * 60,
+            maxAge: 86400 * 3,
             path: '/',
           });
           if (typeof window !== 'undefined') {

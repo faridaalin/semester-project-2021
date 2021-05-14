@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { Loader } from 'react-feather';
-import PureModal from 'react-pure-modal';
 import { DefaultInput } from '../input/Input';
 import Textera from '../textarea/Textarea';
 import Button from '../../button/Button';
@@ -27,7 +26,7 @@ const HotelForm = ({
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log('options', values, options);
+   
 
     try {
       const res = await axios.post(endpoint, values, options);
