@@ -12,15 +12,18 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from './searchFormHome.module.css';
 
 const Search = ({ content }) => {
+  const today = new Date();
+  let tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
   const intitalDateRange = [
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: tomorrow.toDateString(),
       key: 'selection',
     },
   ];
   const [showGuests, setShowGuests] = useState(false);
-  const [guests, setGuests] = useState(null);
+  const [guests, setGuests] = useState(1);
   const [calendar, setCalendar] = useState(false);
   const [dateRage, setDateRange] = useState(intitalDateRange);
   const [searchMatch, setSearchMatch] = useState(null);
@@ -241,7 +244,7 @@ const Search = ({ content }) => {
           <input
             name='guests'
             type='button'
-            value={guests >= 1 ? guests : 'Add guests'}
+            value={guests >= 1 ? guests : 1}
             className={styles.inputButton}
             onClick={() => setShowGuests(!showGuests)}
           />

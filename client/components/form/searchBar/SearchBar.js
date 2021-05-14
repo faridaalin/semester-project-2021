@@ -1,9 +1,10 @@
+import dateFormat from 'dateformat';
 import { DefaultInput, InputCalendar } from '../input/Input';
 import Button from '../../button/Button';
 
 import styles from './searchBar.module.css';
 
-const SearchBar = () => {
+const SearchBar = ({ content }) => {
   return (
     <form className={`${styles.form}`}>
       <DefaultInput

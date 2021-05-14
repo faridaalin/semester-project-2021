@@ -33,7 +33,7 @@ const Accordion = ({ content, type }) => {
             >
               <span>{item.firstname}</span>
               <span>{item.subject}</span>
-              <span>{dateFormat(`${item.createdAt}`, 'mm/dd/yyyy')}</span>
+              <span>{dateFormat(`${item.createdAt}`, 'mmm d, yyyy')}</span>
               <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
             </div>
             {open === index ? (
