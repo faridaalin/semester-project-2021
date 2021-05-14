@@ -86,28 +86,28 @@ const HotelForm = ({
                     name='title'
                     placeholder='Name'
                     label='Hotel name'
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='address'
                     placeholder='Address'
                     label='Hotel Address'
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='subheading'
                     placeholder='Subheading'
                     label='Subheading'
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
                   <Textera
                     placeholder='Hotel description...'
                     name='description'
                     label='Description'
                     formik={formik}
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
 
                   {rating && (
@@ -116,7 +116,7 @@ const HotelForm = ({
                       name='rating'
                       placeholder=''
                       label='Rating'
-                      customContainer={styles.customContainer}
+                      // customContainer={styles.customContainer}
                     />
                   )}
 
@@ -125,14 +125,14 @@ const HotelForm = ({
                     name='main_image'
                     placeholder='url'
                     label='Main Image'
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='category'
                     placeholder='"Ski Resort"'
                     label='Category'
-                    customContainer={styles.customContainer}
+                    // customContainer={styles.customContainer}
                   />
                   <div>
                     <p className={styles.title}>Images</p>

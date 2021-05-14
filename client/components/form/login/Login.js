@@ -45,6 +45,7 @@ const Login = ({ modal, setModal }) => {
             maxAge: 60 * 60,
             path: '/',
           });
+          console.log('typeof window !== undef', typeof window !== 'undefined');
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
