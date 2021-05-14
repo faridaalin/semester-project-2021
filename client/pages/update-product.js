@@ -1,23 +1,47 @@
+import { useState, useEffect } from 'react';
 import { parseCookies } from '../helpers/parseCookies';
 import Layout from '../components/layout/Layout';
 import PageHeader from '../components/pageHeader/PageHeader';
 import HotelForm from '../components/form/hotelForm/HotelForm';
 import {
-  productSchema,
+  updateHotelSchema,
   initialProductValues,
 } from '../validationSchema/productSchema';
 
 export default function UpdateProduct({ admin, token }) {
+  const [itemToUpdate, setItemToUpdate] = useState(null);
+
+  useEffect(() => {
+    const hotel = localStorage.getItem('itemToUpdate');
+
+    setItemToUpdate(JSON.parse(hotel));
+  }, []);
+
+  const initialProductValues = {
+    title: itemToUpdate && itemToUpdate.title,
+    subheading: itemToUpdate && itemToUpdate.subheading,
+    address: itemToUpdate && itemToUpdate.address,
+    description: itemToUpdate && itemToUpdate.description,
+    main_image: itemToUpdate && itemToUpdate.main_image,
+    images: itemToUpdate && itemToUpdate.images,
+    rating: itemToUpdate && itemToUpdate.rating,
+    category: itemToUpdate && itemToUpdate.category,
+    rooms: itemToUpdate && itemToUpdate.rooms,
+  };
+
   return (
     <Layout>
       <PageHeader title='Update hotel' />
-      <HotelForm
-        schema={productSchema}
-        initalValues={initialProductValues}
-        newProduct
-        endpoint='/hotels/6082e81ef88761b1ba707cc7c/update'
-        token={token}
-      />
+      {itemToUpdate && (
+        <HotelForm
+          schema={updateHotelSchema}
+          initalValues={initialProductValues}
+          endpoint={`/hotels/${itemToUpdate && itemToUpdate._id}/update`}
+          token={token}
+          rating={itemToUpdate && itemToUpdate.rating ? true : false}
+          update
+        />
+      )}
     </Layout>
   );
 }

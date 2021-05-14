@@ -15,8 +15,10 @@ const HotelForm = ({
   newProduct,
   endpoint,
   token,
+  update,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   const onSubmit = async (values, onSubmitProps) => {
     const { setStatus } = onSubmitProps;
@@ -26,22 +28,32 @@ const HotelForm = ({
         Authorization: `Bearer ${token}`,
       },
     };
-   
+    console.log('VALUES:', values);
+    console.log('Token:', token);
+    console.log('endpoint:', endpoint);
 
     try {
-      const res = await axios.post(endpoint, values, options);
+      let res;
+      if (update) {
+        res = await axios.patch(endpoint, values, options);
+      } else {
+        res = await axios.post(endpoint, values, options);
+      }
 
       if (res.status === 200) {
         setIsLoading(false);
 
         setStatus({
           sent: true,
-          msg: `${values.title} has been created.`,
+          msg: `${values.title} has been ${update ? 'updated' : 'created'}.`,
         });
+        setDisableButton(true);
       }
     } catch (error) {
       if (error.response && error.response.status) {
-        if (error.response.data.status === 'Request Conflict') {
+        console.log('error.response', error.response);
+        console.log('error.response', error.response.status);
+        if (error.response.status === 409) {
           return setStatus({
             sent: false,
             msg: 'This Hotel already exist.',
@@ -58,6 +70,8 @@ const HotelForm = ({
     }
   };
 
+  console.log('endpoint', endpoint);
+
   return (
     <Formik
       initialValues={initalValues}
@@ -65,6 +79,7 @@ const HotelForm = ({
       onSubmit={onSubmit}
     >
       {(formik) => {
+        console.log('Formik', formik);
         return (
           <Form className={styles.form}>
             {formik.status && formik.status.msg && (
@@ -239,7 +254,11 @@ const HotelForm = ({
                 </div>
               </div>
               <div className={styles.btnContainer}>
-                <Button btnType='search' submit isDisabled={!formik.isValid}>
+                <Button
+                  btnType='search'
+                  submit
+                  isDisabled={!formik.isValid || disableButton}
+                >
                   {isLoading ? (
                     <div className='loader'>
                       <Loader />
