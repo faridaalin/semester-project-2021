@@ -10,7 +10,7 @@ import {
 export default function CreateProduct({ admin, token }) {
   return (
     <Layout>
-      <PageHeader title=' Create a new product' />
+      <PageHeader title='Create a new hotel' />
       <section className='section'>
         <HotelForm
           schema={productSchema}

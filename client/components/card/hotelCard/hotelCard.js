@@ -13,12 +13,30 @@ import styles from './hotelCard.module.css';
 const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
   const [cookie] = useCookies(['isAdmin']);
   const admin = cookie.isAdmin === 'admin' ? true : false;
+  const [itemToUpdate, setItemToUpdate] = useState(false);
 
   const handleDeleteButton = (e) => {
     e.preventDefault();
     setModal(true);
     setItemTodelete(hotel);
   };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setItemToUpdate(true);
+  };
+  const addToDeleteLocal = () => {
+    localStorage.setItem('itemToUpdate', JSON.stringify(hotel));
+  };
+
+  useEffect(
+    function () {
+      if (itemToUpdate) {
+        addToDeleteLocal();
+        Router.push('/update-product');
+      }
+    },
+    [itemToUpdate, setItemToUpdate, addToDeleteLocal]
+  );
 
   return (
     <Link href={`/hotel/${hotel._id}`}>
@@ -60,15 +78,8 @@ const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
                   >
                     <Trash2 className={styles.iconDelete} />
                   </button>
-                  <button className={styles.btnIcon}>
-                    <Edit
-                      className={styles.iconUpdate}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        console.log('EDIT BUTTON ID', hotel._id);
-                        Router.push('/update-product');
-                      }}
-                    />
+                  <button className={styles.btnIcon} onClick={handleUpdate}>
+                    <Edit className={styles.iconUpdate} />
                   </button>
                 </div>
               )}

@@ -17,7 +17,7 @@ const BreadCrumps = ({ pathname }) => {
 
     return modifiedPath;
   };
-  console.log('pathname', lastPath(pathname));
+  // console.log('pathname', lastPath(pathname));
   return (
     <div className={styles.linkContainer}>
       <Link href='/'>

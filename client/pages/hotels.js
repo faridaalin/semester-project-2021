@@ -13,16 +13,16 @@ import { useHotelsContext } from '../context/HotelsContext';
 
 export default function Hotels(props) {
   const [pageNumber, setPageNumber] = useState(0);
-  const [hotels, setHotels] = useHotelsContext();
+  const [hotels, setHotels, getHotels] = useHotelsContext();
   const [itemToDelete, setItemTodelete] = useState(null);
   const [deleteMsg, setDeleteMsg] = useState(null);
+
   const [modal, setModal] = useState(false);
   const token = props.token;
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
   const router = useRouter();
-  console.log('ROUTER', router);
 
   const displayHotels = (hotels) => {
     const hotelsToDisplay =
@@ -62,12 +62,12 @@ export default function Hotels(props) {
         `/hotels/${itemToDelete._id}/delete`,
         options
       );
-      console.log('RES', res);
+
       if (res.status === 202) {
         const deleteHotel = itemToDelete.title;
         setDeleteMsg(`${deleteHotel} has been deleted`);
         setTimeout(setModal(false), 10000);
-        router.reload();
+        getHotels();
       }
     } catch (error) {
       if (error.response && error.response.status) {
@@ -80,7 +80,6 @@ export default function Hotels(props) {
       return setDeleteMsg('Error happend, please try again later.');
     }
   };
-  console.log('deleteMsg', deleteMsg);
 
   return (
     <Layout>
