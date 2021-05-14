@@ -225,7 +225,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                     </div>
                     <div className={styles.total}>
                       <span>Total</span>
-                      <Field as='div' className={styles.priceWrapper}>
+                      <div className={styles.priceWrapper}>
                         <span ref={priceRef} className={styles.price}>
                           {calcPrice(
                             hotel.rooms,
@@ -237,7 +237,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                         </span>
                         <span>NOK</span>
                         <span className={styles.night}>{nights} nights</span>
-                      </Field>
+                      </div>
                     </div>
                     <div className={styles.buttonContainer}>
                       <Button
