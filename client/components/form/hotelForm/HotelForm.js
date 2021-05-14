@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Form, FieldArray } from 'formik';
 import { Loader } from 'react-feather';
 import { DefaultInput } from '../input/Input';
 import Textera from '../textarea/Textarea';
@@ -28,9 +28,6 @@ const HotelForm = ({
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log('VALUES:', values);
-    console.log('Token:', token);
-    console.log('endpoint:', endpoint);
 
     try {
       let res;
@@ -47,12 +44,10 @@ const HotelForm = ({
           sent: true,
           msg: `${values.title} has been ${update ? 'updated' : 'created'}.`,
         });
-        setDisableButton(true);
+        update ? setDisableButton(false) : setDisableButton(true);
       }
     } catch (error) {
       if (error.response && error.response.status) {
-        console.log('error.response', error.response);
-        console.log('error.response', error.response.status);
         if (error.response.status === 409) {
           return setStatus({
             sent: false,
@@ -70,8 +65,6 @@ const HotelForm = ({
     }
   };
 
-  console.log('endpoint', endpoint);
-
   return (
     <Formik
       initialValues={initalValues}
@@ -79,12 +72,11 @@ const HotelForm = ({
       onSubmit={onSubmit}
     >
       {(formik) => {
-        console.log('Formik', formik);
         return (
           <Form className={styles.form}>
             {formik.status && formik.status.msg && (
               <div
-                className={` ${
+                className={`${
                   formik.status.sent ? styles.success : styles.error
                 }`}
               >

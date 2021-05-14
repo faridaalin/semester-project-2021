@@ -9,7 +9,7 @@ const BreadCrumps = ({ pathname }) => {
 
     if (path.includes('/')) {
       modifiedPath = path.replace('/', '');
-      console.log('mod', modifiedPath.slice(' '));
+      // console.log('mod', modifiedPath.slice(' '));
       const pathToUpperCase =
         modifiedPath.charAt(0).toUpperCase() + modifiedPath.slice(1);
       return (modifiedPath = pathToUpperCase);

@@ -39,7 +39,6 @@ const Login = ({ modal, setModal }) => {
           msg: 'Your are logged in now.',
         });
 
-        console.log('user role', data.user.role);
         if (data.user.role === 'admin') {
           setCookie('isAdmin', 'admin', {
             maxAge: 86400 * 3,
