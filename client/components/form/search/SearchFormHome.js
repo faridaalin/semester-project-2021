@@ -80,24 +80,27 @@ const Search = ({ content }) => {
   const formatDates = (startDate, endDate) => {
     return `${startDate} - ${endDate}`;
   };
-  useEffect(() => {
-    setHotels(content);
-  }, []);
 
   const handleSearchChange = () => {
     setSearch(searchRef.current.value.trim());
     const text = searchRef.current.value;
     let matches = hotels?.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
+      console.log(
+        'hotel.title.match(regex) || hotel.category.match(regex)',
+        hotel.title.match(regex) || hotel.category.match(regex)
+      );
       return hotel.title.match(regex) || hotel.category.match(regex);
     });
+
+    console.log('matches home', matches);
 
     if (matches.length > 0) {
       setSearchMatch(matches);
       setDisplay(true);
     } else {
       setSearchMatch(hotels);
-      setDisplay(true);
+      setDisplay(false);
     }
   };
 
@@ -120,6 +123,10 @@ const Search = ({ content }) => {
       setShowGuests(false);
     }
   };
+
+  useEffect(() => {
+    setHotels(content);
+  }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);

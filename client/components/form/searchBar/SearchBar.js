@@ -14,7 +14,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from '../input/input.module.css';
 import searchStyles from './searchBar.module.css';
 
-const SearchBar = ({ content }) => {
+const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -32,70 +32,64 @@ const SearchBar = ({ content }) => {
   const [guests, setGuests] = useState(1);
   const [calendar, setCalendar] = useState(false);
   const [dateRage, setDateRange] = useState(intitalDateRange);
-  const [searchMatch, setSearchMatch] = useState(null);
+
   const [search, setSearch] = useState('');
+  const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
-  const [hotels, setHotels] = useHotelsContext();
+  // const [hotels, setHotels] = useHotelsContext();
 
   const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
   const guestContainer = useRef(null);
-  const formRef = useRef(null);
 
   const router = useRouter();
 
   const initialFormData = {
-    search: '',
+    search: search,
     check_in: startDate,
     check_out: endDate,
     adults: 1,
     children: 0,
   };
 
-  const onSubmit = (values, onSubmitProps) => {
-    const text = search !== '' ? search : searchRef.current.value;
-    console.log('searchMatch', searchMatch);
-    console.log('search', search);
-    console.log('searchRef.current.value', searchRef.current.value);
-    console.log('text', text);
-    let matches = hotels?.filter((hotel) => {
-      const regex = new RegExp(`${text}`, 'gi');
-      return hotel.title.match(regex) || hotel.category.match(regex);
-    });
-
+  const onSubmit = () => {
     if (search === '') {
       setSearchMatch(content);
-    } else {
-      setHotels(searchMatch);
     }
     if (router.pathname !== '/hotels') router.replace('/hotels');
   };
   const closeModal = () => {
     setCalendar(false);
   };
-
-  const formatDates = (startDate, endDate) => {
-    return `${startDate} - ${endDate}`;
-  };
-  useEffect(() => {
-    setHotels(content);
-  }, []);
+  const clonedHotels = [...content];
   const handleSearchChange = (e) => {
-    const text = search !== '' ? search : searchRef.current.value;
-    let matches = hotels?.filter((hotel) => {
-      const regex = new RegExp(`${text}`, 'gi');
-      return hotel.title.match(regex) || hotel.category.match(regex);
+    setSearch(searchRef.current.value.trim());
+    let text = e.target.value;
+    console.log('text tom', text === '');
+    console.log('text OUTSIDE', text);
+    console.log('matches BEGIN', matches);
+    console.log('content BEGIN', content);
+    console.log('clone', clonedHotels);
+
+    let matches = content?.filter((hotel) => {
+      return (
+        hotel.title.toLowerCase().includes(text.toLowerCase()) ||
+        hotel.category.toLowerCase().includes(text.toLowerCase())
+      );
     });
+    console.log('matches LATEST', matches);
+
+    console.log('LENGTH🔥', matches.length);
 
     if (matches.length > 0) {
       setSearchMatch(matches);
       setDisplay(true);
+      console.log('SHOW MATCHES');
+    } else {
+      setDisplay(false);
+      console.log('HIDE ...!!');
     }
-    // else {
-    //   setSearchMatch(hotels);
-    //   setDisplay(true);
-    // }
   };
 
   const handleClickedSearch = (value) => {
@@ -117,6 +111,9 @@ const SearchBar = ({ content }) => {
       setShowGuests(false);
     }
   };
+  // useEffect(() => {
+  //   setHotels(content);
+  // }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -144,11 +141,11 @@ const SearchBar = ({ content }) => {
                 autoComplete='off'
                 type='search'
                 name='search'
-                id='serach'
+                id='search'
                 value={search}
                 placeholder='Search for hotels in Bergen..'
                 className={styles.input}
-                onChange={handleSearchChange}
+                onInput={(e) => handleSearchChange(e)}
                 ref={searchRef}
               />
 
@@ -222,7 +219,6 @@ const SearchBar = ({ content }) => {
                 btnType='search'
                 submit
                 customBtnClass={searchStyles.customBtnClass}
-                // clickHandler={() => console.log('CLICKED')}
               >
                 Search
               </Button>
