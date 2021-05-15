@@ -10,6 +10,7 @@ import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
 import PageHeader from '../components/pageHeader/PageHeader';
 import Pagination from '../components/pagination/Pagination';
 import { useHotelsContext } from '../context/HotelsContext';
+import { useSearchContext } from '../context/searchContext';
 import SearchBar from '../components/form/searchBar/SearchBar';
 import styles from './hotels.module.css';
 
@@ -20,7 +21,8 @@ export default function Hotels(props) {
   const [itemToDelete, setItemTodelete] = useState(null);
   const [deleteMsg, setDeleteMsg] = useState(null);
   const [modal, setModal] = useState(false);
-  const [searchMatch, setSearchMatch] = useState(null);
+  // const [searchMatch, setSearchMatch] = useState(null);
+  const { search, setSearch } = useSearchContext();
 
   const token = props.token;
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
@@ -48,7 +50,7 @@ export default function Hotels(props) {
   };
 
   const pageCount = Math.ceil(
-    (searchMatch ? searchMatch.length : data.length) / hotelsPerPage
+    (search.length > 0 ? search.length : data.length) / hotelsPerPage
   );
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -86,7 +88,7 @@ export default function Hotels(props) {
       return setDeleteMsg('Error happend, please try again later.');
     }
   };
-  console.log('HOTEL PAGE MATCHES', searchMatch);
+  console.log('HOTEL PAGE MATCHES', search);
 
   return (
     <Layout>
@@ -96,8 +98,8 @@ export default function Hotels(props) {
           <SearchBar
             content={content}
             setContent={setContent}
-            searchMatch={searchMatch}
-            setSearchMatch={setSearchMatch}
+            searchMatch={search}
+            setSearchMatch={setSearch}
           />
         </div>
       </section>
@@ -106,7 +108,7 @@ export default function Hotels(props) {
         <>
           <CardContainer>
             {!data && <div>Error happend..</div>}
-            {displayHotels(searchMatch ? searchMatch : data)}
+            {displayHotels(search.length === 0 ? data : search)}
             <PureModal
               header='Your header'
               footer={

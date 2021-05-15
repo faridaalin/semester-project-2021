@@ -16,7 +16,6 @@ export const DashboardContextProvider = ({ children }) => {
   const router = useRouter();
 
   const logout = async () => {
-    console.log('User is logged out');
     try {
       await axios.get('/users/logout');
       removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
