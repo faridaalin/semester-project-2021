@@ -41,6 +41,7 @@ const DefaultInput = ({
   min,
   max,
   readonly,
+  searchRef,
 }) => {
   return (
     <Field name={name}>
@@ -63,6 +64,7 @@ const DefaultInput = ({
               readOnly={readonly}
               min={min}
               max={max}
+              ref={searchRef}
               {...field}
             />
             {meta.touched && meta.error && (

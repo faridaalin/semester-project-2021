@@ -31,7 +31,8 @@ const Search = ({ content }) => {
   const [errors, setErrors] = useState({});
 
   const [hotels, setHotels] = useHotelsContext();
-  const input = useRef(null);
+
+  const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
   const guestContainer = useRef(null);
@@ -84,8 +85,8 @@ const Search = ({ content }) => {
   }, []);
 
   const handleSearchChange = () => {
-    setSearch(input.current.value.trim());
-    const text = input.current.value;
+    setSearch(searchRef.current.value.trim());
+    const text = searchRef.current.value;
     let matches = hotels?.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
       return hotel.title.match(regex) || hotel.category.match(regex);
@@ -160,7 +161,7 @@ const Search = ({ content }) => {
           placeholder='Search for hotels in Bergen..'
           className={styles.input}
           onChange={handleSearchChange}
-          ref={input}
+          ref={searchRef}
         />
         {getErrorField(errors)?.name &&
           getErrorField(errors)?.name === 'search' && (

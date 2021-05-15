@@ -1,21 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
+import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
+import searchSchema from '../../../validationSchema/searchSchema';
 import DateWrapper from '../../form/date/Date';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
-import searchSchema from '../../../validationSchema/searchSchema';
-import styles from './searchBar.module.css';
+import Guests from '../guest/Guests';
+import { useHotelsContext } from '../../../context/HotelsContext';
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import styles from '../input/input.module.css';
+import searchStyles from './searchBar.module.css';
 
 const SearchBar = ({ content }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
+  const intitalDateRange = [
+    {
+      startDate: today.toDateString(),
+      endDate: tomorrow.toDateString(),
+      key: 'selection',
+    },
+  ];
+
   const [startDate, setStartDate] = useState(today.toDateString());
   const [endDate, setEndDate] = useState(tomorrow.toDateString());
+  const [showGuests, setShowGuests] = useState(false);
+  const [guests, setGuests] = useState(1);
+  const [calendar, setCalendar] = useState(false);
+  const [dateRage, setDateRange] = useState(intitalDateRange);
+  const [searchMatch, setSearchMatch] = useState(null);
+  const [search, setSearch] = useState('');
+  const [display, setDisplay] = useState(false);
+  const [hotels, setHotels] = useHotelsContext();
 
+  const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
   const guestContainer = useRef(null);
+  const formRef = useRef(null);
+
+  const router = useRouter();
 
   const initialFormData = {
     search: '',
@@ -24,12 +52,37 @@ const SearchBar = ({ content }) => {
     adults: 1,
     children: 0,
   };
-  const onSubmit = async (values, onSubmitProps) => {
-    console.log('values', values);
+
+  const onSubmit = (values, onSubmitProps) => {
+    const text = search !== '' ? search : searchRef.current.value;
+    console.log('searchMatch', searchMatch);
+    console.log('search', search);
+    console.log('searchRef.current.value', searchRef.current.value);
+    console.log('text', text);
+    let matches = hotels?.filter((hotel) => {
+      const regex = new RegExp(`${text}`, 'gi');
+      return hotel.title.match(regex) || hotel.category.match(regex);
+    });
+
+    if (search === '') {
+      setSearchMatch(content);
+    } else {
+      setHotels(searchMatch);
+    }
+    if (router.pathname !== '/hotels') router.replace('/hotels');
   };
-  const handleSearchChange = () => {
-    setSearch(input.current.value.trim());
-    const text = input.current.value;
+  const closeModal = () => {
+    setCalendar(false);
+  };
+
+  const formatDates = (startDate, endDate) => {
+    return `${startDate} - ${endDate}`;
+  };
+  useEffect(() => {
+    setHotels(content);
+  }, []);
+  const handleSearchChange = (e) => {
+    const text = search !== '' ? search : searchRef.current.value;
     let matches = hotels?.filter((hotel) => {
       const regex = new RegExp(`${text}`, 'gi');
       return hotel.title.match(regex) || hotel.category.match(regex);
@@ -38,10 +91,11 @@ const SearchBar = ({ content }) => {
     if (matches.length > 0) {
       setSearchMatch(matches);
       setDisplay(true);
-    } else {
-      setSearchMatch(hotels);
-      setDisplay(true);
     }
+    // else {
+    //   setSearchMatch(hotels);
+    //   setDisplay(true);
+    // }
   };
 
   const handleClickedSearch = (value) => {
@@ -78,19 +132,49 @@ const SearchBar = ({ content }) => {
       onSubmit={onSubmit}
     >
       {(formik) => {
-        console.log('Formik', formik);
         return (
-          <Form className={`${styles.form}`}>
-            <DefaultInput
-              type='search'
-              name='search'
-              placeholder='Search for hotels in Bergen..'
-              label='Location'
-              icon='pin'
-              customContainer={styles.customContainer}
-            />
+          <Form className={`${searchStyles.form}`}>
+            <div className={`${styles.inputContainer} ${styles.searchInput}`}>
+              <label htmlFor='search' className={styles.label}>
+                <MapPin className={styles.icon} />
+                Location
+              </label>
+              <input
+                autoComplete='false'
+                autoComplete='off'
+                type='search'
+                name='search'
+                id='serach'
+                value={search}
+                placeholder='Search for hotels in Bergen..'
+                className={styles.input}
+                onChange={handleSearchChange}
+                ref={searchRef}
+              />
 
-            <div className={`${styles.column} `}>
+              {display && searchMatch.length > 0 && (
+                <div
+                  className={searchStyles.suggestions}
+                  ref={suggestionsContainer}
+                >
+                  {searchMatch.map((value, index) => {
+                    return (
+                      <div
+                        className={searchStyles.suggestionItem}
+                        key={index}
+                        onClick={() => handleClickedSearch(value.title)}
+                      >
+                        <span>
+                          <Moon className={searchStyles.icon} /> {value.title}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className={`${searchStyles.column} `}>
               <DateWrapper
                 name='check_in'
                 label='Check In'
@@ -109,7 +193,7 @@ const SearchBar = ({ content }) => {
               />
             </div>
 
-            <div className={`${styles.column} `}>
+            <div className={`${searchStyles.column} `}>
               <DefaultInput
                 type='number'
                 name='adults'
@@ -133,11 +217,11 @@ const SearchBar = ({ content }) => {
                 max='100'
               />
             </div>
-            <div className={styles.btnContainer}>
+            <div className={searchStyles.btnContainer}>
               <Button
                 btnType='search'
                 submit
-                customBtnClass={styles.customBtnClass}
+                customBtnClass={searchStyles.customBtnClass}
                 // clickHandler={() => console.log('CLICKED')}
               >
                 Search
