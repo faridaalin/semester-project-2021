@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
-import dateFormat from 'dateformat';
 import Button from '../../button/Button';
 import Guests from './guest/Guests';
 import { useHotelsContext } from '../../../context/HotelsContext';

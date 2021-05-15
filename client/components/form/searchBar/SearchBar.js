@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import DateWrapper from '../../form/date/Date';
-import { DefaultInput, InputCalendar } from '../input/Input';
+import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import searchSchema from '../../../validationSchema/searchSchema';
 import styles from './searchBar.module.css';
