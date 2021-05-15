@@ -53,12 +53,23 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
     children: 0,
   };
 
-  const onSubmit = () => {
+  const onSubmit = (values) => {
+    console.log('values', values);
+    // console.log(searchRef.current.value === '');
+    // console.log(searchRef);
+    console.log('search text', search);
+
     if (search === '') {
-      setSearchMatch(content);
+      // setSearchMatch(content);
+      console.log('Search input is EMPTY');
+    } else if (searchMatch.length > 0) {
+      console.log('Search is filteres:', searchMatch);
+    } else {
+      console.log('Search input is typahead?');
     }
     if (router.pathname !== '/hotels') router.replace('/hotels');
   };
+
   const closeModal = () => {
     setCalendar(false);
   };
@@ -66,11 +77,6 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
   const handleSearchChange = (e) => {
     setSearch(searchRef.current.value.trim());
     let text = e.target.value;
-    console.log('text tom', text === '');
-    console.log('text OUTSIDE', text);
-    console.log('matches BEGIN', matches);
-    console.log('content BEGIN', content);
-    console.log('clone', clonedHotels);
 
     let matches = content?.filter((hotel) => {
       return (
@@ -93,6 +99,21 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
   };
 
   const handleClickedSearch = (value) => {
+    let matches = content?.filter((hotel) => {
+      return (
+        hotel.title.toLowerCase().includes(value.toLowerCase()) ||
+        hotel.category.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+
+    if (matches.length > 0) {
+      setSearchMatch(matches);
+      setDisplay(true);
+      console.log('SHOW MATCHES');
+    } else {
+      setDisplay(false);
+      console.log('HIDE ...!!');
+    }
     setSearch(value);
     setDisplay(!display);
   };
