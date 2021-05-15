@@ -4,7 +4,6 @@ const ApiError = require('../error/apiError');
 const User = require('../model/user');
 
 module.exports = (req, res, next) => {
-  console.log('req headers', req.headers);
   if (!req.headers.authorization)
     throw ApiError.unauthorizedRequest('Access denied');
 
@@ -23,7 +22,7 @@ module.exports = (req, res, next) => {
 
       req.user = user;
 
-      if (user.payload.role === 'admin') {
+      if (user.role === 'admin' || user.payload.role === 'admin') {
         next();
       } else {
         next(ApiError.unauthorizedRequest('Forbidden, access denied'));

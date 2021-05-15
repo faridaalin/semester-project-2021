@@ -32,6 +32,7 @@ const prodError = (err, req, res, next) => {
 };
 
 const apiErrorHandler = (err, req, res, next) => {
+  console.log('ERROR🔥', err);
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'dev'

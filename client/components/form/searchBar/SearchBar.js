@@ -10,7 +10,7 @@ const SearchBar = ({ content }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(today.toDateString());
   const [endDate, setEndDate] = useState(tomorrow.toDateString());
 
   const suggestionsContainer = useRef(null);

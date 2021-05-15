@@ -17,7 +17,7 @@ const Search = ({ content }) => {
   tomorrow.setDate(today.getDate() + 1);
   const intitalDateRange = [
     {
-      startDate: new Date(),
+      startDate: today.toDateString(),
       endDate: tomorrow.toDateString(),
       key: 'selection',
     },
@@ -78,10 +78,7 @@ const Search = ({ content }) => {
   };
 
   const formatDates = (startDate, endDate) => {
-    return `${dateFormat(`${startDate}`, 'mm/dd/yyyy')} - ${dateFormat(
-      `${endDate}`,
-      'mm/dd/yyyy'
-    )}`;
+    return `${startDate} - ${endDate}`;
   };
   useEffect(() => {
     setHotels(content);
@@ -161,7 +158,7 @@ const Search = ({ content }) => {
           name='search'
           id='serach'
           value={search}
-          placeholder='Where do you want to stay?'
+          placeholder='Search for hotels in Bergen..'
           className={styles.input}
           onChange={handleSearchChange}
           ref={input}

@@ -38,8 +38,12 @@ exports.user_register = async (req, res, next) => {
 
     const token = createToken(newUser, newUser);
     res.cookie('jwt', token, {
-      secure: process.env.NODE_ENV !== 'development',
-      httpOnly: process.env.NODE_ENV !== 'development',
+      secure:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.NODE_ENV === 'prod',
+      httpOnly:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.NODE_ENV === 'dev',
       maxAge: maxAge * 1000,
       path: '/',
     });
