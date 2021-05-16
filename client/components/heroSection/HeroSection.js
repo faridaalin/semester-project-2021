@@ -74,6 +74,7 @@ const HeroSection = ({ hotels }) => {
           content={data}
           searchMatch={search}
           setSearchMatch={setSearch}
+          datepicker
         />
       </div>
     </section>

@@ -9,19 +9,21 @@ import Button from '../../button/Button';
 import Guests from '../guest/Guests';
 import { useHotelsContext } from '../../../context/HotelsContext';
 import { DateRange } from 'react-date-range';
+import { parseISO, format } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from '../input/input.module.css';
 import searchStyles from './searchBar.module.css';
+import searchStylesHome from '../search/searchFormHome.module.css';
 
-const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
+const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
   const intitalDateRange = [
     {
-      startDate: today.toDateString(),
-      endDate: tomorrow.toDateString(),
+      startDate: today,
+      endDate: tomorrow,
       key: 'selection',
     },
   ];
@@ -31,7 +33,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
   const [showGuests, setShowGuests] = useState(false);
   const [guests, setGuests] = useState(1);
   const [calendar, setCalendar] = useState(false);
-  const [dateRage, setDateRange] = useState(intitalDateRange);
+  const [dateRange, setDateRange] = useState(intitalDateRange);
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
@@ -173,52 +175,67 @@ const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
                 </div>
               )}
             </div>
+            {datepicker ? (
+              <DateWrapperHome
+                calendar={calendar}
+                setCalendar={setCalendar}
+                dateRange={dateRange}
+                setDateRange={setDateRange}
+                guests={guests}
+                setShowGuests={setShowGuests}
+                setGuests={setGuests}
+                calendarContainer={calendarContainer}
+                closeModal={closeModal}
+              />
+            ) : (
+              <>
+                <div className={`${searchStyles.column} `}>
+                  <DateWrapper
+                    name='check_in'
+                    label='Check In'
+                    selectedDate={startDate}
+                    setDateFunc={setStartDate}
+                    icon='dates'
+                    placeholder='Add date'
+                  />
+                  <DateWrapper
+                    name='check_out'
+                    label='Check Out'
+                    selectedDate={endDate}
+                    setDateFunc={setEndDate}
+                    icon='dates'
+                    placeholder='Add date'
+                  />
+                </div>
+                <div className={`${searchStyles.column} `}>
+                  <DefaultInput
+                    type='number'
+                    name='adults'
+                    value='1'
+                    label='Adults'
+                    smallLabel='18 or above'
+                    icon='users'
+                    placeholder='Adults'
+                    customClass={styles.guestsInput}
+                    min='1'
+                    max='100'
+                  />
+                  <DefaultInput
+                    type='number'
+                    name='children'
+                    value='0'
+                    label='Children'
+                    smallLabel='12 or above'
+                    icon='users'
+                    placeholder='Children'
+                    customClass={styles.guestsInput}
+                    min='0'
+                    max='100'
+                  />
+                </div>
+              </>
+            )}
 
-            <div className={`${searchStyles.column} `}>
-              <DateWrapper
-                name='check_in'
-                label='Check In'
-                selectedDate={startDate}
-                setDateFunc={setStartDate}
-                icon='dates'
-                placeholder='Add date'
-              />
-              <DateWrapper
-                name='check_out'
-                label='Check Out'
-                selectedDate={endDate}
-                setDateFunc={setEndDate}
-                icon='dates'
-                placeholder='Add date'
-              />
-            </div>
-
-            <div className={`${searchStyles.column} `}>
-              <DefaultInput
-                type='number'
-                name='adults'
-                value='1'
-                label='Adults'
-                smallLabel='18 or above'
-                icon='users'
-                placeholder='Adults'
-                customClass={styles.guestsInput}
-                min='1'
-                max='100'
-              />
-              <DefaultInput
-                type='number'
-                name='children'
-                value='0'
-                label='Children'
-                smallLabel='12 or above'
-                icon='users'
-                placeholder='Children'
-                customClass={styles.guestsInput}
-                min='0'
-                max='100'
-              />
-            </div>
             <div className={searchStyles.btnContainer}>
               <Button
                 btnType='search'
@@ -236,3 +253,85 @@ const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
 };
 
 export default SearchBar;
+
+const DateWrapperHome = ({
+  dateRange,
+  setDateRange,
+  calendar,
+  setCalendar,
+  guests,
+  showGuests,
+  setShowGuests,
+  calendarContainer,
+  closeModal,
+}) => {
+  return (
+    <div className={searchStylesHome.column}>
+      <div>
+        <label htmlFor='dates' className={searchStylesHome.label}>
+          <Calendar className={searchStylesHome.icon} />
+          Dates
+        </label>
+
+        <input
+          name='dates'
+          type='button'
+          value={
+            !dateRange[0].endDate
+              ? 'Add dates'
+              : `${(dateRange[0].startDate, dateRange[0].endDate)}`
+          }
+          className={searchStylesHome.inputButton}
+          onClick={() => setCalendar(!calendar)}
+        />
+
+        {calendar && (
+          <div className={searchStylesHome.dateRange} ref={calendarContainer}>
+            <div className={searchStylesHome.removeIcons}>
+              <div className={searchStylesHome.closeModel}>
+                <X
+                  className={searchStylesHome.closeicon}
+                  onClick={closeModal}
+                />
+              </div>
+              <button
+                onClick={() => setDateRange(intitalDateRange)}
+                className={searchStylesHome.clearButton}
+              >
+                Clear
+              </button>
+            </div>
+            <DateRange
+              editableDateInputs={true}
+              onChange={(item) => setDateRange([item.selection])}
+              moveRangeOnFirstSelection={false}
+              minDate={new Date()}
+              ranges={dateRange}
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        <label htmlFor='guests' className={searchStylesHome.label}>
+          <Users className={searchStylesHome.icon} />
+          Guests
+        </label>
+        <input
+          name='guests'
+          type='button'
+          value={guests >= 1 ? guests : 1}
+          className={searchStylesHome.inputButton}
+          onClick={() => setShowGuests(!showGuests)}
+        />
+
+        {showGuests && (
+          <Guests
+            setShowGuests={setShowGuests}
+            setGuests={setGuests}
+            wrapper={guestContainer}
+          />
+        )}
+      </div>
+    </div>
+  );
+};

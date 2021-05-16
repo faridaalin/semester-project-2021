@@ -24,7 +24,7 @@ const Search = ({ content }) => {
   const [showGuests, setShowGuests] = useState(false);
   const [guests, setGuests] = useState(1);
   const [calendar, setCalendar] = useState(false);
-  const [dateRage, setDateRange] = useState(intitalDateRange);
+  const [dateRange, setDateRange] = useState(intitalDateRange);
   const [searchMatch, setSearchMatch] = useState(null);
   const [search, setSearch] = useState('');
   const [display, setDisplay] = useState(false);
@@ -53,12 +53,12 @@ const Search = ({ content }) => {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (!dateRage[0].endDate || guests < 1) {
+    if (!dateRange[0].endDate || guests < 1) {
       schema
         .validate({
           search: search,
           guests: guests,
-          dates: dateRage[0].endDate,
+          dates: dateRange[0].endDate,
         })
         .catch(function (err) {
           setErrors({ name: err.name, message: err.errors });
@@ -205,9 +205,9 @@ const Search = ({ content }) => {
             name='dates'
             type='button'
             value={
-              !dateRage[0].endDate
+              !dateRange[0].endDate
                 ? 'Add dates'
-                : `${formatDates(dateRage[0].startDate, dateRage[0].endDate)}`
+                : `${formatDates(dateRange[0].startDate, dateRange[0].endDate)}`
             }
             className={styles.inputButton}
             onClick={() => setCalendar(!calendar)}
@@ -235,7 +235,7 @@ const Search = ({ content }) => {
                 onChange={(item) => setDateRange([item.selection])}
                 moveRangeOnFirstSelection={false}
                 minDate={new Date()}
-                ranges={dateRage}
+                ranges={dateRange}
               />
             </div>
           )}
