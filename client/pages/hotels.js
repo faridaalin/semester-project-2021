@@ -86,7 +86,7 @@ export default function Hotels(props) {
       return setDeleteMsg('Error happend, please try again later.');
     }
   };
-  console.log('search', search);
+  console.log('search.length', search.length);
 
   return (
     <Layout>
@@ -100,7 +100,14 @@ export default function Hotels(props) {
         </div>
       </section>
       <section className='section'>
-        <PageHeader title='Hotels' />
+        <div>
+          <PageHeader title='Hotels' />
+          {search.length < content.length && (
+            <button onClick={() => setSearch(props.data.data)}>
+              View all hotels
+            </button>
+          )}
+        </div>
         <>
           <CardContainer>
             {!data && <div>Error happend..</div>}
