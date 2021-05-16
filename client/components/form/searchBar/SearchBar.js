@@ -3,12 +3,11 @@ import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
 import { MapPin, Moon } from 'react-feather';
 import searchSchema from '../../../validationSchema/searchSchema';
-import DateWrapper from '../../form/date/Date';
+import CalendarWrapper from '../date/CalendarWrapper';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
-import { Calendar } from 'react-date-range';
 // import { parseISO, format } from 'date-fns';
-import DateWrapperHome from '../dateWrapperHome/DateWrapperHome';
+import DateRangeWrapper from '../dateRangeWrapper/DateRangeWrapper';
 import styles from '../input/input.module.css';
 import searchStyles from './searchBar.module.css';
 
@@ -16,22 +15,14 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
-  const intitalDateRange = [
-    {
-      startDate: today,
-      endDate: tomorrow,
-      key: 'selection',
-    },
-  ];
-
-  const [startDate, setStartDate] = useState(today.toDateString());
-  const [endDate, setEndDate] = useState(tomorrow.toDateString());
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(tomorrow);
   const [showGuests, setShowGuests] = useState(false);
 
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
-
+  const [calendar, setCalendar] = useState(false);
   const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
@@ -167,26 +158,29 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
             </div>
             {datepicker ? (
               <>
-                <DateWrapperHome
+                <DateRangeWrapper
                   calendarContainer={calendarContainer}
                   setShowGuests={setShowGuests}
                   showGuests={showGuests}
                 />
-                {/* <Calendar date={new Date()} /> */}
               </>
             ) : (
               <>
                 <div className={`${searchStyles.column} `}>
-                  <DateWrapper
+                  <CalendarWrapper
                     name='check_in'
                     label='Check In'
                     selectedDate={startDate}
                     setDateFunc={setStartDate}
                     icon='dates'
                     placeholder='Add date'
+                    calendarContainer={calendarContainer}
+                    setCalendar={setCalendar}
+                    calendar={calendar}
                   />
+                  {/* <Calendar date={new Date()} /> */}
 
-                  <DateWrapper
+                  <calendarWrapper
                     name='check_out'
                     label='Check Out'
                     selectedDate={endDate}

@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { parseISO, format } from 'date-fns';
+import { useState } from 'react';
+import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import { Users, Calendar, X } from 'react-feather';
 import Guests from '../guest/Guests';
 import searchStylesHome from '../search/searchFormHome.module.css';
-const DateWrapperHome = ({ calendarContainer, setShowGuests, showGuests }) => {
+
+const DateRangeWrapper = ({ calendarContainer, setShowGuests, showGuests }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -97,4 +98,4 @@ const DateWrapperHome = ({ calendarContainer, setShowGuests, showGuests }) => {
   );
 };
 
-export default DateWrapperHome;
+export default DateRangeWrapper;
