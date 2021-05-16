@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
-import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
+import { MapPin, Users, Calendar, X, Moon } from 'react-feather';
 import searchSchema from '../../../validationSchema/searchSchema';
 import DateWrapper from '../../form/date/Date';
 import { DefaultInput } from '../input/Input';
@@ -9,6 +9,7 @@ import Button from '../../button/Button';
 import Guests from '../guest/Guests';
 import { useHotelsContext } from '../../../context/HotelsContext';
 import { DateRange } from 'react-date-range';
+// import { Calendar } from 'react-date-range';
 import { parseISO, format } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -124,6 +125,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   });
 
   console.log('pathname', router.pathname !== '/hotels');
+  console.log('DATE', format(new Date(today), 'LLL mm yyy'));
 
   return (
     <Formik
@@ -176,17 +178,20 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
               )}
             </div>
             {datepicker ? (
-              <DateWrapperHome
-                calendar={calendar}
-                setCalendar={setCalendar}
-                dateRange={dateRange}
-                setDateRange={setDateRange}
-                guests={guests}
-                setShowGuests={setShowGuests}
-                setGuests={setGuests}
-                calendarContainer={calendarContainer}
-                closeModal={closeModal}
-              />
+              <>
+                <DateWrapperHome
+                  calendar={calendar}
+                  setCalendar={setCalendar}
+                  dateRange={dateRange}
+                  setDateRange={setDateRange}
+                  guests={guests}
+                  setShowGuests={setShowGuests}
+                  setGuests={setGuests}
+                  calendarContainer={calendarContainer}
+                  closeModal={closeModal}
+                />
+                {/* <Calendar date={new Date()} /> */}
+              </>
             ) : (
               <>
                 <div className={`${searchStyles.column} `}>
@@ -198,6 +203,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                     icon='dates'
                     placeholder='Add date'
                   />
+
                   <DateWrapper
                     name='check_out'
                     label='Check Out'
@@ -279,7 +285,10 @@ const DateWrapperHome = ({
           value={
             !dateRange[0].endDate
               ? 'Add dates'
-              : `${(dateRange[0].startDate, dateRange[0].endDate)}`
+              : `${format(
+                  new Date(dateRange[0].startDate),
+                  'LLL mm yyyy'
+                )} - ${format(new Date(dateRange[0].endDate), 'LLL mm yyyy')}`
           }
           className={searchStylesHome.inputButton}
           onClick={() => setCalendar(!calendar)}
@@ -302,7 +311,7 @@ const DateWrapperHome = ({
               </button>
             </div>
             <DateRange
-              editableDateInputs={true}
+              editableDateInputs={false}
               onChange={(item) => setDateRange([item.selection])}
               moveRangeOnFirstSelection={false}
               minDate={new Date()}
