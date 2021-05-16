@@ -8,16 +8,15 @@ import useDashboardContext from '../context/DashboardContext';
 import styles from './dashboard.module.css';
 
 export default function Dashboard({ data, admin }) {
+  const { messages, enquiries } = data;
   const [openNav, setOpenNav] = useState(false);
   const [widthOnLoad, setWidthOnLoad] = useState(null);
-  const [customMessages, setCustomMessages] = useState(null);
+  const [customMessages, setCustomMessages] = useState(messages);
   const [navTitle, setNavTitle] = useState(true);
 
   const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
     useDashboardContext();
   const breakpoint = 768;
-
-  const { messages, enquiries } = data;
 
   const handleNavToggle = () => {
     if (widthOnLoad > breakpoint) {
@@ -83,6 +82,8 @@ export default function Dashboard({ data, admin }) {
     }
   };
 
+  console.log('openNav', openNav);
+
   return (
     <Layout>
       <PageHeader title='Dashboard' />
@@ -91,7 +92,7 @@ export default function Dashboard({ data, admin }) {
         <>
           <header
             className={`${styles.navigation} ${
-              openNav ? styles.dark : styles.light
+              openNav ? `${styles.dark} ${styles.absolute}` : styles.light
             }`}
           >
             <button className={styles.navButton} onClick={handleNavToggle}>
