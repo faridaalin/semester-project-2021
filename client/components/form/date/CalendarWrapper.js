@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import { Calendar } from 'react-date-range';
 import { X } from 'react-feather';
@@ -38,6 +37,7 @@ const CalendarWrapper = (props) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   });
+  console.log('field', field);
 
   return (
     <div className={`${styles.inputContainer} `}>
@@ -79,10 +79,14 @@ const CalendarWrapper = (props) => {
             startDate={selectedDate}
             onChange={(val) => {
               console.log(field.name, val);
-              setDateFunc(val);
-              setFieldValue(field.name, val);
+              setFieldValue(field.name, field.value);
             }}
-            onBlur={handleBlur}
+            // onChange={(val) => {
+            //   console.log(field.name, val);
+            //   setDateFunc(val);
+            //   setFieldValue(field.name, val);
+            // }}
+            // onBlur={handleBlur}
             className={`${styles.input}`}
             name={name}
             placeholderText={placeholder}
