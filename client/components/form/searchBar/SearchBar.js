@@ -3,13 +3,12 @@ import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
 import { MapPin, Moon } from 'react-feather';
 import searchSchema from '../../../validationSchema/searchSchema';
+import searchSchemaSimple from '../../../validationSchema/searchSchemaSimple';
 import CalendarWrapper from '../date/CalendarWrapper';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
-// import { parseISO, format } from 'date-fns';
-import DateRangeWrapper from '../dateRangeWrapper/DateRangeWrapper';
-import styles from '../input/input.module.css';
-import searchStyles from './searchBar.module.css';
+import DateRangeWrapper from '../date/DateRangeWrapper';
+import styles from './searchBar.module.css';
 
 const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const today = new Date();
@@ -18,11 +17,9 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(tomorrow);
   const [showGuests, setShowGuests] = useState(false);
-  // const [modal, setmodal] = useState(false);
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
-  // const [calendar, setCalendar] = useState(false);
   const [calendarEnd, setCalendarStart] = useState(false);
   const [calendarStart, setCalendarEnd] = useState(false);
   const searchRef = useRef(null);
@@ -93,8 +90,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     if (
       (suggestionWrapper && !suggestionWrapper.contains(e.target)) ||
       (calendarWrapper && !calendarWrapper.contains(e.target)) ||
-      // (startContainer && !startContainer.contains(e.target)) ||
-      // (endContainer && !endContainer.contains(e.target)) ||
       (guestWrapper && !guestWrapper.contains(e.target))
     ) {
       setDisplay(false);
@@ -124,7 +119,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       {(formik) => {
         console.log('formik', formik);
         return (
-          <Form className={`${searchStyles.form}`}>
+          <Form className={`${styles.form}`}>
             <div className={`${styles.inputContainer} ${styles.searchInput}`}>
               <label htmlFor='search' className={styles.label}>
                 <MapPin className={styles.icon} />
@@ -144,19 +139,16 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
               />
 
               {display && searchMatch.length > 0 && (
-                <div
-                  className={searchStyles.suggestions}
-                  ref={suggestionsContainer}
-                >
+                <div className={styles.suggestions} ref={suggestionsContainer}>
                   {searchMatch.map((value, index) => {
                     return (
                       <div
-                        className={searchStyles.suggestionItem}
+                        className={styles.suggestionItem}
                         key={index}
                         onClick={() => handleClickedSearch(value.title)}
                       >
                         <span>
-                          <Moon className={searchStyles.icon} /> {value.title}
+                          <Moon className={styles.icon} /> {value.title}
                         </span>
                       </div>
                     );
@@ -170,11 +162,12 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                   calendarContainer={calendarContainer}
                   setShowGuests={setShowGuests}
                   showGuests={showGuests}
+                  guestContainer={guestContainer}
                 />
               </>
             ) : (
               <>
-                <div className={`${searchStyles.column} `}>
+                <div className={`${styles.column} `}>
                   <CalendarWrapper
                     name='check_in'
                     label='Check In'
@@ -195,7 +188,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                     calendarContainer={endContainer}
                   />
                 </div>
-                <div className={`${searchStyles.column} `}>
+                <div className={`${styles.column} `}>
                   <DefaultInput
                     type='number'
                     name='adults'
@@ -224,11 +217,11 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
               </>
             )}
 
-            <div className={searchStyles.btnContainer}>
+            <div className={styles.btnContainer}>
               <Button
                 btnType='search'
                 submit
-                customBtnClass={searchStyles.customBtnClass}
+                customBtnClass={styles.customBtnClass}
               >
                 Search
               </Button>

@@ -3,9 +3,14 @@ import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import { Users, Calendar, X } from 'react-feather';
 import Guests from '../guest/Guests';
-import searchStylesHome from '../search/searchFormHome.module.css';
+import styles from '../input/input.module.css';
 
-const DateRangeWrapper = ({ calendarContainer, setShowGuests, showGuests }) => {
+const DateRangeWrapper = ({
+  calendarContainer,
+  setShowGuests,
+  showGuests,
+  guestContainer,
+}) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -25,10 +30,10 @@ const DateRangeWrapper = ({ calendarContainer, setShowGuests, showGuests }) => {
   };
 
   return (
-    <div className={searchStylesHome.column}>
+    <div className={styles.datesGuestsWrapper}>
       <div>
-        <label htmlFor='dates' className={searchStylesHome.label}>
-          <Calendar className={searchStylesHome.icon} />
+        <label htmlFor='dates' className={styles.label}>
+          <Calendar className={styles.icon} />
           Dates
         </label>
 
@@ -43,22 +48,19 @@ const DateRangeWrapper = ({ calendarContainer, setShowGuests, showGuests }) => {
                   'LLL dd yyyy'
                 )} - ${format(new Date(dateRange[0].endDate), 'LLL dd yyyy')}`
           }
-          className={searchStylesHome.inputButton}
+          className={styles.inputButton}
           onClick={() => setCalendar(!calendar)}
         />
 
         {calendar && (
-          <div className={searchStylesHome.dateRange} ref={calendarContainer}>
-            <div className={searchStylesHome.removeIcons}>
-              <div className={searchStylesHome.closeModel}>
-                <X
-                  className={searchStylesHome.closeicon}
-                  onClick={closeModal}
-                />
+          <div className={styles.dateRange} ref={calendarContainer}>
+            <div className={styles.removeIcons}>
+              <div className={styles.closeModel}>
+                <X className={styles.closeicon} onClick={closeModal} />
               </div>
               <button
                 onClick={() => setDateRange(intitalDateRange)}
-                className={searchStylesHome.clearButton}
+                className={styles.clearButton}
               >
                 Clear
               </button>
@@ -74,15 +76,15 @@ const DateRangeWrapper = ({ calendarContainer, setShowGuests, showGuests }) => {
         )}
       </div>
       <div>
-        <label htmlFor='guests' className={searchStylesHome.label}>
-          <Users className={searchStylesHome.icon} />
+        <label htmlFor='guests' className={styles.label}>
+          <Users className={styles.icon} />
           Guests
         </label>
         <input
           name='guests'
           type='button'
           value={guests >= 1 ? guests : 1}
-          className={searchStylesHome.inputButton}
+          className={styles.inputButton}
           onClick={() => setShowGuests(!showGuests)}
         />
 

@@ -4,8 +4,9 @@ import { Calendar } from 'react-date-range';
 import { X } from 'react-feather';
 import { useField, useFormikContext } from 'formik';
 import { getIcon } from '../input/Input';
+
 import styles from '../input/input.module.css';
-import searchStylesHome from '../search/searchFormHome.module.css';
+// import searchStylesHome from '../search/searchFormHome.module.css';
 
 const CalendarWrapper = (props) => {
   const {
