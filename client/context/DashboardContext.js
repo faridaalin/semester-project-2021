@@ -12,6 +12,7 @@ const DashboardContext = createContext({
 export const DashboardContextProvider = ({ children }) => {
   const [showMessages, setShowMessages] = useState(null);
   const [showEnq, setShowEnq] = useState(null);
+  const [content, setContent] = useState(null);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
 
@@ -28,7 +29,15 @@ export const DashboardContextProvider = ({ children }) => {
 
   return (
     <DashboardContext.Provider
-      value={{ showMessages, setShowMessages, showEnq, setShowEnq, logout }}
+      value={{
+        content,
+        setContent,
+        showMessages,
+        setShowMessages,
+        showEnq,
+        setShowEnq,
+        logout,
+      }}
     >
       {children}
     </DashboardContext.Provider>

@@ -202,8 +202,6 @@ export async function getServerSideProps(context) {
       messages: messagesRes.data,
       enquiries: enquiriesRes.data,
     };
-    console.log('MSG:', messagesRes.data);
-    console.log('ENQ:', enquiriesRes.data);
   } catch (err) {
     console.error(err);
 

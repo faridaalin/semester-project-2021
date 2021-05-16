@@ -12,6 +12,7 @@ import Pagination from '../components/pagination/Pagination';
 import { useHotelsContext } from '../context/HotelsContext';
 import { useSearchContext } from '../context/searchContext';
 import SearchBar from '../components/form/searchBar/SearchBar';
+import Pill from '../components/pill/Pill';
 import styles from './hotels.module.css';
 
 export default function Hotels(props) {
@@ -100,19 +101,22 @@ export default function Hotels(props) {
       </section>
       <section className='section'>
         <div>
-          <PageHeader title='Hotels' />
-          {search.length < content.length && (
-            <button onClick={() => setSearch(props.data.data)}>
-              View all hotels
-            </button>
-          )}
+          <div>
+            <PageHeader title='Our Hotels' />
+            {search.length < content.length && (
+              <button onClick={() => setSearch(props.data.data)}>
+                View all hotels
+              </button>
+            )}
+          </div>
+          <Pill name='Dashboard' select={2} dashboard='true' />
         </div>
         <>
           <CardContainer>
             {!data && <div>Error happend..</div>}
             {displayHotels(search.length === 0 ? data : search)}
             <PureModal
-              header='Your header'
+              header='Header'
               footer={
                 <div>
                   <button onClick={handleDeleteProduct}>Delete</button>

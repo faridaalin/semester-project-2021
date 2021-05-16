@@ -13,7 +13,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const router = useRouter();
   const { pathname } = router;
 
-  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
+  const { showMessages, setShowMessages, setShowEnq, logout } =
     useDashboardContext();
 
   const sortHeightToLow = () => {
@@ -47,7 +47,6 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
     }
   };
   const HandleEnquireForm = () => {
-    console.log('Show ADD Product form');
     if (pathname === '/create-product') {
       setShow(!show);
     } else {
