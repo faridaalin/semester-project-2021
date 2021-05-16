@@ -1,21 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
-import { MapPin, Users, Calendar, X, Moon } from 'react-feather';
+import { MapPin, Moon } from 'react-feather';
 import searchSchema from '../../../validationSchema/searchSchema';
 import DateWrapper from '../../form/date/Date';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
-import Guests from '../guest/Guests';
-import { useHotelsContext } from '../../../context/HotelsContext';
-import { DateRange } from 'react-date-range';
-// import { Calendar } from 'react-date-range';
-import { parseISO, format } from 'date-fns';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import { Calendar } from 'react-date-range';
+// import { parseISO, format } from 'date-fns';
+import DateWrapperHome from '../dateWrapperHome/DateWrapperHome';
 import styles from '../input/input.module.css';
 import searchStyles from './searchBar.module.css';
-import searchStylesHome from '../search/searchFormHome.module.css';
 
 const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const today = new Date();
@@ -32,9 +27,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const [startDate, setStartDate] = useState(today.toDateString());
   const [endDate, setEndDate] = useState(tomorrow.toDateString());
   const [showGuests, setShowGuests] = useState(false);
-  const [guests, setGuests] = useState(1);
-  const [calendar, setCalendar] = useState(false);
-  const [dateRange, setDateRange] = useState(intitalDateRange);
+
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
@@ -59,10 +52,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     validateForm(values);
 
     if (router.pathname !== '/hotels') router.replace('/hotels');
-  };
-
-  const closeModal = () => {
-    setCalendar(false);
   };
 
   const handleSearchChange = (e) => {
@@ -125,7 +114,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   });
 
   console.log('pathname', router.pathname !== '/hotels');
-  console.log('DATE', format(new Date(today), 'LLL mm yyy'));
 
   return (
     <Formik
@@ -180,15 +168,9 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
             {datepicker ? (
               <>
                 <DateWrapperHome
-                  calendar={calendar}
-                  setCalendar={setCalendar}
-                  dateRange={dateRange}
-                  setDateRange={setDateRange}
-                  guests={guests}
-                  setShowGuests={setShowGuests}
-                  setGuests={setGuests}
                   calendarContainer={calendarContainer}
-                  closeModal={closeModal}
+                  setShowGuests={setShowGuests}
+                  showGuests={showGuests}
                 />
                 {/* <Calendar date={new Date()} /> */}
               </>
@@ -259,88 +241,3 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
 };
 
 export default SearchBar;
-
-const DateWrapperHome = ({
-  dateRange,
-  setDateRange,
-  calendar,
-  setCalendar,
-  guests,
-  showGuests,
-  setShowGuests,
-  calendarContainer,
-  closeModal,
-}) => {
-  return (
-    <div className={searchStylesHome.column}>
-      <div>
-        <label htmlFor='dates' className={searchStylesHome.label}>
-          <Calendar className={searchStylesHome.icon} />
-          Dates
-        </label>
-
-        <input
-          name='dates'
-          type='button'
-          value={
-            !dateRange[0].endDate
-              ? 'Add dates'
-              : `${format(
-                  new Date(dateRange[0].startDate),
-                  'LLL mm yyyy'
-                )} - ${format(new Date(dateRange[0].endDate), 'LLL mm yyyy')}`
-          }
-          className={searchStylesHome.inputButton}
-          onClick={() => setCalendar(!calendar)}
-        />
-
-        {calendar && (
-          <div className={searchStylesHome.dateRange} ref={calendarContainer}>
-            <div className={searchStylesHome.removeIcons}>
-              <div className={searchStylesHome.closeModel}>
-                <X
-                  className={searchStylesHome.closeicon}
-                  onClick={closeModal}
-                />
-              </div>
-              <button
-                onClick={() => setDateRange(intitalDateRange)}
-                className={searchStylesHome.clearButton}
-              >
-                Clear
-              </button>
-            </div>
-            <DateRange
-              editableDateInputs={false}
-              onChange={(item) => setDateRange([item.selection])}
-              moveRangeOnFirstSelection={false}
-              minDate={new Date()}
-              ranges={dateRange}
-            />
-          </div>
-        )}
-      </div>
-      <div>
-        <label htmlFor='guests' className={searchStylesHome.label}>
-          <Users className={searchStylesHome.icon} />
-          Guests
-        </label>
-        <input
-          name='guests'
-          type='button'
-          value={guests >= 1 ? guests : 1}
-          className={searchStylesHome.inputButton}
-          onClick={() => setShowGuests(!showGuests)}
-        />
-
-        {showGuests && (
-          <Guests
-            setShowGuests={setShowGuests}
-            setGuests={setGuests}
-            wrapper={guestContainer}
-          />
-        )}
-      </div>
-    </div>
-  );
-};
