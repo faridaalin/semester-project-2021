@@ -2,7 +2,7 @@ import { useState } from 'react';
 import dateFormat from 'dateformat';
 import styles from './accordion.module.css';
 
-const Accordion = ({ content, type, customMessages }) => {
+const Accordion = ({ type, content }) => {
   const [open, setOpen] = useState(false);
 
   const toggleAccordion = (index) => {
@@ -11,7 +11,8 @@ const Accordion = ({ content, type, customMessages }) => {
     }
     setOpen(index);
   };
-  console.log('customMessages', customMessages);
+
+  console.log('content', content);
 
   if (type === 'messages') {
     return (
@@ -22,8 +23,8 @@ const Accordion = ({ content, type, customMessages }) => {
           <span>Date</span>
           <span>Status</span>
         </div>
-        {typeof customMessages === 'string' ? (
-          <div>{customMessages}</div>
+        {typeof content === 'string' ? (
+          <div>{content}</div>
         ) : (
           content?.data?.map((item, index) => (
             <div className={styles.accordionContent} key={item._id}>
@@ -59,50 +60,53 @@ const Accordion = ({ content, type, customMessages }) => {
         <span>Check Out</span>
         <span>Status</span>
       </div>
-
-      {content?.data?.map((item, index) => (
-        <div className={styles.accordionContent} key={item._id}>
-          <div
-            className={`${styles.accordionHeader} ${
-              open === index ? styles.open : ''
-            }`}
-            onClick={() => toggleAccordion(index)}
-            key={index}
-          >
-            <span>{item.hotel_name}</span>
-            <span>{dateFormat(`${item.check_in}`, 'mm/dd/yyyy')}</span>
-            <span>{dateFormat(`${item.check_out}`, 'mm/dd/yyyy')}</span>
-            <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
-          </div>
-          {open === index ? (
-            <div className={styles.accordionText}>
-              <span className={styles.paragraph}>
-                Booking reservation for:{' '}
-              </span>
-              <span>
-                {item.firstname} {item.lastname}
-              </span>
-              <p className={styles.paragraph}>
-                Adults: <span>{item.adults}</span>
-              </p>
-              <p className={styles.paragraph}>
-                Children: <span>{item.children}</span>
-              </p>
-              <p className={styles.paragraph}>
-                Price: <span>{item.price} NOK</span>
-              </p>
-              <div>
-                <p className={styles.paragraph}>
-                  Email: <span>{item.email}</span>
-                </p>
-                <p className={styles.paragraph}>
-                  Special Requests: <span>{item.special_requests}</span>
-                </p>
-              </div>
+      {typeof content === 'string' ? (
+        <div>{content}</div>
+      ) : (
+        content?.data?.map((item, index) => (
+          <div className={styles.accordionContent} key={item._id}>
+            <div
+              className={`${styles.accordionHeader} ${
+                open === index ? styles.open : ''
+              }`}
+              onClick={() => toggleAccordion(index)}
+              key={index}
+            >
+              <span>{item.hotel_name}</span>
+              <span>{dateFormat(`${item.check_in}`, 'mm/dd/yyyy')}</span>
+              <span>{dateFormat(`${item.check_out}`, 'mm/dd/yyyy')}</span>
+              <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
             </div>
-          ) : null}
-        </div>
-      ))}
+            {open === index ? (
+              <div className={styles.accordionText}>
+                <span className={styles.paragraph}>
+                  Booking reservation for:{' '}
+                </span>
+                <span>
+                  {item.firstname} {item.lastname}
+                </span>
+                <p className={styles.paragraph}>
+                  Adults: <span>{item.adults}</span>
+                </p>
+                <p className={styles.paragraph}>
+                  Children: <span>{item.children}</span>
+                </p>
+                <p className={styles.paragraph}>
+                  Price: <span>{item.price} NOK</span>
+                </p>
+                <div>
+                  <p className={styles.paragraph}>
+                    Email: <span>{item.email}</span>
+                  </p>
+                  <p className={styles.paragraph}>
+                    Special Requests: <span>{item.special_requests}</span>
+                  </p>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        ))
+      )}
     </div>
   );
 };

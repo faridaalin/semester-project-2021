@@ -10,8 +10,8 @@ import styles from './dashboard.module.css';
 export default function Dashboard({ data, admin }) {
   const [openNav, setOpenNav] = useState(false);
   const [widthOnLoad, setWidthOnLoad] = useState(null);
-
   const [customMessages, setCustomMessages] = useState(null);
+  const [navTitle, setNavTitle] = useState(true);
 
   const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
     useDashboardContext();
@@ -38,10 +38,16 @@ export default function Dashboard({ data, admin }) {
 
   useEffect(() => {
     setOpenNav(() => window.innerWidth > 768);
+    if (window.innerWidth > 768) {
+      setOpenNav(() => true);
+    }
+
     setShowMessages(true);
-  }, []);
+  }, [setOpenNav, setShowMessages]);
 
   const handleMessages = () => {
+    setNavTitle(!navTitle);
+
     if (widthOnLoad > breakpoint) {
       setShowEnq(false);
       setShowMessages(true);
@@ -53,6 +59,10 @@ export default function Dashboard({ data, admin }) {
     }
   };
   const handleEnquires = () => {
+    setNavTitle(!navTitle);
+    console.log(widthOnLoad > breakpoint);
+    setCustomMessages(navTitle ? enquiries : messages);
+
     if (widthOnLoad > breakpoint) {
       setOpenNav(() => true);
       setShowEnq(true);
@@ -64,121 +74,98 @@ export default function Dashboard({ data, admin }) {
     }
   };
 
+  const handleMenuOnNAvItem = () => {
+    console.log('widthOnLoad', widthOnLoad);
+    if (widthOnLoad < breakpoint) {
+      setOpenNav(() => false);
+    } else {
+      setOpenNav(() => true);
+    }
+  };
+
   return (
     <Layout>
       <PageHeader title='Dashboard' />
 
       <section className={styles.container}>
-        {showMessages ? (
-          <>
-            <header
-              className={`${styles.navigation} ${
-                openNav ? styles.dark : styles.light
-              }`}
-            >
-              <button className={styles.navButton} onClick={handleNavToggle}>
-                Messages
-              </button>
+        <>
+          <header
+            className={`${styles.navigation} ${
+              openNav ? styles.dark : styles.light
+            }`}
+          >
+            <button className={styles.navButton} onClick={handleNavToggle}>
+              {navTitle ? 'Messages' : 'Enquiries'}
+            </button>
 
-              {openNav && (
-                <nav className={`${styles.navContainer} `}>
-                  <ul className={styles.navItems}>
-                    <li className={`${styles.navItem} ${styles.active}`}>
-                      <button
-                        className={styles.navBtn}
-                        onClick={() => setCustomMessages(messages)}
-                      >
-                        All {messages.data.length}
-                      </button>
-                    </li>
-                    <li className={styles.navItem}>
-                      <button
-                        className={styles.navBtn}
-                        onClick={() => setCustomMessages('UNREAD')}
-                      >
-                        Unread
-                      </button>
-                    </li>
-                    <li className={styles.navItem}>
-                      <button
-                        className={styles.navBtn}
-                        onClick={() => setCustomMessages('SENT')}
-                      >
-                        Sent
-                      </button>
-                    </li>
-                    <li className={styles.navItem}>
-                      {' '}
-                      <button
-                        className={styles.navBtn}
-                        onClick={() => setCustomMessages('TRASH')}
-                      >
-                        Trash
-                      </button>
-                    </li>
-                  </ul>
+            {openNav && (
+              <nav className={`${styles.navContainer} `}>
+                <ul className={styles.navItems}>
+                  <li className={`${styles.navItem} ${styles.active}`}>
+                    <button
+                      className={styles.navBtn}
+                      onClick={() => {
+                        setCustomMessages(navTitle ? messages : enquiries);
+                        handleMenuOnNAvItem();
+                      }}
+                    >
+                      All{' '}
+                      {navTitle ? messages.data.length : enquiries.data.length}
+                    </button>
+                  </li>
+                  <li className={styles.navItem}>
+                    <button
+                      className={styles.navBtn}
+                      onClick={() => {
+                        setCustomMessages('UNREAD');
+                        handleMenuOnNAvItem();
+                      }}
+                    >
+                      Unread
+                    </button>
+                  </li>
+                  <li className={styles.navItem}>
+                    <button
+                      className={styles.navBtn}
+                      onClick={() => {
+                        setCustomMessages('SENT');
+                        handleMenuOnNAvItem();
+                      }}
+                    >
+                      Sent
+                    </button>
+                  </li>
+                  <li className={styles.navItem}>
+                    {' '}
+                    <button
+                      className={styles.navBtn}
+                      onClick={() => {
+                        setCustomMessages('TRASH');
+                        handleMenuOnNAvItem();
+                      }}
+                    >
+                      Trash
+                    </button>
+                  </li>
+                </ul>
 
-                  <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                    <li className={styles.navItem} onClick={handleEnquires}>
-                      Enquiries
-                    </li>
-                    <li className={styles.navItem} onClick={logout}>
-                      Logout
-                    </li>
-                  </ul>
-                </nav>
-              )}
-            </header>
-            <Accordion
-              content={messages}
-              type='messages'
-              customMessages={customMessages}
-            />
-          </>
-        ) : showEnq ? (
-          <>
-            <header
-              className={`${styles.navigation} ${
-                openNav ? styles.dark : styles.light
-              }`}
-            >
-              <button className={styles.navButton} onClick={handleNavToggle}>
-                Enquiries
-              </button>
-
-              {openNav && (
-                <nav className={`${styles.navContainer} `}>
-                  <ul className={styles.navItems}>
-                    <li className={`${styles.navItem} ${styles.active}`}>
-                      All {enquiries.data.length}
-                    </li>
-                    <li className={styles.navItem}>
-                      <button className={styles.navBtn}>Unread</button>
-                    </li>
-                    <li className={styles.navItem}>
-                      <button className={styles.navBtn}>Sent</button>
-                    </li>
-                    <li className={styles.navItem}>
-                      <button className={styles.navBtn}>Trash</button>
-                    </li>
-                  </ul>
-
-                  <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                    <li className={styles.navItem} onClick={handleMessages}>
-                      Messages
-                    </li>
-                    <li className={styles.navItem} onClick={logout}>
-                      Logout
-                    </li>
-                  </ul>
-                </nav>
-              )}
-            </header>
-            <Accordion content={enquiries} type='enquiries' />
-          </>
-        ) : (
-          'Welcome to your dashboard'
-        )}
+                <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+                  <li className={styles.navItem} onClick={handleEnquires}>
+                    {navTitle ? 'Enquiries' : 'Messages'}
+                  </li>
+                  <li className={styles.navItem} onClick={logout}>
+                    Logout
+                  </li>
+                </ul>
+              </nav>
+            )}
+          </header>
+          {navTitle ? (
+            <Accordion type='messages' content={customMessages} />
+          ) : (
+            <Accordion type='enquiries' content={customMessages} />
+          )}
+        </>
       </section>
     </Layout>
   );
