@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import useWindowWidth from '../../hooks/useWindowSize';
 import SearchBar from '../form/searchBar/SearchBar';
-// import SearchFormHome from '../form/search/SearchFormHome';
 import { useSearchContext } from '../../context/searchContext';
 import styles from './heroSection.module.css';
 
 const HeroSection = ({ hotels }) => {
+  const { search, setSearch } = useSearchContext();
   const breakpoint = 768;
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad, setWidthOnLoad] = useState(null);
-  const { search, setSearch } = useSearchContext();
   const { data } = hotels;
 
   useEffect(() => {
@@ -69,7 +68,6 @@ const HeroSection = ({ hotels }) => {
 
         <p className={styles.paragraph}>{`${showBackgroundImage().text}`}</p>
 
-        {/* <SearchFormHome content={data} /> */}
         <SearchBar
           content={data}
           searchMatch={search}

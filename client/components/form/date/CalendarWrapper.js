@@ -38,7 +38,7 @@ const CalendarWrapper = (props) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   });
-  console.log('field', field);
+  // console.log('field', field);
 
   return (
     <div className={`${styles.inputContainer} `}>

@@ -41,7 +41,15 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
 
   const onSubmit = (values, onSubmitProps) => {
     const { validateForm } = onSubmitProps;
+    console.log('path', router.pathname !== '/hotels');
     validateForm(values);
+  };
+  const handleSubmitButton = () => {
+    if (search === '') {
+      setSearchMatch(content);
+    } else {
+      setSearchMatch(searchMatch);
+    }
 
     if (router.pathname !== '/hotels') router.replace('/hotels');
   };
@@ -66,6 +74,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   };
 
   const handleClickedSearch = (value) => {
+    setSearch(value);
     let matches = content?.filter((hotel) => {
       return (
         hotel.title.toLowerCase().includes(value.toLowerCase()) ||
@@ -79,7 +88,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     } else {
       setDisplay(false);
     }
-    setSearch(value);
+    console.log('matches', matches);
     setDisplay(!display);
   };
   const handleClickOutside = (e) => {
@@ -106,8 +115,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     };
   });
 
-  console.log('pathname', router.pathname !== '/hotels');
-
   return (
     <Formik
       initialValues={initialFormData}
@@ -117,9 +124,8 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       validateOnBlur={false}
     >
       {(formik) => {
-        console.log('formik', formik);
         return (
-          <Form className={`${styles.form}`}>
+          <Form className={` ${datepicker ? styles.formHome : styles.form}`}>
             <div className={`${styles.inputContainer} ${styles.searchInput}`}>
               <label htmlFor='search' className={styles.label}>
                 <MapPin className={styles.icon} />
@@ -222,6 +228,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                 btnType='search'
                 submit
                 customBtnClass={styles.customBtnClass}
+                clickHandler={handleSubmitButton}
               >
                 Search
               </Button>
