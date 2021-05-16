@@ -18,14 +18,18 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(tomorrow);
   const [showGuests, setShowGuests] = useState(false);
-
+  // const [modal, setmodal] = useState(false);
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
-  const [calendar, setCalendar] = useState(false);
+  // const [calendar, setCalendar] = useState(false);
+  const [calendarEnd, setCalendarStart] = useState(false);
+  const [calendarStart, setCalendarEnd] = useState(false);
   const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
+  const startContainer = useRef(null);
+  const endContainer = useRef(null);
   const guestContainer = useRef(null);
 
   const router = useRouter();
@@ -89,10 +93,13 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     if (
       (suggestionWrapper && !suggestionWrapper.contains(e.target)) ||
       (calendarWrapper && !calendarWrapper.contains(e.target)) ||
+      // (startContainer && !startContainer.contains(e.target)) ||
+      // (endContainer && !endContainer.contains(e.target)) ||
       (guestWrapper && !guestWrapper.contains(e.target))
     ) {
       setDisplay(false);
-      setCalendar(false);
+      setCalendarStart(false);
+      setCalendarEnd(false);
       setShowGuests(false);
     }
   };
@@ -174,19 +181,17 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                     setDateFunc={setStartDate}
                     icon='dates'
                     placeholder='Add date'
-                    calendarContainer={calendarContainer}
-                    setCalendar={setCalendar}
-                    calendar={calendar}
+                    calendarContainer={startContainer}
                   />
-                  {/* <Calendar date={new Date()} /> */}
 
-                  <calendarWrapper
+                  <CalendarWrapper
                     name='check_out'
                     label='Check Out'
                     selectedDate={endDate}
                     setDateFunc={setEndDate}
                     icon='dates'
                     placeholder='Add date'
+                    calendarContainer={endContainer}
                   />
                 </div>
                 <div className={`${searchStyles.column} `}>

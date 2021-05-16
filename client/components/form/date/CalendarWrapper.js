@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import { Calendar } from 'react-date-range';
@@ -17,15 +17,27 @@ const CalendarWrapper = (props) => {
     icon,
     name,
     placeholder,
-    setCalendar,
-    calendar,
   } = props;
   const { setFieldValue, errors, touched, handleBlur } = useFormikContext();
   const [field] = useField(props);
+  const [calendarDate, setCalendarDate] = useState(false);
+  const handleClickOutside = (e) => {
+    const wrapper = calendarContainer.current;
 
-  const closeModal = () => {
-    setCalendar(false);
+    if (wrapper && !wrapper.contains(e.target)) {
+      setCalendarDate(false);
+    }
   };
+  const closeModal = () => {
+    setCalendarDate(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
 
   return (
     <div className={`${styles.inputContainer} `}>
@@ -42,13 +54,17 @@ const CalendarWrapper = (props) => {
             : `${format(new Date(selectedDate), 'LLL dd yyyy')}`
         }
         className={styles.input}
-        onClick={() => setCalendar(!calendar)}
+        onClick={() => {
+          setCalendarDate(!calendarDate);
+        }}
       />
-      {calendar && (
+      {calendarDate && (
         <div className={searchStylesHome.dateRange} ref={calendarContainer}>
           <div className={searchStylesHome.removeIcons}>
             <div className={searchStylesHome.closeModel}>
-              <X className={searchStylesHome.closeicon} onClick={closeModal} />
+              <button onClick={closeModal}>
+                <X className={searchStylesHome.closeicon} />
+              </button>
             </div>
             <button
               onClick={() => setDateFunc(selectedDate)}
@@ -62,6 +78,7 @@ const CalendarWrapper = (props) => {
             minDate={new Date()}
             startDate={selectedDate}
             onChange={(val) => {
+              console.log(field.name, val);
               setDateFunc(val);
               setFieldValue(field.name, val);
             }}
@@ -74,7 +91,15 @@ const CalendarWrapper = (props) => {
         </div>
       )}
 
-      {/* <DatePicker
+      {errors[name] && <div className={styles.error}>{errors[name]}</div>}
+    </div>
+  );
+};
+
+export default CalendarWrapper;
+
+{
+  /* <DatePicker
         {...field}
         onChange={(val) => {
           setDateFunc(val);
@@ -87,11 +112,5 @@ const CalendarWrapper = (props) => {
         minDate={new Date()}
         name={name}
         placeholderText={placeholder}
-      /> */}
-
-      {errors[name] && <div className={styles.error}>{errors[name]}</div>}
-    </div>
-  );
-};
-
-export default CalendarWrapper;
+      /> */
+}
