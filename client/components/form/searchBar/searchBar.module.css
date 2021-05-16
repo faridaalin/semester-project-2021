@@ -21,6 +21,10 @@
 .column > div {
   width: 100%;
 }
+.guestsInput {
+  text-align: center;
+  font-size: 15px;
+}
 .suggestions {
   position: absolute;
   background: var(--white-100);

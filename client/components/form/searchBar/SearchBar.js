@@ -202,6 +202,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
                 smallLabel='18 or above'
                 icon='users'
                 placeholder='Adults'
+                customClass={styles.guestsInput}
                 min='1'
                 max='100'
               />
@@ -213,6 +214,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
                 smallLabel='12 or above'
                 icon='users'
                 placeholder='Children'
+                customClass={styles.guestsInput}
                 min='0'
                 max='100'
               />

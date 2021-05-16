@@ -44,9 +44,9 @@
 .textarea {
   color: var(--blue-400);
   background-color: var(--white-100);
-  font-size: 14px;
-  font-size: max(14px, 0.3em);
-  padding: 10px 16px;
+  font-size: 13px;
+  padding: 10px 8px;
+
   border: 1px solid var(--grey-200);
   border-radius: 6px;
   width: 100%;
@@ -77,6 +77,9 @@
   /* -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; */
+}
+.guestsInput {
+  text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
