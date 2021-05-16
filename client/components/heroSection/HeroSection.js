@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import useWindowWidth from '../../hooks/useWindowSize';
-import SearchFormHome from '../form/search/SearchFormHome';
+import SearchBar from '../form/searchBar/SearchBar';
+// import SearchFormHome from '../form/search/SearchFormHome';
+import { useSearchContext } from '../../context/searchContext';
 import styles from './heroSection.module.css';
 
 const HeroSection = ({ hotels }) => {
   const breakpoint = 768;
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad, setWidthOnLoad] = useState(null);
+  const { search, setSearch } = useSearchContext();
   const { data } = hotels;
 
   useEffect(() => {
@@ -24,14 +27,12 @@ const HeroSection = ({ hotels }) => {
       if (widthOnResize >= breakpoint) {
         return {
           img: '/hero-desktop.png',
-          text:
-            'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
+          text: 'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
         };
       } else {
         return {
           img: '/mobile-hero.png',
-          text:
-            'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
+          text: 'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
         };
       }
     }
@@ -40,14 +41,12 @@ const HeroSection = ({ hotels }) => {
       if (widthOnLoad >= breakpoint) {
         return {
           img: '/hero-desktop.png',
-          text:
-            'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
+          text: 'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
         };
       } else {
         return {
           img: '/mobile-hero.png',
-          text:
-            'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
+          text: 'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
         };
       }
     }
@@ -70,7 +69,12 @@ const HeroSection = ({ hotels }) => {
 
         <p className={styles.paragraph}>{`${showBackgroundImage().text}`}</p>
 
-        <SearchFormHome content={data} />
+        {/* <SearchFormHome content={data} /> */}
+        <SearchBar
+          content={data}
+          searchMatch={search}
+          setSearchMatch={setSearch}
+        />
       </div>
     </section>
   );

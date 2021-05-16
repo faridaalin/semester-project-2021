@@ -50,7 +50,10 @@ const DefaultInput = ({
           <div className={`${styles.inputContainer} `}>
             <label htmlFor={name} className={styles.label}>
               {getIcon(icon)}
-              {label} <span className={styles.smallLabel}>{smallLabel}</span>
+              <div className={styles.labelContainer}>
+                <span>{label}</span>
+                <span className={styles.smallLabel}>{smallLabel}</span>
+              </div>
             </label>
             <input
               type={type}

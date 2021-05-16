@@ -21,14 +21,12 @@ export default function Hotels(props) {
   const [itemToDelete, setItemTodelete] = useState(null);
   const [deleteMsg, setDeleteMsg] = useState(null);
   const [modal, setModal] = useState(false);
-  // const [searchMatch, setSearchMatch] = useState(null);
   const { search, setSearch } = useSearchContext();
 
   const token = props.token;
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
-  const router = useRouter();
 
   const displayHotels = (hotels) => {
     const hotelsToDisplay =
@@ -88,16 +86,13 @@ export default function Hotels(props) {
       return setDeleteMsg('Error happend, please try again later.');
     }
   };
-  console.log('HOTEL PAGE MATCHES', search);
 
   return (
     <Layout>
-      {/* <HeroHeaderHotels setContent={setContent} content={content} /> */}
       <section className={styles.searchHero}>
         <div className={styles.searchContainer}>
           <SearchBar
             content={content}
-            setContent={setContent}
             searchMatch={search}
             setSearchMatch={setSearch}
           />

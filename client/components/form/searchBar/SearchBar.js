@@ -14,7 +14,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from '../input/input.module.css';
 import searchStyles from './searchBar.module.css';
 
-const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
+const SearchBar = ({ content, searchMatch, setSearchMatch }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
@@ -32,11 +32,9 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
   const [guests, setGuests] = useState(1);
   const [calendar, setCalendar] = useState(false);
   const [dateRage, setDateRange] = useState(intitalDateRange);
-
   const [search, setSearch] = useState('');
   const [clickedTypeahead, setClickedTypeahead] = useState('');
   const [display, setDisplay] = useState(false);
-  // const [hotels, setHotels] = useHotelsContext();
 
   const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
@@ -53,27 +51,17 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
     children: 0,
   };
 
-  const onSubmit = (values) => {
-    console.log('values', values);
-    // console.log(searchRef.current.value === '');
-    // console.log(searchRef);
-    console.log('search text', search);
+  const onSubmit = (values, onSubmitProps) => {
+    const { validateForm } = onSubmitProps;
+    validateForm(values);
 
-    if (search === '') {
-      // setSearchMatch(content);
-      console.log('Search input is EMPTY');
-    } else if (searchMatch.length > 0) {
-      console.log('Search is filteres:', searchMatch);
-    } else {
-      console.log('Search input is typahead?');
-    }
     if (router.pathname !== '/hotels') router.replace('/hotels');
   };
 
   const closeModal = () => {
     setCalendar(false);
   };
-  const clonedHotels = [...content];
+
   const handleSearchChange = (e) => {
     setSearch(searchRef.current.value.trim());
     let text = e.target.value;
@@ -84,17 +72,12 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
         hotel.category.toLowerCase().includes(text.toLowerCase())
       );
     });
-    console.log('matches LATEST', matches);
-
-    console.log('LENGTH🔥', matches.length);
 
     if (matches.length > 0) {
       setSearchMatch(matches);
       setDisplay(true);
-      console.log('SHOW MATCHES');
     } else {
       setDisplay(false);
-      console.log('HIDE ...!!');
     }
   };
 
@@ -109,10 +92,8 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
     if (matches.length > 0) {
       setSearchMatch(matches);
       setDisplay(true);
-      console.log('SHOW MATCHES');
     } else {
       setDisplay(false);
-      console.log('HIDE ...!!');
     }
     setSearch(value);
     setDisplay(!display);
@@ -132,9 +113,6 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
       setShowGuests(false);
     }
   };
-  // useEffect(() => {
-  //   setHotels(content);
-  // }, []);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -143,11 +121,15 @@ const SearchBar = ({ content, setContent, searchMatch, setSearchMatch }) => {
     };
   });
 
+  console.log('pathname', router.pathname !== '/hotels');
+
   return (
     <Formik
       initialValues={initialFormData}
       validationSchema={searchSchema}
       onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {(formik) => {
         return (
