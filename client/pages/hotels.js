@@ -86,7 +86,6 @@ export default function Hotels(props) {
       return setDeleteMsg('Error happend, please try again later.');
     }
   };
-  console.log('search.length', search.length);
 
   return (
     <Layout>

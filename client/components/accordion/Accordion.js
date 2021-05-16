@@ -2,7 +2,7 @@ import { useState } from 'react';
 import dateFormat from 'dateformat';
 import styles from './accordion.module.css';
 
-const Accordion = ({ content, type }) => {
+const Accordion = ({ content, type, customMessages }) => {
   const [open, setOpen] = useState(false);
 
   const toggleAccordion = (index) => {
@@ -11,6 +11,7 @@ const Accordion = ({ content, type }) => {
     }
     setOpen(index);
   };
+  console.log('customMessages', customMessages);
 
   if (type === 'messages') {
     return (
@@ -21,28 +22,31 @@ const Accordion = ({ content, type }) => {
           <span>Date</span>
           <span>Status</span>
         </div>
-
-        {content?.data?.map((item, index) => (
-          <div className={styles.accordionContent} key={item._id}>
-            <div
-              className={`${styles.accordionHeader} ${
-                open === index ? styles.open : ''
-              }`}
-              onClick={() => toggleAccordion(index)}
-              key={index}
-            >
-              <span>{item.firstname}</span>
-              <span>{item.subject}</span>
-              <span>{dateFormat(`${item.createdAt}`, 'mmm d, yyyy')}</span>
-              <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
-            </div>
-            {open === index ? (
-              <div className={styles.accordionText}>
-                <p className={styles.paragraph}>{item.message}</p>
+        {typeof customMessages === 'string' ? (
+          <div>{customMessages}</div>
+        ) : (
+          content?.data?.map((item, index) => (
+            <div className={styles.accordionContent} key={item._id}>
+              <div
+                className={`${styles.accordionHeader} ${
+                  open === index ? styles.open : ''
+                }`}
+                onClick={() => toggleAccordion(index)}
+                key={index}
+              >
+                <span>{item.firstname}</span>
+                <span>{item.subject}</span>
+                <span>{dateFormat(`${item.createdAt}`, 'mmm d, yyyy')}</span>
+                <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
               </div>
-            ) : null}
-          </div>
-        ))}
+              {open === index ? (
+                <div className={styles.accordionText}>
+                  <p className={styles.paragraph}>{item.message}</p>
+                </div>
+              ) : null}
+            </div>
+          ))
+        )}
       </div>
     );
   }

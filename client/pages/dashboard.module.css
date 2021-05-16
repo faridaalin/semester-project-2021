@@ -18,6 +18,15 @@
 .navContainer {
   min-height: 46vh;
 }
+.navBtn {
+  font-size: 14px;
+  color: var(--grey-200);
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
 .navItems,
 .current {
   font-family: var(--header-font);
@@ -95,6 +104,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .navButton {
+    pointer-events: none;
+  }
   .container {
     display: grid;
     grid-template-columns: 200px 2fr;

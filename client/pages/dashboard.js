@@ -11,6 +11,8 @@ export default function Dashboard({ data, admin }) {
   const [openNav, setOpenNav] = useState(false);
   const [widthOnLoad, setWidthOnLoad] = useState(null);
 
+  const [customMessages, setCustomMessages] = useState(null);
+
   const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
     useDashboardContext();
   const breakpoint = 768;
@@ -61,7 +63,6 @@ export default function Dashboard({ data, admin }) {
       setOpenNav(() => false);
     }
   };
-  console.log('widthOnLoad > breakpoint', widthOnLoad > breakpoint);
 
   return (
     <Layout>
@@ -83,11 +84,38 @@ export default function Dashboard({ data, admin }) {
                 <nav className={`${styles.navContainer} `}>
                   <ul className={styles.navItems}>
                     <li className={`${styles.navItem} ${styles.active}`}>
-                      All {messages.data.length}
+                      <button
+                        className={styles.navBtn}
+                        onClick={() => setCustomMessages(messages)}
+                      >
+                        All {messages.data.length}
+                      </button>
                     </li>
-                    <li className={styles.navItem}>Unread</li>
-                    <li className={styles.navItem}>Sent</li>
-                    <li className={styles.navItem}>Trash</li>
+                    <li className={styles.navItem}>
+                      <button
+                        className={styles.navBtn}
+                        onClick={() => setCustomMessages('UNREAD')}
+                      >
+                        Unread
+                      </button>
+                    </li>
+                    <li className={styles.navItem}>
+                      <button
+                        className={styles.navBtn}
+                        onClick={() => setCustomMessages('SENT')}
+                      >
+                        Sent
+                      </button>
+                    </li>
+                    <li className={styles.navItem}>
+                      {' '}
+                      <button
+                        className={styles.navBtn}
+                        onClick={() => setCustomMessages('TRASH')}
+                      >
+                        Trash
+                      </button>
+                    </li>
                   </ul>
 
                   <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
@@ -101,7 +129,11 @@ export default function Dashboard({ data, admin }) {
                 </nav>
               )}
             </header>
-            <Accordion content={messages} type='messages' />
+            <Accordion
+              content={messages}
+              type='messages'
+              customMessages={customMessages}
+            />
           </>
         ) : showEnq ? (
           <>
@@ -120,9 +152,15 @@ export default function Dashboard({ data, admin }) {
                     <li className={`${styles.navItem} ${styles.active}`}>
                       All {enquiries.data.length}
                     </li>
-                    <li className={styles.navItem}>Unread</li>
-                    <li className={styles.navItem}>Sent</li>
-                    <li className={styles.navItem}>Trash</li>
+                    <li className={styles.navItem}>
+                      <button className={styles.navBtn}>Unread</button>
+                    </li>
+                    <li className={styles.navItem}>
+                      <button className={styles.navBtn}>Sent</button>
+                    </li>
+                    <li className={styles.navItem}>
+                      <button className={styles.navBtn}>Trash</button>
+                    </li>
                   </ul>
 
                   <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
