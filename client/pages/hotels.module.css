@@ -5,7 +5,7 @@
   background-size: cover;
   background-position: center;
   height: 100vh;
-  margin-top: -21vh;
+  /* margin-top: -21vh; */
   position: relative;
   margin-bottom: 80px;
   margin-left: calc(50% - 50vw);
@@ -17,7 +17,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 103%;
+  height: 100%;
   background: linear-gradient(
     360deg,
     #e4e8ec 0%,
@@ -34,16 +34,17 @@
   width: 90%;
   top: 0;
   max-width: 400px;
+  margin-top: -40px;
 }
 
 @media screen and (min-width: 768px) {
-  .searchHero {
+  /* .searchHero {
     height: 82vh;
-  }
+  } */
 
   .searchContainer {
     min-width: min-content;
-    top: 30%;
+    /* top: 30%; */
   }
 }
 
