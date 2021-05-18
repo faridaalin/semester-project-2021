@@ -73,7 +73,6 @@ const DateRangeWrapper = ({
               moveRangeOnFirstSelection={false}
               minDate={new Date()}
               ranges={dateRange}
-              scroll={{ monthWidth: 300 }}
             />
           </div>
         )}

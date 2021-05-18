@@ -115,6 +115,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   });
+  console.log('calendar', calendar);
 
   return (
     <Formik
