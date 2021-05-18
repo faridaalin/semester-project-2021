@@ -7,7 +7,7 @@ import axios from '../../utils/axios';
 
 import styles from './pill.module.css';
 
-const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
+const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const [show, setShow] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
@@ -23,6 +23,30 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
   const sortLowToHeigh = () => {
     const sortedHotels = hotels.slice().sort((a, b) => b - a);
     setSorted(sorted);
+  };
+
+  const sortProducts = (order, type) => {
+    if (type === 'price') {
+      if (order === 'desc') {
+        console.log('Heigh to low', type);
+
+        const sortedHotels = hotels.sort((hotel) =>
+          hotel.rooms.sort((a, b) => b.price - a.price)
+        );
+        console.log('sortedHotels', sortedHotels);
+        // setSorted(sorted);
+      } else {
+        console.log('Low to heigh', type);
+      }
+    } else {
+      if (type === 'rating') {
+        if (order === 'desc') {
+          console.log('Heigh to low', type);
+        } else {
+          console.log('Low to heigh', type);
+        }
+      }
+    }
   };
   const handleMessages = () => {
     if (pathname === '/dashboard') {
@@ -80,6 +104,33 @@ const Pill = ({ name, select, hotels, setSorted, dashboard }) => {
               </button>
               <button className={styles.button} onClick={logout}>
                 Logout
+              </button>
+            </>
+          ) : mobile ? (
+            <>
+              <button
+                className={styles.button}
+                onClick={() => sortProducts('desc', 'price')}
+              >
+                Price hight to low
+              </button>
+              <button
+                className={styles.button}
+                onClick={() => sortProducts('asc', 'price')}
+              >
+                Price low to heigh
+              </button>
+              <button
+                className={styles.button}
+                onClick={() => sortProducts('desc', 'rating')}
+              >
+                Rating hight to low
+              </button>
+              <button
+                className={styles.button}
+                onClick={() => sortProducts('asc', 'rating')}
+              >
+                Rating low to heigh
               </button>
             </>
           ) : (

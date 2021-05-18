@@ -109,7 +109,12 @@ export default function Hotels(props) {
               </button>
             )}
           </div>
-          <Pill name='Dashboard' select={2} dashboard='true' />
+          {/* <Pill
+            name='Filter'
+            select={2}
+            mobile={true}
+            hotels={search.length === 0 ? data : search}
+          /> */}
         </div>
         <>
           <CardContainer>

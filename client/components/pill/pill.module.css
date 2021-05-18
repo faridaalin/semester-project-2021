@@ -12,6 +12,7 @@
   background-color: #c9d1d9;
   border: 1.5px solid #c9d1d9;
   margin-top: 16px;
+  z-index: 200;
 }
 
 .primaryButton {
