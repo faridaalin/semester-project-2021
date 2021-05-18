@@ -22,6 +22,8 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
   const [display, setDisplay] = useState(false);
   const [calendarEnd, setCalendarStart] = useState(false);
   const [calendarStart, setCalendarEnd] = useState(false);
+  const [calendar, setCalendar] = useState(false);
+
   const searchRef = useRef(null);
   const suggestionsContainer = useRef(null);
   const calendarContainer = useRef(null);
@@ -41,7 +43,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
 
   const onSubmit = (values, onSubmitProps) => {
     const { validateForm } = onSubmitProps;
-    console.log('path', router.pathname !== '/hotels');
     validateForm(values);
   };
   const handleSubmitButton = () => {
@@ -88,7 +89,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     } else {
       setDisplay(false);
     }
-    console.log('matches', matches);
     setDisplay(!display);
   };
   const handleClickOutside = (e) => {
@@ -105,6 +105,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       setCalendarStart(false);
       setCalendarEnd(false);
       setShowGuests(false);
+      setCalendar(false);
     }
   };
 
@@ -169,6 +170,8 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
                   setShowGuests={setShowGuests}
                   showGuests={showGuests}
                   guestContainer={guestContainer}
+                  setCalendar={setCalendar}
+                  calendar={calendar}
                 />
               </>
             ) : (

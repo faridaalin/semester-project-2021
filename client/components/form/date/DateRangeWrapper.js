@@ -10,6 +10,8 @@ const DateRangeWrapper = ({
   setShowGuests,
   showGuests,
   guestContainer,
+  calendar,
+  setCalendar,
 }) => {
   const today = new Date();
   let tomorrow = new Date();
@@ -21,7 +23,7 @@ const DateRangeWrapper = ({
       key: 'selection',
     },
   ];
-  const [calendar, setCalendar] = useState(false);
+
   const [guests, setGuests] = useState(1);
   const [dateRange, setDateRange] = useState(intitalDateRange);
 

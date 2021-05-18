@@ -45,7 +45,7 @@
   position: absolute;
   left: 0;
   min-width: 100%;
-  top: 40%;
+  top: 150px;
   z-index: 10;
   padding: 32px;
   display: grid;
@@ -53,6 +53,7 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   max-width: 500px;
+  z-index: 20000;
   overflow: scroll;
 }
 
