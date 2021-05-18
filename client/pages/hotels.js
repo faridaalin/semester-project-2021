@@ -12,7 +12,6 @@ import Pagination from '../components/pagination/Pagination';
 import { useHotelsContext } from '../context/HotelsContext';
 import { useSearchContext } from '../context/searchContext';
 import SearchBar from '../components/form/searchBar/SearchBar';
-import Pill from '../components/pill/Pill';
 import { useMounted } from '../hooks/hasMounted';
 import styles from './hotels.module.css';
 
@@ -93,15 +92,11 @@ export default function Hotels(props) {
 
   return (
     <Layout>
-      <section className={styles.searchHero}>
-        <div className={styles.searchContainer}>
-          <SearchBar
-            content={content}
-            searchMatch={search}
-            setSearchMatch={setSearch}
-          />
-        </div>
-      </section>
+      <HeroHeaderHotels
+        content={content}
+        searchMatch={search}
+        setSearchMatch={setSearch}
+      />
       <section className='section'>
         <div>
           <div className={styles.headerContainer}>

@@ -121,8 +121,6 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       initialValues={initialFormData}
       validationSchema={datepicker ? searchSchemaSimple : searchSchema}
       onSubmit={onSubmit}
-      validateOnChange={false}
-      validateOnBlur={false}
     >
       {(formik) => {
         return (

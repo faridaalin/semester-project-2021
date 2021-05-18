@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useHotelsContext } from '../../context/HotelsContext';
+import { useSearchContext } from '../../context/searchContext';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
 import Layout from '../../components/layout/Layout';
@@ -25,7 +27,7 @@ const HotelDetail = (props) => {
     const isBrowser = typeof window !== 'undefined' ? window.innerWidth : null;
     return isBrowser;
   };
-
+  const { search, setSearch } = useSearchContext();
   const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad] = useState(innerWidth());
 
@@ -50,7 +52,7 @@ const HotelDetail = (props) => {
 
   return (
     <Layout>
-      <HeroHeaderHotels />
+      <HeroHeaderHotels searchMatch={search} setSearchMatch={setSearch} />
       <PageHeader title={hotel.title} />
       <section className={`section ${styles.container}`}>
         {showImageGallery()}

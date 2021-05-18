@@ -4,8 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin-top: -21vh;
+  height: 70vh;
   position: relative;
   margin-bottom: 80px;
   margin-left: calc(50% - 50vw);
@@ -34,6 +33,7 @@
   width: 90%;
   top: 0;
   max-width: 400px;
+  margin-top: -40px;
 }
 
 @media screen and (min-width: 768px) {
