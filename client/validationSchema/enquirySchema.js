@@ -1,7 +1,10 @@
 import { object, string, date, number, ref } from 'yup';
 
 const enquirySchema = object({
-  check_in: date().required('Required').nullable().min(new Date()),
+  check_in: date()
+    .required('Required')
+    .nullable()
+    .min(new Date().toLocaleDateString('en-US')),
   check_out: date()
     .required('Required')
     .nullable()

@@ -24,17 +24,18 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const today = new Date();
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(today.toDateString());
   const [endDate, setEndDate] = useState(tomorrow.toDateString());
   const [nights, setNights] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [showForm, setShowForm] = useState(true);
+  const [fetchStatus, setFetchStatus] = useState(null);
 
   const priceRef = useRef(null);
   const calendarContainer = useRef(null);
 
   const onSubmit = async (values, onSubmitProps) => {
-    const { setStatus } = onSubmitProps;
+    // const { setStatus } = onSubmitProps;
     const price = parseFloat(priceRef.current.innerText);
 
     if (price > 0 && typeof price === 'number') {
@@ -49,8 +50,9 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
 
         if (res.status === 200) {
           setIsLoading(false);
+          console.log('RES', res);
 
-          setStatus({
+          setFetchStatus({
             sent: true,
             msg: 'Your reservation enquiry has been sent. We will send you confirmation in 2-3 days.',
           });
@@ -58,14 +60,20 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
         }
       } catch (error) {
         if (error.response && error.response.status) {
+          console.log(error.response.data.message.message);
           if (error.response.status === 404) {
-            setStatus({
+            setFetchStatus({
               sent: false,
-              msg: error.response.data.message,
+              msg: error.response.data.message.message,
+            });
+          } else {
+            setFetchStatus({
+              sent: false,
+              msg: error.response.data.message.message,
             });
           }
         } else {
-          setStatus({
+          setFetchStatus({
             sent: false,
             msg: 'Something went wrong, please try again later.',
           });
@@ -92,7 +100,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     email: '',
     special_requests: '',
   };
-
+  console.log('fetchStatus', fetchStatus);
   return (
     <>
       <PureModal
@@ -109,21 +117,9 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
+            console.log('FORMIK', formik);
             return (
-              <Form
-                className={`${styles.form}  ${
-                  formik.status && formik.status.sent && styles.bg
-                }`}
-              >
-                {formik.status && formik.status.msg && (
-                  <div
-                    className={` ${
-                      formik.status.sent ? styles.success : styles.error
-                    }`}
-                  >
-                    <p>{formik.status.msg}</p>
-                  </div>
-                )}
+              <Form className={`${styles.form} `}>
                 {showForm && (
                   <div className={styles.innerForm}>
                     <div>

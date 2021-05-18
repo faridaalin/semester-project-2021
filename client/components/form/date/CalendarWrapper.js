@@ -43,6 +43,7 @@ const CalendarWrapper = (props) => {
         minDate={new Date()}
         name={name}
         placeholderText={placeholder}
+        dateFormat='MMMM dd, yyyy'
       />
 
       {errors[name] && <div className={styles.error}>{errors[name]}</div>}
