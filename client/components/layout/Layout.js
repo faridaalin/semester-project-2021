@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { X } from 'react-feather';
 import PureModal from 'react-pure-modal';
 import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
@@ -15,20 +16,13 @@ const Layout = ({ children }) => {
           {children}
           {loginModal && (
             <PureModal
-              header='Your header'
-              footer={
-                <div>
-                  <button>Delete</button>
-                  <button onClick={() => setLoginModal(false)}>Cancel</button>
-                </div>
+              className={styles.loginModal}
+              header={
+                <span onClick={() => setLoginModal(false)}>
+                  <X />
+                </span>
               }
               isOpen={loginModal}
-              closeButton='close'
-              closeButtonPosition='bottom'
-              onClose={() => {
-                setLoginModal(false);
-                return true;
-              }}
             >
               <Login setLoginModal={setLoginModal} />
             </PureModal>

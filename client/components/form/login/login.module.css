@@ -1,6 +1,9 @@
 .form {
   display: grid;
   gap: 8px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding-top: 16px;
 }
 .btnContainer {
   margin-top: 16px;
