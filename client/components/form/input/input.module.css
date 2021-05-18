@@ -40,6 +40,22 @@
   text-align: left;
 }
 
+.dateRange {
+  background: var(--grey-100);
+  position: absolute;
+  left: 0;
+  min-width: 100%;
+  top: 40%;
+  z-index: 10;
+  padding: 32px;
+  display: grid;
+  box-shadow: 2px 0px 20px rgb(140 162 181 / 48%);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  max-width: 500px;
+  overflow: scroll;
+}
+
 .input,
 .textarea {
   color: var(--blue-400);
@@ -70,6 +86,7 @@
   border-radius: 6px;
   padding: 9px 16px;
   width: 100%;
+  position: relative;
 }
 
 .select {
@@ -86,6 +103,66 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 16px;
+}
+
+.closeIcon {
+  height: 20px;
+  width: 20px;
+  color: var(--blue-300);
+}
+
+.closeModel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 6px;
+  margin-left: calc(100% - 30px);
+  color: var(--blue-400);
+}
+.closeModel:hover {
+  background-color: var(--white-400);
+  box-shadow: 0px 1px 6px 1px hsl(0deg 0% 40% / 27%);
+}
+
+.closeModel:focus {
+  border: 2px solid rgb(84 191 227 / 42%);
+  background: rgb(84 191 227 / 7%);
+  color: var(--info);
+}
+
+.removeIcons {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+
+.removeIcons > button {
+  place-self: center;
+  margin-bottom: 16px;
+}
+
+.removeIcons .clearButton {
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: var(--blue-400);
+  border: 2px solid var(--blue-400);
+  transition: background-color 0.3s ease;
+}
+.removeIcons .clearButton:hover {
+  background-color: var(--blue-400);
+  color: var(--white-100);
+}
+
+.removeIcons .clearButton:focus {
+  border-color: rgb(84 191 227 / 42%);
+  background: rgb(84 191 227 / 7%);
+  color: var(--info);
 }
 
 @media only screen and (min-width: 768px) {
