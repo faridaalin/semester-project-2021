@@ -72,4 +72,7 @@
   .map {
     margin-top: -50px;
   }
+  .container {
+    min-width: 900px;
+  }
 }

@@ -19,9 +19,11 @@ const Navbar = ({ setLoginModal }) => {
   const toggleMenu = () => {
     setOpen(!open);
   };
+
   const clickHandler = () => {
     setDropDownMenu(!dropDownMenu);
   };
+
   useEffect(() => {
     const breakpoint = 768;
     const hidemenu = () => {

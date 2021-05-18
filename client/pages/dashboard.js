@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
+import useWindowWidth from '../hooks/useWindowSize';
+import getWindowWidth from '../helpers/getWindowWidth';
 import PageHeader from '../components/pageHeader/PageHeader';
 import { parseCookies } from '../helpers/parseCookies';
 import Accordion from '../components/accordion/Accordion';
@@ -10,6 +12,7 @@ import styles from './dashboard.module.css';
 export default function Dashboard({ data, admin }) {
   const { messages, enquiries } = data;
   const [openNav, setOpenNav] = useState(false);
+  const [widthOnResize, resized] = useWindowWidth();
   const [widthOnLoad, setWidthOnLoad] = useState(null);
   const [customMessages, setCustomMessages] = useState(messages);
   const [navTitle, setNavTitle] = useState(true);
@@ -19,7 +22,7 @@ export default function Dashboard({ data, admin }) {
   const breakpoint = 768;
 
   const handleNavToggle = () => {
-    if (widthOnLoad > breakpoint) {
+    if (getWindowWidth() > breakpoint) {
       return setOpenNav(() => true);
     }
     setOpenNav(() => !openNav);
@@ -44,45 +47,40 @@ export default function Dashboard({ data, admin }) {
     setShowMessages(true);
   }, [setOpenNav, setShowMessages]);
 
-  const handleMessages = () => {
+  const handleToggle = () => {
     setNavTitle(!navTitle);
-
-    if (widthOnLoad > breakpoint) {
-      setShowEnq(false);
-      setShowMessages(true);
-      setOpenNav(() => true);
-    } else {
-      setShowEnq(false);
-      setShowMessages(true);
-      setOpenNav(() => false);
-    }
-  };
-  const handleEnquires = () => {
-    setNavTitle(!navTitle);
-    console.log(widthOnLoad > breakpoint);
     setCustomMessages(navTitle ? enquiries : messages);
 
-    if (widthOnLoad > breakpoint) {
+    if (getWindowWidth() > breakpoint) {
       setOpenNav(() => true);
-      setShowEnq(true);
-      setShowMessages(false);
     } else {
-      setShowEnq(true);
-      setShowMessages(false);
       setOpenNav(() => false);
     }
   };
 
   const handleMenuOnNAvItem = () => {
-    console.log('widthOnLoad', widthOnLoad);
-    if (widthOnLoad < breakpoint) {
+    if (getWindowWidth() < breakpoint) {
       setOpenNav(() => false);
     } else {
       setOpenNav(() => true);
     }
   };
 
-  console.log('openNav', openNav);
+  const showMenu = () => {
+    if (resized) {
+      if (widthOnResize >= breakpoint) {
+        setOpenNav(() => false);
+      } else {
+        setOpenNav(() => true);
+      }
+    } else {
+      if (window.innerWidth < breakpoint) {
+        setOpenNav(() => false);
+      } else {
+        setOpenNav(() => true);
+      }
+    }
+  };
 
   return (
     <Layout>
@@ -99,7 +97,7 @@ export default function Dashboard({ data, admin }) {
               {navTitle ? 'Messages' : 'Enquiries'}
             </button>
 
-            {openNav && (
+            {widthOnResize >= breakpoint || openNav ? (
               <nav className={`${styles.navContainer} `}>
                 <ul className={styles.navItems}>
                   <li className={`${styles.navItem} ${styles.active}`}>
@@ -137,7 +135,6 @@ export default function Dashboard({ data, admin }) {
                     </button>
                   </li>
                   <li className={styles.navItem}>
-                    {' '}
                     <button
                       className={styles.navBtn}
                       onClick={() => {
@@ -151,7 +148,7 @@ export default function Dashboard({ data, admin }) {
                 </ul>
 
                 <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                  <li className={styles.navItem} onClick={handleEnquires}>
+                  <li className={styles.navItem} onClick={handleToggle}>
                     {navTitle ? 'Enquiries' : 'Messages'}
                   </li>
                   <li className={styles.navItem} onClick={logout}>
@@ -159,7 +156,7 @@ export default function Dashboard({ data, admin }) {
                   </li>
                 </ul>
               </nav>
-            )}
+            ) : null}
           </header>
           {navTitle ? (
             <Accordion type='messages' content={customMessages} />

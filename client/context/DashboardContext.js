@@ -27,6 +27,22 @@ export const DashboardContextProvider = ({ children }) => {
     }
   };
 
+  const getDashboardData = async () => {
+    const messages = axios.get('/messages', options);
+    const enquiries = axios.get('/enquiries', options);
+
+    const [messagesRes, enquiriesRes] = await Promise.all([
+      messages,
+      enquiries,
+    ]);
+
+    if (!messagesRes.data || !enquiriesRes.data) {
+      return {
+        notFound: true,
+      };
+    }
+  };
+
   return (
     <DashboardContext.Provider
       value={{
