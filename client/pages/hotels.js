@@ -26,7 +26,7 @@ export default function Hotels(props) {
   const [modal, setModal] = useState(false);
   const { search, setSearch } = useSearchContext();
 
-  const token = props.token;
+  const token = !props.token ? null : props.token;
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
   const hotelsPerPage = 6;
   const hotelsVisited = pageNumber * hotelsPerPage;
@@ -149,7 +149,8 @@ export default function Hotels(props) {
 
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
-  const token = cookie.jwt;
+  const token = !cookie || !cookie.jwt ? null : cookie.jwt;
+  console.log('TOKEN', token);
 
   try {
     const hotels = await axios.get('/hotels');

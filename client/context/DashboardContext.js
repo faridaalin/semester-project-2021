@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import axios from '../utils/axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
@@ -13,6 +13,7 @@ export const DashboardContextProvider = ({ children }) => {
   const [showMessages, setShowMessages] = useState(null);
   const [showEnq, setShowEnq] = useState(null);
   const [content, setContent] = useState(null);
+  const [userToken, setUserToken] = useState(null);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
 
@@ -20,12 +21,20 @@ export const DashboardContextProvider = ({ children }) => {
     try {
       await axios.get('/users/logout');
       removeCookie('isAdmin', cookie, { path: '/', maxAge: 0, sameSite: true });
-      localStorage.removeItem('userToken');
+      typeof window !== 'undefined'
+        ? localStorage.removeItem('userToken')
+        : null;
+
       router.push('/');
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    const user = localStorage.getItem('userToken');
+
+    setUserToken(JSON.parse(user));
+  }, []);
 
   const getDashboardData = async () => {
     const messages = axios.get('/messages', options);
