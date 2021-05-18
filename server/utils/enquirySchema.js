@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-const { object, string, date, number } = yup;
+const { object, string, date, number, ref } = yup;
 
 exports.enquirySchema = object({
   hotel_name: string().required().min(2).max(40),
