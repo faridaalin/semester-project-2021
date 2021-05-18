@@ -75,7 +75,7 @@
   .heroImage {
     height: 80vh;
     margin-top: 0;
-    max-width: 71%;
+    max-width: 72%;
     margin-left: auto;
   }
 
@@ -108,18 +108,9 @@
     font-size: 200px;
     font-family: var(--header-font);
     font-weight: var(--fontWeight-r);
-    background-color: rgb(53, 54, 73);
-    background: linear-gradient(
-      81deg,
-      rgba(53, 54, 73, 1),
-      rgb(205 205 209 / 27%) 58%
-    );
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-
+    text-shadow: 0 2px 2px rgb(37 37 37 / 65%);
+    color: #d2cdcde6;
+    mix-blend-mode: difference;
     margin: -16px 0 30px -16px;
     height: 246px;
     display: flex;
@@ -129,44 +120,8 @@
     line-height: 1.5;
     font-size: 16px;
     width: 50ch;
-    background-color: #35364959;
-    background-color: rgb(53, 54, 73);
-    background: linear-gradient(
-      81deg,
-      rgba(53, 54, 73, 1) 38%,
-      rgba(205, 205, 209, 1) 20%
-    );
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .paragraph {
-    background: linear-gradient(
-      84deg,
-      rgba(53, 54, 73, 1) 38%,
-      rgba(205, 205, 209, 1) 20%
-    );
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  .paragraph {
-    background: linear-gradient(
-      84deg,
-      rgba(53, 54, 73, 1) 56%,
-      rgba(205, 205, 209, 1) 20%
-    );
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+    color: #d2cdcded;
+    mix-blend-mode: difference;
+    text-shadow: 0 2px 2px rgb(0 0 0 / 71%);
   }
 }
