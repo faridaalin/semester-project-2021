@@ -13,9 +13,11 @@ import { useHotelsContext } from '../context/HotelsContext';
 import { useSearchContext } from '../context/searchContext';
 import SearchBar from '../components/form/searchBar/SearchBar';
 import Pill from '../components/pill/Pill';
+import { useMounted } from '../hooks/hasMounted';
 import styles from './hotels.module.css';
 
 export default function Hotels(props) {
+  const { hasMounted } = useMounted();
   const [pageNumber, setPageNumber] = useState(0);
   const [hotels, setHotels, getHotels] = useHotelsContext();
   const [content, setContent] = useState(props.data.data);
@@ -31,6 +33,7 @@ export default function Hotels(props) {
 
   const displayHotels = (hotels) => {
     const hotelsToDisplay =
+      hasMounted &&
       hotels &&
       hotels
         .slice(hotelsVisited, hotelsVisited + hotelsPerPage)
@@ -101,19 +104,23 @@ export default function Hotels(props) {
       </section>
       <section className='section'>
         <div>
-          <div>
+          <div className={styles.headerContainer}>
             <PageHeader title='Our Hotels' />
-            {search.length < content.length && (
-              <button onClick={() => setSearch(props.data.data)}>
+            {search.length > 0 && search.length < content.length && (
+              <button
+                className={styles.viewAllBtn}
+                onClick={() => setSearch(props.data.data)}
+              >
                 View all hotels
               </button>
             )}
           </div>
         </div>
         <>
-          <CardContainer>
+          <CardContainer suppressHydrationWarning={true}>
             {!data && <div>Error happend..</div>}
-            {displayHotels(search.length === 0 ? data : search)}
+            {process.browser &&
+              displayHotels(search.length === 0 ? data : search)}
             <PureModal
               header='Header'
               footer={

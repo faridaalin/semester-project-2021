@@ -108,7 +108,7 @@ const Navbar = ({ setLoginModal }) => {
               } `}
             >
               <Link href='/'>
-                <a>Home</a>
+                <a href='/'>Home</a>
               </Link>
             </li>
             <li
@@ -117,7 +117,7 @@ const Navbar = ({ setLoginModal }) => {
               } `}
             >
               <Link href='/hotels'>
-                <a>Hotels</a>
+                <a href='/hotels'>Hotels</a>
               </Link>
             </li>
             <li
@@ -126,7 +126,7 @@ const Navbar = ({ setLoginModal }) => {
               } `}
             >
               <Link href='/about'>
-                <a>About</a>
+                <a href='/about'>About</a>
               </Link>
             </li>
             <li
@@ -135,7 +135,7 @@ const Navbar = ({ setLoginModal }) => {
               } `}
             >
               <Link href='/contact'>
-                <a>Contact</a>
+                <a href='/contact'>Contact</a>
               </Link>
             </li>
 

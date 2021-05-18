@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useWindowWidth from '../../hooks/useWindowSize';
 import SearchBar from '../form/searchBar/SearchBar';
 import { useSearchContext } from '../../context/searchContext';
+import getWindowWidth from '../../helpers/getWindowWidth';
 import styles from './heroSection.module.css';
 
 const HeroSection = ({ hotels }) => {
@@ -37,7 +38,7 @@ const HeroSection = ({ hotels }) => {
     }
 
     if (resized === false) {
-      if (widthOnLoad >= breakpoint) {
+      if (getWindowWidth() >= breakpoint) {
         return {
           img: '/hero-desktop.png',
           text: 'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',

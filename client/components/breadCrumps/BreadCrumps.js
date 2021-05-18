@@ -9,7 +9,7 @@ const BreadCrumps = ({ pathname }) => {
 
     if (path.includes('/')) {
       modifiedPath = path.replace('/', '');
-      // console.log('mod', modifiedPath.slice(' '));
+
       const pathToUpperCase =
         modifiedPath.charAt(0).toUpperCase() + modifiedPath.slice(1);
       return (modifiedPath = pathToUpperCase);
@@ -17,7 +17,7 @@ const BreadCrumps = ({ pathname }) => {
 
     return modifiedPath;
   };
-  // console.log('pathname', lastPath(pathname));
+
   return (
     <div className={styles.linkContainer}>
       <Link href='/'>

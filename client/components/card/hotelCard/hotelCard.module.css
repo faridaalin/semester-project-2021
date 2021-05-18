@@ -101,8 +101,11 @@
 
 .description p {
   font-weight: var(--fontWeight-r);
-  margin-bottom: 32px;
   font-size: 14px;
+}
+
+.description {
+  margin-bottom: 16px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -112,6 +115,7 @@
     flex-direction: row;
     gap: 24px;
     margin-right: 16px;
+    min-width: 565px;
   }
   .icons {
     margin-left: 24px;
@@ -131,8 +135,6 @@
   .content {
     align-items: flex-start;
     justify-content: space-between;
-  }
-  .description p {
-    margin-bottom: 16px;
+    min-width: 28ch;
   }
 }
