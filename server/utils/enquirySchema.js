@@ -4,8 +4,14 @@ const { object, string, date, number } = yup;
 
 exports.enquirySchema = object({
   hotel_name: string().required().min(2).max(40),
-  check_in: date().required().min(new Date()),
-  check_out: date().required(),
+  check_in: date()
+    .required('Required')
+    .nullable()
+    .min(new Date().toLocaleDateString('en-US')),
+  check_out: date()
+    .required('Required')
+    .nullable()
+    .min(ref('check_in'), "Check out can't be before check in"),
   room_type: string().required().min(1),
   adults: number().required().min(1).positive(),
   children: number().required().min(0).default(0),
