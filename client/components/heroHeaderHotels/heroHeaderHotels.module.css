@@ -4,12 +4,18 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 80vh;
   margin-top: -21vh;
   position: relative;
   margin-bottom: 80px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+}
+.detail {
+  background-image: linear-gradient(
+    rgb(228 232 236 / 52%),
+    rgb(228 232 236 / 66%)
+  );
 }
 
 .searchHero::after {
@@ -17,7 +23,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 103%;
+  height: 101%;
   background: linear-gradient(
     360deg,
     #e4e8ec 0%,
@@ -32,28 +38,19 @@
   transform: translate(-50%, 50%);
   z-index: 1;
   width: 90%;
-  top: 120px;
+  top: 70px;
   max-width: 400px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .searchHero {
-    height: 62vh;
+    height: 32vh;
     margin-top: 0;
+    margin-bottom: 0;
   }
 
   .searchContainer {
     min-width: min-content;
-    top: 30%;
-  }
-
-  .searchContainer {
-    top: 0;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .searchContainer {
-    top: 30%;
+    top: -60px;
   }
 }

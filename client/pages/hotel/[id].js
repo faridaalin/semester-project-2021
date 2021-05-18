@@ -52,7 +52,11 @@ const HotelDetail = (props) => {
 
   return (
     <Layout>
-      <HeroHeaderHotels searchMatch={search} setSearchMatch={setSearch} />
+      <HeroHeaderHotels
+        searchMatch={search}
+        setSearchMatch={setSearch}
+        detail
+      />
       <PageHeader title={hotel.title} />
       <section className={`section ${styles.container}`}>
         {showImageGallery()}
