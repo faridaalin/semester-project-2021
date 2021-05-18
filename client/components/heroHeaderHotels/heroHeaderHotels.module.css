@@ -4,7 +4,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 70vh;
+  height: 100vh;
+  margin-top: -21vh;
   position: relative;
   margin-bottom: 80px;
   margin-left: calc(50% - 50vw);
@@ -31,19 +32,23 @@
   transform: translate(-50%, 50%);
   z-index: 1;
   width: 90%;
-  top: 0;
+  top: 120px;
   max-width: 400px;
-  margin-top: -40px;
 }
 
 @media screen and (min-width: 768px) {
   .searchHero {
-    height: 82vh;
+    height: 62vh;
+    margin-top: 0;
   }
 
   .searchContainer {
     min-width: min-content;
     top: 30%;
+  }
+
+  .searchContainer {
+    top: 0;
   }
 }
 
