@@ -21,8 +21,8 @@
   font-weight: var(--fontWeight-m);
 }
 .error {
-  background: #e71d362e;
-  color: var(--danger);
+  background: #e71d3617;
+  color: #a90419;
   border: 1.5px solid #e71d3647;
 }
 

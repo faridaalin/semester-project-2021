@@ -35,7 +35,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const calendarContainer = useRef(null);
 
   const onSubmit = async (values, onSubmitProps) => {
-    // const { setStatus } = onSubmitProps;
     const price = parseFloat(priceRef.current.innerText);
 
     if (price > 0 && typeof price === 'number') {
@@ -64,7 +63,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           if (error.response.status === 404) {
             setFetchStatus({
               sent: false,
-              msg: error.response.data.message.message,
+              msg: 'Resource not found',
             });
           } else {
             setFetchStatus({
@@ -100,7 +99,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
     email: '',
     special_requests: '',
   };
-  console.log('fetchStatus', fetchStatus);
+
   return (
     <>
       <PureModal
@@ -119,7 +118,20 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           {(formik) => {
             console.log('FORMIK', formik);
             return (
-              <Form className={`${styles.form} `}>
+              <Form
+                className={`${styles.form} ${
+                  fetchStatus?.sent ? styles.bg : ''
+                } `}
+              >
+                {!fetchStatus ? null : (
+                  <div
+                    className={`${
+                      fetchStatus?.sent ? styles.success : styles.error
+                    }`}
+                  >
+                    {fetchStatus?.msg}
+                  </div>
+                )}
                 {showForm && (
                   <div className={styles.innerForm}>
                     <div>
