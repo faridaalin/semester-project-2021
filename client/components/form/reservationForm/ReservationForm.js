@@ -5,7 +5,7 @@ import PureModal from 'react-pure-modal';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import SelectField from '../select/Select';
-import DateWrapper from '../date/Date';
+import CalendarWrapper from '../date/CalendarWrapper';
 import calcNights from '../../../helpers/calcNight';
 import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
@@ -31,6 +31,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const [showForm, setShowForm] = useState(true);
 
   const priceRef = useRef(null);
+  const calendarContainer = useRef(null);
 
   const onSubmit = async (values, onSubmitProps) => {
     const { setStatus } = onSubmitProps;
@@ -138,21 +139,23 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           readonly={true}
                         />
                         <div className={styles.row}>
-                          <DateWrapper
+                          <CalendarWrapper
                             name='check_in'
                             label='Check In'
                             selectedDate={startDate}
                             setDateFunc={setStartDate}
                             icon='dates'
                             placeholder='Add date'
+                            calendarContainer={calendarContainer}
                           />
-                          <DateWrapper
+                          <CalendarWrapper
                             name='check_out'
                             label='Check Out'
                             selectedDate={endDate}
                             setDateFunc={setEndDate}
                             icon='dates'
                             placeholder='Add date'
+                            calendarContainer={calendarContainer}
                           />
                         </div>
                       </div>
