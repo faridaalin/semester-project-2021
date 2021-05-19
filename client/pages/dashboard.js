@@ -35,6 +35,7 @@ export default function Dashboard({ data, admin, token }) {
   const handleToggle = () => {
     setNavTitle(!navTitle);
     setCustomMessages(navTitle ? enquiries : messages);
+    setActiveClass(1);
 
     if (getWindowWidth() > breakpoint) {
       setOpenNav(() => true);
@@ -43,14 +44,14 @@ export default function Dashboard({ data, admin, token }) {
     }
   };
 
-  const handleNavItem = (e, index) => {
+  const handleNavItem = (e) => {
     if (getWindowWidth() < breakpoint) {
       setOpenNav(() => false);
     } else {
       setOpenNav(() => true);
     }
-    console.log('e', e);
-    setActiveClass(index);
+    const id = e.target.id;
+    setActiveClass(parseInt(id));
   };
 
   const showMenu = () => {
@@ -88,50 +89,66 @@ export default function Dashboard({ data, admin, token }) {
             {widthOnResize >= breakpoint || openNav ? (
               <nav className={`${styles.navContainer} `}>
                 <ul className={styles.navItems}>
-                  <li className={`${styles.navItem} ${styles.active}`}>
+                  <li
+                    className={`${styles.navItem} ${
+                      activeClass === 1 ? styles.active : ''
+                    }`}
+                  >
                     <button
                       className={styles.navBtn}
                       id={1}
                       onClick={(e) => {
                         setCustomMessages(navTitle ? messages : enquiries);
-                        handleNavItem(e, 1);
+                        handleNavItem(e);
                       }}
                     >
                       All{' '}
                       {navTitle ? messages.data.length : enquiries.data.length}
                     </button>
                   </li>
-                  <li className={styles.navItem}>
+                  <li
+                    className={`${styles.navItem} ${
+                      activeClass === 2 ? styles.active : ''
+                    }`}
+                  >
                     <button
                       className={styles.navBtn}
                       id={2}
                       onClick={(e) => {
                         setCustomMessages('"Unread" is currently empty');
-                        handleNavItem(e, 2);
+                        handleNavItem(e);
                       }}
                     >
                       Unread
                     </button>
                   </li>
-                  <li className={styles.navItem}>
+                  <li
+                    className={`${styles.navItem} ${
+                      activeClass === 3 ? styles.active : ''
+                    }`}
+                  >
                     <button
                       className={styles.navBtn}
                       id={3}
                       onClick={(e) => {
                         setCustomMessages('"Sent" is currently empty.');
-                        handleNavItem(e, 3);
+                        handleNavItem(e);
                       }}
                     >
                       Sent
                     </button>
                   </li>
-                  <li className={styles.navItem}>
+                  <li
+                    className={`${styles.navItem} ${
+                      activeClass === 4 ? styles.active : ''
+                    }`}
+                  >
                     <button
                       className={styles.navBtn}
                       id={4}
                       onClick={(e) => {
                         setCustomMessages('"Trash" is currently empty');
-                        handleNavItem(e, 4);
+                        handleNavItem(e);
                       }}
                     >
                       Trash

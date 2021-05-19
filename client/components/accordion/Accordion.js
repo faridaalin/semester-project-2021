@@ -19,7 +19,6 @@ const Accordion = ({ type, content }) => {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  console.log('data', data);
 
   const displayItems = (data, open, type) => {
     let itemsToDisplay;
