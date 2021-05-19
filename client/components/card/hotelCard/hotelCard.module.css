@@ -89,7 +89,6 @@
 }
 .rating {
   margin-top: 8px;
-  margin-bottom: 16px;
   margin-right: 4px;
   height: 16px;
   width: 16px;
@@ -97,6 +96,9 @@
 }
 .rating:last-child {
   margin-right: 0;
+}
+.description {
+  margin-top: 16px;
 }
 
 .description p {

@@ -44,13 +44,13 @@
 
 @media screen and (min-width: 992px) {
   .searchHero {
-    height: 32vh;
+    height: 62vh;
     margin-top: 0;
     margin-bottom: 0;
   }
 
   .searchContainer {
     min-width: min-content;
-    top: -60px;
+    top: -30px;
   }
 }

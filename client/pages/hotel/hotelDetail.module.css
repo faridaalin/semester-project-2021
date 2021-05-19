@@ -33,7 +33,6 @@
 
 .rating {
   margin-top: 8px;
-  margin-bottom: 16px;
   margin-right: 4px;
   height: 20px;
   width: 20px;
@@ -41,6 +40,9 @@
 }
 .rating:last-child {
   margin-right: 0;
+}
+.description {
+  margin-top: 16px;
 }
 
 .description p {
@@ -138,6 +140,7 @@
   .container {
     padding-top: 100px;
   }
+
   .content,
   .flex {
     max-width: initial;
@@ -147,14 +150,18 @@
     grid-gap: 24px;
     gap: 24px;
   }
+  .content {
+    display: grid;
+    align-items: baseline;
+    grid-auto-flow: column;
+    margin-top: 32px;
+  }
 
   .flex {
     align-items: center;
     margin-top: 80px;
   }
-  .content {
-    margin-top: 32px;
-  }
+
   .h3 {
     margin-bottom: 16px;
   }
