@@ -26,12 +26,10 @@ const HeroSection = ({ hotels }) => {
     if (resized === true) {
       if (widthOnResize >= breakpoint) {
         return {
-          img: '/hero-desktop.png',
           text: 'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
         };
       } else {
         return {
-          img: '/mobile-hero.png',
           text: 'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
         };
       }
@@ -40,12 +38,10 @@ const HeroSection = ({ hotels }) => {
     if (resized === false) {
       if (getWindowWidth() >= breakpoint) {
         return {
-          img: '/hero-desktop.png',
           text: 'Bergen is the Gateway to the Fjords of Norway. As a UNESCO World Heritage City and a European City of Culture, the Bergen region has the ideal combination of nature, culture and exciting urban life all year around.',
         };
       } else {
         return {
-          img: '/mobile-hero.png',
           text: 'Bergen is the Gateway to the Fjords of Norway and a UNESCO World Heritage City.',
         };
       }
@@ -54,12 +50,7 @@ const HeroSection = ({ hotels }) => {
 
   return (
     <section className={styles.heroSection}>
-      <div
-        className={styles.heroImage}
-        style={{
-          backgroundImage: `url(${showBackgroundImage().img})`,
-        }}
-      >
+      <div className={styles.heroImage}>
         <div className={styles.overlay}></div>
       </div>
 
