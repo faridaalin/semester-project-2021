@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PureModal from 'react-pure-modal';
 import { useRouter } from 'next/router';
+import { AlertTriangle } from 'react-feather';
 import axios from '../utils/axios';
 import { parseCookies } from '../helpers/parseCookies';
 import Layout from '../components/layout/Layout';
@@ -117,11 +118,27 @@ export default function Hotels(props) {
             {process.browser &&
               displayHotels(search.length === 0 ? data : search)}
             <PureModal
-              header='Header'
+              className={styles.modal}
+              header={
+                <div className={styles.modalHeader}>
+                  <AlertTriangle className={styles.modalIcon} />
+                  <span> Are you sure you want to delete this product?</span>
+                </div>
+              }
               footer={
                 <div>
-                  <button onClick={handleDeleteProduct}>Delete</button>
-                  <button onClick={() => setModal(false)}>Cancel</button>
+                  <button
+                    className={styles.cancelButton}
+                    onClick={() => setModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={handleDeleteProduct}
+                  >
+                    Delete
+                  </button>
                 </div>
               }
               isOpen={modal}
@@ -132,7 +149,9 @@ export default function Hotels(props) {
                 return true;
               }}
             >
-              <p>{itemToDelete !== null ? itemToDelete.title : deleteMsg}</p>
+              <div className={styles.deleteContainer}>
+                <p>{itemToDelete !== null ? itemToDelete.title : deleteMsg}</p>
+              </div>
             </PureModal>
           </CardContainer>
         </>
