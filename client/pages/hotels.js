@@ -114,7 +114,7 @@ export default function Hotels(props) {
         </div>
         <>
           <CardContainer suppressHydrationWarning={true}>
-            {!data && <div>Error happend..</div>}
+            {!data && <div>Error happend, please come back later.</div>}
             {process.browser &&
               displayHotels(search.length === 0 ? data : search)}
             <PureModal

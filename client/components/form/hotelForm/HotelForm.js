@@ -49,7 +49,7 @@ const HotelForm = ({
           msg: `${values.title} has been ${update ? 'updated' : 'created'}.`,
         });
         if (update) {
-          setDisableButton(false);
+          return setDisableButton(false);
         } else {
           resetForm();
         }

@@ -32,7 +32,7 @@ export default function UpdateProduct({ admin, token }) {
   return (
     <Layout>
       <PageHeader title='Update hotel' />
-      {itemToUpdate && (
+      {itemToUpdate ? (
         <HotelForm
           schema={updateHotelSchema}
           initalValues={initialProductValues}
@@ -41,6 +41,12 @@ export default function UpdateProduct({ admin, token }) {
           rating={itemToUpdate && itemToUpdate.rating ? true : false}
           update
         />
+      ) : (
+        <>
+          <p>
+            Ops, something happend. Please try again with a specific product.
+          </p>
+        </>
       )}
     </Layout>
   );
