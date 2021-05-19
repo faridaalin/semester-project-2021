@@ -1,12 +1,23 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 500;
+  background-color: var(--grey-100);
+}
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-auto-flow: column;
   padding: 24px 1rem;
   font-family: var(--header-font);
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
+  z-index: 11;
+  height: 80px;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .hamburgerButton {
@@ -179,18 +190,10 @@
 }
 
 .blur {
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(6px);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   z-index: 1;
-}
-
-@media screen and (min-width: 768px) {
-  .blur {
-    backdrop-filter: blur(0px);
-  }
 }

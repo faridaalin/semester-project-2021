@@ -4,6 +4,7 @@ import PureModal from 'react-pure-modal';
 import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import Login from '../form/login/Login';
+
 import styles from './layout.module.css';
 
 const Layout = ({ children }) => {
