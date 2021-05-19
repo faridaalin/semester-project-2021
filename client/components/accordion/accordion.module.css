@@ -1,27 +1,22 @@
-.accordionSection {
-  /* padding-top: 100px; */
-}
 .accordion {
-  background: var(--grey-400);
+  background: #454763;
   color: var(--white-100);
   padding: 16px 32px;
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   font-family: var(--header-font);
   font-weight: var(--fontWeight-r);
   font-size: 14px;
   line-height: 24px;
 }
 
-.accordionContent {
-}
 .accordionHeader {
   font-family: var(--header-font);
   font-weight: var(--fontWeight-r);
   font-size: 12px;
   padding: 16px 32px;
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 6px;
   color: var(--blue-400);
   cursor: pointer;
@@ -31,6 +26,7 @@
   padding: 32px;
   border-bottom: 1px solid var(--grey-300);
   transition: all 0.6s ease;
+  display: grid;
 }
 .paragraph {
   font-family: var(--body-font);
@@ -42,6 +38,10 @@
 .paragraph > span {
   font-weight: var(--fontWeight-r);
   margin-left: 16px;
+}
+
+.btnContainer {
+  margin-left: auto;
 }
 .open {
   background-color: rgba(175, 186, 198, 0.35);

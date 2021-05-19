@@ -130,11 +130,15 @@ export default function Dashboard({ data, admin, token }) {
                 </ul>
 
                 <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
-                  <li className={styles.navItem} onClick={handleToggle}>
-                    {navTitle ? 'Enquiries' : 'Messages'}
+                  <li className={styles.navItem}>
+                    <button className={styles.navBtn} onClick={handleToggle}>
+                      {navTitle ? 'Enquiries' : 'Messages'}
+                    </button>
                   </li>
-                  <li className={styles.navItem} onClick={logout}>
-                    Logout
+                  <li className={`${styles.navItem}`}>
+                    <button className={styles.logoutButton} onClick={logout}>
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </nav>

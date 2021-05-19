@@ -19,7 +19,6 @@
   bottom: 0;
   z-index: 200;
   height: 100vh;
-  
 }
 
 .navContainer {
@@ -35,15 +34,14 @@
   text-align: left;
 }
 .navItems,
-.current {
+.current,
+.navBtn {
   font-family: var(--header-font);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .navItem {
-  font-size: 14px;
-  color: var(--grey-200);
   padding: 16px 32px;
   background: transparent;
   position: relative;
@@ -68,12 +66,12 @@
   color: #353649db;
   background: var(--blue-400);
   font-family: var(--header-font);
-  font-weight: var(--fontWeight-r);
+  font-weight: var(--fontWeight-m);
   padding: 24px 16px 32px 24px;
   cursor: pointer;
   width: 100%;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   border-radius: 8px;
 }
@@ -108,6 +106,11 @@
 
 .secondaryNav {
   padding-top: 32px;
+}
+
+.logoutButton {
+  composes: navBtn;
+  margin-top: 16px;
 }
 
 @media screen and (min-width: 768px) {

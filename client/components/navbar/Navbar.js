@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { ChevronDown } from 'react-feather';
 import axios from '../../utils/axios';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import Button from '../button/Button';
-import Login from '../form/login/Login';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
 import styles from './navbar.module.css';
@@ -18,10 +16,6 @@ const Navbar = ({ setLoginModal }) => {
 
   const toggleMenu = () => {
     setOpen(!open);
-  };
-
-  const clickHandler = () => {
-    setDropDownMenu(!dropDownMenu);
   };
 
   useEffect(() => {

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import dateFormat from 'dateformat';
+import { format } from 'date-fns';
+import Button from '../../components/button/Button';
 import styles from './accordion.module.css';
 
 const Accordion = ({ type, content }) => {
@@ -25,7 +27,7 @@ const Accordion = ({ type, content }) => {
           <div>{content}</div>
         ) : (
           content?.data?.map((item, index) => (
-            <div className={styles.accordionContent} key={item._id}>
+            <div key={item._id}>
               <div
                 className={`${styles.accordionHeader} ${
                   open === index ? styles.open : ''
@@ -35,12 +37,15 @@ const Accordion = ({ type, content }) => {
               >
                 <span>{item.firstname}</span>
                 <span>{item.subject}</span>
-                <span>{dateFormat(`${item.createdAt}`, 'mmm d, yyyy')}</span>
+                <span>{format(new Date(item.createdAt), 'LLL dd yyyy')}</span>
                 <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
               </div>
               {open === index ? (
                 <div className={styles.accordionText}>
                   <p className={styles.paragraph}>{item.message}</p>
+                  <div className={styles.btnContainer}>
+                    <Button color='orange'>Reply</Button>
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -62,7 +67,7 @@ const Accordion = ({ type, content }) => {
         <div>{content}</div>
       ) : (
         content?.data?.map((item, index) => (
-          <div className={styles.accordionContent} key={item._id}>
+          <div key={item._id}>
             <div
               className={`${styles.accordionHeader} ${
                 open === index ? styles.open : ''
@@ -71,8 +76,8 @@ const Accordion = ({ type, content }) => {
               key={index}
             >
               <span>{item.hotel_name}</span>
-              <span>{dateFormat(`${item.check_in}`, 'mm/dd/yyyy')}</span>
-              <span>{dateFormat(`${item.check_out}`, 'mm/dd/yyyy')}</span>
+              <span>{format(new Date(item.check_in), 'LLL dd yyyy')}</span>
+              <span>{format(new Date(item.check_out), 'LLL dd yyyy')}</span>
               <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
             </div>
             {open === index ? (
