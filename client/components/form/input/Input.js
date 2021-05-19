@@ -4,8 +4,6 @@ import { MapPin, Calendar, Users, X, Moon } from 'react-feather';
 import { DateRange } from 'react-date-range';
 import moment from 'moment';
 
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
 import styles from './input.module.css';
 
 export const getIcon = (icon) => {

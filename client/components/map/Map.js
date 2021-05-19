@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+
 import styles from './map.module.css';
 
 function Map() {
