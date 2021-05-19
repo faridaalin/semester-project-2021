@@ -145,7 +145,6 @@ export default function Hotels(props) {
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
   const token = !cookie || !cookie.jwt ? null : cookie.jwt;
-  console.log('TOKEN', token);
 
   try {
     const hotels = await axios.get('/hotels');
