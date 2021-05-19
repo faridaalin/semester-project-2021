@@ -9,8 +9,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
-.content,
-.flex {
+.content {
   display: flex;
   flex-direction: column;
   max-width: 450px;
@@ -136,25 +135,29 @@
   height: 20px;
   width: 20px;
 }
+
 @media screen and (min-width: 768px) {
+  .contentContainer {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 24px;
+  }
   .container {
     padding-top: 100px;
   }
-
-  .content,
-  .flex {
-    max-width: initial;
+  .reservation {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 24px;
-    gap: 24px;
-  }
-  .content {
-    display: grid;
-    align-items: baseline;
-    grid-auto-flow: column;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
     margin-top: 32px;
+    width: 100%;
+  }
+  .btnContainer {
+    width: 100%;
+  }
+
+  .content {
+    max-width: fit-content;
   }
 
   .flex {
@@ -170,7 +173,7 @@
     padding: 32px 32px;
   }
   .includesContainer {
-    margin-top: 43px;
+    margin: 0;
     justify-content: flex-start;
   }
   .price {
@@ -184,14 +187,10 @@
   .container {
     padding-top: 60px;
   }
-  .content,
-  .flex {
+  .content {
     padding: 0 32px;
   }
 
-  .h3 {
-    margin-top: 0;
-  }
   .h4 {
     font-size: 12px;
   }

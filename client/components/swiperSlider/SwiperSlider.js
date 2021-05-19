@@ -5,13 +5,18 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
-import styles from './swiper.module.css';
-
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperSlider = ({ images, title }) => {
   return (
-    <div className={styles.swiperWrapper}>
+    <div
+      styles={{
+        width: 'calc(89vw - 2rem)',
+        maxWidth: '450px',
+        margin: '0 auto',
+        borderRadius: '6px',
+      }}
+    >
       <Swiper
         id='main'
         tag='section'

@@ -38,6 +38,11 @@
 .imageGridItem {
   border-radius: 6px;
 }
+@media screen and (min-width: 768px) {
+  .imageGallery {
+    padding: 0 0;
+  }
+}
 
 @media screen and (min-width: 992px) {
   .imageGallery {
