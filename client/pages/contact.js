@@ -53,9 +53,6 @@ export default function Contact() {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('Formik', formik);
-            console.log('Status', formik.status);
-
             return (
               <Form className={styles.form}>
                 {successMsg ||

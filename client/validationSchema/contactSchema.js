@@ -9,7 +9,7 @@ export const initialValues = {
 };
 
 export const contactSchema = object({
-  firstname: string('Required').trim().required().min(2).max(10),
+  firstname: string().trim().required('Required').min(2).max(10),
   lastname: string().required('Required').trim().min(2).max(10),
   email: string().required('Required').trim().email('Invalid email address.'),
   subject: string().required('Required').max(30),

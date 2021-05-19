@@ -9,16 +9,17 @@ import Accordion from '../components/accordion/Accordion';
 import useDashboardContext from '../context/DashboardContext';
 import styles from './dashboard.module.css';
 
-export default function Dashboard({ data, admin }) {
+export default function Dashboard({ data, admin, token }) {
+  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
+    useDashboardContext();
   const { messages, enquiries } = data;
   const [openNav, setOpenNav] = useState(false);
   const [widthOnResize, resized] = useWindowWidth();
-  const [widthOnLoad, setWidthOnLoad] = useState(null);
-  const [customMessages, setCustomMessages] = useState(messages);
-  const [navTitle, setNavTitle] = useState(true);
+  const [navTitle, setNavTitle] = useState(showMessages ? true : false);
+  const [customMessages, setCustomMessages] = useState(
+    showMessages ? messages : enquiries
+  );
 
-  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
-    useDashboardContext();
   const breakpoint = 768;
 
   const handleNavToggle = () => {
@@ -28,24 +29,14 @@ export default function Dashboard({ data, admin }) {
     setOpenNav(() => !openNav);
   };
 
-  useEffect(() => {
-    const handlePageLoad = () => {
-      setWidthOnLoad(window.innerWidth);
-    };
-    window.addEventListener('load', handlePageLoad);
-    return () => {
-      window.removeEventListener('load', handlePageLoad);
-    };
-  }, []);
+  // useEffect(() => {
+  //   setOpenNav(() => window.innerWidth > 768);
+  //   if (window.innerWidth > 768) {
+  //     setOpenNav(() => true);
+  //   }
 
-  useEffect(() => {
-    setOpenNav(() => window.innerWidth > 768);
-    if (window.innerWidth > 768) {
-      setOpenNav(() => true);
-    }
-
-    setShowMessages(true);
-  }, [setOpenNav, setShowMessages]);
+  //   setShowMessages(true);
+  // }, [setOpenNav, setShowMessages]);
 
   const handleToggle = () => {
     setNavTitle(!navTitle);
@@ -81,6 +72,10 @@ export default function Dashboard({ data, admin }) {
       }
     }
   };
+
+  console.log('showEnq', showEnq);
+  console.log('showMessages', showMessages);
+  console.log('navTitle', navTitle);
 
   return (
     <Layout>
@@ -222,6 +217,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { data, admin },
+    props: { data, admin, token },
   };
 }

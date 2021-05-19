@@ -16,25 +16,10 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const { showMessages, setShowMessages, setShowEnq, logout } =
     useDashboardContext();
 
-  const sortHeightToLow = () => {
-    const sortedHotels = hotels.slice().sort((a, b) => b - a);
-    setSorted(sorted);
-  };
-  const sortLowToHeigh = () => {
-    const sortedHotels = hotels.slice().sort((a, b) => b - a);
-    setSorted(sorted);
-  };
-
   const sortProducts = (order, type) => {
     if (type === 'price') {
       if (order === 'desc') {
         console.log('Heigh to low', type);
-
-        const sortedHotels = hotels.sort((hotel) =>
-          hotel.rooms.sort((a, b) => b.price - a.price)
-        );
-        console.log('sortedHotels', sortedHotels);
-        // setSorted(sorted);
       } else {
         console.log('Low to heigh', type);
       }
@@ -49,25 +34,21 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
     }
   };
   const handleMessages = () => {
+    setShowMessages(true);
+    setShowEnq(false);
     if (pathname === '/dashboard') {
-      setShowMessages(true);
-      setShowEnq(false);
       setShow(!show);
     } else {
-      setShowMessages(true);
-      setShowEnq(false);
       router.push('/dashboard');
     }
   };
   const handleEnquires = () => {
+    setShowEnq(true);
+    setShowMessages(false);
     if (pathname === '/dashboard') {
       setShow(!show);
-      setShowEnq(true);
-      setShowMessages(false);
     } else {
       router.push('/dashboard');
-      setShowEnq(true);
-      setShowMessages(false);
     }
   };
   const HandleEnquireForm = () => {

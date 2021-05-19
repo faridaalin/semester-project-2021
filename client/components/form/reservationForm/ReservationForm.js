@@ -116,7 +116,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
-            console.log('FORMIK', formik);
             return (
               <Form
                 className={`${styles.form} ${
