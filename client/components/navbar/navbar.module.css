@@ -5,10 +5,15 @@
   right: 0;
   width: 100%;
   z-index: 500;
+  transform: translateY(-86px);
   background-color: var(--grey-100);
 }
-.navBg {
+.addBackground {
   background-color: blue;
+  transform: translateY(-86px);
+}
+.removeBackground {
+  transform: translateY(0px);
 }
 .container {
   max-width: 1200px;

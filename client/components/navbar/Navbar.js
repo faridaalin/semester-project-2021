@@ -6,23 +6,22 @@ import Link from 'next/link';
 import Button from '../button/Button';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
+import useOnScroll from '../../hooks/useOnScroll';
 import styles from './navbar.module.css';
 
 const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const [scrollingBg, setScrollingBg] = useState(false);
+  const scrollDir = useOnScroll();
 
   const router = useRouter();
 
   const handleScroll = () => {
-    console.log('Scroll offsestY', window.pageYOffset);
     if (window.pageYOffset > 100) {
-      console.log('DOWN - HIDE NAV');
       setScrollingBg(true);
     } else {
       setScrollingBg(false);
-      console.log('UP - SHOW NAV');
     }
   };
   useEffect(() => {
@@ -61,7 +60,6 @@ const Navbar = ({ setLoginModal }) => {
     }
   };
 
-  console.log('scrollingBg', scrollingBg);
   const userNavigation = () => {
     if (cookie.isAdmin === 'admin') {
       return (
@@ -89,7 +87,13 @@ const Navbar = ({ setLoginModal }) => {
   };
 
   return (
-    <header className={`${styles.header} ${scrollingBg && styles.navBg}`}>
+    <header
+      className={`${styles.header} ${
+        scrollDir === 'scrolling up'
+          ? styles.removeBackground
+          : styles.addBackground
+      }`}
+    >
       <div className={`${styles.container} ${open && styles.headerColor}`}>
         <div className={styles.blur}></div>
         <button

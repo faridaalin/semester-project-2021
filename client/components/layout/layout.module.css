@@ -3,7 +3,7 @@
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
   min-height: 100vh;
-  padding-top: 80px;
+  /* padding-top: 80px; */
 }
 
 .loginModal {
