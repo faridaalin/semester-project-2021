@@ -8,7 +8,6 @@
 
 .navigation {
   background: var(--blue-400);
-
   border-radius: 6px;
 }
 .absolute {
@@ -18,7 +17,7 @@
   right: 0;
   bottom: 0;
   z-index: 200;
-  height: 100vh;
+  height: 75vh;
 }
 
 .navContainer {
@@ -67,13 +66,19 @@
   background: var(--blue-400);
   font-family: var(--header-font);
   font-weight: var(--fontWeight-m);
-  padding: 24px 16px 32px 24px;
+  padding: 24px 16px 32px 16px;
   cursor: pointer;
   width: 100%;
   text-align: left;
   font-size: 16px;
   border: none;
   border-radius: 8px;
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+.dark {
+  padding: 0rem 1rem;
 }
 
 .dark > * {

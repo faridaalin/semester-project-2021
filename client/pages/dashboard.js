@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Menu } from 'react-feather';
 import Layout from '../components/layout/Layout';
 import axios from '../utils/axios';
 import useWindowWidth from '../hooks/useWindowSize';
@@ -14,11 +15,13 @@ export default function Dashboard({ data, admin, token }) {
     useDashboardContext();
   const { messages, enquiries } = data;
   const [openNav, setOpenNav] = useState(false);
+  const [active, setActive] = useState(false);
   const [widthOnResize, resized] = useWindowWidth();
   const [navTitle, setNavTitle] = useState(showMessages ? true : false);
   const [customMessages, setCustomMessages] = useState(
     showMessages ? messages : enquiries
   );
+  const [activeClass, setActiveClass] = useState(null);
 
   const breakpoint = 768;
 
@@ -40,12 +43,14 @@ export default function Dashboard({ data, admin, token }) {
     }
   };
 
-  const handleNavItem = () => {
+  const handleNavItem = (e, index) => {
     if (getWindowWidth() < breakpoint) {
       setOpenNav(() => false);
     } else {
       setOpenNav(() => true);
     }
+    console.log('e', e);
+    setActiveClass(index);
   };
 
   const showMenu = () => {
@@ -76,6 +81,7 @@ export default function Dashboard({ data, admin, token }) {
             }`}
           >
             <button className={styles.navButton} onClick={handleNavToggle}>
+              <Menu />
               {navTitle ? 'Messages' : 'Enquiries'}
             </button>
 
@@ -85,9 +91,10 @@ export default function Dashboard({ data, admin, token }) {
                   <li className={`${styles.navItem} ${styles.active}`}>
                     <button
                       className={styles.navBtn}
-                      onClick={() => {
+                      id={1}
+                      onClick={(e) => {
                         setCustomMessages(navTitle ? messages : enquiries);
-                        handleNavItem();
+                        handleNavItem(e, 1);
                       }}
                     >
                       All{' '}
@@ -97,9 +104,10 @@ export default function Dashboard({ data, admin, token }) {
                   <li className={styles.navItem}>
                     <button
                       className={styles.navBtn}
-                      onClick={() => {
+                      id={2}
+                      onClick={(e) => {
                         setCustomMessages('"Unread" is currently empty');
-                        handleNavItem();
+                        handleNavItem(e, 2);
                       }}
                     >
                       Unread
@@ -108,9 +116,10 @@ export default function Dashboard({ data, admin, token }) {
                   <li className={styles.navItem}>
                     <button
                       className={styles.navBtn}
-                      onClick={() => {
+                      id={3}
+                      onClick={(e) => {
                         setCustomMessages('"Sent" is currently empty.');
-                        handleNavItem();
+                        handleNavItem(e, 3);
                       }}
                     >
                       Sent
@@ -119,9 +128,10 @@ export default function Dashboard({ data, admin, token }) {
                   <li className={styles.navItem}>
                     <button
                       className={styles.navBtn}
-                      onClick={() => {
+                      id={4}
+                      onClick={(e) => {
                         setCustomMessages('"Trash" is currently empty');
-                        handleNavItem();
+                        handleNavItem(e, 4);
                       }}
                     >
                       Trash

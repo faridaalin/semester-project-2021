@@ -21,8 +21,6 @@ const Accordion = ({ type, content }) => {
   };
 
   const displayItems = (data, open, type) => {
-    console.log('Data', data.data);
-    console.log('TYPE', type);
     let itemsToDisplay;
     if (type === 'messages') {
       itemsToDisplay =
@@ -54,7 +52,7 @@ const Accordion = ({ type, content }) => {
             </div>
           );
         });
-      console.log('itemsToDisplay', itemsToDisplay);
+
       return itemsToDisplay;
     } else {
       itemsToDisplay =
@@ -105,7 +103,7 @@ const Accordion = ({ type, content }) => {
             </div>
           );
         });
-      console.log('itemsToDisplay', itemsToDisplay);
+
       return itemsToDisplay;
     }
   };
