@@ -5,6 +5,8 @@
   padding: 32px;
   border-radius: 8px;
   font-weight: var(--fontWeight-m);
+  padding: 16px;
+  margin-bottom: 24px;
 }
 .error {
   background: #e71d3617;
@@ -13,7 +15,7 @@
 }
 
 .success {
-  background: #74c69d17;
+  background: #74c69d0a;
   color: #24774d;
   border: 1.5px solid #74c69db0;
   max-width: 50ch;

@@ -12,17 +12,17 @@ import {
   contactSchema,
   initialValues,
 } from '../validationSchema/contactSchema';
+import Alert from '../components/alert/Alert';
 import styles from './contact.module.css';
 
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [successMsg, setSuccessMsg] = useState(null);
+  const [fetchStatus, setFetchStatus] = useState(null);
+
   const onSubmit = async (values, onSubmitProps) => {
     const { resetForm, setStatus } = onSubmitProps;
     setIsLoading(true);
-    setSuccessMsg(null);
-    setErrorMsg(null);
+    setFetchStatus(null);
 
     try {
       const res = await axios.post('/messages/create', values);
@@ -30,19 +30,26 @@ export default function Contact() {
 
       if (res.status === 201) {
         const { data } = res;
-        setSuccessMsg('Your message has been sent. We will contact you soon.');
+        setFetchStatus({
+          sent: true,
+          msg: 'Your message has been sent. We will contact you soon.',
+        });
         setIsLoading(false);
         resetForm();
       }
     } catch (error) {
       if (error.response && error.response.status) {
-        setErrorMsg('Something went wrong, please try again later.');
+        setFetchStatus({
+          sent: false,
+          msg: 'Something went wrong, please try again later.',
+        });
         setIsLoading(false);
       }
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <Layout>
       <PageHeader title='Contact' />
@@ -55,16 +62,7 @@ export default function Contact() {
           {(formik) => {
             return (
               <Form className={styles.form}>
-                {successMsg ||
-                  (errorMsg && (
-                    <div
-                      className={`${
-                        successMsg ? styles.success : styles.error
-                      }`}
-                    >
-                      <p>{successMsg || errorMsg}</p>
-                    </div>
-                  ))}
+                {!fetchStatus ? null : <Alert status={fetchStatus} />}
                 <Column>
                   <DefaultInput
                     type='text'
