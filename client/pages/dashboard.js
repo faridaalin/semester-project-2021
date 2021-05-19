@@ -11,17 +11,23 @@ import useDashboardContext from '../context/DashboardContext';
 import styles from './dashboard.module.css';
 
 export default function Dashboard({ data, admin, token }) {
-  const { showMessages, setShowMessages, showEnq, setShowEnq, logout } =
-    useDashboardContext();
+  const [
+    content,
+    setContent,
+    showMessages,
+    setShowMessages,
+    showEnq,
+    setShowEnq,
+    logout,
+  ] = useDashboardContext();
   const { messages, enquiries } = data;
   const [openNav, setOpenNav] = useState(false);
-  const [active, setActive] = useState(false);
   const [widthOnResize, resized] = useWindowWidth();
   const [navTitle, setNavTitle] = useState(showMessages ? true : false);
-  const [customMessages, setCustomMessages] = useState(
+  const [renderData, setRenderData] = useState(
     showMessages ? messages : enquiries
   );
-  const [activeClass, setActiveClass] = useState(null);
+  const [activeClass, setActiveClass] = useState(1);
 
   const breakpoint = 768;
 
@@ -34,8 +40,9 @@ export default function Dashboard({ data, admin, token }) {
 
   const handleToggle = () => {
     setNavTitle(!navTitle);
-    setCustomMessages(navTitle ? enquiries : messages);
+    setRenderData(navTitle ? enquiries : messages);
     setActiveClass(1);
+    setShowMessages(!showMessages);
 
     if (getWindowWidth() > breakpoint) {
       setOpenNav(() => true);
@@ -53,6 +60,7 @@ export default function Dashboard({ data, admin, token }) {
     const id = e.target.id;
     setActiveClass(parseInt(id));
   };
+  useEffect(() => {}, [showMessages]);
 
   return (
     <Layout>
@@ -67,7 +75,7 @@ export default function Dashboard({ data, admin, token }) {
           >
             <button className={styles.navButton} onClick={handleNavToggle}>
               <Menu />
-              {navTitle ? 'Messages' : 'Enquiries'}
+              {showMessages ? 'Messages' : 'Enquiries'}
             </button>
 
             {widthOnResize >= breakpoint || openNav ? (
@@ -82,12 +90,14 @@ export default function Dashboard({ data, admin, token }) {
                       className={styles.navBtn}
                       id={1}
                       onClick={(e) => {
-                        setCustomMessages(navTitle ? messages : enquiries);
+                        setRenderData(navTitle ? messages : enquiries);
                         handleNavItem(e);
                       }}
                     >
                       All{' '}
-                      {navTitle ? messages.data.length : enquiries.data.length}
+                      {showMessages
+                        ? messages.data.length
+                        : enquiries.data.length}
                     </button>
                   </li>
                   <li
@@ -99,7 +109,7 @@ export default function Dashboard({ data, admin, token }) {
                       className={styles.navBtn}
                       id={2}
                       onClick={(e) => {
-                        setCustomMessages('"Unread" is currently empty');
+                        setRenderData('"Unread" is currently empty');
                         handleNavItem(e);
                       }}
                     >
@@ -115,7 +125,7 @@ export default function Dashboard({ data, admin, token }) {
                       className={styles.navBtn}
                       id={3}
                       onClick={(e) => {
-                        setCustomMessages('"Sent" is currently empty.');
+                        setRenderData('"Sent" is currently empty.');
                         handleNavItem(e);
                       }}
                     >
@@ -131,7 +141,7 @@ export default function Dashboard({ data, admin, token }) {
                       className={styles.navBtn}
                       id={4}
                       onClick={(e) => {
-                        setCustomMessages('"Trash" is currently empty');
+                        setRenderData('"Trash" is currently empty');
                         handleNavItem(e);
                       }}
                     >
@@ -143,7 +153,7 @@ export default function Dashboard({ data, admin, token }) {
                 <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
                   <li className={styles.navItem}>
                     <button className={styles.navBtn} onClick={handleToggle}>
-                      {navTitle ? 'Enquiries' : 'Messages'}
+                      {showMessages ? 'Enquiries' : 'Messages'}
                     </button>
                   </li>
                   <li className={`${styles.navItem}`}>
@@ -155,10 +165,16 @@ export default function Dashboard({ data, admin, token }) {
               </nav>
             ) : null}
           </header>
-          {navTitle ? (
-            <Accordion type='messages' content={customMessages} />
+          {showMessages ? (
+            <Accordion
+              type='messages'
+              content={showMessages ? messages : enquiries}
+            />
           ) : (
-            <Accordion type='enquiries' content={customMessages} />
+            <Accordion
+              type='enquiries'
+              content={showMessages ? messages : enquiries}
+            />
           )}
         </>
       </section>

@@ -54,7 +54,7 @@ export const DashboardContextProvider = ({ children }) => {
 
   return (
     <DashboardContext.Provider
-      value={{
+      value={[
         content,
         setContent,
         showMessages,
@@ -62,7 +62,7 @@ export const DashboardContextProvider = ({ children }) => {
         showEnq,
         setShowEnq,
         logout,
-      }}
+      ]}
     >
       {children}
     </DashboardContext.Provider>

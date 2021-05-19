@@ -13,8 +13,15 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const router = useRouter();
   const { pathname } = router;
 
-  const { showMessages, setShowMessages, setShowEnq, logout } =
-    useDashboardContext();
+  const [
+    content,
+    setContent,
+    showMessages,
+    setShowMessages,
+    showEnq,
+    setShowEnq,
+    logout,
+  ] = useDashboardContext();
 
   const sortProducts = (order, type) => {
     if (type === 'price') {
@@ -36,6 +43,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const handleMessages = () => {
     setShowMessages(true);
     setShowEnq(false);
+    console.log('Show messages');
     if (pathname === '/dashboard') {
       setShow(!show);
     } else {
@@ -45,6 +53,7 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const handleEnquires = () => {
     setShowEnq(true);
     setShowMessages(false);
+    console.log('Show Enquries');
     if (pathname === '/dashboard') {
       setShow(!show);
     } else {
