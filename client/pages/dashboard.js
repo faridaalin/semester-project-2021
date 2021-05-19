@@ -54,22 +54,6 @@ export default function Dashboard({ data, admin, token }) {
     setActiveClass(parseInt(id));
   };
 
-  const showMenu = () => {
-    if (resized) {
-      if (widthOnResize >= breakpoint) {
-        setOpenNav(() => false);
-      } else {
-        setOpenNav(() => true);
-      }
-    } else {
-      if (window.innerWidth < breakpoint) {
-        setOpenNav(() => false);
-      } else {
-        setOpenNav(() => true);
-      }
-    }
-  };
-
   return (
     <Layout>
       <PageHeader title='Dashboard' />

@@ -10,6 +10,8 @@
   font-weight: var(--fontWeight-r);
   line-height: 24px;
   color: var(--blue-300);
+  align-items: center;
+  display: flex;
 }
 .linkActive {
   composes: link;
@@ -20,7 +22,7 @@
 .icon {
   width: 16px;
   height: 16px;
-  color: var(--blue-400);
+  color: inherit;
 }
 
 .active {

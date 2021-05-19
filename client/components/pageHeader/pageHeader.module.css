@@ -8,6 +8,7 @@
   font-family: var(--header-font);
   font-weight: var(--fontWeight-b);
   color: var(--blue-400);
+  margin-top: 16px;
 }
 @media only screen and (min-width: 1200px) {
   .title {
