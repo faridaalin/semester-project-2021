@@ -18,8 +18,8 @@
 
 .paginationContainer a {
   font-family: var(--header-font);
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
   border: 1px solid rgba(31, 41, 55, 1);
   color: rgba(31, 41, 55, 1);
   cursor: pointer;
@@ -28,8 +28,8 @@
 .paginationActive a {
   color: var(--white-100);
   background-color: rgba(31, 41, 55, 1);
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 .paginationActive a {
   background-color: rgba(31, 41, 55, 1);
