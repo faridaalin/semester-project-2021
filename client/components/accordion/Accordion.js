@@ -11,14 +11,15 @@ const Accordion = ({ type, content }) => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const data = content;
+  const data = typeof content === 'string' ? [] : content.data;
   const itemPerPage = 5;
   const visited = pageNumber * itemPerPage;
 
-  const pageCount = Math.ceil(data.data.length / itemPerPage);
+  const pageCount = Math.ceil(data.length / itemPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+  console.log('data', data);
 
   const displayItems = (data, open, type) => {
     let itemsToDisplay;
@@ -26,7 +27,7 @@ const Accordion = ({ type, content }) => {
       itemsToDisplay =
         hasMounted &&
         data &&
-        data.data.slice(visited, visited + itemPerPage).map((item, index) => {
+        data.slice(visited, visited + itemPerPage).map((item, index) => {
           return (
             <div key={item._id}>
               <div
@@ -58,7 +59,7 @@ const Accordion = ({ type, content }) => {
       itemsToDisplay =
         hasMounted &&
         data &&
-        data.data.slice(visited, visited + itemPerPage).map((item, index) => {
+        data.slice(visited, visited + itemPerPage).map((item, index) => {
           return (
             <div key={item._id}>
               <div
@@ -127,9 +128,11 @@ const Accordion = ({ type, content }) => {
         {typeof content === 'string' ? (
           <div>{content}</div>
         ) : (
-          displayItems(content, open, 'messages')
+          <>
+            {displayItems(content.data, open, 'messages')}
+            <Pagination pageCount={pageCount} changePage={changePage} />
+          </>
         )}
-        <Pagination pageCount={pageCount} changePage={changePage} />
       </div>
     );
   }
@@ -143,11 +146,13 @@ const Accordion = ({ type, content }) => {
         <span>Status</span>
       </div>
       {typeof content === 'string' ? (
-        <div>{content}</div>
+        <div className={styles.simpleText}>{content}</div>
       ) : (
-        displayItems(content, open, 'enquiries')
+        <>
+          {displayItems(content.data, open, 'enquiries')}
+          <Pagination pageCount={pageCount} changePage={changePage} />
+        </>
       )}
-      <Pagination pageCount={pageCount} changePage={changePage} />
     </div>
   );
 };

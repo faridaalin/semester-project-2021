@@ -6,6 +6,10 @@
   border-radius: 8px;
 }
 
+.simpleText {
+  padding: 1rem 1rem;
+}
+
 .navigation {
   background: var(--blue-400);
   border-radius: 6px;
