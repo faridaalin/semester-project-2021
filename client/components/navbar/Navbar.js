@@ -11,8 +11,27 @@ import styles from './navbar.module.css';
 const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
-  const [dropDownMenu, setDropDownMenu] = useState(false);
+  const [scrollingBg, setScrollingBg] = useState(false);
+
   const router = useRouter();
+
+  const handleScroll = () => {
+    console.log('Scroll offsestY', window.pageYOffset);
+    if (window.pageYOffset > 100) {
+      console.log('DOWN - HIDE NAV');
+      setScrollingBg(true);
+    } else {
+      setScrollingBg(false);
+      console.log('UP - SHOW NAV');
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setOpen(!open);
@@ -41,6 +60,8 @@ const Navbar = ({ setLoginModal }) => {
       console.log(err);
     }
   };
+
+  console.log('scrollingBg', scrollingBg);
   const userNavigation = () => {
     if (cookie.isAdmin === 'admin') {
       return (
@@ -68,7 +89,7 @@ const Navbar = ({ setLoginModal }) => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrollingBg && styles.navBg}`}>
       <div className={`${styles.container} ${open && styles.headerColor}`}>
         <div className={styles.blur}></div>
         <button

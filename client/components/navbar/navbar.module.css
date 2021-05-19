@@ -7,6 +7,9 @@
   z-index: 500;
   background-color: var(--grey-100);
 }
+.navBg {
+  background-color: blue;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
