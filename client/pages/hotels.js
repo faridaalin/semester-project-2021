@@ -103,7 +103,7 @@ export default function Hotels(props) {
             <PageHeader title='Our Hotels' />
             {search.length > 0 && search.length < content.length && (
               <button
-                className={styles.viewAllBtn}
+                className='miniButton'
                 onClick={() => setSearch(props.data.data)}
               >
                 View all hotels

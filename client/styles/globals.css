@@ -46,6 +46,17 @@ h3 {
 .section {
   padding: 0 1rem;
 }
+button {
+  cursor: pointer;
+}
+.miniButton {
+  border: none;
+  background: var(--blue-400);
+  color: var(--white-100);
+  font-family: var(--header-font);
+  padding: 8px 16px;
+  border-radius: 6px;
+}
 
 .swiper-container {
   width: 100%;

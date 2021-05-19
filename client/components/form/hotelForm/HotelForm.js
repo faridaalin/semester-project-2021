@@ -5,6 +5,7 @@ import { DefaultInput } from '../input/Input';
 import Textera from '../textarea/Textarea';
 import Button from '../../button/Button';
 import axios from '../../../utils/axios';
+import Alert from '../../alert/Alert';
 
 import styles from './hotelForm.module.css';
 
@@ -76,13 +77,7 @@ const HotelForm = ({
         return (
           <Form className={styles.form}>
             {formik.status && formik.status.msg && (
-              <div
-                className={`${
-                  formik.status.sent ? styles.success : styles.error
-                }`}
-              >
-                <p>{formik.status.msg}</p>
-              </div>
+              <Alert status={formik.status} />
             )}
             <div>
               <p className={styles.title}>Details</p>
@@ -93,28 +88,24 @@ const HotelForm = ({
                     name='title'
                     placeholder='Name'
                     label='Hotel name'
-                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='address'
                     placeholder='Address'
                     label='Hotel Address'
-                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='subheading'
                     placeholder='Subheading'
                     label='Subheading'
-                    // customContainer={styles.customContainer}
                   />
                   <Textera
                     placeholder='Hotel description...'
                     name='description'
                     label='Description'
                     formik={formik}
-                    // customContainer={styles.customContainer}
                   />
 
                   {rating && (
@@ -123,7 +114,6 @@ const HotelForm = ({
                       name='rating'
                       placeholder=''
                       label='Rating'
-                      // customContainer={styles.customContainer}
                     />
                   )}
 
@@ -132,14 +122,12 @@ const HotelForm = ({
                     name='main_image'
                     placeholder='url'
                     label='Main Image'
-                    // customContainer={styles.customContainer}
                   />
                   <DefaultInput
                     type='text'
                     name='category'
                     placeholder='"Ski Resort"'
                     label='Category'
-                    // customContainer={styles.customContainer}
                   />
                   <div>
                     <p className={styles.title}>Images</p>
@@ -152,31 +140,35 @@ const HotelForm = ({
                           <>
                             {images &&
                               images.map((image, index) => (
-                                <div key={index}>
+                                <div
+                                  key={index}
+                                  className={styles.imagesContainer}
+                                >
                                   <DefaultInput
                                     type='url'
                                     name={`images[${index}]`}
                                     placeholder='Image url'
                                   />
-                                  <div>
-                                    {index > 0 && (
-                                      <button
-                                        type='button'
-                                        onClick={() => remove(index)}
-                                      >
-                                        Remove image
-                                      </button>
-                                    )}
-
+                                  {index > 0 && (
                                     <button
                                       type='button'
-                                      onClick={() => push('')}
+                                      className={styles.removeButton}
+                                      onClick={() => remove(index)}
                                     >
-                                      Add image
+                                      Remove
                                     </button>
-                                  </div>
+                                  )}
                                 </div>
                               ))}
+                            <div>
+                              <button
+                                type='button'
+                                className={styles.addButton}
+                                onClick={() => push('')}
+                              >
+                                Add
+                              </button>
+                            </div>
                           </>
                         );
                       }}
@@ -219,9 +211,10 @@ const HotelForm = ({
                                     {index > 0 && (
                                       <button
                                         type='button'
+                                        className={styles.removeButton}
                                         onClick={() => remove(index)}
                                       >
-                                        Remove room
+                                        Remove
                                       </button>
                                     )}
                                   </div>
@@ -229,6 +222,7 @@ const HotelForm = ({
                               : null}
                             <button
                               type='button'
+                              className={styles.addButton}
                               onClick={() =>
                                 push({
                                   room_type: '',
@@ -237,7 +231,7 @@ const HotelForm = ({
                                 })
                               }
                             >
-                              Add room
+                              Add
                             </button>
                           </>
                         );

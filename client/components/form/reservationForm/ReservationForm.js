@@ -9,6 +9,7 @@ import CalendarWrapper from '../date/CalendarWrapper';
 import calcNights from '../../../helpers/calcNight';
 import axios from '../../../utils/axios';
 import enquirySchema from '../../../validationSchema/enquirySchema';
+import Alert from '../../alert/Alert';
 import styles from './reservationForm.module.css';
 
 const calcPrice = (roomList, room, nights, adults, children) => {
@@ -49,7 +50,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
 
         if (res.status === 200) {
           setIsLoading(false);
-          console.log('RES', res);
 
           setFetchStatus({
             sent: true,
@@ -59,7 +59,6 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
         }
       } catch (error) {
         if (error.response && error.response.status) {
-          console.log(error.response.data.message.message);
           if (error.response.status === 404) {
             setFetchStatus({
               sent: false,
@@ -122,15 +121,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                   fetchStatus?.sent ? styles.bg : ''
                 } `}
               >
-                {!fetchStatus ? null : (
-                  <div
-                    className={`${
-                      fetchStatus?.sent ? styles.success : styles.error
-                    }`}
-                  >
-                    {fetchStatus?.msg}
-                  </div>
-                )}
+                {!fetchStatus ? null : <Alert status={fetchStatus} />}
                 {showForm && (
                   <div className={styles.innerForm}>
                     <div>

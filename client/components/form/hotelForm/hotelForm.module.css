@@ -7,6 +7,40 @@
   grid-row-gap: 10px;
   align-self: flex-start;
 }
+.removeButton,
+.addButton {
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
+  margin-left: auto;
+  height: 30px;
+  width: 90px;
+  font-size: 12px;
+  font-family: var(--header-font);
+  font-weight: var(--fontWeight-m);
+  transition: all 0.3s ease;
+}
+
+.removeButton {
+  background: #e71d3617;
+  color: #9c0c33;
+  border: 2px solid #e71d368c;
+}
+.removeButton:hover {
+  background: #e71d3640;
+}
+
+.addButton {
+  background: #74c69d17;
+  color: #24774d;
+  border: 2px solid #74c69db0;
+}
+.addButton:hover {
+  background: #74c69d3d;
+}
 
 .btnContainer,
 .flex {
@@ -26,6 +60,9 @@
 }
 .roomsContainer {
   margin-bottom: 24px;
+}
+.imagesContainer {
+  margin-bottom: 16px;
 }
 .roomType {
   font-size: 12px;
