@@ -11,19 +11,15 @@ import styles from './navbar.module.css';
 
 const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
+  const [scrollYTop, setScrollYTop] = useState(true);
   const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
-  const [scrollingBg, setScrollingBg] = useState(false);
   const scrollDir = useOnScroll();
-
   const router = useRouter();
 
   const handleScroll = () => {
-    if (window.pageYOffset > 100) {
-      setScrollingBg(true);
-    } else {
-      setScrollingBg(false);
-    }
+    setScrollYTop(window.pageYOffset < 80);
   };
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
@@ -89,9 +85,11 @@ const Navbar = ({ setLoginModal }) => {
   return (
     <header
       className={`${styles.header} ${
-        scrollDir === 'scrolling up'
-          ? styles.removeBackground
-          : styles.addBackground
+        scrollYTop
+          ? styles.transform
+          : scrollDir === 'scrolling up'
+          ? styles.addBackground
+          : styles.removeBackground
       }`}
     >
       <div className={`${styles.container} ${open && styles.headerColor}`}>

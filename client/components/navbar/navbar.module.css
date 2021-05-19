@@ -5,15 +5,19 @@
   right: 0;
   width: 100%;
   z-index: 500;
-  transform: translateY(-86px);
   background-color: var(--grey-100);
 }
+.transform {
+  transform: translateY(0px);
+}
 .addBackground {
-  background-color: blue;
-  transform: translateY(-86px);
+  transform: translateY(0px);
+  box-shadow: 0 10px 30px -10px rgb(10 26 51 / 43%);
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .removeBackground {
-  transform: translateY(0px);
+  transform: translateY(-86px);
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .container {
   max-width: 1200px;
@@ -25,7 +29,6 @@
   width: 100%;
   z-index: 11;
   height: 80px;
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .hamburgerButton {
