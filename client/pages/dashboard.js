@@ -29,15 +29,6 @@ export default function Dashboard({ data, admin, token }) {
     setOpenNav(() => !openNav);
   };
 
-  // useEffect(() => {
-  //   setOpenNav(() => window.innerWidth > 768);
-  //   if (window.innerWidth > 768) {
-  //     setOpenNav(() => true);
-  //   }
-
-  //   setShowMessages(true);
-  // }, [setOpenNav, setShowMessages]);
-
   const handleToggle = () => {
     setNavTitle(!navTitle);
     setCustomMessages(navTitle ? enquiries : messages);
@@ -49,7 +40,7 @@ export default function Dashboard({ data, admin, token }) {
     }
   };
 
-  const handleMenuOnNAvItem = () => {
+  const handleNavItem = () => {
     if (getWindowWidth() < breakpoint) {
       setOpenNav(() => false);
     } else {
@@ -72,10 +63,6 @@ export default function Dashboard({ data, admin, token }) {
       }
     }
   };
-
-  console.log('showEnq', showEnq);
-  console.log('showMessages', showMessages);
-  console.log('navTitle', navTitle);
 
   return (
     <Layout>
@@ -100,7 +87,7 @@ export default function Dashboard({ data, admin, token }) {
                       className={styles.navBtn}
                       onClick={() => {
                         setCustomMessages(navTitle ? messages : enquiries);
-                        handleMenuOnNAvItem();
+                        handleNavItem();
                       }}
                     >
                       All{' '}
@@ -111,8 +98,8 @@ export default function Dashboard({ data, admin, token }) {
                     <button
                       className={styles.navBtn}
                       onClick={() => {
-                        setCustomMessages('UNREAD');
-                        handleMenuOnNAvItem();
+                        setCustomMessages('"Unread" is currently empty');
+                        handleNavItem();
                       }}
                     >
                       Unread
@@ -122,8 +109,8 @@ export default function Dashboard({ data, admin, token }) {
                     <button
                       className={styles.navBtn}
                       onClick={() => {
-                        setCustomMessages('SENT');
-                        handleMenuOnNAvItem();
+                        setCustomMessages('"Sent" is currently empty.');
+                        handleNavItem();
                       }}
                     >
                       Sent
@@ -133,8 +120,8 @@ export default function Dashboard({ data, admin, token }) {
                     <button
                       className={styles.navBtn}
                       onClick={() => {
-                        setCustomMessages('TRASH');
-                        handleMenuOnNAvItem();
+                        setCustomMessages('"Trash" is currently empty');
+                        handleNavItem();
                       }}
                     >
                       Trash
