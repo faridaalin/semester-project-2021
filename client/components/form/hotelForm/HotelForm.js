@@ -20,9 +20,11 @@ const HotelForm = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  const [fetchStatus, setFetchStatus] = useState(null);
 
   const onSubmit = async (values, onSubmitProps) => {
-    const { setStatus } = onSubmitProps;
+    setFetchStatus(null);
+    const { resetForm } = onSubmitProps;
 
     const options = {
       headers: {
@@ -42,22 +44,36 @@ const HotelForm = ({
         setIsLoading(false);
         update && localStorage.removeItem('itemToUpdate');
 
-        setStatus({
+        setFetchStatus({
           sent: true,
           msg: `${values.title} has been ${update ? 'updated' : 'created'}.`,
         });
-        update ? setDisableButton(false) : setDisableButton(true);
+        if (update) {
+          setDisableButton(false);
+        } else {
+          resetForm();
+        }
       }
     } catch (error) {
       if (error.response && error.response.status) {
         if (error.response.status === 409) {
-          return setStatus({
+          return setFetchStatus({
             sent: false,
             msg: 'This Hotel already exist.',
           });
+        } else if (error.response.status === 404) {
+          return setFetchStatus({
+            sent: false,
+            msg: 'Resource not found',
+          });
+        } else {
+          setFetchStatus({
+            sent: false,
+            msg: 'Something went wrong, please try again later.',
+          });
         }
       } else {
-        setStatus({
+        setFetchStatus({
           sent: false,
           msg: 'Something went wrong, please try again later.',
         });
@@ -76,9 +92,7 @@ const HotelForm = ({
       {(formik) => {
         return (
           <Form className={styles.form}>
-            {formik.status && formik.status.msg && (
-              <Alert status={formik.status} />
-            )}
+            {!fetchStatus ? null : <Alert status={fetchStatus} />}
             <div>
               <p className={styles.title}>Details</p>
               <div className={styles.innerForm}>

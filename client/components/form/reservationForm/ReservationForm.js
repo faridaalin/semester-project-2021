@@ -36,6 +36,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
   const calendarContainer = useRef(null);
 
   const onSubmit = async (values, onSubmitProps) => {
+    setFetchStatus(null);
     const price = parseFloat(priceRef.current.innerText);
 
     if (price > 0 && typeof price === 'number') {
