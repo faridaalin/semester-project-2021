@@ -1,65 +1,28 @@
 import { useState } from 'react';
 import { ChevronDown } from 'react-feather';
-import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import useDashboardContext from '../../context/DashboardContext';
-import axios from '../../utils/axios';
 
 import styles from './pill.module.css';
 
 const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const [show, setShow] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies(['isAdmin']);
   const router = useRouter();
   const { pathname } = router;
 
-  const [
-    content,
-    setContent,
-    showMessages,
-    setShowMessages,
-    showEnq,
-    setShowEnq,
-    logout,
-  ] = useDashboardContext();
+  const [showMessages, setShowMessages, showEnq, setShowEnq, logout] =
+    useDashboardContext();
 
-  const sortProducts = (order, type) => {
-    if (type === 'price') {
-      if (order === 'desc') {
-        console.log('Heigh to low', type);
-      } else {
-        console.log('Low to heigh', type);
-      }
-    } else {
-      if (type === 'rating') {
-        if (order === 'desc') {
-          console.log('Heigh to low', type);
-        } else {
-          console.log('Low to heigh', type);
-        }
-      }
-    }
-  };
-  const handleMessages = () => {
-    setShowMessages(true);
-    setShowEnq(false);
-    console.log('Show messages');
+  const handleContentToggle = () => {
+    setShowEnq(() => !showEnq);
+    setShowMessages(() => !showMessages);
     if (pathname === '/dashboard') {
       setShow(!show);
     } else {
       router.push('/dashboard');
     }
   };
-  const handleEnquires = () => {
-    setShowEnq(true);
-    setShowMessages(false);
-    console.log('Show Enquries');
-    if (pathname === '/dashboard') {
-      setShow(!show);
-    } else {
-      router.push('/dashboard');
-    }
-  };
+
   const HandleEnquireForm = () => {
     if (pathname === '/create-product') {
       setShow(!show);
@@ -83,10 +46,10 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
         <div className={styles.buttonContainer}>
           {dashboard ? (
             <>
-              <button className={styles.button} onClick={handleMessages}>
+              <button className={styles.button} onClick={handleContentToggle}>
                 Messages
               </button>
-              <button className={styles.button} onClick={handleEnquires}>
+              <button className={styles.button} onClick={handleContentToggle}>
                 Enquiries
               </button>
               <button className={styles.button} onClick={HandleEnquireForm}>
@@ -98,45 +61,15 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
             </>
           ) : mobile ? (
             <>
-              <button
-                className={styles.button}
-                onClick={() => sortProducts('desc', 'price')}
-              >
-                Price hight to low
-              </button>
-              <button
-                className={styles.button}
-                onClick={() => sortProducts('asc', 'price')}
-              >
-                Price low to heigh
-              </button>
-              <button
-                className={styles.button}
-                onClick={() => sortProducts('desc', 'rating')}
-              >
-                Rating hight to low
-              </button>
-              <button
-                className={styles.button}
-                onClick={() => sortProducts('asc', 'rating')}
-              >
-                Rating low to heigh
-              </button>
+              <button className={styles.button}>Price hight to low</button>
+              <button className={styles.button}>Price low to heigh</button>
+              <button className={styles.button}>Rating hight to low</button>
+              <button className={styles.button}>Rating low to heigh</button>
             </>
           ) : (
             <>
-              <button
-                className={styles.button}
-                onClick={() => console.log('Sort hotels heigh to low')}
-              >
-                {name}: Hight to low
-              </button>
-              <button
-                className={styles.button}
-                onClick={() => console.log('Sort hotels low to heigh')}
-              >
-                {name}: Low to heigh
-              </button>
+              <button className={styles.button}>{name}: Hight to low</button>
+              <button className={styles.button}>{name}: Low to heigh</button>
             </>
           )}
         </div>

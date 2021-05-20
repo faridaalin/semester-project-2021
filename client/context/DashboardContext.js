@@ -36,15 +36,7 @@ export const DashboardContextProvider = ({ children }) => {
 
   return (
     <DashboardContext.Provider
-      value={[
-        content,
-        setContent,
-        showMessages,
-        setShowMessages,
-        showEnq,
-        setShowEnq,
-        logout,
-      ]}
+      value={[showMessages, setShowMessages, showEnq, setShowEnq, logout]}
     >
       {children}
     </DashboardContext.Provider>

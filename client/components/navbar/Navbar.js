@@ -7,13 +7,18 @@ import Button from '../button/Button';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
 import useOnScroll from '../../hooks/useOnScroll';
-import { IS_ADMIN, USER_TOKEN, COOKIE_VALUE } from '../../config/contants';
+import {
+  IS_ADMIN,
+  USER_TOKEN,
+  COOKIE_VALUE,
+  COOKIE_PUBLIC,
+} from '../../config/contants';
 import styles from './navbar.module.css';
 
 const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
   const [scrollYTop, setScrollYTop] = useState(true);
-  const [cookie, setCookie, removeCookie] = useCookies([IS_ADMIN]);
+  const [cookie, , removeCookie] = useCookies([IS_ADMIN]);
   const scrollDir = useOnScroll();
   const router = useRouter();
 
@@ -64,7 +69,7 @@ const Navbar = ({ setLoginModal }) => {
           <Pill name='Dashboard' select={2} dashboard='true' />
         </li>
       );
-    } else if (cookie.isAdmin === 'public') {
+    } else if (cookie.isAdmin === COOKIE_PUBLIC) {
       return (
         <li className={styles.itemButton}>
           <Button color='orange' clickHandler={handleLogout}>

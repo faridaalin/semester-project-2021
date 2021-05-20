@@ -1,26 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Menu } from 'react-feather';
-import useWindowWidth from '../../hooks/useWindowSize';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Accordion from '../accordion/Accordion';
-import { Media } from '../../context/Media';
 import useDashboardContext from '../../context/DashboardContext';
 
 import styles from './dashboard.module.css';
 
 const DashboardComp = ({ messages, enquiries }) => {
-  const [, , showMessages, setShowMessages, , , logout] = useDashboardContext();
-
+  const [showMessages, setShowMessages, showEnq, setShowEnq, logout] =
+    useDashboardContext();
   const [openNav, setOpenNav] = useState(false);
-  const [widthOnResize, resized] = useWindowWidth();
   const [navTitle, setNavTitle] = useState(showMessages ? true : false);
   const [renderData, setRenderData] = useState(
     showMessages ? messages : enquiries
   );
   const [activeClass, setActiveClass] = useState(1);
-
   const breakpoint = 768;
-
   const handleNavToggle = () => {
     if (getWindowWidth() > breakpoint) {
       return setOpenNav(() => true);
@@ -63,6 +58,13 @@ const DashboardComp = ({ messages, enquiries }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, [setOpenNav]);
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      setOpenNav(true);
+    } else {
+      setOpenNav(false);
+    }
+  }, []);
 
   return (
     <section className={styles.container}>

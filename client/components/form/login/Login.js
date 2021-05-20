@@ -8,11 +8,15 @@ import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
-import { USER_TOKEN } from '../../../config/contants';
+import {
+  COOKIE_VALUE,
+  IS_ADMIN,
+  COOKIE_PUBLIC,
+} from '../../../config/contants';
 import styles from './login.module.css';
 
 const Login = ({ setLoginModal }) => {
-  const [, setCookie] = useCookies(['isAdmin']);
+  const [, setCookie] = useCookies([IS_ADMIN]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -34,26 +38,24 @@ const Login = ({ setLoginModal }) => {
         const { data } = res;
         setStatus({
           sent: true,
-          msg: 'Your are logged in now.',
+          msg: 'Your are now logged in.',
         });
 
-        if (data.user.role === 'admin') {
-          setCookie('isAdmin', 'admin', {
+        if (data.user.role === COOKIE_VALUE) {
+          setCookie(IS_ADMIN, COOKIE_VALUE, {
             maxAge: 86400 * 3,
             path: '/',
           });
 
           if (typeof window !== 'undefined') {
-            console.log('Push to dash');
             router.push('/dashboard');
           }
         } else {
-          setCookie('isAdmin', 'public', {
+          setCookie(IS_ADMIN, COOKIE_PUBLIC, {
             maxAge: 86400 * 3,
             path: '/',
           });
           if (typeof window !== 'undefined') {
-            console.log('Push to dash');
             router.push('/hotels');
           }
         }
