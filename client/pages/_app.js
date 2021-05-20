@@ -1,4 +1,5 @@
 import { CookiesProvider } from 'react-cookie';
+import { MediaContextProvider } from '../context/Media';
 import { HotelProvider } from '../context/HotelsContext';
 import { SearchProvider } from '../context/searchContext';
 import { DashboardContextProvider } from '../context/DashboardContext';
@@ -15,13 +16,15 @@ import '../styles/globals.css';
 function MyApp({ Component, pageProps }) {
   return (
     <CookiesProvider>
-      <DashboardContextProvider>
-        <SearchProvider>
-          <HotelProvider>
-            <Component {...pageProps} />
-          </HotelProvider>
-        </SearchProvider>
-      </DashboardContextProvider>
+      <MediaContextProvider>
+        <DashboardContextProvider>
+          <SearchProvider>
+            <HotelProvider>
+              <Component {...pageProps} />
+            </HotelProvider>
+          </SearchProvider>
+        </DashboardContextProvider>
+      </MediaContextProvider>
     </CookiesProvider>
   );
 }
