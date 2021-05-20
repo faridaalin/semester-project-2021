@@ -19,7 +19,7 @@ export const DashboardContextProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.get('/users/logout');
-      removeCookie(IS_ADMIN, cookie, { path: '/', maxAge: 0, sameSite: true });
+      removeCookie(IS_ADMIN, cookie, { path: '/', maxAge: 0 });
       typeof window !== 'undefined'
         ? localStorage.removeItem(USER_TOKEN)
         : null;
