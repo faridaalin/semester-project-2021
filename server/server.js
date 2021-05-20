@@ -37,9 +37,8 @@ mongoose.connect(
 );
 
 // MIDDLEWARE
-// app.use(cors({ origin: '*', credentials: true }));
+
 // app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
-// app.use(cors({ origin: true, credentials: true }));
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', req.header('origin'));
 //   next();
@@ -51,7 +50,7 @@ const allowedOrigins = [
 const options = {
   origin: allowedOrigins,
 };
-app.use(cors(options));
+app.use(cors({ options, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
