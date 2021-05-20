@@ -6,7 +6,7 @@ import Textera from '../textarea/Textarea';
 import Button from '../../button/Button';
 import axios from '../../../utils/axios';
 import Alert from '../../alert/Alert';
-
+import { ITEM_TO_UPDATE } from '../../../config/contants';
 import styles from './hotelForm.module.css';
 
 const HotelForm = ({
@@ -42,7 +42,7 @@ const HotelForm = ({
 
       if (res.status === 200) {
         setIsLoading(false);
-        update && localStorage.removeItem('itemToUpdate');
+        update && localStorage.removeItem(ITEM_TO_UPDATE);
 
         setFetchStatus({
           sent: true,

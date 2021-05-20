@@ -7,13 +7,13 @@ import {
   updateHotelSchema,
   initialProductValues,
 } from '../validationSchema/productSchema';
+import { ITEM_TO_UPDATE, COOKIE_VALUE } from '../config/contants';
 
 export default function UpdateProduct({ admin, token }) {
   const [itemToUpdate, setItemToUpdate] = useState(null);
 
   useEffect(() => {
-    const hotel = localStorage.getItem('itemToUpdate');
-
+    const hotel = localStorage.getItem(ITEM_TO_UPDATE);
     setItemToUpdate(JSON.parse(hotel));
   }, []);
 
@@ -56,7 +56,7 @@ export async function getServerSideProps(context) {
   const token = cookie.jwt;
   const admin = cookie.isAdmin;
 
-  if (!admin || admin !== 'admin' || !token) {
+  if (!admin || admin !== COOKIE_VALUE || !token) {
     return {
       redirect: {
         destination: '/',

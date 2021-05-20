@@ -1,6 +1,6 @@
 import isBrowser from './isBrowser';
 import cookie from 'cookie';
-import { useCookies } from 'react-cookie';
+import { USER_TOKEN } from '../config/contants';
 
 export function parseCookies(req) {
   return cookie.parse(req ? req.headers.cookie || '' : document.cookie);
@@ -8,9 +8,7 @@ export function parseCookies(req) {
 
 export const isAdmin = () => {
   let admin;
-  if (isBrowser) {
-    admin = localStorage.getItem('userToken');
-  }
-  console.log('Admin', admin);
+  if (isBrowser) admin = localStorage.getItem(USER_TOKEN);
+
   return admin;
 };

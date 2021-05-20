@@ -3,16 +3,20 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import truncate from '../../../helpers/truncate';
+import { Star, Edit, Trash2 } from 'react-feather';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
 import { useCookies } from 'react-cookie';
-import { Star, Edit, Trash2 } from 'react-feather';
-import axios from '../../../utils/axios';
+import {
+  ITEM_TO_UPDATE,
+  IS_ADMIN,
+  COOKIE_VALUE,
+} from '../../../config/contants';
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
-  const [cookie] = useCookies(['isAdmin']);
-  const admin = cookie.isAdmin === 'admin' ? true : false;
+  const [cookie] = useCookies([IS_ADMIN]);
+  const admin = cookie.isAdmin === COOKIE_VALUE ? true : false;
   const [itemToUpdate, setItemToUpdate] = useState(false);
 
   const handleDeleteButton = (e) => {
@@ -25,7 +29,7 @@ const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
     setItemToUpdate(true);
   };
   const addToDeleteLocal = () => {
-    localStorage.setItem('itemToUpdate', JSON.stringify(hotel));
+    localStorage.setItem(ITEM_TO_UPDATE, JSON.stringify(hotel));
   };
 
   useEffect(
