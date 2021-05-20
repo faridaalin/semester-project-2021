@@ -21,6 +21,7 @@ module.exports = (req, res, next) => {
       }
 
       req.user = user;
+      req.token = token;
 
       if (user.role === 'admin' || user.payload.role === 'admin') {
         next();

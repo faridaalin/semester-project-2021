@@ -37,16 +37,7 @@ exports.user_register = async (req, res, next) => {
     });
 
     const token = createToken(newUser, newUser);
-    res.cookie('jwt', token, {
-      secure:
-        process.env.NODE_ENV !== 'development' ||
-        process.env.NODE_ENV === 'prod',
-      httpOnly:
-        process.env.NODE_ENV !== 'development' ||
-        process.env.NODE_ENV === 'dev',
-      maxAge: maxAge * 1000,
-      path: '/',
-    });
+
     res.status(200).send({ status: 'ok', data: newUser });
   } catch (err) {
     next(err);
@@ -68,13 +59,6 @@ exports.user_login = async (req, res, next) => {
       // password is a match
       const payload = user;
       const token = createToken(payload);
-      res.cookie('jwt', token, {
-        secure: process.env.NODE_ENV !== 'development',
-        httpOnly: process.env.NODE_ENV !== 'development',
-        maxAge: maxAge * 1000,
-        path: '/',
-      });
-
       const { role, email, firstname, lastname } = user;
 
       return res.status(200).send({
@@ -121,7 +105,6 @@ exports.user_changePassword = async (req, res, next) => {
 
 exports.user_logout = (req, res, next) => {
   try {
-    res.cookie('jwt', '', { maxAge: 0 });
     res.status(200).send({ data: 'Logged out' });
   } catch (err) {
     next(err);
