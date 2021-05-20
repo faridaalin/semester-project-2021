@@ -13,7 +13,6 @@ const DashboardContext = createContext({
 export const DashboardContextProvider = ({ children }) => {
   const [showMessages, setShowMessages] = useState(null);
   const [showEnq, setShowEnq] = useState(null);
-  const [content, setContent] = useState(null);
   const [cookie, , removeCookie] = useCookies([IS_ADMIN]);
   const router = useRouter();
 

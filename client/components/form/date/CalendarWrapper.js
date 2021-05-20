@@ -6,7 +6,6 @@ import { useField, useFormikContext } from 'formik';
 import { getIcon } from '../input/Input';
 import { format } from 'date-fns';
 import styles from '../input/input.module.css';
-import searchStylesHome from '../search/searchFormHome.module.css';
 
 const CalendarWrapper = (props) => {
   const {

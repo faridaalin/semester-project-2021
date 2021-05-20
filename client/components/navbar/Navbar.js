@@ -7,20 +7,17 @@ import Button from '../button/Button';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
 import useOnScroll from '../../hooks/useOnScroll';
-import {
-  IS_ADMIN,
-  USER_TOKEN,
-  COOKIE_VALUE,
-  COOKIE_PUBLIC,
-} from '../../config/contants';
+import useDashboardContext from '../../context/DashboardContext';
+import { IS_ADMIN, COOKIE_VALUE, COOKIE_PUBLIC } from '../../config/contants';
 import styles from './navbar.module.css';
 
 const Navbar = ({ setLoginModal }) => {
   const [open, setOpen] = useState(false);
   const [scrollYTop, setScrollYTop] = useState(true);
-  const [cookie, , removeCookie] = useCookies([IS_ADMIN]);
+  const [cookie] = useCookies([IS_ADMIN]);
   const scrollDir = useOnScroll();
   const router = useRouter();
+  const [, , , , logout] = useDashboardContext();
 
   const handleScroll = () => {
     setScrollYTop(window.pageYOffset < 80);
@@ -51,17 +48,6 @@ const Navbar = ({ setLoginModal }) => {
     };
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await axios.get('/users/logout');
-      removeCookie(IS_ADMIN, cookie, { path: '/', maxAge: 0, sameSite: true });
-      localStorage.removeItem(USER_TOKEN);
-      router.push('/');
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const userNavigation = () => {
     if (process.browser && cookie.isAdmin === COOKIE_VALUE) {
       return (
@@ -72,7 +58,7 @@ const Navbar = ({ setLoginModal }) => {
     } else if (cookie.isAdmin === COOKIE_PUBLIC) {
       return (
         <li className={styles.itemButton}>
-          <Button color='orange' clickHandler={handleLogout}>
+          <Button color='orange' clickHandler={logout}>
             Logout
           </Button>
         </li>

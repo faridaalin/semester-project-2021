@@ -20,16 +20,14 @@ export default function Contact() {
   const [fetchStatus, setFetchStatus] = useState(null);
 
   const onSubmit = async (values, onSubmitProps) => {
-    const { resetForm, setStatus } = onSubmitProps;
+    const { resetForm } = onSubmitProps;
     setIsLoading(true);
     setFetchStatus(null);
 
     try {
       const res = await axios.post('/messages/create', values);
-      console.log('res', res);
 
       if (res.status === 201) {
-        const { data } = res;
         setFetchStatus({
           sent: true,
           msg: 'Your message has been sent. We will contact you soon.',
