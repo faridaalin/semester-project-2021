@@ -11,6 +11,14 @@ import data from '../data/imgCategory.json';
 export default function Home(props) {
   const { hotels, attractions } = props;
 
+  if (!hotels || !attractions) {
+    return (
+      <Layout>
+        <div>Sorry, please come back later.</div>
+      </Layout>
+    );
+  }
+
   if (!hotels.data || hotels.data.length === 0) {
     return (
       <Layout>
@@ -74,6 +82,10 @@ export async function getStaticProps() {
       props: { hotels: hotelsResult.data, attractions: attractionsResult.data },
     };
   } catch (err) {
+    console.log('error', err);
     console.error(err);
   }
+  return {
+    props: {},
+  };
 }
