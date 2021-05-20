@@ -57,7 +57,7 @@ const Navbar = ({ setLoginModal }) => {
     } else if (cookie.isAdmin === COOKIE_PUBLIC) {
       return (
         <li className={styles.itemButton}>
-          <Button color='orange' clickHandler={logout}>
+          <Button color='dark' clickHandler={logout}>
             Logout
           </Button>
         </li>

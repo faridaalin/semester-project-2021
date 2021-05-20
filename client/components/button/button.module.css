@@ -49,6 +49,14 @@
   background: var(--grey-300);
 }
 
+.buttonDark {
+  background: var(--blue-400);
+  color: var(--white-100);
+}
+.buttonDark:hover {
+  background: #353649e3;
+}
+
 .smallButton {
   columns: button;
   font-size: 16px;

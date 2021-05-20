@@ -20,6 +20,9 @@ const Button = ({
     if (color === 'grey') {
       return `${styles.buttonGrey}`;
     }
+    if (color === 'dark') {
+      return `${styles.buttonDark}`;
+    }
 
     if (btnType === 'search') {
       return `${styles.buttonOrange} ${styles.buttonSearch}`;
