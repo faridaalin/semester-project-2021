@@ -50,7 +50,7 @@ const allowedOrigins = [
 const options = {
   origin: allowedOrigins,
 };
-app.use(cors({ options, credentials: true }));
+app.use(cors(options));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
