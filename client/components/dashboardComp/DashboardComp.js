@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Menu } from 'react-feather';
-import getWindowWidth from '../../helpers/getWindowWidth';
+import getWindowWidth from '@/helpers/getWindowWidth';
 import Accordion from '../accordion/Accordion';
-import useDashboardContext from '../../context/DashboardContext';
+import useDashboardContext from '@/context/DashboardContext';
 
 import styles from './dashboard.module.css';
 

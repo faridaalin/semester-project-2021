@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'react-feather';
 import { useRouter } from 'next/router';
-import useDashboardContext from '../../context/DashboardContext';
+import useDashboardContext from '@/context/DashboardContext';
 
 import styles from './pill.module.css';
 

@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
-import truncate from '../../../helpers/truncate';
 import { Star, Edit, Trash2 } from 'react-feather';
-import showRating from '../../../helpers/showRating';
-import Button from '../../button/Button';
 import { useCookies } from 'react-cookie';
+import truncate from '@/helpers/truncate';
+import showRating from '@/helpers/showRating';
+import Button from '../../button/Button';
 import { ITEM_TO_UPDATE, IS_ADMIN, COOKIE_VALUE } from '../../../contants';
 import styles from './hotelCard.module.css';
 

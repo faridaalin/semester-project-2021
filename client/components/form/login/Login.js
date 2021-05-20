@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { object, string } from 'yup';
 import { useCookies } from 'react-cookie';
-import { X, Loader } from 'react-feather';
-import axios from '../../../utils/axios';
+import { Loader } from 'react-feather';
+import axios from '@/utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';

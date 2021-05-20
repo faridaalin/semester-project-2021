@@ -78,15 +78,7 @@ const DefaultInput = ({
   );
 };
 
-const InputCalendar = ({
-  type,
-  name,
-  label,
-  value,
-  icon,
-  calendarType,
-  handleChange,
-}) => {
+const InputCalendar = ({ type, name, label, value, icon, handleChange }) => {
   const intitalDateRange = [
     {
       startDate: new Date(),

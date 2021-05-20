@@ -11,7 +11,7 @@ import PageHeader from '@/components/pageHeader/PageHeader';
 import Pagination from '@/components/pagination/Pagination';
 import { useHotelsContext } from '@/context/HotelsContext';
 import { useSearchContext } from '@/context/searchContext';
-import { useMounted } from '@artsy/hooks/hasMounted';
+import { useMounted } from '@/hooks/hasMounted';
 import styles from './hotels.module.css';
 
 export default function Hotels(props) {

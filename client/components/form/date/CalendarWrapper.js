@@ -1,23 +1,11 @@
-import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import { X } from 'react-feather';
-import { Calendar } from 'react-date-range';
 import { useField, useFormikContext } from 'formik';
 import { getIcon } from '../input/Input';
-import { format } from 'date-fns';
 import styles from '../input/input.module.css';
 
 const CalendarWrapper = (props) => {
-  const {
-    calendarContainer,
-    label,
-    selectedDate,
-    setDateFunc,
-    icon,
-    name,
-    placeholder,
-  } = props;
-  const { setFieldValue, errors, touched, handleBlur } = useFormikContext();
+  const { label, selectedDate, setDateFunc, icon, name, placeholder } = props;
+  const { setFieldValue, errors, handleBlur } = useFormikContext();
   const [field] = useField(props);
 
   return (

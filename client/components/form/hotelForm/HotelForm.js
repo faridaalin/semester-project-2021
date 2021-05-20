@@ -4,7 +4,7 @@ import { Loader } from 'react-feather';
 import { DefaultInput } from '../input/Input';
 import Textera from '../textarea/Textarea';
 import Button from '../../button/Button';
-import axios from '../../../utils/axios';
+import axios from '@/utils/axios';
 import Alert from '../../alert/Alert';
 import { ITEM_TO_UPDATE } from '../../../contants';
 import styles from './hotelForm.module.css';

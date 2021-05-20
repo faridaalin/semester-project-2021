@@ -1,6 +1,6 @@
+import { useSearchContext } from '@/context/searchContext';
+import { Media } from '@/context/Media';
 import SearchBar from '../form/searchBar/SearchBar';
-import { useSearchContext } from '../../context/searchContext';
-import { Media } from '../../context/Media';
 import styles from './heroSection.module.css';
 
 const HeroSection = ({ hotels }) => {

@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { X, Loader } from 'react-feather';
 import PureModal from 'react-pure-modal';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import SelectField from '../select/Select';
 import CalendarWrapper from '../date/CalendarWrapper';
-import calcNights from '../../../helpers/calcNight';
-import axios from '../../../utils/axios';
-import enquirySchema from '../../../validationSchema/enquirySchema';
+import calcNights from '@/helpers/calcNight';
+import axios from '@/utils/axios';
+import enquirySchema from '@/validationSchema/enquirySchema';
 import Alert from '../../alert/Alert';
 import styles from './reservationForm.module.css';
 

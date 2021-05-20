@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ChevronRight } from 'react-feather';
-
 import styles from './breadCrumps.module.css';
 
 const BreadCrumps = ({ crump }) => {
