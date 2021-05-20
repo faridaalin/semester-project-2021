@@ -81,9 +81,6 @@
   display: flex;
   gap: 16px;
 }
-.dark {
-  padding: 0rem 1rem;
-}
 
 .dark > * {
   background: var(--blue-400);
@@ -120,6 +117,10 @@
 .logoutButton {
   composes: navBtn;
   margin-top: 16px;
+}
+
+.hide {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {

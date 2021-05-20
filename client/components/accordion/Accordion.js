@@ -125,7 +125,9 @@ const Accordion = ({ type, content }) => {
           <span>Status</span>
         </div>
         {typeof content === 'string' ? (
-          <div>{content}</div>
+          <div className={styles.accordionText}>
+            <p className={styles.paragraph}>{content}</p>
+          </div>
         ) : (
           <>
             {displayItems(content.data, open, 'messages')}
@@ -145,7 +147,9 @@ const Accordion = ({ type, content }) => {
         <span>Status</span>
       </div>
       {typeof content === 'string' ? (
-        <div className={styles.simpleText}>{content}</div>
+        <div className={styles.accordionText}>
+          <p className={styles.paragraph}>{content}</p>
+        </div>
       ) : (
         <>
           {displayItems(content.data, open, 'enquiries')}

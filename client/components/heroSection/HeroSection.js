@@ -20,7 +20,8 @@ const HeroSection = ({ hotels }) => {
         <Media at='sm'>
           <p className={styles.paragraph}>
             Bergen is the Gateway to the Fjords of Norway and a UNESCO World
-            Heritage City.
+            Heritage City with combination of nature, culture and exciting urban
+            life all year around.
           </p>
         </Media>
         <Media greaterThan='sm'>

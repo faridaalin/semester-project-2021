@@ -50,7 +50,19 @@ const DashboardComp = ({ messages, enquiries }) => {
     const id = e.target.id;
     setActiveClass(parseInt(id));
   };
-  console.log('renderData', renderData);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpenNav(true);
+      } else {
+        setOpenNav(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setOpenNav]);
 
   return (
     <section className={styles.container}>
@@ -63,7 +75,95 @@ const DashboardComp = ({ messages, enquiries }) => {
           <Menu />
           {showMessages ? 'Messages' : 'Enquiries'}
         </button>
-        <Media greaterThan='sm'>
+
+        {openNav && (
+          <nav
+            className={`${styles.navContainer} ${openNav ? '' : styles.hide}`}
+          >
+            <ul className={styles.navItems}>
+              <li
+                className={`${styles.navItem} ${
+                  activeClass === 1 ? styles.active : ''
+                }`}
+              >
+                <button
+                  className={styles.navBtn}
+                  id={1}
+                  onClick={(e) => {
+                    setRenderData(navTitle ? messages : enquiries);
+                    handleNavItem(e);
+                  }}
+                >
+                  All{' '}
+                  {showMessages ? messages.data.length : enquiries.data.length}
+                </button>
+              </li>
+              <li
+                className={`${styles.navItem} ${
+                  activeClass === 2 ? styles.active : ''
+                }`}
+              >
+                <button
+                  className={styles.navBtn}
+                  id={2}
+                  onClick={(e) => {
+                    setRenderData('"Unread" is currently empty');
+                    handleNavItem(e);
+                  }}
+                >
+                  Unread
+                </button>
+              </li>
+              <li
+                className={`${styles.navItem} ${
+                  activeClass === 3 ? styles.active : ''
+                }`}
+              >
+                <button
+                  className={styles.navBtn}
+                  id={3}
+                  onClick={(e) => {
+                    setRenderData('"Sent" is currently empty.');
+                    handleNavItem(e);
+                  }}
+                >
+                  Sent
+                </button>
+              </li>
+              <li
+                className={`${styles.navItem} ${
+                  activeClass === 4 ? styles.active : ''
+                }`}
+              >
+                <button
+                  className={styles.navBtn}
+                  id={4}
+                  onClick={(e) => {
+                    setRenderData('"Trash" is currently empty');
+                    handleNavItem(e);
+                  }}
+                >
+                  Trash
+                </button>
+              </li>
+            </ul>
+
+            <ul className={`${styles.navItems} ${styles.secondaryNav}`}>
+              <li className={styles.navItem}>
+                <button className={styles.navBtn} onClick={handleToggle}>
+                  {showMessages ? 'Enquiries' : 'Messages'}
+                </button>
+              </li>
+              <li className={`${styles.navItem}`}>
+                <button className={styles.logoutButton} onClick={logout}>
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </nav>
+        )}
+
+        {/* <Media greaterThan='sm'>
           <nav className={`${styles.navContainer} `}>
             <ul className={styles.navItems}>
               <li
@@ -146,17 +246,19 @@ const DashboardComp = ({ messages, enquiries }) => {
               </li>
             </ul>
           </nav>
-        </Media>
+        </Media> */}
       </header>
       {showMessages ? (
         <Accordion
           type='messages'
-          content={showMessages ? messages : enquiries}
+          renderData={renderData}
+          content={renderData}
         />
       ) : (
         <Accordion
           type='enquiries'
-          content={showMessages ? messages : enquiries}
+          renderData={renderData}
+          content={renderData}
         />
       )}
     </section>
