@@ -41,19 +41,28 @@ mongoose.connect(
 
 // app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.header('origin'));
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', req.header('origin'));
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+//   );
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With,content-type'
+//   );
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+app.use(
+  cors({
+    allowedHeaders: ['sessionId', 'Content-Type'],
+    exposedHeaders: ['sessionId'],
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
