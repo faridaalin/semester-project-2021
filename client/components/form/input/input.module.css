@@ -1,6 +1,7 @@
 .inputContainer {
   width: 100%;
   position: relative;
+  margin-top: 16px;
 }
 .labelContainer {
   display: flex;
@@ -73,6 +74,7 @@
   border-radius: 6px;
   width: 100%;
   font-family: var(--header-font);
+  margin-top: 4px;
 }
 
 .input::placeholder,
