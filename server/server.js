@@ -39,8 +39,6 @@ mongoose.connect(
 
 // MIDDLEWARE
 
-// app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
-
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', req.header('origin'));
   res.setHeader(
@@ -50,7 +48,6 @@ app.use(function (req, res, next) {
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-Requested-With,content-type, Authorization'
-    // 'Access-Control-Expose-Headers',
   );
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
