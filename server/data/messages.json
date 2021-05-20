@@ -1,0 +1,30 @@
+[
+  {
+    "firstname": "Dave",
+    "lastname": "Smith",
+    "email": "email@email.com",
+    "subject": "Business stay",
+    "message": "Hi, we are group of people travelling on a business trip Bergen the end of the month. We are wondering if you can give us recommendations for stay combined with events? King regards, Dave"
+  },
+  {
+    "firstname": "Ramirio",
+    "lastname": "Scott",
+    "email": "RamiroHScott@jourrapide.com",
+    "subject": "Missing recipt",
+    "message": "Hi, I booked a stay 5 days ago at Bergen Harbour hotel, but I have not received booking confirmation. Can please assist me with this?"
+  },
+  {
+    "firstname": "William",
+    "lastname": "M. Mills",
+    "email": "WilliamMMills@dayrep.com",
+    "subject": "Cancellation",
+    "message": "Hello, I have to cancel my booking due to a medical reason. I booked 4 nights at Quality Hotel Edvard Grieg from monday 14 of june  to june 18 2021. Kind regards, William"
+  },
+  {
+    "firstname": "Michele",
+    "lastname": "B. Maurer",
+    "email": "MicheleBMaurer@rhyta.com",
+    "subject": "Date changes",
+    "message": "Hi all, I would like to change my booking check in from june 28 to the day after. June 29. Can you please condirm? MAny thanks, Michele. "
+  }
+]

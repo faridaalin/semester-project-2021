@@ -1,0 +1,93 @@
+[
+  {
+    "hotel_name": "Annehelenes B&B",
+    "check_in": "2021-06-24",
+    "check_out": "2021-06-28",
+    "room_type": "Small Double Room",
+    "adults": 2,
+    "children": 0,
+    "price": 3800,
+    "firstname": "Mia",
+    "lastname": "Doe",
+    "email": "email@email.com",
+    "special_requests": "Alergic to milk"
+  },
+  {
+    "hotel_name": "Keyser Apartments 6",
+    "check_in": "2021-07-02",
+    "check_out": "2021-07-04",
+    "room_type": "Loft",
+    "adults": 2,
+    "children": 0,
+    "price": 3216,
+    "firstname": "Trisha",
+    "lastname": "V. Castillo",
+    "email": "email@email.com",
+    "special_requests": ""
+  },
+  {
+    "hotel_name": "Zander K Hotel",
+    "check_in": "2021-08-02",
+    "check_out": "2021-08-04",
+    "room_type": "Family Twin Room",
+    "adults": 2,
+    "children": 0,
+    "price": 2400,
+    "firstname": "Trisha",
+    "lastname": "V. Castillo",
+    "email": "email@email.com",
+    "special_requests": ""
+  },
+  {
+    "hotel_name": "Barfot Apartments",
+    "check_in": "2021-09-02",
+    "check_out": "2021-09-08",
+    "room_type": "Three-Bedroom Apartment",
+    "adults": 4,
+    "children": 2,
+    "price": 14400,
+    "firstname": "Elizabeth",
+    "lastname": "D. Tillotson",
+    "email": "email@email.com",
+    "special_requests": "Extra pillow"
+  },
+  {
+    "hotel_name": "ANA's B&B",
+    "check_in": "2021-09-16",
+    "check_out": "2021-09-20",
+    "room_type": "Small Double Room",
+    "adults": 2,
+    "children": 1,
+    "price": 3472,
+    "firstname": "Bessie",
+    "lastname": " Whitlock",
+    "email": "email@email.com",
+    "special_requests": "Milk allergies"
+  },
+  {
+    "hotel_name": "Barfot Apartments",
+    "check_in": "2021-09-10",
+    "check_out": "2021-09-12",
+    "room_type": "Apartment",
+    "adults": 2,
+    "children": 0,
+    "price": 1866,
+    "firstname": "Amy",
+    "lastname": " Crews",
+    "email": "email@email.com",
+    "special_requests": ""
+  },
+  {
+    "hotel_name": "Clarion Hotel Havnekontoret",
+    "check_in": "2021-11-08",
+    "check_out": "2021-11-12",
+    "room_type": "Deluxe Double Room",
+    "adults": 2,
+    "children": 2,
+    "price": 9204,
+    "firstname": "Trey",
+    "lastname": "Prieto",
+    "email": "email@email.com",
+    "special_requests": ""
+  }
+]

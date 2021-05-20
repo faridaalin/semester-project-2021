@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const hotelsData = require('./hotels.json');
+const messageData = require('./messages.json');
+const enquiryData = require('./enquries.json');
 const Hotel = require('../model/hotel');
+const Enquiry = require('../model/enquiry');
+const Message = require('../model/message');
 require('dotenv').config();
 
 // Connect to MongoDB
@@ -22,6 +26,8 @@ mongoose
 const importData = async () => {
   try {
     await Hotel.create(hotelsData);
+    await Enquiry.create(enquiryData);
+    await Message.create(messageData);
     console.log('Data LOADED!💃');
   } catch (err) {
     console.log('ERROR while importing data!💥 💥 ', err);
@@ -33,6 +39,8 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Hotel.deleteMany();
+    await Enquiry.deleteMany();
+    await Message.deleteMany();
     console.log('Data DELETED!⛔');
   } catch (err) {
     console.log('ERROR while deleting data!💥 💥 ', err);
