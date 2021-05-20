@@ -58,7 +58,7 @@ const Navbar = ({ setLoginModal }) => {
   };
 
   const userNavigation = () => {
-    if (cookie.isAdmin === 'admin') {
+    if (process.browser && cookie.isAdmin === 'admin') {
       return (
         <li>
           <Pill name='Dashboard' select={2} dashboard='true' />
@@ -127,7 +127,7 @@ const Navbar = ({ setLoginModal }) => {
                 } `}
               >
                 <Link href='/'>
-                  <a href='/'>Home</a>
+                  <a>Home</a>
                 </Link>
               </li>
               <li
@@ -136,7 +136,7 @@ const Navbar = ({ setLoginModal }) => {
                 } `}
               >
                 <Link href='/hotels'>
-                  <a href='/hotels'>Hotels</a>
+                  <a>Hotels</a>
                 </Link>
               </li>
               <li
@@ -145,7 +145,7 @@ const Navbar = ({ setLoginModal }) => {
                 } `}
               >
                 <Link href='/about'>
-                  <a href='/about'>About</a>
+                  <a>About</a>
                 </Link>
               </li>
               <li
@@ -154,7 +154,7 @@ const Navbar = ({ setLoginModal }) => {
                 } `}
               >
                 <Link href='/contact'>
-                  <a href='/contact'>Contact</a>
+                  <a>Contact</a>
                 </Link>
               </li>
 

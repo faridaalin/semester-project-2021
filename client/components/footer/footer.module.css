@@ -11,13 +11,17 @@
   margin-top: 200px;
   z-index: 1;
 }
+.contentContainer span {
+  cursor: pointer;
+}
 
 .footer section {
   margin-top: 100px;
 }
 
 .footer p,
-.footer a {
+.footer a,
+.contentContainer span {
   color: var(--grey-400);
   line-height: 1.5;
   margin: 8px 0;
@@ -44,7 +48,8 @@
   background: #e5e5e5;
 }
 
-.footer a {
+.footer a,
+.contentContainer span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +85,8 @@
 }
 
 .socialMedia svg:hover,
-.footer a:hover {
+.footer a:hover,
+.contentContainer span:hover {
   color: var(--grey-100);
   transition: color 0.25s ease-in-out;
 }

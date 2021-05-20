@@ -131,6 +131,8 @@
     grid-template-columns: 200px 2fr;
     position: static;
     padding: 0;
+    min-height: 500px;
+    max-height: 500px;
   }
   .navButton {
     border-top-right-radius: 0;
@@ -145,6 +147,7 @@
     position: static;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    max-height: 500px;
   }
 
   .navContainer {
@@ -162,6 +165,7 @@
 
 @media screen and (min-width: 992px) {
   .container {
-    min-width: 900px;
+    min-width: 910px;
+    max-width: 910px;
   }
 }

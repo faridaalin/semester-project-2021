@@ -41,18 +41,10 @@ const Footer = () => {
         <section>
           <h3>Help</h3>
           <div className={styles.contentContainer}>
-            <Link href=''>
-              <a>Our Policy</a>
-            </Link>
-            <Link href=''>
-              <a>Customer Service</a>
-            </Link>
-            <Link href=''>
-              <a>F&Q</a>
-            </Link>
-            <Link href=''>
-              <a>Payment Options</a>
-            </Link>
+            <span>Our Policy</span>
+            <span>Customer Service</span>
+            <span>F&Q</span>
+            <span>Payment Options</span>
           </div>
         </section>
       </div>

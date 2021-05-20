@@ -2,11 +2,10 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { X } from 'react-feather';
 import PureModal from 'react-pure-modal';
-// import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import Login from '../form/login/Login';
 
-const NavbarDynamic = dynamic(() => import('../navbar/Navbar'));
+const NavbarDynamic = dynamic(() => import('../navbar/Navbar'), { ssr: false });
 
 import styles from './layout.module.css';
 
