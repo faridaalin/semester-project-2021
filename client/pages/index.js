@@ -1,10 +1,10 @@
-import Layout from '../components/layout/Layout';
-import axios from '../utils/axios';
-import SectionHeading from '../components/sectionHeading/SectionHeading';
-import Card from '../components/card/Card';
-import AttractionsCard from '../components/card/AttractionsCard';
-import CardContainer from '../components/cardContainer/CardContainer';
-import HeroSection from '../components/heroSection/HeroSection';
+import Layout from '@/components/layout/Layout';
+import axios from '@/utils/axios';
+import SectionHeading from '@/components/sectionHeading/SectionHeading';
+import Card from '@/components/card/Card';
+import AttractionsCard from '@/components/card/AttractionsCard';
+import CardContainer from '@/components/cardContainer/CardContainer';
+import HeroSection from '@/components/heroSection/HeroSection';
 
 import data from '../data/imgCategory.json';
 

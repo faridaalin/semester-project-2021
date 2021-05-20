@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/utils/*": ["utils/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/context/*": ["context/*"],
+      "@/validationSchema/*": ["validationSchema/*"]
+    }
+  }
+}

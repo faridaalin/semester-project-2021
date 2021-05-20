@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
   const [loginModal, setLoginModal] = useState(false);
   return (
     <div className={styles.container}>
-      {/* <Navbar setLoginModal={setLoginModal} /> */}
+    
       <NavbarDynamic setLoginModal={setLoginModal} />
       <main className={`main ${styles.main}`}>
         <article>
