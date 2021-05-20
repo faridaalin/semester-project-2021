@@ -58,9 +58,10 @@ app.use(
   cors({
     allowedHeaders: ['sessionId', 'Content-Type'],
     exposedHeaders: ['sessionId'],
-    origin: '*',
+    origin: 'https://final-2021-frontend.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
+    credentials: true,
   })
 );
 app.use(express.json());
