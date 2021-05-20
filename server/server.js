@@ -46,7 +46,7 @@ mongoose.connect(
 // });
 let allowlist = [
   'http://localhost:3000',
-  'https://final-2021-frontend.vercel.app/',
+  'https://final-2021-frontend.vercel.app',
 ];
 let corsOptionsDelegate = function (req, callback) {
   let corsOptions;
