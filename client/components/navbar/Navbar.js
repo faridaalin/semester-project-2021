@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
-import axios from '../../utils/axios';
 import Button from '../button/Button';
 import getWindowWidth from '../../helpers/getWindowWidth';
 import Pill from '../pill/Pill';
