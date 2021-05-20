@@ -1,4 +1,6 @@
 {
+  "license": "MIT",
+  "private": true,
   "dependencies": {
     "moment": "^2.29.1"
   }
