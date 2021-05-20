@@ -40,23 +40,10 @@ mongoose.connect(
 // MIDDLEWARE
 
 // app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', req.header('origin'));
-//   next();
-// });
-let allowlist = [
-  'http://localhost:3000',
-  'https://final-2021-frontend.vercel.app',
-];
-let corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
-  if (allowlist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
-};
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.header('origin'));
+  next();
+});
 
 app.use(express.json());
 app.use(cookieParser());
