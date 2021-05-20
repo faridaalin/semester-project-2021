@@ -43,16 +43,14 @@ mongoose.connect(
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', req.header('origin'));
-  // res.header('Access-Control-Expose-Headers', 'Authorization');
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
   );
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
-    'Access-Control-Expose-Headers',
-    'Authorization'
+    'X-Requested-With,content-type, Authorization'
+    // 'Access-Control-Expose-Headers',
   );
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
