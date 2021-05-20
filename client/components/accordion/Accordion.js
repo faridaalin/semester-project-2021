@@ -20,8 +20,6 @@ const Accordion = ({ type, content, customData }) => {
     setPageNumber(selected);
   };
 
-  console.log('content', content.data);
-
   const displayItems = (data, open, type) => {
     let itemsToDisplay;
     if (type === 'messages') {
@@ -138,9 +136,9 @@ const Accordion = ({ type, content, customData }) => {
           <span>Date</span>
           <span>Status</span>
         </div>
-        {typeof content === 'string' ? (
+        {typeof customData === 'string' ? (
           <div className={styles.accordionText}>
-            <p className={styles.paragraph}>{content}</p>
+            <p className={styles.paragraph}>{customData}</p>
           </div>
         ) : (
           <>
@@ -162,9 +160,9 @@ const Accordion = ({ type, content, customData }) => {
         <span>Check Out</span>
         <span>Status</span>
       </div>
-      {typeof content === 'string' ? (
+      {typeof customData === 'string' ? (
         <div className={styles.accordionText}>
-          <p className={styles.paragraph}>{content}</p>
+          <p className={styles.paragraph}>{customData}</p>
         </div>
       ) : (
         <>
