@@ -28,6 +28,7 @@ export default function UpdateProduct({ admin, token }) {
     category: itemToUpdate && itemToUpdate.category,
     rooms: itemToUpdate && itemToUpdate.rooms,
   };
+  console.log('ITEM_TO_UPDATE, COOKIE_VALUE', ITEM_TO_UPDATE, COOKIE_VALUE);
 
   return (
     <Layout>
