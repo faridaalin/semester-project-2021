@@ -44,7 +44,10 @@ mongoose.connect(
 //   res.header('Access-Control-Allow-Origin', req.header('origin'));
 //   next();
 // });
-let allowlist = ['http://example1.com', 'http://example2.com'];
+let allowlist = [
+  'http://localhost:3000',
+  'https://final-2021-frontend.vercel.app/',
+];
 let corsOptionsDelegate = function (req, callback) {
   let corsOptions;
   if (allowlist.indexOf(req.header('Origin')) !== -1) {
