@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Layout from '../components/layout/Layout';
-import PageHeader from '../components/pageHeader/PageHeader';
+import Layout from '@/components/layout/Layout';
+import PageHeader from '@/components/pageHeader/PageHeader';
 import styles from './about.module.css';
 
 export default function About() {

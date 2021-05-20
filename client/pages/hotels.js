@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import PureModal from 'react-pure-modal';
-import { useRouter } from 'next/router';
 import { AlertTriangle } from 'react-feather';
-import axios from '../utils/axios';
-import { parseCookies } from '../helpers/parseCookies';
-import Layout from '../components/layout/Layout';
-import HotelCard from '../components/card/hotelCard/hotelCard';
-import CardContainer from '../components/cardContainer/CardContainer';
-import HeroHeaderHotels from '../components/heroHeaderHotels/HeroHeaderHotels';
-import PageHeader from '../components/pageHeader/PageHeader';
-import Pagination from '../components/pagination/Pagination';
-import { useHotelsContext } from '../context/HotelsContext';
-import { useSearchContext } from '../context/searchContext';
-import SearchBar from '../components/form/searchBar/SearchBar';
-import { useMounted } from '../hooks/hasMounted';
+import axios from '@/utils/axios';
+import { parseCookies } from '@/helpers/parseCookies';
+import Layout from '@/components/layout/Layout';
+import HotelCard from '@/components/card/hotelCard/hotelCard';
+import CardContainer from '@/components/cardContainer/CardContainer';
+import HeroHeaderHotels from '@/components/heroHeaderHotels/HeroHeaderHotels';
+import PageHeader from '@/components/pageHeader/PageHeader';
+import Pagination from '@/components/pagination/Pagination';
+import { useHotelsContext } from '@/context/HotelsContext';
+import { useSearchContext } from '@/context/searchContext';
+import { useMounted } from '@artsy/hooks/hasMounted';
 import styles from './hotels.module.css';
 
 export default function Hotels(props) {

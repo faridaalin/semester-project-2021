@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { format } from 'date-fns';
-import { useMounted } from '../../hooks/hasMounted';
-import Pagination from '../../components/pagination/Pagination';
-import Button from '../../components/button/Button';
+import { useMounted } from '@/hooks/hasMounted';
+import Pagination from '@/components/pagination/Pagination';
+import Button from '@/components/button/Button';
 import styles from './accordion.module.css';
 
 const Accordion = ({ type, content, customData }) => {

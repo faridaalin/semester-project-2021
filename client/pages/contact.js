@@ -1,18 +1,15 @@
 import { useState } from 'react';
 import { Formik, Form } from 'formik';
-import Layout from '../components/layout/Layout';
-import axios from '../utils/axios';
-import PageHeader from '../components/pageHeader/PageHeader';
-import { DefaultInput } from '../components/form/input/Input';
-import Textera from '../components/form/textarea/Textarea';
-import Button from '../components/button/Button';
-import Column from '../components/column/Column';
-import Map from '../components/map/Map';
-import {
-  contactSchema,
-  initialValues,
-} from '../validationSchema/contactSchema';
-import Alert from '../components/alert/Alert';
+import Layout from '@/components/layout/Layout';
+import axios from '@/utils/axios';
+import PageHeader from '@/components/pageHeader/PageHeader';
+import { DefaultInput } from '@/components/form/input/Input';
+import Textera from '@/components/form/textarea/Textarea';
+import Button from '@/components/button/Button';
+import Column from '@/components/column/Column';
+import Map from '@/components/map/Map';
+import { contactSchema, initialValues } from '@/validationSchema/contactSchema';
+import Alert from '@/components/alert/Alert';
 import styles from './contact.module.css';
 
 export default function Contact() {

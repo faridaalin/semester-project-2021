@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Menu } from 'react-feather';
-import Layout from '../components/layout/Layout';
-import axios from '../utils/axios';
-import PageHeader from '../components/pageHeader/PageHeader';
-import { parseCookies } from '../helpers/parseCookies';
-
-import DashboardComp from '../components/dashboardComp/DashboardComp';
+import Layout from '@/components/layout/Layout';
+import axios from '@/utils/axios';
+import PageHeader from '@/components/pageHeader/PageHeader';
+import { parseCookies } from '@/helpers/parseCookies';
+import DashboardComp from '@/components/dashboardComp/DashboardComp';
 
 export default function Dashboard({ data, admin, token }) {
   const { messages, enquiries } = data;

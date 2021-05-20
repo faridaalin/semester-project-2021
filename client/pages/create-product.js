@@ -1,7 +1,7 @@
 import { parseCookies } from '../helpers/parseCookies';
-import Layout from '../components/layout/Layout';
-import PageHeader from '../components/pageHeader/PageHeader';
-import HotelForm from '../components/form/hotelForm/HotelForm';
+import Layout from '@/components/layout/Layout';
+import PageHeader from '@/components/pageHeader/PageHeader';
+import HotelForm from '@/components/form/hotelForm/HotelForm';
 import {
   productSchema,
   initialProductValues,
