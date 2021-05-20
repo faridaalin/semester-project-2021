@@ -5,7 +5,7 @@ import useDashboardContext from '../../context/DashboardContext';
 
 import styles from './pill.module.css';
 
-const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
+const Pill = ({ name, select, dashboard, mobile }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
   const { pathname } = router;
@@ -13,9 +13,19 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
   const [showMessages, setShowMessages, showEnq, setShowEnq, logout] =
     useDashboardContext();
 
-  const handleContentToggle = () => {
-    setShowEnq(() => !showEnq);
-    setShowMessages(() => !showMessages);
+  const handleMessages = () => {
+    setShowEnq(false);
+    setShowMessages(true);
+    if (pathname === '/dashboard') {
+      setShow(!show);
+    } else {
+      router.push('/dashboard');
+    }
+  };
+  const handleEnquires = () => {
+    setShowEnq(true);
+    setShowMessages(false);
+
     if (pathname === '/dashboard') {
       setShow(!show);
     } else {
@@ -46,10 +56,10 @@ const Pill = ({ name, select, hotels, setSorted, dashboard, mobile }) => {
         <div className={styles.buttonContainer}>
           {dashboard ? (
             <>
-              <button className={styles.button} onClick={handleContentToggle}>
+              <button className={styles.button} onClick={handleMessages}>
                 Messages
               </button>
-              <button className={styles.button} onClick={handleContentToggle}>
+              <button className={styles.button} onClick={handleEnquires}>
                 Enquiries
               </button>
               <button className={styles.button} onClick={HandleEnquireForm}>

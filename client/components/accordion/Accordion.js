@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import dateFormat from 'dateformat';
+
 import { format } from 'date-fns';
 import { useMounted } from '../../hooks/hasMounted';
 import Pagination from '../../components/pagination/Pagination';
 import Button from '../../components/button/Button';
 import styles from './accordion.module.css';
 
-const Accordion = ({ type, content }) => {
+const Accordion = ({ type, content, customData }) => {
   const { hasMounted } = useMounted();
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -20,17 +20,13 @@ const Accordion = ({ type, content }) => {
     setPageNumber(selected);
   };
 
+  console.log('content', content.data);
+
   const displayItems = (data, open, type) => {
     let itemsToDisplay;
     if (type === 'messages') {
       itemsToDisplay =
-        hasMounted && data && data.length === 0 ? (
-          <div className={styles.accordionText}>
-            <p className={styles.paragraph}>
-              You don't have any messages at the moment.
-            </p>
-          </div>
-        ) : (
+        hasMounted && data && data.length > 0 ? (
           data.slice(visited, visited + itemPerPage).map((item, index) => {
             return (
               <div key={item._id}>
@@ -57,18 +53,18 @@ const Accordion = ({ type, content }) => {
               </div>
             );
           })
+        ) : (
+          <div className={styles.accordionText}>
+            <p className={styles.paragraph}>
+              You don't have any messages at the moment.
+            </p>
+          </div>
         );
 
       return itemsToDisplay;
     } else {
       itemsToDisplay =
-        hasMounted && data && data.length === 0 ? (
-          <div className={styles.accordionText}>
-            <p className={styles.paragraph}>
-              You don't have any enquiries at the moment.
-            </p>
-          </div>
-        ) : (
+        hasMounted && data && data.length > 0 ? (
           data.slice(visited, visited + itemPerPage).map((item, index) => {
             return (
               <div key={item._id}>
@@ -114,6 +110,12 @@ const Accordion = ({ type, content }) => {
               </div>
             );
           })
+        ) : (
+          <div className={styles.accordionText}>
+            <p className={styles.paragraph}>
+              You don't have any enquiries at the moment.
+            </p>
+          </div>
         );
 
       return itemsToDisplay;
