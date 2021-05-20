@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import axios from '../utils/axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
-import { IS_ADMIN, USER_TOKEN } from '../contants';
+import { IS_ADMIN, USER_TOKEN, JWT } from '../contants';
 
 const DashboardContext = createContext({
   messages: null,
@@ -20,6 +20,7 @@ export const DashboardContextProvider = ({ children }) => {
     try {
       await axios.get('/users/logout');
       removeCookie(IS_ADMIN, cookie, { path: '/', maxAge: 0 });
+      removeCookie(JWT, cookie, { path: '/', maxAge: 0 });
       typeof window !== 'undefined'
         ? localStorage.removeItem(USER_TOKEN)
         : null;

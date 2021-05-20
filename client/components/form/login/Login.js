@@ -8,11 +8,7 @@ import axios from '../../../utils/axios';
 import { DefaultInput } from '../input/Input';
 import Button from '../../button/Button';
 import ErrorMessage from '../../errorMessage/ErrorMessage';
-import {
-  COOKIE_VALUE,
-  IS_ADMIN,
-  COOKIE_PUBLIC,
-} from '../../../contants';
+import { COOKIE_VALUE, IS_ADMIN, COOKIE_PUBLIC, JWT } from '../../../contants';
 import styles from './login.module.css';
 
 const Login = ({ setLoginModal }) => {
@@ -46,12 +42,20 @@ const Login = ({ setLoginModal }) => {
             maxAge: 86400 * 3,
             path: '/',
           });
+          setCookie(JWT, data.token, {
+            maxAge: 86400 * 3,
+            path: '/',
+          });
 
           if (typeof window !== 'undefined') {
             router.push('/dashboard');
           }
         } else {
           setCookie(IS_ADMIN, COOKIE_PUBLIC, {
+            maxAge: 86400 * 3,
+            path: '/',
+          });
+          setCookie(JWT, data.token, {
             maxAge: 86400 * 3,
             path: '/',
           });
