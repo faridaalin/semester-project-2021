@@ -12,7 +12,7 @@ import {
   COOKIE_VALUE,
   IS_ADMIN,
   COOKIE_PUBLIC,
-} from '../../../config/contants';
+} from '../../../contants';
 import styles from './login.module.css';
 
 const Login = ({ setLoginModal }) => {

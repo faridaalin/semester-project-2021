@@ -1,6 +1,6 @@
 import isBrowser from './isBrowser';
 import cookie from 'cookie';
-import { USER_TOKEN } from '../config/contants';
+import { USER_TOKEN } from '../contants';
 
 export function parseCookies(req) {
   return cookie.parse(req ? req.headers.cookie || '' : document.cookie);

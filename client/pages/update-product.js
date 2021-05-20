@@ -7,7 +7,7 @@ import {
   updateHotelSchema,
   initialProductValues,
 } from '../validationSchema/productSchema';
-import { ITEM_TO_UPDATE, COOKIE_VALUE } from '../config/contants';
+import { ITEM_TO_UPDATE, COOKIE_VALUE } from '../contants';
 
 export default function UpdateProduct({ admin, token }) {
   const [itemToUpdate, setItemToUpdate] = useState(null);
@@ -28,7 +28,6 @@ export default function UpdateProduct({ admin, token }) {
     category: itemToUpdate && itemToUpdate.category,
     rooms: itemToUpdate && itemToUpdate.rooms,
   };
-  console.log('ITEM_TO_UPDATE, COOKIE_VALUE', ITEM_TO_UPDATE, COOKIE_VALUE);
 
   return (
     <Layout>

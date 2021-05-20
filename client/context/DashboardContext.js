@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import axios from '../utils/axios';
 import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
-import { IS_ADMIN, USER_TOKEN } from '../config/contants';
+import { IS_ADMIN, USER_TOKEN } from '../contants';
 
 const DashboardContext = createContext({
   messages: null,

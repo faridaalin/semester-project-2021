@@ -7,11 +7,7 @@ import { Star, Edit, Trash2 } from 'react-feather';
 import showRating from '../../../helpers/showRating';
 import Button from '../../button/Button';
 import { useCookies } from 'react-cookie';
-import {
-  ITEM_TO_UPDATE,
-  IS_ADMIN,
-  COOKIE_VALUE,
-} from '../../../config/contants';
+import { ITEM_TO_UPDATE, IS_ADMIN, COOKIE_VALUE } from '../../../contants';
 import styles from './hotelCard.module.css';
 
 const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
