@@ -24,85 +24,97 @@ const Accordion = ({ type, content }) => {
     let itemsToDisplay;
     if (type === 'messages') {
       itemsToDisplay =
-        hasMounted &&
-        data &&
-        data.slice(visited, visited + itemPerPage).map((item, index) => {
-          return (
-            <div key={item._id}>
-              <div
-                className={`${styles.accordionHeader} ${
-                  open === index ? styles.open : ''
-                }`}
-                onClick={() => toggleAccordion(index)}
-                key={index}
-              >
-                <span>{item.firstname}</span>
-                <span>{item.subject}</span>
-                <span>{format(new Date(item.createdAt), 'LLL dd yyyy')}</span>
-                <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
-              </div>
-              {open === index ? (
-                <div className={styles.accordionText}>
-                  <p className={styles.paragraph}>{item.message}</p>
-                  <div className={styles.btnContainer}>
-                    <Button color='orange'>Reply</Button>
-                  </div>
+        hasMounted && data && data.length === 0 ? (
+          <div className={styles.accordionText}>
+            <p className={styles.paragraph}>
+              You don't have any messages at the moment.
+            </p>
+          </div>
+        ) : (
+          data.slice(visited, visited + itemPerPage).map((item, index) => {
+            return (
+              <div key={item._id}>
+                <div
+                  className={`${styles.accordionHeader} ${
+                    open === index ? styles.open : ''
+                  }`}
+                  onClick={() => toggleAccordion(index)}
+                  key={index}
+                >
+                  <span>{item.firstname}</span>
+                  <span>{item.subject}</span>
+                  <span>{format(new Date(item.createdAt), 'LLL dd yyyy')}</span>
+                  <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
                 </div>
-              ) : null}
-            </div>
-          );
-        });
+                {open === index ? (
+                  <div className={styles.accordionText}>
+                    <p className={styles.paragraph}>{item.message}</p>
+                    <div className={styles.btnContainer}>
+                      <Button color='orange'>Reply</Button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })
+        );
 
       return itemsToDisplay;
     } else {
       itemsToDisplay =
-        hasMounted &&
-        data &&
-        data.slice(visited, visited + itemPerPage).map((item, index) => {
-          return (
-            <div key={item._id}>
-              <div
-                className={`${styles.accordionHeader} ${
-                  open === index ? styles.open : ''
-                }`}
-                onClick={() => toggleAccordion(index)}
-                key={index}
-              >
-                <span>{item.hotel_name}</span>
-                <span>{format(new Date(item.check_in), 'LLL dd yyyy')}</span>
-                <span>{format(new Date(item.check_out), 'LLL dd yyyy')}</span>
-                <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
-              </div>
-              {open === index ? (
-                <div className={styles.accordionText}>
-                  <span className={styles.paragraph}>
-                    Booking reservation for:{' '}
-                  </span>
-                  <span>
-                    {item.firstname} {item.lastname}
-                  </span>
-                  <p className={styles.paragraph}>
-                    Adults: <span>{item.adults}</span>
-                  </p>
-                  <p className={styles.paragraph}>
-                    Children: <span>{item.children}</span>
-                  </p>
-                  <p className={styles.paragraph}>
-                    Price: <span>{item.price} NOK</span>
-                  </p>
-                  <div>
-                    <p className={styles.paragraph}>
-                      Email: <span>{item.email}</span>
-                    </p>
-                    <p className={styles.paragraph}>
-                      Special Requests: <span>{item.special_requests}</span>
-                    </p>
-                  </div>
+        hasMounted && data && data.length === 0 ? (
+          <div className={styles.accordionText}>
+            <p className={styles.paragraph}>
+              You don't have any enquiries at the moment.
+            </p>
+          </div>
+        ) : (
+          data.slice(visited, visited + itemPerPage).map((item, index) => {
+            return (
+              <div key={item._id}>
+                <div
+                  className={`${styles.accordionHeader} ${
+                    open === index ? styles.open : ''
+                  }`}
+                  onClick={() => toggleAccordion(index)}
+                  key={index}
+                >
+                  <span>{item.hotel_name}</span>
+                  <span>{format(new Date(item.check_in), 'LLL dd yyyy')}</span>
+                  <span>{format(new Date(item.check_out), 'LLL dd yyyy')}</span>
+                  <span>{item.isRead === false ? 'Unread' : 'Read'}</span>
                 </div>
-              ) : null}
-            </div>
-          );
-        });
+                {open === index ? (
+                  <div className={styles.accordionText}>
+                    <span className={styles.paragraph}>
+                      Booking reservation for:{' '}
+                    </span>
+                    <span>
+                      {item.firstname} {item.lastname}
+                    </span>
+                    <p className={styles.paragraph}>
+                      Adults: <span>{item.adults}</span>
+                    </p>
+                    <p className={styles.paragraph}>
+                      Children: <span>{item.children}</span>
+                    </p>
+                    <p className={styles.paragraph}>
+                      Price: <span>{item.price} NOK</span>
+                    </p>
+                    <div>
+                      <p className={styles.paragraph}>
+                        Email: <span>{item.email}</span>
+                      </p>
+                      <p className={styles.paragraph}>
+                        Special Requests: <span>{item.special_requests}</span>
+                      </p>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })
+        );
 
       return itemsToDisplay;
     }
@@ -131,7 +143,9 @@ const Accordion = ({ type, content }) => {
         ) : (
           <>
             {displayItems(content.data, open, 'messages')}
-            <Pagination pageCount={pageCount} changePage={changePage} />
+            {content && content.data.length > 0 && (
+              <Pagination pageCount={pageCount} changePage={changePage} />
+            )}
           </>
         )}
       </div>
@@ -153,7 +167,9 @@ const Accordion = ({ type, content }) => {
       ) : (
         <>
           {displayItems(content.data, open, 'enquiries')}
-          <Pagination pageCount={pageCount} changePage={changePage} />
+          {content && content.data.length > 0 && (
+            <Pagination pageCount={pageCount} changePage={changePage} />
+          )}
         </>
       )}
     </div>
