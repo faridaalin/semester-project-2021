@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
     'Access-Control-Expose-Headers',
     'Authorization'
   );
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
