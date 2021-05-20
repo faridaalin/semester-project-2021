@@ -4,4 +4,5 @@
   padding: 8px 5px;
   font-weight: var(--fontWeight-m);
   text-align: left;
+  position: absolute;
 }

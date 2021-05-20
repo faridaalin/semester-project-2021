@@ -41,6 +41,16 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
     children: 0,
   };
 
+  const getMatches = (content, value) => {
+    let matches = content?.filter((hotel) => {
+      return (
+        hotel.title.toLowerCase().includes(value.toLowerCase()) ||
+        hotel.category.toLowerCase().includes(value.toLowerCase())
+      );
+    });
+    return matches;
+  };
+
   const onSubmit = (values, onSubmitProps) => {
     const { validateForm } = onSubmitProps;
     validateForm(values);
@@ -57,14 +67,9 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
 
   const handleSearchChange = (e) => {
     setSearch(searchRef.current.value.trim());
-    let text = e.target.value;
+    let { value } = e.target;
 
-    let matches = content?.filter((hotel) => {
-      return (
-        hotel.title.toLowerCase().includes(text.toLowerCase()) ||
-        hotel.category.toLowerCase().includes(text.toLowerCase())
-      );
-    });
+    let matches = getMatches(content, value);
 
     if (matches.length > 0) {
       setSearchMatch(matches);
@@ -76,12 +81,8 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
 
   const handleClickedSearch = (value) => {
     setSearch(value);
-    let matches = content?.filter((hotel) => {
-      return (
-        hotel.title.toLowerCase().includes(value.toLowerCase()) ||
-        hotel.category.toLowerCase().includes(value.toLowerCase())
-      );
-    });
+
+    let matches = getMatches(content, value);
 
     if (matches.length > 0) {
       setSearchMatch(matches);

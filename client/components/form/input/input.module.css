@@ -38,6 +38,8 @@
   font-weight: var(--fontWeight-m);
   padding-left: 8px;
   text-align: left;
+  margin-top: 4px;
+  position: absolute;
 }
 
 .dateRange {
