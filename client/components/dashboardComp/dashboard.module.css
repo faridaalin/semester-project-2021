@@ -4,6 +4,7 @@
   padding: 0 1rem 2rem 1rem;
   background: #fdfcfc;
   border-radius: 8px;
+  height: 100%;
 }
 
 .simpleText {
@@ -28,6 +29,7 @@
   min-height: 46vh;
 }
 .navBtn {
+  padding: 16px 0px 16px 16px;
   font-size: 14px;
   color: var(--grey-200);
   background: transparent;
@@ -36,9 +38,16 @@
   height: 100%;
   text-align: left;
 }
+
+.navBtn:hover {
+  padding-left: 8px;
+  background: rgba(229, 229, 229, 0.11);
+  border-left: 8px solid #ee9285;
+}
 .navBtn:focus {
   outline: none;
 }
+
 .navItems,
 .current,
 .navBtn {
@@ -48,7 +57,6 @@
 }
 
 .navItem {
-  padding: 16px 32px;
   background: transparent;
   position: relative;
   border-top-right-radius: 6px;
@@ -59,13 +67,7 @@
 .active {
   background: rgba(229, 229, 229, 0.11);
   border-left: 8px solid #ee9285;
-  padding-left: 24px;
-}
-
-.navItem:hover {
-  background: rgba(229, 229, 229, 0.11);
-  border-left: 8px solid #ee9285;
-  padding-left: 24px;
+  padding-left: 8px;
 }
 
 .navButton {
@@ -82,7 +84,10 @@
   border-radius: 8px;
   align-items: center;
   display: flex;
-  gap: 16px;
+}
+
+.navButton svg {
+  margin-right: 16px;
 }
 
 .dark > * {
@@ -119,7 +124,6 @@
 
 .logoutButton {
   composes: navBtn;
-  margin-top: 16px;
 }
 
 .hide {
@@ -135,8 +139,8 @@
     grid-template-columns: 200px 2fr;
     position: static;
     padding: 0;
-    min-height: 500px;
-    max-height: 500px;
+    min-width: 600px;
+    max-width: 600px;
   }
   .navButton {
     border-top-right-radius: 0;
@@ -151,7 +155,6 @@
     position: static;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    max-height: 500px;
   }
 
   .navContainer {
@@ -170,6 +173,5 @@
 @media screen and (min-width: 992px) {
   .container {
     min-width: 910px;
-    max-width: 910px;
   }
 }

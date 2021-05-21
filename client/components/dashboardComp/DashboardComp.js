@@ -85,13 +85,11 @@ const DashboardComp = ({ messages, enquiries }) => {
             className={`${styles.navContainer} ${openNav ? '' : styles.hide}`}
           >
             <ul className={styles.navItems}>
-              <li
-                className={`${styles.navItem} ${
-                  activeClass === 1 ? styles.active : ''
-                }`}
-              >
+              <li className={`${styles.navItem}`}>
                 <button
-                  className={styles.navBtn}
+                  className={`${styles.navBtn} ${
+                    activeClass === 1 ? styles.active : ''
+                  }`}
                   id={1}
                   onClick={(e) => {
                     setCusomData(navTitle ? messages : enquiries);
@@ -102,13 +100,11 @@ const DashboardComp = ({ messages, enquiries }) => {
                   {showMessages ? messages.data.length : enquiries.data.length}
                 </button>
               </li>
-              <li
-                className={`${styles.navItem} ${
-                  activeClass === 2 ? styles.active : ''
-                }`}
-              >
+              <li className={`${styles.navItem} `}>
                 <button
-                  className={styles.navBtn}
+                  className={`${styles.navBtn} ${
+                    activeClass === 2 ? styles.active : ''
+                  }`}
                   id={2}
                   onClick={(e) => {
                     setCusomData('"Unread" is currently empty');
@@ -118,13 +114,11 @@ const DashboardComp = ({ messages, enquiries }) => {
                   Unread
                 </button>
               </li>
-              <li
-                className={`${styles.navItem} ${
-                  activeClass === 3 ? styles.active : ''
-                }`}
-              >
+              <li className={`${styles.navItem} `}>
                 <button
-                  className={styles.navBtn}
+                  className={`${styles.navBtn} ${
+                    activeClass === 3 ? styles.active : ''
+                  }`}
                   id={3}
                   onClick={(e) => {
                     setCusomData('"Sent" is currently empty.');
@@ -134,13 +128,11 @@ const DashboardComp = ({ messages, enquiries }) => {
                   Sent
                 </button>
               </li>
-              <li
-                className={`${styles.navItem} ${
-                  activeClass === 4 ? styles.active : ''
-                }`}
-              >
+              <li className={`${styles.navItem} `}>
                 <button
-                  className={styles.navBtn}
+                  className={`${styles.navBtn} ${
+                    activeClass === 4 ? styles.active : ''
+                  }`}
                   id={4}
                   onClick={(e) => {
                     setCusomData('"Trash" is currently empty');
