@@ -63,7 +63,7 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const hotels = axios.get('/hotels');
     const attractions = axios.get('/attractions');
