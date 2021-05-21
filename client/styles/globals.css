@@ -7,6 +7,9 @@ body {
   color: var(--blue-400) !important;
   background: var(--grey-100) !important;
 }
+body {
+  overflow-x: hidden;
+}
 
 ul {
   list-style: none;
