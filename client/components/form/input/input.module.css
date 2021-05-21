@@ -96,12 +96,10 @@
   padding: 9px 16px;
   width: 100%;
   position: relative;
+  cursor: pointer;
 }
 
 .select {
-  /* -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; */
 }
 .guestsInput {
   text-align: center;

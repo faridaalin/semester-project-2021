@@ -137,6 +137,7 @@
   border-radius: 6px;
   padding: 9px 16px;
   width: 100%;
+  cursor: pointer;
 }
 
 .select {
