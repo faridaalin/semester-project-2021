@@ -56,6 +56,8 @@ $ cd client
 $ yarn
 ```
 
+Add dummy data
+
 ```
 $ node data/importData.js --import
 ```
