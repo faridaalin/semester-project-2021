@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 20px;
   padding: 16px 16px 32px 16px;
   background-color: rgb(248 248 248 / 30%);
   border: 2px solid var(--white-100);
@@ -11,6 +12,7 @@
   max-width: 310px;
   margin-bottom: 40px;
 }
+
 .hotelCard:hover {
   background-color: var(--white-100);
   filter: drop-shadow(1px 5px 10px rgba(0, 0, 0, 0.2));
@@ -33,26 +35,39 @@
   width: 40px;
   padding: 8px;
   border-radius: 8px;
+  border: 2px solid transparent;
 }
 .iconUpdate {
   color: var(--success);
   background-color: rgba(116, 198, 157, 0.18);
 }
+.iconUpdate:hover {
+  border-color: rgba(116, 198, 157, 0.18);
+}
 .iconDelete {
   color: var(--danger);
   background-color: rgba(231, 29, 54, 0.18);
 }
+.iconDelete:hover {
+  border-color: rgba(231, 29, 54, 0.18);
+}
+
 .icons {
   display: grid;
   grid-auto-flow: column;
-  gap: 40px;
+  margin-left: 24px;
 }
 
 .btnIcon {
   border: none;
   background: transparent;
+  margin-right: 16px;
   transform: scale(0.9);
   transition: all 0.3s ease;
+}
+
+.btnIcon:last-child {
+  margin-right: 0px;
 }
 .btnIcon:hover {
   transform: scale(1);
@@ -64,8 +79,9 @@
 }
 
 .buttonContainer {
+  width: fit-content;
   display: flex;
-  gap: 40px;
+  justify-content: space-between;
 }
 
 .content {
@@ -116,18 +132,15 @@
     max-width: 565px;
     padding-bottom: 16px;
     flex-direction: row;
-    gap: 24px;
     margin-right: 16px;
     min-width: 565px;
-  }
-  .icons {
-    margin-left: 24px;
   }
 
   .imageContainer {
     width: 100%;
     height: 229px;
     margin-bottom: 0;
+    margin-right: 24px;
   }
   .h3 {
     margin-top: 0;
