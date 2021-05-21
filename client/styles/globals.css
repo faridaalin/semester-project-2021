@@ -151,7 +151,7 @@ button {
 .react-datepicker-wrapper {
   width: 100%;
 }
-.loader {
+.loader > svg {
   animation: spin 1.2s linear infinite;
 }
 
