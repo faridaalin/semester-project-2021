@@ -11,6 +11,7 @@
 }
 .formHome {
   position: relative;
+  z-index: 100;
   background: var(--white-200);
   border-radius: 8px;
   padding: 24px 16px;

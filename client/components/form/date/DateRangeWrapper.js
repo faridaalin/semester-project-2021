@@ -27,10 +27,6 @@ const DateRangeWrapper = ({
   const [guests, setGuests] = useState(1);
   const [dateRange, setDateRange] = useState(intitalDateRange);
 
-  const closeModal = () => {
-    setCalendar(false);
-  };
-
   return (
     <div className={styles.datesGuestsWrapper}>
       <div>
@@ -52,14 +48,19 @@ const DateRangeWrapper = ({
                 )} - ${format(new Date(dateRange[0].endDate), 'LLL dd yyyy')}`
           }
           className={styles.inputButton}
-          onClick={() => setCalendar(!calendar)}
+          onClick={() => {
+            setCalendar(!calendar);
+          }}
         />
 
         {calendar && (
           <div className={styles.dateRange} ref={calendarContainer}>
             <div className={styles.removeIcons}>
               <div className={styles.closeModel}>
-                <X className={styles.closeicon} onClick={closeModal} />
+                <X
+                  className={styles.closeicon}
+                  onClick={() => setCalendar(false)}
+                />
               </div>
               <button
                 onClick={() => setDateRange(intitalDateRange)}

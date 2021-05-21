@@ -7,7 +7,6 @@
   background-color: var(--blue-400);
   background-position: center center;
   background-size: cover;
-
   position: relative;
 }
 
@@ -58,10 +57,8 @@
 
 @media only screen and (min-width: 500px) {
   .content {
-    top: 45%;
-    right: 50%;
     width: 466px;
-    transform: translate(50%, -50%);
+    margin-left: 6%;
   }
 
   .header {
@@ -76,7 +73,6 @@
 @media only screen and (min-width: 768px) {
   .heroImage {
     background-image: url('/hero-desktop.png');
-
     height: 80vh;
     margin-top: 0;
     max-width: 72%;
@@ -86,20 +82,20 @@
   .overlay {
     backdrop-filter: none;
     background: rgb(0 0 0 / 47%);
-    height: 80vh;
+    height: 100%;
   }
 
   .heroSection {
-    position: relative;
     padding: 0 1rem;
     margin-bottom: 200px;
   }
   .content {
     padding-top: 30px;
-    top: 0;
+    top: 5rem;
     width: initial;
     right: initial;
     transform: none;
+    margin-left: auto;
   }
   .explore {
     font-family: var(--header-font);

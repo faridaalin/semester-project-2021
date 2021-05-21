@@ -51,6 +51,6 @@
 
   .searchContainer {
     min-width: min-content;
-    top: 0px;
+    top: 20px;
   }
 }

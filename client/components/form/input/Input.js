@@ -32,7 +32,6 @@ const DefaultInput = ({
   smallLabel,
   icon,
   customClass,
-  // customContainer,
   value,
   handleChange,
   handleBlur,

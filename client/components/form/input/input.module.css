@@ -45,19 +45,12 @@
 
 .dateRange {
   background: var(--grey-100);
-  position: absolute;
-  left: 0;
-  min-width: 100%;
-  top: 150px;
-  z-index: 10;
-  padding: 32px;
   display: grid;
   box-shadow: 2px 0px 20px rgb(140 162 181 / 48%);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  max-width: 500px;
-  z-index: 20000;
-  overflow: scroll;
+  position: absolute;
+  left: 0;
 }
 
 .absolute {
@@ -144,6 +137,7 @@
   display: flex;
   flex-direction: row-reverse;
   margin-left: auto;
+  padding-top: 16px;
 }
 
 .removeIcons > button {
