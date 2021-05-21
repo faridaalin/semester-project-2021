@@ -16,7 +16,7 @@
 }
 
 .primaryButton {
-  font-family: var(--body-font);
+  font-family: var(--header-font);
   font-weight: var(--fontWeight-m);
   padding: 8px 16px;
   background-color: var(--grey-200);
@@ -24,12 +24,8 @@
   border: none;
   border-radius: 8px;
   font-size: 14px;
-
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   align-items: center;
-  gap: 16px;
-
   transition: all 0.2s ease-in-out;
 }
 .primaryButton:hover {
@@ -45,8 +41,9 @@
   border-radius: 6px;
   color: var(--blue-400);
   background-color: transparent;
-  font-family: var(--body-font);
+  font-family: var(--header-font);
   font-weight: var(--fontWeight-m);
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 .button:hover {

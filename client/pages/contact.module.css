@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 0 1rem;
   max-width: 460px;
+  margin: 0 auto;
 }
 
 .form {
@@ -12,6 +13,10 @@
   border-radius: 8px;
   margin-bottom: 100px;
   height: fit-content;
+}
+
+.form > .column {
+  margin-top: 16px;
 }
 
 .btnContainer {
@@ -38,12 +43,22 @@
   min-width: initial;
   padding: 10px 16px;
 }
+.space {
+  margin-right: 8px;
+  width: 100%;
+}
+.space:last-child {
+  margin-right: 0;
+}
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: initial;
     flex-direction: row;
-    gap: 24px;
+  }
+
+  .form {
+    margin-right: 24px;
   }
 
   .form,

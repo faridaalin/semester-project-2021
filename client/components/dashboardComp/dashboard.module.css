@@ -36,6 +36,9 @@
   height: 100%;
   text-align: left;
 }
+.navBtn:focus {
+  outline: none;
+}
 .navItems,
 .current,
 .navBtn {

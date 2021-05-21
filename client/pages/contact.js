@@ -62,36 +62,45 @@ export default function Contact() {
               <Form className={styles.form}>
                 {!fetchStatus ? null : <Alert status={fetchStatus} />}
                 <Column>
-                  <DefaultInput
-                    type='text'
-                    name='firstname'
-                    placeholder='First name'
-                    label='First name'
-                    customClass={styles.contactInput}
-                  />
-                  <DefaultInput
-                    type='text'
-                    name='lastname'
-                    placeholder='Last name'
-                    label='Last name'
-                    customClass={styles.contactInput}
-                  />
+                  <div className={styles.space}>
+                    <DefaultInput
+                      type='text'
+                      name='firstname'
+                      placeholder='First name'
+                      label='First name'
+                      customClass={styles.contactInput}
+                    />
+                  </div>
+
+                  <div className={styles.space}>
+                    <DefaultInput
+                      type='text'
+                      name='lastname'
+                      placeholder='Last name'
+                      label='Last name'
+                      customClass={styles.contactInput}
+                    />
+                  </div>
                 </Column>
                 <Column>
-                  <DefaultInput
-                    type='email'
-                    name='email'
-                    placeholder='email@email.com'
-                    label='Email'
-                    customClass={styles.contactInput}
-                  />
-                  <DefaultInput
-                    type='text'
-                    name='subject'
-                    placeholder='Subject'
-                    label='Subject'
-                    customClass={styles.contactInput}
-                  />
+                  <div className={styles.space}>
+                    <DefaultInput
+                      type='email'
+                      name='email'
+                      placeholder='email@email.com'
+                      label='Email'
+                      customClass={styles.contactInput}
+                    />
+                  </div>
+                  <div className={styles.space}>
+                    <DefaultInput
+                      type='text'
+                      name='subject'
+                      placeholder='Subject'
+                      label='Subject'
+                      customClass={styles.contactInput}
+                    />
+                  </div>
                 </Column>
                 <div>
                   <Textera
