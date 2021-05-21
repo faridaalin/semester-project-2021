@@ -22,7 +22,7 @@ const AttractionsCard = (props) => {
           dangerouslySetInnerHTML={{
             __html: attractions.description,
           }}
-        />
+        ></section>
       </div>
     </div>
   );

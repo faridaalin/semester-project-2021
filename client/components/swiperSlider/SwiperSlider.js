@@ -6,7 +6,7 @@ SwiperCore.use([Navigation, Pagination]);
 
 const SwiperSlider = ({ images, title }) => {
   return (
-    <div>
+    <section>
       <Swiper
         id='main'
         tag='section'
@@ -23,7 +23,7 @@ const SwiperSlider = ({ images, title }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
