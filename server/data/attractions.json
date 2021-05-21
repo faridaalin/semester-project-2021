@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Bryggen Hanseatic Wharf",
+    "description": "<p>Bryggen is one of Bergen's and Norway's main attractions. Bryggen was built after the great fire in 1702 and is included on UNESCO's World Heritage List.</p><p>The very first buildings in Bergen were situated at Bryggen, which has been a vibrant and important area of the city for many centuries.</p>",
+    "image_url": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619951990/bergenHarbour_ovm00t.jpg"
+  },
+  {
+    "name": "Grieg Museum",
+    "description": "<p>Located just a short trek to the south of Bergen, Troldhaugen is famous as the former home of Norwegian composer Edvard Grieg. Built in 1885, the well-preserved home is now the site of the Grieg Museum and is dedicated to the life and work of the composer.</p> <p>The Greig Museum is housed in the villa where Edvard and Nina lived, as well as a number of newer buildings constructed for the purpose of commemorating the composer's life and work. Visitors can also see the composer's hut, Greig's private workspace by the lake where he retreated for concentration.</p>",
+    "image_url": "https://res.cloudinary.com/djey7uz4e/image/upload/v1619951986/griegHome_kqlrw2.jpg"
+  },
+  {
+    "name": "Mount Fløyen",
+    "description": "<p>To the northeast of Bergen rises Mount Fløyen. Also known as Fløyfjell, this 319-meter peak offers magnificent views of the city and the surrounding area. For the most dramatic vistas, time your visit for early morning or at dusk.</p> <p>If walking is not your thing, you can take the Fløibanen, a fun 844-meter-long funicular railway that carries over a million passengers to the top every year. Once here, the views over Bergen are simply breathtaking.</p>",
+    "image_url": "https://res.cloudinary.com/djey7uz4e/image/upload/v1620032490/leonard-rb-NuAtjag7oJ4-unsplash-1_y6hocl.jpg"
+  }
+]

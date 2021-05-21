@@ -3,9 +3,11 @@ const fs = require('fs');
 const hotelsData = require('./hotels.json');
 const messageData = require('./messages.json');
 const enquiryData = require('./enquries.json');
+const attractionsData = require('./attractions.json');
 const Hotel = require('../model/hotel');
 const Enquiry = require('../model/enquiry');
 const Message = require('../model/message');
+const Attractions = require('../model/attractions');
 require('dotenv').config();
 
 // Connect to MongoDB
@@ -28,6 +30,7 @@ const importData = async () => {
     await Hotel.create(hotelsData);
     await Enquiry.create(enquiryData);
     await Message.create(messageData);
+    await Attractions.create(attractionsData);
     console.log('Data LOADED!💃');
   } catch (err) {
     console.log('ERROR while importing data!💥 💥 ', err);
@@ -41,6 +44,7 @@ const deleteData = async () => {
     await Hotel.deleteMany();
     await Enquiry.deleteMany();
     await Message.deleteMany();
+    await Attractions.deleteMany();
     console.log('Data DELETED!⛔');
   } catch (err) {
     console.log('ERROR while deleting data!💥 💥 ', err);
