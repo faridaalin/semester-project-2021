@@ -130,7 +130,7 @@ const HotelDetail = (props) => {
 
 export default HotelDetail;
 
-export async function getServerSideProps() {
+export async function getStatgeticPaths() {
   let paths = [];
   try {
     const hotels = await axios.get(`/hotels`);
@@ -146,7 +146,7 @@ export async function getServerSideProps() {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   try {
     const hotels = await axios.get(`/hotels/${params.id}`);
     const data = hotels.data;
