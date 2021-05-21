@@ -63,7 +63,7 @@ const Pill = ({ name, select, dashboard, mobile }) => {
                 Enquiries
               </button>
               <button className={styles.button} onClick={HandleEnquireForm}>
-                Create Enquiries
+                Create Hotel
               </button>
               <button className={styles.button} onClick={logout}>
                 Logout
