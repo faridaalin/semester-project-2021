@@ -104,6 +104,7 @@
 .description p {
   font-weight: var(--fontWeight-r);
   font-size: 14px;
+  word-break: break-all;
 }
 
 .description {

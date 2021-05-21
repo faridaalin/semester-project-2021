@@ -60,12 +60,13 @@ const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
                 <Star key={i} className={styles.rating} />
               ))}
             </span>
-            <section
-              className={styles.description}
-              dangerouslySetInnerHTML={{
-                __html: truncate(hotel.description, 110),
-              }}
-            />
+            <div className={styles.description}>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: truncate(hotel.description, 110),
+                }}
+              />
+            </div>
             <div className={styles.buttonContainer}>
               <Button color='orange' size='s'>
                 View More

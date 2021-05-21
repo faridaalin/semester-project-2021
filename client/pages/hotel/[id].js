@@ -1,27 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useHotelsContext } from '../../context/HotelsContext';
-import { useSearchContext } from '../../context/searchContext';
-import getWindowWidth from '../../helpers/getWindowWidth';
+import { useState } from 'react';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
-import Layout from '../../components/layout/Layout';
-import axios from '../../utils/axios';
-import showRating from '../../helpers/showRating';
-import HeroHeaderHotels from '../../components/heroHeaderHotels/HeroHeaderHotels';
-import SwiperSlider from '../../components/swiperSlider/SwiperSlider';
-import DesktopSlides from '../../components/desktopSlides/DesktopSlides';
-import Button from '../../components/button/Button';
-import PageHeader from '../../components/pageHeader/PageHeader';
-import useWindowWidth from '../../hooks/useWindowSize';
-import ReservationForm from '../../components/form/reservationForm/ReservationForm';
+import { useSearchContext } from '@/context/searchContext';
+import Layout from '@/components/layout/Layout';
+import axios from '@/utils/axios';
+import showRating from '@/helpers/showRating';
+import HeroHeaderHotels from '@/components/heroHeaderHotels/HeroHeaderHotels';
+import SwiperSlider from '@/components/swiperSlider/SwiperSlider';
+import DesktopSlides from '@/components/desktopSlides/DesktopSlides';
+import Button from '@/components/button/Button';
+import PageHeader from '@/components/pageHeader/PageHeader';
+import useWindowWidth from '@/hooks/useWindowSize';
+import ReservationForm from '@/components/form/reservationForm/ReservationForm';
 
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
-  const router = useRouter();
   const hotel = props.data.data;
   const [modal, setModal] = useState(false);
-  const handleClose = () => setModal(false);
+
   const handleShow = () => setModal(true);
   const innerWidth = () => {
     const isBrowser = typeof window !== 'undefined' ? window.innerWidth : null;
