@@ -146,7 +146,7 @@ export async function getServerSideProps() {
   return { paths, fallback: false };
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   try {
     const hotels = await axios.get(`/hotels/${params.id}`);
     const data = hotels.data;
