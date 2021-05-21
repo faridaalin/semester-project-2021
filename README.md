@@ -56,6 +56,10 @@ $ cd client
 $ yarn
 ```
 
+```
+$ node data/importData.js --import
+```
+
 1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/)
 2. Rename env.example to env.local
 3. Then add you own varibles
