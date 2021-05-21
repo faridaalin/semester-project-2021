@@ -24,7 +24,7 @@
   margin: 0 auto;
   display: grid;
   grid-auto-flow: column;
-  padding: 24px 1rem;
+  padding: 24px 1rem 24px 2rem;
   font-family: var(--header-font);
   width: 100%;
   z-index: 11;
@@ -47,6 +47,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 4px;
+  margin-right: 8px;
   height: 20px;
   width: 2rem;
 }

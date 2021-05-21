@@ -13,7 +13,6 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  gap: 16px;
 }
 
 .paginationContainer a {
@@ -23,6 +22,7 @@
   border: 1px solid rgba(31, 41, 55, 1);
   color: rgba(31, 41, 55, 1);
   cursor: pointer;
+  margin: 0 16px;
 }
 
 .paginationActive a {

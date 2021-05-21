@@ -87,7 +87,7 @@
   font-weight: var(--fontWeight-sm);
   line-height: 30px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-direction: row;
   gap: 4px;
   margin-bottom: 4px;
@@ -118,6 +118,7 @@
   border-radius: 6px;
   width: 100%;
   font-family: var(--header-font);
+  -webkit-appearance: textfield;
 }
 
 .input::placeholder,

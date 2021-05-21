@@ -137,6 +137,7 @@ const ReservationForm = ({ modal, setModal, hotel }) => {
                           icon='pin'
                           readonly={true}
                         />
+
                         <div className={styles.row}>
                           <CalendarWrapper
                             name='check_in'

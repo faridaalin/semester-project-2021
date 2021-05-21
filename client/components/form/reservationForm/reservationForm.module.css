@@ -40,17 +40,29 @@
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 16px;
-  gap: 16px;
+  margin-right: 16px;
   width: 100%;
+}
+
+.column:last-child {
+  margin-right: 0px;
+}
+
+.column > div {
+  margin-top: 32px;
+  margin-right: 16px;
 }
 .row {
   display: flex;
   width: 100%;
-  gap: 16px;
 }
 
 .row > div {
   width: 100%;
+  margin-right: 16px;
+}
+.row > div:last-child {
+  margin-right: 0px;
 }
 .priceWrapper {
   display: flex;
@@ -63,7 +75,6 @@
 .price {
   font-size: 16px;
   color: var(--blue-400);
-
   text-align: right;
   font-weight: var(--fontWeight-b);
   line-height: 33.6px;
@@ -102,6 +113,6 @@
 
   .column {
     flex-direction: row;
-    gap: 16px;
+    align-items: flex-end;
   }
 }
