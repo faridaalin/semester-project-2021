@@ -39,11 +39,11 @@ const Login = ({ setLoginModal }) => {
 
         if (data.user.role === COOKIE_VALUE) {
           setCookie(IS_ADMIN, COOKIE_VALUE, {
-            maxAge: 86400 * 3,
+            maxAge: 86400,
             path: '/',
           });
           setCookie(JWT, data.token, {
-            maxAge: 86400 * 3,
+            maxAge: 86400,
             path: '/',
           });
 
@@ -52,11 +52,11 @@ const Login = ({ setLoginModal }) => {
           }
         } else {
           setCookie(IS_ADMIN, COOKIE_PUBLIC, {
-            maxAge: 86400 * 3,
+            maxAge: 86400,
             path: '/',
           });
           setCookie(JWT, data.token, {
-            maxAge: 86400 * 3,
+            maxAge: 86400,
             path: '/',
           });
           if (typeof window !== 'undefined') {
