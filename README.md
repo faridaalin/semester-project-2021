@@ -17,39 +17,6 @@ $ git clone https://github.com/faridaalin/semester-project-2021.git
 $ cd semester-project-2021
 ```
 
-## Dev Setup Server
-
-There are few steps for server setup and requirements you need to do. You will need to create MongoDB account. If you do not have a account or do not want to create an account, you can skip this part and proceed to <em>Dev Setup Client</em>.
-
-```
-$ cd server
-```
-
-```
-$ yarn
-```
-
-1. Create a free account at [Create an MongoDB Atlas Account](https://docs.atlas.mongodb.com/tutorial/create-atlas-account/), you can follow the steps described here.
-2. Create a project, and a Free Tier Cluster.
-3. Change env-example to .env
-4. Then add you env variables.
-
-```
-DB=
-DB_USER=
-DB_PASS=
-JWT_SECRET=
-NODE_ENV=
-PORT=
-
-```
-
-Add dummy data
-
-```
-$ node data/importData.js --import
-```
-
 ## Dev Setup Client
 
 In the root of your project:
@@ -65,44 +32,16 @@ $ yarn
 1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/)
 2. Rename env.example to .env.local
 3. Then add you own varibles
+4. Use this live API for the project: https://sm-2021-backend.herokuapp.com/api
 
 ```
-NEXT_PUBLIC_LOCAL_API= http://localhost:8080
+NEXT_PUBLIC_LOCAL_API=https://sm-2021-backend.herokuapp.com/api
 NEXT_PUBLIC_MAPBOX_TOKEN= your mapbox token...
 ```
-
-## Serving without MongoDB
-
-If you did not set up mondoDB you can use this live api as your local API.
-
-```
-$ cd client
-```
-
-1. Change NEXT_PUBLIC_LOCAL_API to the following: https://sm-2021-backend.herokuapp.com/api
-
-```
-NEXT_PUBLIC_LOCAL_API= https://sm-2021-backend.herokuapp.com/api
-NEXT_PUBLIC_MAPBOX_TOKEN= your mapbox token...
-```
-
-```
-$ yarn run dev
-```
-
-Navigate to [localhost:3000](http://localhost:3000)
 
 ## Serving the project
 
-You need to run both client and server in order to serve the project. In the root of the project:
-
 ```
-$ cd client
-$ yarn run dev
-```
-
-```
-$ cd server
 $ yarn run dev
 ```
 
