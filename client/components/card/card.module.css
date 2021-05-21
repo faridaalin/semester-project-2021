@@ -32,6 +32,11 @@
   transition: all 0.3s ease;
 }
 
+.card:active {
+  outline: none;
+  box-shadow: 0px 0px 0px 0px, 0 0 0 2px #3a3c61a1;
+}
+
 .content {
   padding: 16px 16px 24px 16px;
   background: linear-gradient(

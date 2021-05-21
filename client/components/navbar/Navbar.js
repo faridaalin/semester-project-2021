@@ -111,40 +111,48 @@ const Navbar = ({ setLoginModal }) => {
         >
           {process.browser && (
             <ul className={`${styles.items}`}>
-              <li
-                className={`${styles.item} ${
-                  router.pathname === '/' && styles.active
-                } `}
-              >
+              <li>
                 <Link href='/'>
-                  <a>Home</a>
+                  <a
+                    className={`${styles.item} ${
+                      router.pathname === '/' && styles.active
+                    } `}
+                  >
+                    Home
+                  </a>
                 </Link>
               </li>
-              <li
-                className={`${styles.item} ${
-                  router.pathname === '/hotels' && styles.active
-                } `}
-              >
+              <li>
                 <Link href='/hotels'>
-                  <a>Hotels</a>
+                  <a
+                    className={`${styles.item} ${
+                      router.pathname === '/hotels' && styles.active
+                    } `}
+                  >
+                    Hotels
+                  </a>
                 </Link>
               </li>
-              <li
-                className={`${styles.item} ${
-                  router.pathname === '/about' && styles.active
-                } `}
-              >
+              <li>
                 <Link href='/about'>
-                  <a>About</a>
+                  <a
+                    className={`${styles.item} ${
+                      router.pathname === '/about' && styles.active
+                    } `}
+                  >
+                    About
+                  </a>
                 </Link>
               </li>
-              <li
-                className={`${styles.item} ${
-                  router.pathname === '/contact' && styles.active
-                } `}
-              >
+              <li>
                 <Link href='/contact'>
-                  <a>Contact</a>
+                  <a
+                    className={`${styles.item} ${
+                      router.pathname === '/contact' && styles.active
+                    } `}
+                  >
+                    Contact
+                  </a>
                 </Link>
               </li>
 
