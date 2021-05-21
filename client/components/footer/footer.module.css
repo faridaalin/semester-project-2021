@@ -105,6 +105,11 @@
   }
   .innerFooter {
     display: flex;
-    gap: 130px;
+  }
+  .innerFooter > section {
+    margin-right: 130px;
+  }
+  .innerFooter > section:last-child {
+    margin-right: 0;
   }
 }

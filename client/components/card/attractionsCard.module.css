@@ -1,6 +1,10 @@
 .attractionsCard {
   margin-bottom: 38px;
   width: 100%;
+  margin-right: 24px;
+}
+.attractionsCard:last-child {
+  margin-right: 0px;
 }
 .attractionsCard:last-of-type {
   margin-bottom: 0;
@@ -46,7 +50,7 @@
     width: 1080px;
     display: flex;
     flex-direction: row-reverse;
-    gap: 130px;
+    justify-content: space-between;
     place-items: center;
     margin-bottom: 304px;
   }
