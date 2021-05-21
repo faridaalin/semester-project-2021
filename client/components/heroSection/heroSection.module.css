@@ -58,7 +58,7 @@
 @media only screen and (min-width: 500px) {
   .content {
     width: 466px;
-    margin-left: 6%;
+    left: calc(100vw / 2 - 700px / 2 + 120px);
   }
 
   .header {
@@ -93,9 +93,8 @@
     padding-top: 30px;
     top: 5rem;
     width: initial;
-    right: initial;
     transform: none;
-    margin-left: auto;
+    left: auto;
   }
   .explore {
     font-family: var(--header-font);
