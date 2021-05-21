@@ -31,7 +31,7 @@ $ yarn
 
 1. Create a free account at [Create an MongoDB Atlas Account](https://docs.atlas.mongodb.com/tutorial/create-atlas-account/), you can follow the steps described here.
 2. Create a project, and a Free Tier Cluster.
-3. Change env-example to env
+3. Change env-example to .env
 4. Then add you env variables.
 
 ```
@@ -42,6 +42,12 @@ JWT_SECRET=
 NODE_ENV=
 PORT=
 
+```
+
+Add dummy data
+
+```
+$ node data/importData.js --import
 ```
 
 ## Dev Setup Client
@@ -56,14 +62,8 @@ $ cd client
 $ yarn
 ```
 
-Add dummy data
-
-```
-$ node data/importData.js --import
-```
-
 1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/)
-2. Rename env.example to env.local
+2. Rename env.example to .env.local
 3. Then add you own varibles
 
 ```
