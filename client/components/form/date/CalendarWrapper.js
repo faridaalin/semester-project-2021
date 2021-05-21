@@ -24,7 +24,7 @@ const CalendarWrapper = (props) => {
         onBlur={handleBlur}
         selected={(field.value && new Date(field.value)) || null}
         startDate={selectedDate}
-        className={`${styles.input}`}
+        className={`${styles.input} ${styles.datePicker}`}
         minDate={new Date()}
         name={name}
         placeholderText={placeholder}
