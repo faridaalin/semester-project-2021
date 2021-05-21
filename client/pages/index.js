@@ -5,8 +5,10 @@ import Card from '@/components/card/Card';
 import AttractionsCard from '@/components/card/AttractionsCard';
 import CardContainer from '@/components/cardContainer/CardContainer';
 import HeroSection from '@/components/heroSection/HeroSection';
-
 import data from '../data/imgCategory.json';
+
+Home.title = 'Holidaze';
+Home.description = 'Welcome to holidaze, a hotel booking website.';
 
 export default function Home(props) {
   const { hotels, attractions } = props;

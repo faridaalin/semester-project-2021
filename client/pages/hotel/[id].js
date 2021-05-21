@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState } from 'react';
 import { Star, Tv, Coffee, Wifi } from 'react-feather';
 import { useSearchContext } from '@/context/searchContext';
@@ -48,6 +49,9 @@ const HotelDetail = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{hotel.title} </title>
+      </Head>
       <HeroHeaderHotels
         searchMatch={search}
         setSearchMatch={setSearch}

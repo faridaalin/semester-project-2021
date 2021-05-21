@@ -4,6 +4,10 @@ import PageHeader from '@/components/pageHeader/PageHeader';
 import { parseCookies } from '@/helpers/parseCookies';
 import DashboardComp from '@/components/dashboardComp/DashboardComp';
 
+Dashboard.title = 'Dashboard';
+Dashboard.description =
+  'Dashboard for administration. Get overview of revervations and messages.';
+
 export default function Dashboard({ data, admin, token }) {
   const { messages, enquiries } = data;
 

@@ -14,6 +14,9 @@ import { useSearchContext } from '@/context/searchContext';
 import { useMounted } from '@/hooks/hasMounted';
 import styles from './hotels.module.css';
 
+Hotels.title = 'All hotels';
+Hotels.description = 'List of all avaiable hotels in Bergen';
+
 export default function Hotels(props) {
   const { hasMounted } = useMounted();
   const [pageNumber, setPageNumber] = useState(0);

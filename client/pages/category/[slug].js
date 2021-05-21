@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Layout from '../../components/layout/Layout';
@@ -45,12 +46,15 @@ const Category = (props) => {
     return (
       <Layout>
         <h2> Hotel Category</h2>
-        'Nothing here
+        <p>Sorry, please come back later.</p>
       </Layout>
     );
   }
   return (
     <Layout>
+      <Head>
+        <title>Category</title>
+      </Head>
       <section className='section'>
         <PageHeader title='Hotels' />
 

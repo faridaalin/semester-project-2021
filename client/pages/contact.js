@@ -12,6 +12,9 @@ import { contactSchema, initialValues } from '@/validationSchema/contactSchema';
 import Alert from '@/components/alert/Alert';
 import styles from './contact.module.css';
 
+Contact.title = 'Contact';
+Contact.description = 'Contact us for any questions.';
+
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(null);

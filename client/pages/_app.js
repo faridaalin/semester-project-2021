@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { CookiesProvider } from 'react-cookie';
 import { MediaContextProvider } from '../context/Media';
 import { HotelProvider } from '../context/HotelsContext';
@@ -20,6 +21,10 @@ function MyApp({ Component, pageProps }) {
         <DashboardContextProvider>
           <SearchProvider>
             <HotelProvider>
+              <Head>
+                <title>{Component.title}</title>
+                <meta name='description' content={Component.description} />
+              </Head>
               <Component {...pageProps} />
             </HotelProvider>
           </SearchProvider>

@@ -4,6 +4,8 @@ import Layout from '@/components/layout/Layout';
 import PageHeader from '@/components/pageHeader/PageHeader';
 import styles from './about.module.css';
 
+About.title = 'About';
+About.description = 'Holidaze is a hotel booking agency located in Bergen.';
 export default function About() {
   return (
     <Layout>

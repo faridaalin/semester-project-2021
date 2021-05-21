@@ -9,6 +9,9 @@ import {
 } from '../validationSchema/productSchema';
 import { ITEM_TO_UPDATE, COOKIE_VALUE } from '../contants';
 
+UpdateProduct.title = 'Update hotel';
+UpdateProduct.description = 'You can update hotel here.';
+
 export default function UpdateProduct({ admin, token }) {
   const [itemToUpdate, setItemToUpdate] = useState(null);
 

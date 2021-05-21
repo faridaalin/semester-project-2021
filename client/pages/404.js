@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
 
+NotFound.title = 'Not Found';
+NotFound.description = 'This page does not exist.';
+
 const NotFound = () => {
   return (
     <Layout>

@@ -7,6 +7,8 @@ import {
   initialProductValues,
 } from '../validationSchema/productSchema';
 
+CreateProduct.title = 'Add new Hotel';
+CreateProduct.description = 'Add new hotel to the list';
 export default function CreateProduct({ admin, token }) {
   return (
     <Layout>
