@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
     <div className={styles.container}>
       <NavbarDynamic setLoginModal={setLoginModal} />
       <main className={`main ${styles.main}`}>
-        <article>
+        <div>
           {children}
           {loginModal && (
             <PureModal
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
               <Login setLoginModal={setLoginModal} />
             </PureModal>
           )}
-        </article>
+        </div>
       </main>
       <Footer />
     </div>

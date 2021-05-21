@@ -42,6 +42,7 @@ const DateRangeWrapper = ({
         <input
           name='dates'
           type='button'
+          id='dates'
           value={
             !dateRange[0].endDate
               ? 'Add dates'
@@ -84,6 +85,7 @@ const DateRangeWrapper = ({
         </label>
         <input
           name='guests'
+          id='guests'
           type='button'
           value={guests >= 1 ? guests : 1}
           className={styles.inputButton}

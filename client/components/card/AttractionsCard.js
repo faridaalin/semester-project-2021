@@ -17,12 +17,12 @@ const AttractionsCard = (props) => {
       </div>
       <div className={styles.content}>
         <h3 className={styles.H3}>{attractions.name}</h3>
-        <section
+        <div
           className={styles.description}
           dangerouslySetInnerHTML={{
             __html: attractions.description,
           }}
-        ></section>
+        ></div>
       </div>
     </div>
   );
