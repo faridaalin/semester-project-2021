@@ -90,8 +90,13 @@ export async function getServerSideProps() {
     };
   } catch (err) {
     console.error(err);
+    if (err.response && err.response.data) {
+      return {
+        props: { data: err.response.data },
+      };
+    }
     return {
-      props: { data: err.response.data },
+      props: { data: [] },
     };
   }
 }

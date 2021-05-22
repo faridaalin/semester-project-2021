@@ -208,8 +208,14 @@ export async function getServerSideProps(context) {
       props: { data, token },
     };
   } catch (err) {
+    console.error(err);
+    if (err.response && err.response.data) {
+      return {
+        props: { data: err.response.data, token },
+      };
+    }
     return {
-      props: { data: err.response.data, token },
+      props: { data: [] },
     };
   }
 }
