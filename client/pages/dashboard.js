@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import axios from '@/utils/axios';
+import Alert from '@/components/alert/Alert';
 import PageHeader from '@/components/pageHeader/PageHeader';
 import { parseCookies } from '@/helpers/parseCookies';
 import DashboardComp from '@/components/dashboardComp/DashboardComp';
@@ -8,8 +9,23 @@ Dashboard.title = 'Dashboard';
 Dashboard.description =
   'Dashboard for administration. Get overview of revervations and messages.';
 
-export default function Dashboard({ data, admin, token }) {
-  const { messages, enquiries } = data;
+export default function Dashboard(props) {
+  if (
+    (props.data && props.data.status === 404) ||
+    props.data.messages.status !== 'ok' ||
+    props.data.enquiries.status !== 'ok'
+  ) {
+    let status = { sent: false, msg: props.data.message };
+    return (
+      <Layout>
+        <section className='section'>
+          <Alert status={status} />
+        </section>
+      </Layout>
+    );
+  }
+
+  const { messages, enquiries } = props.data;
 
   return (
     <Layout>
@@ -24,8 +40,16 @@ export async function getServerSideProps(context) {
   const token = cookie.jwt;
   const admin = cookie.isAdmin;
 
-  let data = null;
+  let data;
   try {
+    if (!admin || !token) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,6 +73,10 @@ export async function getServerSideProps(context) {
       messages: messagesRes.data,
       enquiries: enquiriesRes.data,
     };
+
+    return {
+      props: { data },
+    };
   } catch (err) {
     console.error(err);
 
@@ -59,19 +87,10 @@ export async function getServerSideProps(context) {
           permanent: false,
         },
       };
+    } else {
+      return {
+        props: { data: err.response.data },
+      };
     }
   }
-
-  if (!data || !admin || !token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { data, admin, token },
-  };
 }
