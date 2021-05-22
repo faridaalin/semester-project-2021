@@ -5,7 +5,8 @@
   background-size: cover;
   background-position: center;
   height: 450px;
-  width: 100%;
+  width: 300px;
+  max-width: 400px;
   margin-bottom: 60px;
   border-radius: 8px;
   position: relative;
@@ -13,10 +14,9 @@
   transition: all 0.3s ease;
   z-index: 1;
   margin-right: 16px;
+  margin-bottom: 32px;
 }
-.card:last-child {
-  margin-right: 0px;
-}
+
 .card::after {
   content: '';
   position: absolute;
@@ -93,7 +93,8 @@
 .cardType {
   composes: card;
   max-width: initial;
-  width: 100% !important;
+  width: 90%;
+  max-width: 500px;
 }
 .cardType .content {
   background: linear-gradient(
@@ -103,23 +104,11 @@
   );
 }
 
-@media only screen and (min-width: 380px) {
-  .card {
-    width: 300px;
-  }
-}
-@media only screen and (min-width: 380px) {
-  .cardType {
-    width: 379px !important;
-  }
-}
-
 @media only screen and (min-width: 768px) {
-  .card {
-    width: 100%;
-    height: 395px;
-    max-width: 260px;
+  .cardType {
+    width: 338px;
   }
+
   .h3 {
     font-size: 24px;
     line-height: 33.6px;
@@ -133,18 +122,11 @@
 
 @media only screen and (min-width: 1200px) {
   .card {
-    min-width: 23%;
-    margin-bottom: 0;
-    margin-right: 20px;
+    width: 245px;
+    height: 350px;
   }
 
   .cardType {
-    min-width: 30%;
-    margin-bottom: 0;
-    margin-right: 18px;
-  }
-  .card:last-of-type,
-  .cardType:last-of-type {
-    margin-right: 0;
+    width: 30%;
   }
 }

@@ -43,7 +43,7 @@ export default function Home(props) {
       </section>
       <section className='section'>
         <SectionHeading>Choose your style</SectionHeading>
-        <CardContainer>
+        <CardContainer type='category'>
           {data.images.map((style) => (
             <Card key={style.type} hotelStyle={style} />
           ))}

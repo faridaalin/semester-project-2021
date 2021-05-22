@@ -39,36 +39,30 @@
   border-radius: 8px;
 }
 
-@media only screen and (min-width: 380px) {
+@media only screen and (min-width: 768px) {
   .attractionsCard {
-    width: 379px;
-  }
-}
-
-@media only screen and (min-width: 1100px) {
-  .attractionsCard {
-    width: 1080px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     place-items: center;
-    margin-bottom: 304px;
+    margin-bottom: 200px;
+    margin-right: 0px;
   }
-
-  .imageContainer {
-    margin-bottom: 0;
-    width: 464px;
-    height: 464px;
-  }
-
   .attractionsCard:nth-child(even) {
     flex-direction: row;
   }
-  .H3 {
-    font-size: 28px;
-    margin-bottom: 32px;
+  .imageContainer {
+    margin-bottom: 0;
+    min-width: 40%;
   }
 
+  .description,
+  .H3 {
+    margin: 2rem;
+  }
+  .H3 {
+    font-size: 24px;
+  }
   .description {
     max-width: 420px;
   }

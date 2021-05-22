@@ -134,11 +134,10 @@
 
 @media screen and (min-width: 1200px) {
   .hotelCard {
-    max-width: 565px;
+    max-width: 550px;
     padding-bottom: 16px;
     flex-direction: row;
     margin-right: 16px;
-    min-width: 565px;
   }
 
   .imageContainer {

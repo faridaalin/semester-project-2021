@@ -38,12 +38,13 @@
 }
 
 .error {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--danger);
   font-weight: var(--fontWeight-m);
   padding: 0px 0px 0px 4px;
   text-align: left;
   position: absolute;
+  right: 0;
 }
 
 .dateRange {

@@ -66,8 +66,8 @@ export default function Contact() {
                     <DefaultInput
                       type='text'
                       name='firstname'
-                      placeholder='First name'
-                      label='First name'
+                      placeholder='Jane'
+                      label='Name'
                       customClass={styles.contactInput}
                     />
                   </div>
@@ -76,8 +76,8 @@ export default function Contact() {
                     <DefaultInput
                       type='text'
                       name='lastname'
-                      placeholder='Last name'
-                      label='Last name'
+                      placeholder='Doe'
+                      label='Surname'
                       customClass={styles.contactInput}
                     />
                   </div>

@@ -20,7 +20,7 @@
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .container {
-  max-width: 1200px;
+  max-width: 90%;
   margin: 0 auto;
   display: grid;
   grid-auto-flow: column;

@@ -5,4 +5,5 @@
   font-weight: var(--fontWeight-m);
   text-align: left;
   position: absolute;
+  top: 20%;
 }
