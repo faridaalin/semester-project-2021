@@ -87,6 +87,10 @@ export async function getServerSideProps(context) {
           permanent: false,
         },
       };
+    } else if (err.response && err.response.data) {
+      return {
+        props: { data: err.response.data, token },
+      };
     } else {
       return {
         props: { data: err.response.data },
