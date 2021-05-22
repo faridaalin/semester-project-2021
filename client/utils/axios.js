@@ -5,7 +5,6 @@ const instance = axios.create({
   withCredentials: true,
   responseType: 'json',
   withCredentials: true,
-  timeout: 10000,
   credentials: 'include',
   headers: {
     'X-Requested-With': 'XMLHttpRequest',

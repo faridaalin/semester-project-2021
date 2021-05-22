@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import axios from '@/utils/axios';
+import Alert from '@/components/alert/Alert';
 import SectionHeading from '@/components/sectionHeading/SectionHeading';
 import Card from '@/components/card/Card';
 import AttractionsCard from '@/components/card/AttractionsCard';
@@ -11,29 +12,29 @@ Home.title = 'Holidaze';
 Home.description = 'Welcome to holidaze, a hotel booking website.';
 
 export default function Home(props) {
+  if (props.data && props.data.status !== 'ok') {
+    let status = { sent: false, msg: props.data.message };
+    return (
+      <Layout>
+        <section className='section'>
+          <Alert status={status} />
+        </section>
+      </Layout>
+    );
+  }
+
   const { hotels, attractions } = props;
 
-  if (!hotels || !attractions) {
-    return (
-      <Layout>
-        <div>Sorry, please come back later.</div>
-      </Layout>
-    );
-  }
-
-  if (!hotels.data || hotels.data.length === 0) {
-    return (
-      <Layout>
-        <div>Sorry, please come back later.</div>
-      </Layout>
-    );
-  }
   return (
     <Layout>
       <HeroSection hotels={hotels} />
       <section className='section'>
         <SectionHeading>Customer Favourites</SectionHeading>
         <CardContainer>
+          {!hotels ||
+            (!hotels.data && (
+              <p>Sorry, an error happend. Please come back later.</p>
+            ))}
           {hotels.data.map(
             (hotel) =>
               hotel.rating >= 5 && <Card key={hotel._id} hotel={hotel} />
@@ -51,6 +52,10 @@ export default function Home(props) {
       <section className='section'>
         <SectionHeading>Attractions in Bergen</SectionHeading>
         <CardContainer>
+          {!attractions ||
+            (!attractions.data && (
+              <p>Sorry, an error happend. Please come back later.</p>
+            ))}
           {!attractions.data ||
             (attractions.data.length === 0 ? (
               <div>Sorry, attractions are currently not avaiable.</div>
@@ -84,10 +89,9 @@ export async function getServerSideProps() {
       props: { hotels: hotelsResult.data, attractions: attractionsResult.data },
     };
   } catch (err) {
-    console.log('error', err);
     console.error(err);
+    return {
+      props: { data: err.response.data },
+    };
   }
-  return {
-    props: {},
-  };
 }

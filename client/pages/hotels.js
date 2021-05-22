@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PureModal from 'react-pure-modal';
 import { AlertTriangle } from 'react-feather';
+import Alert from '@/components/alert/Alert';
 import axios from '@/utils/axios';
 import { parseCookies } from '@/helpers/parseCookies';
 import Layout from '@/components/layout/Layout';
@@ -18,15 +19,41 @@ Hotels.title = 'All hotels';
 Hotels.description = 'List of all avaiable hotels in Bergen';
 
 export default function Hotels(props) {
+  if (props.data && props.data.status !== 'ok') {
+    let status = { sent: false, msg: props.data.message };
+    return (
+      <Layout>
+        <PageHeader title='Our Hotels' />
+        <section className='section'>
+          <Alert status={status} />
+        </section>
+      </Layout>
+    );
+  }
+
+  if (props.data && props.data.length === 0) {
+    let status = {
+      sent: false,
+      msg: "We don't have any hotels available at the moment. Please, try again later.",
+    };
+    return (
+      <Layout>
+        <PageHeader title='Our Hotels' />
+        <section className='section'>
+          <Alert status={status} info />
+        </section>
+      </Layout>
+    );
+  }
+
   const { hasMounted } = useMounted();
   const [pageNumber, setPageNumber] = useState(0);
-  const [hotels, setHotels, getHotels] = useHotelsContext();
-  const [content, setContent] = useState(props.data.data);
+  const [hotels, , getHotels] = useHotelsContext();
+  const [content] = useState(props?.data?.data);
   const [itemToDelete, setItemTodelete] = useState(null);
   const [deleteMsg, setDeleteMsg] = useState(null);
   const [modal, setModal] = useState(false);
   const { search, setSearch } = useSearchContext();
-
   const token = !props.token ? null : props.token;
   const data = !hotels || hotels.length === 0 ? props.data.data : hotels;
   const hotelsPerPage = 6;
@@ -165,10 +192,11 @@ export default function Hotels(props) {
 export async function getServerSideProps(context) {
   const cookie = parseCookies(context.req);
   const token = !cookie || !cookie.jwt ? null : cookie.jwt;
+  let data;
 
   try {
     const hotels = await axios.get('/hotels');
-    const { data } = hotels;
+    data = hotels.data;
 
     if (!data) {
       return {
@@ -180,6 +208,8 @@ export async function getServerSideProps(context) {
       props: { data, token },
     };
   } catch (err) {
-    console.error(err);
+    return {
+      props: { data: err.response.data, token },
+    };
   }
 }

@@ -5,6 +5,9 @@
   min-height: 100vh;
   padding-top: 80px;
 }
+.main {
+  width: 100%;
+}
 
 .loginModal {
   margin: 16px;

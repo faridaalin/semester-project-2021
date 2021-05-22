@@ -3,16 +3,13 @@ import { parseCookies } from '@/helpers/parseCookies';
 import Layout from '@/components/layout/Layout';
 import PageHeader from '@/components/pageHeader/PageHeader';
 import HotelForm from '@/components/form/hotelForm/HotelForm';
-import {
-  updateHotelSchema,
-  initialProductValues,
-} from '../validationSchema/productSchema';
+import { updateHotelSchema } from '../validationSchema/productSchema';
 import { ITEM_TO_UPDATE, COOKIE_VALUE } from '../contants';
 
 UpdateProduct.title = 'Update hotel';
-UpdateProduct.description = 'You can update hotel here.';
+UpdateProduct.description = 'You can update a hotel here.';
 
-export default function UpdateProduct({ admin, token }) {
+export default function UpdateProduct({ token }) {
   const [itemToUpdate, setItemToUpdate] = useState(null);
 
   useEffect(() => {
