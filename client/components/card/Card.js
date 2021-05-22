@@ -27,12 +27,12 @@ const Card = (props) => {
               {hotel.title}
             </h3>
             <h4 className={styles.h4}>{hotel.address}</h4>
-            <section
+            <div
               className={styles.description}
               dangerouslySetInnerHTML={{
                 __html: truncate(hotel.description, 120),
               }}
-            ></section>
+            ></div>
           </div>
         </a>
       </Link>

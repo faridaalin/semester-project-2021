@@ -49,9 +49,9 @@ const Footer = () => {
         </section>
       </div>
 
-      <section className={styles.note}>
+      <div className={styles.note}>
         <p>This website was created for educational purpose only</p>
-      </section>
+      </div>
     </footer>
   );
 };
