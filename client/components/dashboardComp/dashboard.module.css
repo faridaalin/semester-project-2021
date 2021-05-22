@@ -102,9 +102,7 @@
   background: #fdfcfc;
   color: var(--blue-400);
 }
-.dark.navigation {
-  background: var(--blue-400);
-}
+
 .light.navigation {
   background: #fdfcfc;
 }
