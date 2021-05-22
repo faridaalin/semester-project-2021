@@ -21,7 +21,7 @@ const SelectField = ({
         id={name}
         name={name}
         options={options}
-        className={`${styles.input} ${styles.select}`}
+        className={`${styles.input}`}
       >
         {options.map((room, i) => {
           return (

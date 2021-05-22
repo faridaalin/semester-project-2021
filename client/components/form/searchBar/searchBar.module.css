@@ -142,11 +142,6 @@
   cursor: pointer;
 }
 
-.select {
-  /* -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; */
-}
 .guestsInput {
   text-align: center;
 }
