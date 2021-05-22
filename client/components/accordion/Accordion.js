@@ -16,6 +16,7 @@ const Accordion = ({ type, content, customData }) => {
   const visited = pageNumber * itemPerPage;
 
   const pageCount = Math.ceil(data.length / itemPerPage);
+
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -167,6 +168,7 @@ const Accordion = ({ type, content, customData }) => {
       ) : (
         <>
           {displayItems(content.data, open, 'enquiries')}
+
           {content && content.data.length > 0 && (
             <Pagination pageCount={pageCount} changePage={changePage} />
           )}

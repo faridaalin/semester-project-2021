@@ -138,6 +138,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .hamburgerMenu {
+    display: none;
+  }
   .navButton {
     pointer-events: none;
   }
@@ -172,6 +175,10 @@
   .navigation > * {
     background: var(--blue-400) !important;
     color: var(--grey-200);
+  }
+
+  .absolute {
+    height: 100%;
   }
 }
 

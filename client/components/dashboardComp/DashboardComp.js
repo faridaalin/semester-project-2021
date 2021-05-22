@@ -76,7 +76,7 @@ const DashboardComp = ({ messages, enquiries }) => {
         }`}
       >
         <button className={styles.navButton} onClick={handleNavToggle}>
-          <Menu />
+          <Menu className={styles.hamburgerMenu} />
           {showMessages ? 'Messages' : 'Enquiries'}
         </button>
 

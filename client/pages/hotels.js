@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PureModal from 'react-pure-modal';
 import { AlertTriangle } from 'react-feather';
 import Alert from '@/components/alert/Alert';
