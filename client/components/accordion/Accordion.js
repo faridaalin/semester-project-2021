@@ -1,32 +1,19 @@
 import { useState } from 'react';
-
 import { format } from 'date-fns';
 import { useMounted } from '@/hooks/hasMounted';
-import Pagination from '@/components/pagination/Pagination';
 import Button from '@/components/button/Button';
 import styles from './accordion.module.css';
 
 const Accordion = ({ type, content, customData }) => {
   const { hasMounted } = useMounted();
   const [open, setOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
-
-  const data = typeof content === 'string' ? [] : content.data;
-  const itemPerPage = 5;
-  const visited = pageNumber * itemPerPage;
-
-  const pageCount = Math.ceil(data.length / itemPerPage);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
 
   const displayItems = (data, open, type) => {
     let itemsToDisplay;
     if (type === 'messages') {
       itemsToDisplay =
         hasMounted && data && data.length > 0 ? (
-          data.slice(visited, visited + itemPerPage).map((item, index) => {
+          data.map((item, index) => {
             return (
               <div key={item._id}>
                 <div
@@ -64,7 +51,7 @@ const Accordion = ({ type, content, customData }) => {
     } else {
       itemsToDisplay =
         hasMounted && data && data.length > 0 ? (
-          data.slice(visited, visited + itemPerPage).map((item, index) => {
+          data.map((item, index) => {
             return (
               <div key={item._id}>
                 <div
@@ -142,12 +129,7 @@ const Accordion = ({ type, content, customData }) => {
             <p className={styles.paragraph}>{customData}</p>
           </div>
         ) : (
-          <>
-            {displayItems(content.data, open, 'messages')}
-            {content && content.data.length > 0 && (
-              <Pagination pageCount={pageCount} changePage={changePage} />
-            )}
-          </>
+          <>{displayItems(content.data, open, 'messages')}</>
         )}
       </div>
     );
@@ -166,13 +148,7 @@ const Accordion = ({ type, content, customData }) => {
           <p className={styles.paragraph}>{customData}</p>
         </div>
       ) : (
-        <>
-          {displayItems(content.data, open, 'enquiries')}
-
-          {content && content.data.length > 0 && (
-            <Pagination pageCount={pageCount} changePage={changePage} />
-          )}
-        </>
+        <>{displayItems(content.data, open, 'enquiries')}</>
       )}
     </div>
   );
