@@ -15,10 +15,6 @@ import ReservationForm from '@/components/form/reservationForm/ReservationForm';
 
 import styles from './hotelDetail.module.css';
 
-HotelDetail.title = 'Hotel';
-HotelDetail.description =
-  'Holidaze is a hotel booking agency located in Bergen.';
-
 const HotelDetail = (props) => {
   const hotel = props.data.data;
   const [modal, setModal] = useState(false);

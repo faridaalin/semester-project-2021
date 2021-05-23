@@ -7,8 +7,6 @@ import CardContainer from '../../components/cardContainer/CardContainer';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { useHotelsContext } from '../../context/HotelsContext';
 
-Category.title = 'Category';
-Category.description = 'Holidaze is a hotel booking agency located in Bergen.';
 const Category = (props) => {
   const router = useRouter();
   const [hotels, , getHotels] = useHotelsContext();
@@ -47,6 +45,9 @@ const Category = (props) => {
   if (!hotels || hotels.lenght === 0 || !router.query.slug) {
     return (
       <Layout>
+        <Head>
+          <title>Category</title>
+        </Head>
         <h2> Hotel Category</h2>
         <p>Sorry, please come back later.</p>
       </Layout>
