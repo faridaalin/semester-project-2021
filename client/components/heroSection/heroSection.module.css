@@ -30,7 +30,7 @@
 }
 
 .explore {
-  color: #505367;
+  color: #84919e;
   font-family: var(--header-font);
   line-height: 18px;
   font-size: 24px;
@@ -98,10 +98,10 @@
     left: auto;
   }
   .explore {
-    font-family: var(--header-font);
-    font-weight: var(--fontWeight-r);
+    color: #505367;
     font-size: 24px;
-    color: var(--blue-200);
+    font-weight: var(--fontWeight-r);
+    font-family: var(--header-font);
   }
 
   .header {
