@@ -5,19 +5,19 @@ import useDashboardContext from '@/context/DashboardContext';
 
 import styles from './pill.module.css';
 
-const Pill = ({ name, select, dashboard, mobile }) => {
+const Pill = ({ name, select, dashboard, mobile, setOpen }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
   const { pathname } = router;
 
-  const [showMessages, setShowMessages, showEnq, setShowEnq, logout] =
-    useDashboardContext();
+  const [, setShowMessages, , setShowEnq, logout] = useDashboardContext();
 
   const handleMessages = () => {
     setShowEnq(false);
     setShowMessages(true);
     if (pathname === '/dashboard') {
       setShow(!show);
+      setOpen(false);
     } else {
       router.push('/dashboard');
     }
@@ -28,6 +28,7 @@ const Pill = ({ name, select, dashboard, mobile }) => {
 
     if (pathname === '/dashboard') {
       setShow(!show);
+      setOpen(false);
     } else {
       router.push('/dashboard');
     }
@@ -36,6 +37,7 @@ const Pill = ({ name, select, dashboard, mobile }) => {
   const HandleEnquireForm = () => {
     if (pathname === '/create-product') {
       setShow(!show);
+      setOpen(false);
     } else {
       router.push('/create-product');
     }

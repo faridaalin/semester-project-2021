@@ -51,7 +51,12 @@ const Navbar = ({ setLoginModal }) => {
     if (process.browser && cookie.isAdmin === COOKIE_VALUE) {
       return (
         <li>
-          <Pill name='Dashboard' select={2} dashboard='true' />
+          <Pill
+            name='Dashboard'
+            select={2}
+            dashboard='true'
+            setOpen={setOpen}
+          />
         </li>
       );
     } else if (cookie.isAdmin === COOKIE_PUBLIC) {
