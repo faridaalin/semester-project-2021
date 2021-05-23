@@ -52,18 +52,22 @@ button {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-input[type='number'] {
+input[type='number'],
+input[type='date'],
+input {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input[type='number'] {
   text-align: center;
 }
-input[type='date'] {
-  -webkit-appearance: none;
-}
-
 p {
   font-size: 16px;
   line-height: 1.5;

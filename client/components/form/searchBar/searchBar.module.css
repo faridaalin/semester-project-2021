@@ -161,6 +161,7 @@
   width: 100%;
   font-family: var(--header-font);
   -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .input::-webkit-input-placeholder,
