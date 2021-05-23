@@ -95,5 +95,8 @@ export async function getServerSideProps() {
         props: { data: err.response.data },
       };
     }
+    return {
+      props: { data: [] },
+    };
   }
 }
