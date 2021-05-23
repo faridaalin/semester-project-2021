@@ -105,6 +105,7 @@
   max-width: initial;
   width: 90%;
   max-width: 500px;
+  margin: 16px auto;
 }
 .cardType .content {
   background: linear-gradient(
@@ -113,10 +114,15 @@
     #353649e3 86.74%
   );
 }
+.cardWrapper {
+  width: 100%;
+}
 
 @media only screen and (min-width: 768px) {
-  .cardType {
-    width: 338px;
+  .cardType,
+  .cardWrapper {
+    width: 294px;
+    margin: 16px;
   }
 
   .h3 {
@@ -135,8 +141,11 @@
     width: 245px;
     height: 350px;
   }
+  .cardWrapper {
+    width: 30%;
+  }
 
   .cardType {
-    width: 30%;
+    width: 100%;
   }
 }

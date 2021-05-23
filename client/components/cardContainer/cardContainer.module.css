@@ -5,6 +5,6 @@
 }
 
 .category {
-  compass: cardGrid;
+  composes: cardGrid;
   grid-template-columns: repeat(auto-fit, 25rem);
 }

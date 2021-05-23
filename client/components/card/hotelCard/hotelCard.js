@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -39,56 +39,58 @@ const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
   );
 
   return (
-    <Link href={`/hotel/${hotel._id}`}>
-      <a>
-        <div className={styles.hotelCard}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={hotel.main_image}
-              alt={hotel.title}
-              layout='fill'
-              objectFit='cover'
-              className={styles.image}
-            />
-          </div>
-
-          <div className={styles.content}>
-            <h3 className={`${styles.h3} ${styles.header}`}>{hotel.title}</h3>
-            <h4 className={styles.h4}>{hotel.address}</h4>
-            <span>
-              {showRating(hotel.rating).map((i) => (
-                <Star key={i} className={styles.rating} />
-              ))}
-            </span>
-            <div className={styles.description}>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: truncate(hotel.description, 110),
-                }}
+    <div>
+      <Link href={`/hotel/${hotel._id}`}>
+        <a>
+          <div className={styles.hotelCard}>
+            <div className={styles.imageContainer}>
+              <Image
+                src={hotel.main_image}
+                alt={hotel.title}
+                layout='fill'
+                objectFit='cover'
+                className={styles.image}
               />
             </div>
-            <div className={styles.buttonContainer}>
-              <Button color='orange' size='s'>
-                View More
-              </Button>
-              {admin === true && (
-                <div className={styles.icons}>
-                  <button
-                    className={styles.btnIcon}
-                    onClick={handleDeleteButton}
-                  >
-                    <Trash2 className={styles.iconDelete} />
-                  </button>
-                  <button className={styles.btnIcon} onClick={handleUpdate}>
-                    <Edit className={styles.iconUpdate} />
-                  </button>
-                </div>
-              )}
+
+            <div className={styles.content}>
+              <h3 className={`${styles.h3} ${styles.header}`}>{hotel.title}</h3>
+              <h4 className={styles.h4}>{hotel.address}</h4>
+              <span>
+                {showRating(hotel.rating).map((i) => (
+                  <Star key={i} className={styles.rating} />
+                ))}
+              </span>
+              <div className={styles.description}>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: truncate(hotel.description, 110),
+                  }}
+                />
+              </div>
+              <div className={styles.buttonContainer}>
+                <Button color='orange' size='s'>
+                  View More
+                </Button>
+                {admin === true && (
+                  <div className={styles.icons}>
+                    <button
+                      className={styles.btnIcon}
+                      onClick={handleDeleteButton}
+                    >
+                      <Trash2 className={styles.iconDelete} />
+                    </button>
+                    <button className={styles.btnIcon} onClick={handleUpdate}>
+                      <Edit className={styles.iconUpdate} />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </a>
-    </Link>
+        </a>
+      </Link>
+    </div>
   );
 };
 
