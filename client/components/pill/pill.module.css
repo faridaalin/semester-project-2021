@@ -26,12 +26,33 @@
   font-size: 14px;
   display: flex;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .primaryButton {
+    transition: all 0.2s ease-in-out;
+  }
 }
 .primaryButton:hover {
   background-color: var(--grey-300);
   box-shadow: 1px 1px 6px rgb(132 137 142 / 60%);
-  transition: all 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton:hover {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .primaryButton:hover {
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 .primaryButton:focus {
@@ -53,6 +74,18 @@
   font-weight: var(--fontWeight-m);
   font-size: 14px;
   transition: background-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:hover {
+    transition: background-color 0.3s ease;
+  }
 }
 .button:hover {
   background-color: var(--white-100);

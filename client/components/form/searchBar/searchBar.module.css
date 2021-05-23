@@ -55,9 +55,21 @@
 .suggestionItem {
   padding: 16px 16px;
   margin-bottom: 8px;
-  transition: all 0.3s ease;
   cursor: pointer;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestionItem {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .suggestionItem {
+    transition: all 0.3s ease;
+  }
+}
+
 .suggestionItem:hover {
   background: var(--white-300);
   color: var(--blue-400);

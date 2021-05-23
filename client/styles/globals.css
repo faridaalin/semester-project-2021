@@ -36,6 +36,17 @@ img {
 button {
   transition: all 0.3s ease;
 }
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  button {
+    transition: all 0.3s ease;
+  }
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

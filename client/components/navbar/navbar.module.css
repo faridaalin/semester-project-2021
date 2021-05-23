@@ -13,11 +13,23 @@
 .addBackground {
   transform: translateY(0px);
   box-shadow: 0 10px 30px -10px rgb(10 26 51 / 43%);
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
 .removeBackground {
   transform: translateY(-86px);
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .removeBackground,
+  .addBackground {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .removeBackground,
+  .addBackground {
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
 }
 .container {
   max-width: 90%;
@@ -89,12 +101,22 @@
   z-index: 200;
   width: 100vw;
   height: 100vh;
-  transition: transform 0.3s ease;
   transform: translateX(-100vw);
   background: var(--grey-100);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav {
+    transition: transform 0.3s ease;
+  }
 }
 
 .show {
@@ -122,7 +144,17 @@
   display: flex;
   place-items: center;
   height: 100%;
-  transition: all 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item {
+    transition: all 0.3s ease;
+  }
 }
 
 .item:hover {
@@ -137,7 +169,18 @@
 
 .active {
   background-color: #c9d1d9a6;
-  transition: all 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .active {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .active {
+    transition: all 0.3s ease;
+  }
 }
 
 .itemButton {

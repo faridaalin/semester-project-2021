@@ -21,7 +21,17 @@
   font-size: 12px;
   font-family: var(--header-font);
   font-weight: var(--fontWeight-m);
-  transition: all 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .addButton {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .addButton {
+    transition: all 0.3s ease;
+  }
 }
 
 .removeButton {

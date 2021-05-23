@@ -11,10 +11,20 @@
   border-radius: 8px;
   position: relative;
   transform: scale(1);
-  transition: all 0.3s ease;
   z-index: 1;
   margin-right: 16px;
   margin-bottom: 32px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: all 0.3s ease;
+  }
 }
 
 .card::after {

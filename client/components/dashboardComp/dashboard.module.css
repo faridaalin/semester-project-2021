@@ -38,7 +38,17 @@
   width: 100%;
   height: 100%;
   text-align: left;
-  transition: all 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .navBtn {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .navBtn {
+    transition: all 0.3s ease;
+  }
 }
 
 .navBtn:hover {

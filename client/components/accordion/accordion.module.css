@@ -28,6 +28,19 @@
   transition: all 0.6s ease;
   display: grid;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionText {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accordionText {
+    transition: all 0.6s ease;
+  }
+}
+
 .paragraph {
   font-family: var(--body-font);
   font-weight: var(--fontWeight-m);

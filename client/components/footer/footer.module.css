@@ -25,7 +25,21 @@
   color: var(--grey-400);
   line-height: 1.5;
   margin: 8px 0;
-  transition: color 0.25s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer p,
+  .footer a,
+  .contentContainer span {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer p,
+  .footer a,
+  .contentContainer span {
+    transition: color 0.25s ease-in-out;
+  }
 }
 
 .footer h3 {
@@ -73,12 +87,24 @@
 
 .socialMedia {
   color: var(--grey-400);
-  transition: color 0.25s ease-in-out;
   margin-top: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .socialMedia {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .socialMedia {
+    transition: color 0.25s ease-in-out;
+  }
+}
+
 .socialMedia svg {
   place-self: center;
   cursor: pointer;
@@ -88,7 +114,22 @@
 .footer a:hover,
 .contentContainer span:hover {
   color: var(--grey-100);
-  transition: color 0.25s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialMedia svg:hover,
+  .footer a:hover,
+  .contentContainer span:hover {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .socialMedia svg:hover,
+  .footer a:hover,
+  .contentContainer span:hover {
+    transition: color 0.25s ease-in-out;
+  }
 }
 
 .note {

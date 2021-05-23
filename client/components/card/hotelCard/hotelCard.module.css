@@ -6,11 +6,22 @@
   padding: 16px 16px 32px 16px;
   background-color: rgb(248 248 248 / 30%);
   border: 2px solid var(--white-100);
-  transition: background-color 0.25s ease;
   color: var(--blue-300);
   border-radius: 8px;
   max-width: 310px;
   margin-bottom: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotelCard {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hotelCard {
+    transition: background-color 0.25s ease;
+  }
 }
 
 .hotelCard:hover {
@@ -67,7 +78,17 @@
   background: transparent;
   margin-right: 16px;
   transform: scale(0.9);
-  transition: all 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btnIcon {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btnIcon {
+    transition: all 0.3s ease;
+  }
 }
 
 .btnIcon:last-child {
