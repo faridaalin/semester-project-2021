@@ -57,12 +57,11 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type='number'] {
-  -moz-appearance: textfield;
+  -webkit-appearance: none;
   text-align: center;
 }
 input[type='date'] {
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
+  -webkit-appearance: none;
 }
 
 p {

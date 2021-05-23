@@ -160,7 +160,7 @@
   border-radius: 6px;
   width: 100%;
   font-family: var(--header-font);
-  -webkit-appearance: textfield;
+  -webkit-appearance: none;
 }
 
 .input::-webkit-input-placeholder,
