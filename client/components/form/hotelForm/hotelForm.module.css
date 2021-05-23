@@ -1,8 +1,16 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .form {
   padding: 1rem;
   max-width: 386px;
 }
 .flex {
+  display: -ms-grid;
   display: grid;
   grid-row-gap: 10px;
   align-self: flex-start;
@@ -11,8 +19,14 @@
 .addButton {
   border: none;
   border-radius: 4px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 8px;
   margin-left: auto;
@@ -24,12 +38,16 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .addButton {
+    -webkit-transition: none;
+    -o-transition: none;
     transition: none;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .addButton {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
 }
@@ -88,7 +106,10 @@
     max-width: initial;
   }
   .innerForm {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     gap: 16px;
   }

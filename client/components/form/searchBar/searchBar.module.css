@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .form {
   position: relative;
   background: var(--white-200);
@@ -5,7 +12,9 @@
   padding: 24px 16px;
   width: 100%;
   max-width: 1123px;
+  -webkit-box-shadow: 1px 5px 20px rgba(228, 232, 236, 0.23);
   box-shadow: 1px 5px 20px rgba(228, 232, 236, 0.23);
+  -webkit-box-shadow: 1px 5px 20px rgb(48 51 53 / 23%);
   box-shadow: 1px 5px 20px rgb(48 51 53 / 23%);
 }
 .formHome {
@@ -17,12 +26,17 @@
   margin-top: 40px;
   width: 100%;
   max-width: 1123px;
+  display: -ms-grid;
   display: grid;
+  -webkit-box-shadow: 1px 5px 20px rgba(228, 232, 236, 0.23);
   box-shadow: 1px 5px 20px rgba(228, 232, 236, 0.23);
 }
 
 .column {
+  display: -ms-grid;
   display: grid;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   grid-auto-flow: column;
   gap: 16px;
@@ -43,6 +57,7 @@
   top: 80px;
   width: 100%;
   border-radius: 8px;
+  -webkit-box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
   box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
   font-size: 14px;
   max-height: 300px;
@@ -60,12 +75,16 @@
 
 @media (prefers-reduced-motion: reduce) {
   .suggestionItem {
+    -webkit-transition: none;
+    -o-transition: none;
     transition: none;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .suggestionItem {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
 }
@@ -87,7 +106,12 @@
   margin-bottom: 16px;
 }
 .labelContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   line-height: 1.3;
 }
@@ -97,8 +121,15 @@
   font-size: 12px;
   font-weight: var(--fontWeight-sm);
   line-height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
   gap: 4px;
   margin-bottom: 4px;
@@ -130,6 +161,38 @@
   width: 100%;
   font-family: var(--header-font);
   -webkit-appearance: textfield;
+}
+
+.input::-webkit-input-placeholder,
+.textarea::-webkit-input-placeholder {
+  font-size: 12px;
+  font-weight: var(--fontWeight-r);
+  font-family: var(--header-font);
+  color: var(--blue-300);
+}
+
+.input::-moz-placeholder,
+.textarea::-moz-placeholder {
+  font-size: 12px;
+  font-weight: var(--fontWeight-r);
+  font-family: var(--header-font);
+  color: var(--blue-300);
+}
+
+.input:-ms-input-placeholder,
+.textarea:-ms-input-placeholder {
+  font-size: 12px;
+  font-weight: var(--fontWeight-r);
+  font-family: var(--header-font);
+  color: var(--blue-300);
+}
+
+.input::-ms-input-placeholder,
+.textarea::-ms-input-placeholder {
+  font-size: 12px;
+  font-weight: var(--fontWeight-r);
+  font-family: var(--header-font);
+  color: var(--blue-300);
 }
 
 .input::placeholder,
@@ -167,15 +230,33 @@
     min-width: auto !important;
   }
   .formHome {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 250px 16px 300px 16px 150px;
     grid-template-columns: 250px 300px 150px;
+    -ms-grid-rows: 1fr;
     grid-template-rows: 1fr;
     grid-column-gap: 16px;
     grid-row-gap: 0px;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: flex-end;
     margin-top: 32px;
     padding: 32px 16px;
+    -webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+  }
+  .formHome > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .formHome > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+  }
+  .formHome > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 5;
   }
 
   .btnContainer {
@@ -186,13 +267,34 @@
 @media screen and (min-width: 992px) {
   .form {
     max-width: initial;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 250px 16px 250px 16px 200px 16px 150px;
     grid-template-columns: 250px 250px 200px 150px;
+    -ms-grid-rows: 1fr;
     grid-template-rows: 1fr;
     grid-column-gap: 16px;
     grid-row-gap: 0px;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: flex-end;
     padding: 32px 40px;
+  }
+  .form > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  .form > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+  }
+  .form > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 5;
+  }
+  .form > *:nth-child(4) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 7;
   }
 
   .customContainer {
@@ -200,12 +302,18 @@
   }
 
   .btnContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-bottom: 18px;
   }
 
   .column {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: flex-end;
     grid-column-gap: 8px;
   }

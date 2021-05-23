@@ -41,7 +41,7 @@ const Card = (props) => {
     );
   }
   return (
-    <div className={styles.cardWrapper}>
+      <div className={styles.cardWrapper}>
       <Link href={`/category/${hotelStyle.slug}`}>
         <a
           className={styles.cardType}
