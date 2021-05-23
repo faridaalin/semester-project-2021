@@ -16,7 +16,6 @@ const Card = (props) => {
           style={{
             backgroundImage: `url(${hotel.main_image})`,
           }}
-          alt={hotel.title}
         >
           <div className={styles.content}>
             <span>
@@ -47,7 +46,6 @@ const Card = (props) => {
           backgroundImage: `url(${hotelStyle.imageurl})`,
         }}
         data-style={hotelStyle.slug}
-        alt={hotelStyle.slug}
       >
         <div className={styles.content}>
           <h3 className={styles.h3}>{hotelStyle.type}</h3>
