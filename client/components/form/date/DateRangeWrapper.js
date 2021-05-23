@@ -37,7 +37,7 @@ const DateRangeWrapper = ({
 
         <input
           name='dates'
-          type='button'
+          type='text'
           id='dates'
           value={
             !dateRange[0].endDate
@@ -87,7 +87,7 @@ const DateRangeWrapper = ({
         <input
           name='guests'
           id='guests'
-          type='button'
+          type='number'
           value={guests >= 1 ? guests : 1}
           className={styles.inputButton}
           onClick={() => setShowGuests(!showGuests)}

@@ -123,7 +123,7 @@ const SearchBar = ({ content, searchMatch, setSearchMatch, datepicker }) => {
       validationSchema={datepicker ? searchSchemaSimple : searchSchema}
       onSubmit={onSubmit}
     >
-      {(formik) => {
+      {() => {
         return (
           <Form className={` ${datepicker ? styles.formHome : styles.form}`}>
             <div className={`${styles.inputContainer} ${styles.searchInput}`}>
