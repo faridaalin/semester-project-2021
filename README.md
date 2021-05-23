@@ -7,7 +7,7 @@ Final semester project at after two yeard of vocational programe in fronend deve
 - [Prototype Desktop](https://www.figma.com/proto/L4K2qS4bgQHup4cwcQHhdE/Holizade-Desktop?page-id=0%3A1&node-id=15%3A23&scaling=min-zoom)
 - [Prototype Mobile](https://www.figma.com/proto/dWjj4VtpPBxclpUltImmdv/Holidaze-mobile?page-id=0%3A1&node-id=2%3A23&scaling=min-zoom)
 - [Notion Planning](https://www.notion.so/69d229f2bad44145a856521ea7944f11?v=133f35b431dc4051bc3d4cca83c5e862)
-- [Demo](https://semester-project-2021-bbvbanlz5-faridaalin.vercel.app/)
+- [Demo](https://semester-project-2021.vercel.app/)
 
 ## Cloning project
 
