@@ -7,6 +7,8 @@ import CardContainer from '../../components/cardContainer/CardContainer';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { useHotelsContext } from '../../context/HotelsContext';
 
+Category.title = 'Category';
+Category.description = 'Holidaze is a hotel booking agency located in Bergen.';
 const Category = (props) => {
   const router = useRouter();
   const [hotels, , getHotels] = useHotelsContext();
