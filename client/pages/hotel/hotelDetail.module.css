@@ -184,6 +184,7 @@
   }
   .price {
     font-size: 16px;
+    margin-left: 8px;
   }
   .room {
     font-size: 13px;
