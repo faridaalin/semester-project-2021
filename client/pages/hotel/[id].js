@@ -16,12 +16,11 @@ import Alert from '@/components/alert/Alert';
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
-  if (props.data.status !== 'ok') {
-    return <Layout>An Error happend</Layout>;
-  }
-
-  if (props.data.status && props.data.status !== 'ok') {
-    let status = { sent: false, msg: props.data.message };
+  if (props.data && props.data.status !== 'ok') {
+    let status = {
+      sent: false,
+      msg: 'we have an error, please try again later',
+    };
     return (
       <Layout>
         <section className='section'>
@@ -139,35 +138,22 @@ const HotelDetail = (props) => {
           </div>
         </div>
       </section>
-      Hello
     </Layout>
   );
 };
 
 export default HotelDetail;
 
-export async function getStaticPaths() {
+export async function getStatgeticPaths() {
   let paths = [];
   try {
     const hotels = await axios.get(`/hotels`);
+    const { data } = hotels.data;
 
-    paths = hotels.data.data.map((hotel) => ({
+    paths = data.map((hotel) => ({
       params: { id: hotel._id },
     }));
-  } catch (err) {
-    console.error(err);
-  }
-
-  return { paths, fallback: true };
-}
-
-export async function getStaticProps({ params }) {
-  let data;
-  try {
-    const hotels = await axios.get(`/hotels/${params.id}`);
-    data = hotels.data;
-
-    return { props: { data } };
+    return { paths, fallback: true };
   } catch (err) {
     console.error(err);
     if (err.response && err.response.data) {
@@ -175,9 +161,29 @@ export async function getStaticProps({ params }) {
         props: { data: err.response.data },
       };
     }
-    data = {};
     return {
-      props: { data },
+      props: { data: [] },
+    };
+  }
+}
+
+export async function getServerSideProps({ params }) {
+  let data = {};
+  try {
+    const hotels = await axios.get(`/hotels/${params.id}`);
+    data = hotels.data;
+
+    return { props: { data } };
+  } catch (err) {
+    console.error(err);
+
+    if (err.response && err.response.data) {
+      return {
+        props: { data: err.response.data },
+      };
+    }
+    return {
+      props: { data: data },
     };
   }
 }
