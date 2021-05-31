@@ -10,7 +10,7 @@ const Card = (props) => {
 
   if (hotel) {
     return (
-      <div>
+      <div className={styles.cardcontainer}>
         <Link href={`/hotel/${hotel._id}`}>
           <a
             className={styles.card}
@@ -41,7 +41,7 @@ const Card = (props) => {
     );
   }
   return (
-      <div className={styles.cardWrapper}>
+    <div className={styles.cardWrapper}>
       <Link href={`/category/${hotelStyle.slug}`}>
         <a
           className={styles.cardType}
