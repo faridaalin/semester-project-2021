@@ -162,9 +162,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  let data;
   try {
     const hotels = await axios.get(`/hotels/${params.id}`);
-    const data = hotels.data;
+    data = hotels.data;
 
     return { props: { data } };
   } catch (err) {
@@ -174,8 +175,9 @@ export async function getStaticProps({ params }) {
         props: { data: err.response.data },
       };
     }
+    data = {};
     return {
-      props: { data: {} },
+      props: { data },
     };
   }
 }
