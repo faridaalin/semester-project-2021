@@ -36,7 +36,7 @@
 .imageContainer {
   margin-bottom: 16px;
   width: 100%;
-  min-width: 250px;
+  min-width: 150px;
   height: 180px;
   position: relative;
   border-radius: 6px;
@@ -152,14 +152,14 @@
 
 @media screen and (min-width: 1200px) {
   .hotelCard {
-    max-width: 600px;
+    max-width: 550px;
     padding-bottom: 16px;
     flex-direction: row;
     margin-right: 16px;
   }
 
   .imageContainer {
-    height: 229px;
+    height: 220px;
     margin-bottom: 0;
     margin-right: 24px;
   }
