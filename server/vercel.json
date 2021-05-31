@@ -1,0 +1,7 @@
+{
+  "name": "semester-project-2021",
+  "version": 2,
+  "env": {
+    "DB": "@DB"
+  }
+}
