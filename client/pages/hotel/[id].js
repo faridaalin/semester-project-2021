@@ -12,14 +12,25 @@ import Button from '@/components/button/Button';
 import PageHeader from '@/components/pageHeader/PageHeader';
 import useWindowWidth from '@/hooks/useWindowSize';
 import ReservationForm from '@/components/form/reservationForm/ReservationForm';
-
+import Alert from '@/components/alert/Alert';
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
-  console.log('props', props.data.data);
   if (props.data.status !== 'ok') {
     return <Layout>An Error happend</Layout>;
   }
+
+  if (props.data.status && props.data.status !== 'ok') {
+    let status = { sent: false, msg: props.data.message };
+    return (
+      <Layout>
+        <section className='section'>
+          <Alert status={status} />
+        </section>
+      </Layout>
+    );
+  }
+
   const hotel = props.data.data;
   const [modal, setModal] = useState(false);
 
@@ -158,7 +169,13 @@ export async function getStaticProps({ params }) {
     return { props: { data } };
   } catch (err) {
     console.error(err);
-    data = {};
-    return { data };
+    if (err.response && err.response.data) {
+      return {
+        props: { data: err.response.data },
+      };
+    }
+    return {
+      props: { data: {} },
+    };
   }
 }
