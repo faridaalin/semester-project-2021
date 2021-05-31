@@ -16,6 +16,10 @@ import ReservationForm from '@/components/form/reservationForm/ReservationForm';
 import styles from './hotelDetail.module.css';
 
 const HotelDetail = (props) => {
+  console.log('props', props.data.data);
+  if (props.data.status !== 'ok') {
+    return <Layout>An Error happend</Layout>;
+  }
   const hotel = props.data.data;
   const [modal, setModal] = useState(false);
 
@@ -124,6 +128,7 @@ const HotelDetail = (props) => {
           </div>
         </div>
       </section>
+      Hello
     </Layout>
   );
 };
@@ -134,9 +139,8 @@ export async function getStaticPaths() {
   let paths = [];
   try {
     const hotels = await axios.get(`/hotels`);
-    const { data } = hotels.data;
 
-    paths = data.map((hotel) => ({
+    paths = hotels.data.data.map((hotel) => ({
       params: { id: hotel._id },
     }));
   } catch (err) {
@@ -154,5 +158,7 @@ export async function getStaticProps({ params }) {
     return { props: { data } };
   } catch (err) {
     console.error(err);
+    data = {};
+    return { data };
   }
 }
