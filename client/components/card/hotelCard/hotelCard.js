@@ -39,7 +39,7 @@ const HotelCard = ({ hotel, setItemTodelete, setModal }) => {
   );
 
   return (
-    <div>
+    <div className={styles.cardcontainer}>
       <Link href={`/hotel/${hotel._id}`}>
         <a>
           <div className={styles.hotelCard}>
