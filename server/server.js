@@ -27,12 +27,22 @@ const app = express();
 dotenv.config();
 const port = process.env.PORT || 8080;
 
-mongoose.connect(`${process.env.DB}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect(`${process.env.DB}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+    console.log(`DB connected..`);
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 // MIDDLEWARE
 
