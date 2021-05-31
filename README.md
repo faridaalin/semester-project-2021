@@ -33,10 +33,10 @@ $ yarn
 1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/)
 2. Rename env.example to .env.local
 3. Then add you own varibles
-4. Use this live API for the project: https://sm-2021-backend.herokuapp.com/api
+4. Use this live API for the project: https://server-faridaalin.vercel.app/api
 
 ```
-NEXT_PUBLIC_BASE_URL=https://sm-2021-backend.herokuapp.com/api
+NEXT_PUBLIC_BASE_URL=https://server-faridaalin.vercel.app/api
 NEXT_PUBLIC_MAPBOX_TOKEN= your mapbox token...
 ```
 
