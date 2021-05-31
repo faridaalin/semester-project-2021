@@ -10,7 +10,7 @@ import {
 CreateProduct.title = 'Add new Hotel';
 CreateProduct.description = 'Add new hotel to the list';
 
-export default function CreateProduct({ admin, token }) {
+export default function CreateProduct({ token }) {
   return (
     <Layout>
       <PageHeader title='Create a new hotel' />

@@ -7,7 +7,7 @@ import CardContainer from '../../components/cardContainer/CardContainer';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { useHotelsContext } from '../../context/HotelsContext';
 
-const Category = (props) => {
+const Category = () => {
   const router = useRouter();
   const [hotels, , getHotels] = useHotelsContext();
 
@@ -62,7 +62,7 @@ const Category = (props) => {
         <PageHeader title='Hotels' />
 
         <CardContainer>
-          {getHotelByCategory().map((hotel, i) => (
+          {getHotelByCategory().map((hotel) => (
             <HotelCard key={hotel._id} hotel={hotel} />
           ))}
         </CardContainer>
