@@ -30,7 +30,7 @@ $ cd client
 $ yarn
 ```
 
-1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/)
+1. You will need a mapbox token. Create a free account at [Mapbox](https://www.mapbox.com/), if you don't add the the app will still work, but you will not be able to see map location at https://semester-project-2021.vercel.app/contact.
 2. Rename env.example to .env.local
 3. Then add you own varibles
 4. Use this live API for the project: https://server-faridaalin.vercel.app/api
