@@ -25,7 +25,7 @@ const HeroHeaderHotels = ({
 
   return (
     <section
-      className={`${styles.searchHero} ${detail ? styles.detail : ''}`}
+      className={styles.searchHero}
       style={{
         backgroundImage: detail ? `url(${hotel.images[0]})` : 'none',
       }}

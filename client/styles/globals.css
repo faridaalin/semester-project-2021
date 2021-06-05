@@ -162,6 +162,15 @@ button {
 .react-datepicker-wrapper {
   width: 100%;
 }
+.globalSpinner {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.globalSpinner svg {
+  animation: spin 1.5s linear infinite;
+}
 .loader > svg {
   animation: spin 1.2s linear infinite;
 }
