@@ -1,6 +1,6 @@
 # Holidaze - Hotel booking website 2021
 
-Final semester project at after two yeard of vocational programe in fronend development [School of Technology and Digital Media](https://www.noroff.no/).
+Final semester project at after two year vocational education in frontend development [School of Technology and Digital Media](https://www.noroff.no/).
 
 - [Styleguide](https://www.figma.com/file/SJnvvdbi4aZchirM3lplSq/Holizade-Style-Guide?node-id=0%3A1)
 - [Wireframe](https://www.figma.com/proto/1gNhUFEKlyZ2QFU8dNOyZ7/Holidaze-wireframe?page-id=0%3A1&node-id=1%3A2&scaling=min-zoom)

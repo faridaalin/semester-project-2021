@@ -19,7 +19,7 @@ const HotelDetail = (props) => {
   if (props.data && props.data.status !== 'ok') {
     let status = {
       sent: false,
-      msg: 'we have an error, please try again later',
+      msg: 'We have an error, please try again later',
     };
     return (
       <Layout>
