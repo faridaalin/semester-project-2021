@@ -70,6 +70,7 @@ const HotelDetail = (props) => {
         searchMatch={search}
         setSearchMatch={setSearch}
         detail
+        hotel={hotel}
       />
       <PageHeader title={hotel.title} />
       <section className={`section ${styles.container}`}>

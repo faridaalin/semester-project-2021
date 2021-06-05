@@ -3,7 +3,13 @@ import { useHotelsContext } from '@/context/HotelsContext';
 import SearchBar from '../form/searchBar/SearchBar';
 import styles from './heroHeaderHotels.module.css';
 
-const HeroHeaderHotels = ({ content, searchMatch, setSearchMatch, detail }) => {
+const HeroHeaderHotels = ({
+  content,
+  searchMatch,
+  setSearchMatch,
+  detail,
+  hotel,
+}) => {
   const [hotels, , getHotels] = useHotelsContext();
 
   useEffect(() => {
@@ -18,7 +24,12 @@ const HeroHeaderHotels = ({ content, searchMatch, setSearchMatch, detail }) => {
   }, []);
 
   return (
-    <section className={`${styles.searchHero} ${detail ? styles.detail : ''}`}>
+    <section
+      className={`${styles.searchHero} ${detail ? styles.detail : ''}`}
+      style={{
+        backgroundImage: detail ? `url(${hotel.images[0]})` : 'none',
+      }}
+    >
       <div className={styles.searchContainer}>
         <SearchBar
           content={content ? content : hotels}

@@ -12,10 +12,10 @@
   margin-right: calc(50% - 50vw);
 }
 .detail {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     rgb(228 232 236 / 52%),
     rgb(228 232 236 / 66%)
-  );
+  ); */
 }
 
 .searchHero::after {
